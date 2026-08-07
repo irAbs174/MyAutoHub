@@ -54,7 +54,38 @@ jobs:
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
 
     steps:
-      - name: Deploy over SSH
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pack release
+        run: |
+          tar -czf /tmp/myautohub-release.tar.gz \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.deploy' \
+            --exclude='.env' \
+            --exclude='db.sqlite3' \
+            --exclude='uploads' \
+            --exclude='media' \
+            --exclude='staticfiles' \
+            --exclude='venv' \
+            --exclude='.venv' \
+            --exclude='__pycache__' \
+            --exclude='*.pyc' \
+            .
+
+      - name: Upload release
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          source: /tmp/myautohub-release.tar.gz
+          target: /tmp
+          overwrite: true
+
+      - name: Unpack and rebuild
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -66,5 +97,6 @@ jobs:
           script: |
             set -euo pipefail
             export APP_DIR=/var/www/myautohub/application
-            export DEPLOY_BRANCH=main
+            export RELEASE_ARCHIVE=/tmp/myautohub-release.tar.gz
+            export DEPLOY_SHA=${{ github.sha }}
             bash "${APP_DIR}/scripts/deploy.sh"
