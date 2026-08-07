@@ -59,7 +59,7 @@ jobs:
 
       - name: Pack release
         run: |
-          tar -czf /tmp/myautohub-release.tar.gz \
+          tar -czf myautohub-release.tar.gz \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.deploy' \
@@ -72,6 +72,7 @@ jobs:
             --exclude='.venv' \
             --exclude='__pycache__' \
             --exclude='*.pyc' \
+            --exclude='myautohub-release.tar.gz' \
             .
 
       - name: Upload release
@@ -81,7 +82,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
-          source: /tmp/myautohub-release.tar.gz
+          source: myautohub-release.tar.gz
           target: /tmp
           overwrite: true
 
