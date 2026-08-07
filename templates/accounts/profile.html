@@ -9,9 +9,13 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>{{ user.get_username }}</h1>
-  <p>{% trans "Saved places you can reuse when requesting emergency help." %}</p>
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Account" %}</p>
+    <h1>{{ user.get_username }}</h1>
+    <p class="page-intro-lead">{% trans "Saved places you can reuse when requesting emergency help." %}</p>
+  </div>
 </section>
 
 <div class="toolbar">

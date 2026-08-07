@@ -41,6 +41,26 @@
         <a href="{% url 'panel:story_list' %}" class="{% if panel_section == 'stories' %}is-active{% endif %}">{% trans "Stories" %}</a>
       </nav>
       <div class="panel-side-foot">
+        <div class="panel-lang">
+          <details class="lang-switcher">
+            <summary aria-label="{% trans 'Language' %}">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_language_info for LANGUAGE_CODE as lang %}
+              <span class="lang-label">{{ lang.name_local }}</span>
+            </summary>
+            <form class="lang-menu" action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                <button type="submit" name="language" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}aria-current="true"{% endif %}>
+                  {{ language.name_local }}
+                </button>
+              {% endfor %}
+            </form>
+          </details>
+        </div>
         <a class="link-action" href="{% url 'core:home' %}">{% trans "Back to hub" %}</a>
         <form method="post" action="{% url 'accounts:logout' %}">
           {% csrf_token %}

@@ -9,10 +9,10 @@
 {% block twitter_description %}{% trans "Automotive stories and community writing from MyAutoHub." %}{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "Stories" %}</h1>
-  <p>{% trans "Human moments from the road and the MyAutoHub community." %}</p>
-</section>
+{% trans "Community" as s_kicker %}
+{% trans "Stories" as s_title %}
+{% trans "Human moments from the road and the MyAutoHub community." as s_lead %}
+{% include "components/page_intro.html" with kicker=s_kicker title=s_title lead=s_lead %}
 <div class="media-grid media-grid-3">
   {% for story in stories %}
     <a class="media-card reveal" href="{% url 'stories:detail' story.slug %}">

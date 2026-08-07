@@ -5,10 +5,10 @@
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>{% trans "Join MyAutoHub" %}</h1>
-  <p>{% trans "Create an account to submit emergency requests and use the marketplace." %}</p>
-</section>
+{% trans "Account" as a_kicker %}
+{% trans "Join MyAutoHub" as a_title %}
+{% trans "Create an account to submit emergency requests and use the marketplace." as a_lead %}
+{% include "components/page_intro.html" with kicker=a_kicker title=a_title lead=a_lead %}
 <div class="panel" style="max-width: 480px">
   <form method="post" class="form-grid">
     {% csrf_token %}

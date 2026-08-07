@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.utils.translation import gettext as _
 
-from apps.cars.models import Car
+from apps.cars.models import Car, Dealer, RepairShop
 from apps.core.i18n_content import localized
 from apps.emergency.models import EmergencyService
 from apps.marketplace.models import Listing, ListingStatus
@@ -25,6 +25,8 @@ def run_search(q, *, limit=SEARCH_LIMIT):
         "videos": [],
         "prices": [],
         "services": [],
+        "dealers": [],
+        "repair_shops": [],
     }
     if not q:
         return empty
@@ -106,6 +108,28 @@ def run_search(q, *, limit=SEARCH_LIMIT):
                 | Q(coverage_notes_en__icontains=q)
                 | Q(coverage_notes_ar__icontains=q)
             )[:limit]
+        ),
+        "dealers": list(
+            Dealer.objects.filter(is_published=True)
+            .filter(
+                Q(name__icontains=q)
+                | Q(city__icontains=q)
+                | Q(address__icontains=q)
+                | Q(brands__name__icontains=q)
+            )
+            .prefetch_related("brands")
+            .distinct()[:limit]
+        ),
+        "repair_shops": list(
+            RepairShop.objects.filter(is_published=True)
+            .filter(
+                Q(name__icontains=q)
+                | Q(city__icontains=q)
+                | Q(address__icontains=q)
+                | Q(brands__name__icontains=q)
+            )
+            .prefetch_related("brands")
+            .distinct()[:limit]
         ),
     }
 
@@ -211,6 +235,30 @@ def build_suggest_results(q, *, request=None, limit=SUGGEST_LIMIT):
                 "title": localized(svc, "name"),
                 "subtitle": desc[:100],
                 "url": emergency_url,
+            }
+        )
+
+    for dealer in buckets["dealers"]:
+        results.append(
+            {
+                "id": f"dealer:{dealer.pk}",
+                "category": "dealer",
+                "category_label": _("Dealer"),
+                "title": dealer.name,
+                "subtitle": dealer.city or "",
+                "url": reverse("places:dealer_detail", args=[dealer.pk]),
+            }
+        )
+
+    for shop in buckets["repair_shops"]:
+        results.append(
+            {
+                "id": f"repair_shop:{shop.pk}",
+                "category": "repair_shop",
+                "category_label": _("Repair shop"),
+                "title": shop.name,
+                "subtitle": shop.city or "",
+                "url": reverse("places:repair_shop_detail", args=[shop.pk]),
             }
         )
 

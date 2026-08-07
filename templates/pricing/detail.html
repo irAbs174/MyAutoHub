@@ -11,9 +11,13 @@
 {% block twitter_image %}{% if item.main_image %}{{ seo_site_url }}{{ item.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>{{ item.title }}</h1>
-  <p>{% if item.category %}{{ item.category }}{% else %}{% trans "General reference" %}{% endif %}</p>
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Pricing" %}</p>
+    <h1>{{ item.title }}</h1>
+    <p class="page-intro-lead">{% if item.category %}{{ item.category }}{% else %}{% trans "General reference" %}{% endif %}</p>
+  </div>
 </section>
 {% if item.main_image or item.photos.all %}
 <div class="gallery reveal">

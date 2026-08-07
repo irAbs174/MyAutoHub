@@ -9,12 +9,14 @@
 {% block twitter_description %}{% trans "Explore the MyAutoHub car catalog-brands, models, and specs." %}{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "Car catalog" %}</h1>
-  <p>{% trans "Browse brands and models with the essentials-year, power, and trim." %}</p>
-</section>
+{% trans "Catalog" as cars_kicker %}
+{% trans "Car catalog" as cars_title %}
+{% trans "Browse brands and models with the essentials-year, power, and trim." as cars_lead %}
+{% url 'places:index' as places_url %}
+{% trans "Places" as places_cta %}
+{% include "components/page_intro.html" with kicker=cars_kicker title=cars_title lead=cars_lead cta2_url=places_url cta2_label=places_cta %}
 
-<div class="panel filter-panel cars-filter-panel reveal">
+<div class="panel filter-panel cars-filter-panel compact-filter reveal">
   <form method="get" class="filter-bar cars-filter-bar" action="{% url 'cars:list' %}">
     <div class="form-row cars-filter-search">
       <label for="{{ form.q.id_for_label }}">{{ form.q.label }}</label>

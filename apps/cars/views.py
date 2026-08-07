@@ -128,3 +128,34 @@ def detail(request, pk):
             "repair_shops": repair_shops,
         },
     )
+
+
+def places_index(request):
+    dealers = Dealer.objects.filter(is_published=True).prefetch_related("brands")
+    shops = RepairShop.objects.filter(is_published=True).prefetch_related("brands")
+    return render(
+        request,
+        "places/index.html",
+        {
+            "dealers": dealers,
+            "repair_shops": shops,
+        },
+    )
+
+
+def dealer_detail(request, pk):
+    dealer = get_object_or_404(
+        Dealer.objects.prefetch_related("brands"),
+        pk=pk,
+        is_published=True,
+    )
+    return render(request, "places/dealer_detail.html", {"dealer": dealer})
+
+
+def repair_shop_detail(request, pk):
+    shop = get_object_or_404(
+        RepairShop.objects.prefetch_related("brands"),
+        pk=pk,
+        is_published=True,
+    )
+    return render(request, "places/repair_shop_detail.html", {"shop": shop})

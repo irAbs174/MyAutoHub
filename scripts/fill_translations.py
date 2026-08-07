@@ -586,6 +586,67 @@ t(
 )
 t("Browse all", fa="مشاهده همه", ar="عرض الكل", fr="Tout parcourir", de="Alle ansehen", es="Ver todo", ru="Смотреть все")
 t("Roadside help", fa="کمک کنار جاده", ar="مساعدة على الطريق", fr="Aide routière", de="Pannenhilfe", es="Ayuda en carretera", ru="Помощь на дороге")
+
+# --- Places / compact UI ---
+t("Places", fa="مکان‌ها", ar="الأماكن", fr="Lieux", de="Orte", es="Lugares", ru="Места")
+t("Network", fa="شبکه", ar="شبكة", fr="Réseau", de="Netzwerk", es="Red", ru="Сеть")
+t("Find car dealers and repair shops on MyAutoHub.", fa="نمایندگی‌ها و تعمیرگاه‌ها را در مای‌اتوهاب پیدا کنید.", ar="اعثر على وكلاء السيارات وورش الإصلاح في ماي أوتو هاب.", fr="Trouvez concessionnaires et garages sur MyAutoHub.", de="Händler und Werkstätten auf MyAutoHub finden.", es="Encuentra concesionarios y talleres en MyAutoHub.", ru="Найдите дилеров и сервисы на MyAutoHub.")
+t("Dealers and repair shops linked to brands in the catalog.", fa="نمایندگی‌ها و تعمیرگاه‌های مرتبط با برندهای کاتالوگ.", ar="وكلاء وورش مرتبطة بعلامات الكتالوج.", fr="Concessionnaires et garages liés aux marques du catalogue.", de="Händler und Werkstätten zu Katalogmarken.", es="Concesionarios y talleres vinculados a marcas del catálogo.", ru="Дилеры и сервисы, связанные с брендами каталога.")
+t("Authorized & local dealers", fa="نمایندگی‌های مجاز و محلی", ar="وكلاء معتمدون ومحليون", fr="Concessionnaires agréés et locaux", de="Autorisierte und lokale Händler", es="Concesionarios autorizados y locales", ru="Официальные и местные дилеры")
+t("Service & repair", fa="سرویس و تعمیر", ar="خدمة وإصلاح", fr="Service et réparation", de="Service und Reparatur", es="Servicio y reparación", ru="Сервис и ремонт")
+t("No dealers published yet.", fa="هنوز نمایندگی منتشر نشده است.", ar="لا يوجد وكلاء منشورون بعد.", fr="Aucun concessionnaire publié.", de="Noch keine Händler veröffentlicht.", es="Aún no hay concesionarios publicados.", ru="Дилеры ещё не опубликованы.")
+t("No repair shops published yet.", fa="هنوز تعمیرگاهی منتشر نشده است.", ar="لا توجد ورش منشورة بعد.", fr="Aucun garage publié.", de="Noch keine Werkstätten veröffentlicht.", es="Aún no hay talleres publicados.", ru="Сервисы ещё не опубликованы.")
+t("Dealer", fa="نمایندگی", ar="وكيل", fr="Concessionnaire", de="Händler", es="Concesionario", ru="Дилер")
+t("Repair shop", fa="تعمیرگاه", ar="ورشة إصلاح", fr="Garage", de="Werkstatt", es="Taller", ru="Сервис")
+t("Dealers & repair shops", fa="نمایندگی‌ها و تعمیرگاه‌ها", ar="الوكلاء وورش الإصلاح", fr="Concessionnaires et garages", de="Händler und Werkstätten", es="Concesionarios y talleres", ru="Дилеры и сервисы")
+t("Contact", fa="تماس", ar="اتصل", fr="Contact", de="Kontakt", es="Contacto", ru="Контакты")
+t("Phone", fa="تلفن", ar="الهاتف", fr="Téléphone", de="Telefon", es="Teléfono", ru="Телефон")
+t("Website", fa="وب‌سایت", ar="الموقع", fr="Site web", de="Webseite", es="Sitio web", ru="Сайт")
+t("Address", fa="آدرس", ar="العنوان", fr="Adresse", de="Adresse", es="Dirección", ru="Адрес")
+t("All places", fa="همه مکان‌ها", ar="كل الأماكن", fr="Tous les lieux", de="Alle Orte", es="Todos los lugares", ru="Все места")
+t("Explore more", fa="بیشتر ببینید", ar="استكشف المزيد", fr="Explorer plus", de="Mehr entdecken", es="Explorar más", ru="Смотреть ещё")
+t("Browse other dealers, shops, and catalog models.", fa="نمایندگی‌ها، تعمیرگاه‌ها و مدل‌های کاتالوگ دیگر را ببینید.", ar="تصفّح وكلاء وورش ونماذج كتالوج أخرى.", fr="Parcourez d’autres lieux et modèles.", de="Weitere Orte und Modelle ansehen.", es="Explora más lugares y modelos.", ru="Смотрите другие места и модели.")
+t("Sections", fa="بخش‌ها", ar="الأقسام", fr="Sections", de="Abschnitte", es="Secciones", ru="Разделы")
+t("Specs", fa="مشخصات", ar="المواصفات", fr="Specs", de="Specs", es="Specs", ru="Характеристики")
+t("Technical", fa="فنی", ar="تقني", fr="Technique", de="Technik", es="Técnico", ru="Техника")
+t("Body", fa="بدنه", ar="الهيكل", fr="Carrosserie", de="Karosserie", es="Carrocería", ru="Кузов")
+t("Equipment", fa="تجهیزات", ar="التجهيزات", fr="Équipement", de="Ausstattung", es="Equipamiento", ru="Оснащение")
+t("Care", fa="نگهداری", ar="العناية", fr="Entretien", de="Pflege", es="Cuidado", ru="Уход")
+t("Service", fa="سرویس", ar="الخدمة", fr="Service", de="Service", es="Servicio", ru="Сервис")
+t("OBD", fa="OBD", ar="OBD", fr="OBD", de="OBD", es="OBD", ru="OBD")
+t("Shops", fa="تعمیرگاه‌ها", ar="الورش", fr="Garages", de="Werkstätten", es="Talleres", ru="Сервисы")
+t("Engine", fa="موتور", ar="المحرك", fr="Moteur", de="Motor", es="Motor", ru="Двигатель")
+t("Displacement", fa="حجم موتور", ar="السعة", fr="Cylindrée", de="Hubraum", es="Cilindrada", ru="Объём")
+t("Cylinders", fa="سیلندر", ar="الأسطوانات", fr="Cylindres", de="Zylinder", es="Cilindros", ru="Цилиндры")
+t("Transmission", fa="گیربکس", ar="ناقل الحركة", fr="Transmission", de="Getriebe", es="Transmisión", ru="КПП")
+t("Drivetrain", fa="محور محرک", ar="نظام الدفع", fr="Transmission", de="Antrieb", es="Tracción", ru="Привод")
+t("Top speed", fa="حداکثر سرعت", ar="السرعة القصوى", fr="Vitesse max", de="Höchstgeschwindigkeit", es="Velocidad máx.", ru="Макс. скорость")
+t("Emissions", fa="آلایندگی", ar="الانبعاثات", fr="Émissions", de="Emissionen", es="Emisiones", ru="Выбросы")
+t("Length", fa="طول", ar="الطول", fr="Longueur", de="Länge", es="Longitud", ru="Длина")
+t("Width", fa="عرض", ar="العرض", fr="Largeur", de="Breite", es="Ancho", ru="Ширина")
+t("Height", fa="ارتفاع", ar="الارتفاع", fr="Hauteur", de="Höhe", es="Altura", ru="Высота")
+t("Weight", fa="وزن", ar="الوزن", fr="Poids", de="Gewicht", es="Peso", ru="Масса")
+t("Cargo", fa="صندوق", ar="الحمولة", fr="Coffre", de="Kofferraum", es="Maletero", ru="Багажник")
+t("Seats", fa="صندلی", ar="المقاعد", fr="Sièges", de="Sitze", es="Asientos", ru="Сиденья")
+t("Clearance", fa="ارتفاع از زمین", ar="الخلوص", fr="Garde au sol", de="Bodenfreiheit", es="Despeje", ru="Клиренс")
+t("Tank", fa="باک", ar="الخزان", fr="Réservoir", de="Tank", es="Depósito", ru="Бак")
+t("Battery", fa="باتری", ar="البطارية", fr="Batterie", de="Batterie", es="Batería", ru="АКБ")
+t("Keep exploring", fa="ادامه کاوش", ar="واصل الاستكشاف", fr="Continuer", de="Weiter entdecken", es="Seguir explorando", ru="Продолжить")
+t("Compare more models or browse cars for sale.", fa="مدل‌های بیشتر را مقایسه کنید یا خودروهای فروش را ببینید.", ar="قارن نماذج أكثر أو تصفّح سيارات للبيع.", fr="Comparez d’autres modèles ou parcourez les annonces.", de="Weitere Modelle vergleichen oder Angebote ansehen.", es="Compara más modelos o mira coches en venta.", ru="Сравните модели или смотрите объявления.")
+t("Account", fa="حساب", ar="الحساب", fr="Compte", de="Konto", es="Cuenta", ru="Аккаунт")
+t("Hub", fa="هاب", ar="المركز", fr="Hub", de="Hub", es="Hub", ru="Хаб")
+t(
+    "Find cars, listings, stories, videos, prices, places, and roadside help.",
+    fa="خودرو، آگهی، داستان، ویدیو، قیمت، مکان و کمک کنار جاده را پیدا کنید.",
+    ar="اعثر على سيارات وإعلانات وقصص وفيديوهات وأسعار وأماكن ومساعدة الطريق.",
+    fr="Trouvez voitures, annonces, histoires, vidéos, prix, lieux et aide routière.",
+    de="Finde Autos, Inserate, Stories, Videos, Preise, Orte und Pannenhilfe.",
+    es="Encuentra coches, anuncios, historias, vídeos, precios, lugares y ayuda.",
+    ru="Ищите авто, объявления, истории, видео, цены, места и помощь.",
+)
+t("City", fa="شهر", ar="المدينة", fr="Ville", de="Stadt", es="Ciudad", ru="Город")
+t("Highway", fa="جاده", ar="الطريق السريع", fr="Autoroute", de="Autobahn", es="Autopista", ru="Трасса")
+
 tp(
     "%(counter)s result for “%(q)s”",
     "%(counter)s results for “%(q)s”",
@@ -619,8 +680,8 @@ tp(
     ru=("%(counter)s непрочитанный сигнал", "%(counter)s непрочитанных сигнала", "%(counter)s непрочитанных сигналов", "%(counter)s непрочитанных сигналов"),
 )
 
-LANGS = ("fa", "ar", "fr", "de", "es", "ru", "en")
-NPLURALS = {"fa": 2, "ar": 6, "fr": 2, "de": 2, "es": 2, "ru": 4, "en": 2}
+LANGS = ("fa", "ar", "en")
+NPLURALS = {"fa": 2, "ar": 6, "en": 2}
 
 
 def fill_lang(lang: str) -> None:

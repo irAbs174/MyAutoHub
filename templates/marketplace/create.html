@@ -5,9 +5,13 @@
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-<section class="hero hero-wizard">
-  <h1>{% if editing %}{% trans "Edit listing" %}{% else %}{% trans "Sell your car" %}{% endif %}</h1>
-  <p>{% if editing %}{% trans "Update price, photos, or status." %}{% else %}{% trans "List your car so other hub users can buy it-add photos and a clear price." %}{% endif %}</p>
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Trade" %}</p>
+    <h1>{% if editing %}{% trans "Edit listing" %}{% else %}{% trans "Sell your car" %}{% endif %}</h1>
+    <p class="page-intro-lead">{% if editing %}{% trans "Update price, photos, or status." %}{% else %}{% trans "List your car so other hub users can buy it-add photos and a clear price." %}{% endif %}</p>
+  </div>
 </section>
 
 <div class="panel panel-wizard" data-listing-wizard{% if form.errors %} data-has-errors="1"{% endif %}>

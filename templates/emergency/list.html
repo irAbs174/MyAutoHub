@@ -9,10 +9,10 @@
 {% block twitter_description %}{% trans "Request roadside emergency help through MyAutoHub." %}{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "Emergency services" %}</h1>
-  <p>{% trans "Request roadside help, track progress, and buzz operators when you need attention fast." %}</p>
-</section>
+{% trans "Help" as e_kicker %}
+{% trans "Emergency services" as e_title %}
+{% trans "Request roadside help, track progress, and buzz operators when you need attention fast." as e_lead %}
+{% include "components/page_intro.html" with kicker=e_kicker title=e_title lead=e_lead %}
 
 <div class="toolbar reveal reveal-delay-1">
   {% if user.is_authenticated %}

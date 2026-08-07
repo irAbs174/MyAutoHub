@@ -3,7 +3,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
-from apps.cars.models import Car
+from apps.cars.models import Car, Dealer, RepairShop
 from apps.marketplace.models import Listing, ListingStatus
 from apps.pricing.models import PriceReference
 from apps.stories.models import Story
@@ -28,6 +28,7 @@ class StaticSectionSitemap(I18nSitemap):
             "core:home",
             "marketplace:list",
             "cars:list",
+            "places:index",
             "pricing:list",
             "stories:list",
             "youtube:list",
@@ -65,6 +66,28 @@ class CarSitemap(I18nSitemap):
 
     def location(self, obj):
         return reverse("cars:detail", kwargs={"pk": obj.pk})
+
+
+class DealerSitemap(I18nSitemap):
+    changefreq = "weekly"
+    priority = 0.55
+
+    def items(self):
+        return Dealer.objects.filter(is_published=True).order_by("name").only("id")
+
+    def location(self, obj):
+        return reverse("places:dealer_detail", kwargs={"pk": obj.pk})
+
+
+class RepairShopSitemap(I18nSitemap):
+    changefreq = "weekly"
+    priority = 0.55
+
+    def items(self):
+        return RepairShop.objects.filter(is_published=True).order_by("name").only("id")
+
+    def location(self, obj):
+        return reverse("places:repair_shop_detail", kwargs={"pk": obj.pk})
 
 
 class PricingSitemap(I18nSitemap):
@@ -125,6 +148,8 @@ SITEMAPS = {
     "static": StaticSectionSitemap,
     "listings": ListingSitemap,
     "cars": CarSitemap,
+    "dealers": DealerSitemap,
+    "repair_shops": RepairShopSitemap,
     "pricing": PricingSitemap,
     "stories": StorySitemap,
     "youtube": YoutubeSitemap,

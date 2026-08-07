@@ -348,6 +348,9 @@ class Dealer(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("places:dealer_detail", kwargs={"pk": self.pk})
+
 
 class RepairShop(models.Model):
     name = models.CharField(max_length=160)
@@ -363,3 +366,6 @@ class RepairShop(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("places:repair_shop_detail", kwargs={"pk": self.pk})

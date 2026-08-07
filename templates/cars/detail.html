@@ -25,20 +25,30 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{{ car.model.brand.name }} {{ car.model.name }}</h1>
-  <p>{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}</p>
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Catalog" %}</p>
+    <h1>{{ car.model.brand.name }} {{ car.model.name }}</h1>
+    <p class="page-intro-lead">{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}</p>
+  </div>
 </section>
 
-{% if car.main_image or car.photos.exists %}
-<div class="gallery reveal">
+<div class="detail-hero reveal">
   {% if car.main_image %}
-    <figure class="gallery-hero">
-      <img src="{{ car.main_image.url }}" alt="{{ car.model }}">
-    </figure>
+    <img class="detail-hero-media" src="{{ car.main_image.url }}" alt="{{ car.model }}">
   {% endif %}
+  <div class="detail-hero-caption">
+    <strong>{{ car.model.brand.name }} {{ car.model.name }}</strong>
+    <em>{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}</em>
+    <div class="chip-row">
+      {% if car.horsepower %}<span class="chip chip-accent">{{ car.horsepower }} hp</span>{% endif %}
+      {% if car.fuel_type %}<span class="chip">{{ car.fuel_type }}</span>{% endif %}
+      {% if car.trim %}<span class="chip">{{ car.trim.name }}</span>{% endif %}
+    </div>
+  </div>
   {% if car.photos.all %}
-    <div class="gallery-strip">
+    <div class="gallery-strip-compact">
       {% for photo in car.photos.all %}
         <figure>
           <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:car.model }}" loading="lazy">
@@ -47,74 +57,104 @@
     </div>
   {% endif %}
 </div>
+
+{% if car.description %}
+<section class="detail-section reveal">
+  <p style="margin:0;font-size:0.92rem;line-height:1.5;color:var(--muted)">{{ car.description }}</p>
+</section>
 {% endif %}
 
-<div class="panel reveal">
-  <div class="meta">
-    {% if car.horsepower %}<span>{{ car.horsepower }} hp</span>{% endif %}
-    {% if car.fuel_type %}<span>{{ car.fuel_type }}</span>{% endif %}
-  </div>
-  {% if car.description %}<p>{{ car.description }}</p>{% endif %}
-</div>
+<nav class="detail-toc reveal" aria-label="{% trans 'Sections' %}">
+  {% if car.technical_spec %}<a href="#specs">{% trans "Specs" %}</a>{% endif %}
+  {% if car.dimensions %}<a href="#dimensions">{% trans "Dimensions" %}</a>{% endif %}
+  {% if car.features.all %}<a href="#features">{% trans "Features" %}</a>{% endif %}
+  {% if car.maintenance_items.all %}<a href="#maintenance">{% trans "Maintenance" %}</a>{% endif %}
+  {% if car.fluids.all %}<a href="#fluids">{% trans "Fluids" %}</a>{% endif %}
+  {% if car.tires.all %}<a href="#tires">{% trans "Tires" %}</a>{% endif %}
+  {% if car.batteries.all %}<a href="#batteries">{% trans "Batteries" %}</a>{% endif %}
+  {% if car.service_schedule.all %}<a href="#service">{% trans "Service" %}</a>{% endif %}
+  {% if car.model.obd_codes.all %}<a href="#obd">{% trans "OBD" %}</a>{% endif %}
+  {% if car.parts.all %}<a href="#parts">{% trans "Parts" %}</a>{% endif %}
+  {% if car.prices.all %}<a href="#prices">{% trans "Prices" %}</a>{% endif %}
+  {% if dealers %}<a href="#dealers">{% trans "Dealers" %}</a>{% endif %}
+  {% if repair_shops %}<a href="#shops">{% trans "Shops" %}</a>{% endif %}
+</nav>
 
 {% if car.technical_spec %}
-<section class="panel reveal">
-  <h2>{% trans "Technical specs" %}</h2>
-  <div class="meta">
-    {% if car.technical_spec.engine %}<span>{{ car.technical_spec.engine }}</span>{% endif %}
-    {% if car.technical_spec.displacement_cc %}<span>{{ car.technical_spec.displacement_cc }} cc</span>{% endif %}
-    {% if car.technical_spec.cylinders %}<span>{{ car.technical_spec.cylinders }} cyl</span>{% endif %}
-    {% if car.technical_spec.transmission %}<span>{{ car.technical_spec.transmission }}</span>{% endif %}
-    {% if car.technical_spec.drivetrain %}<span>{{ car.technical_spec.drivetrain }}</span>{% endif %}
-    {% if car.technical_spec.top_speed_kmh %}<span>{{ car.technical_spec.top_speed_kmh }} km/h</span>{% endif %}
-    {% if car.technical_spec.accel_0_100 %}<span>0–100: {{ car.technical_spec.accel_0_100 }} s</span>{% endif %}
-    {% if car.technical_spec.economy_city %}<span>{% trans "City" %}: {{ car.technical_spec.economy_city }}</span>{% endif %}
-    {% if car.technical_spec.economy_highway %}<span>{% trans "Highway" %}: {{ car.technical_spec.economy_highway }}</span>{% endif %}
-    {% if car.technical_spec.emission_standard %}<span>{{ car.technical_spec.emission_standard }}</span>{% endif %}
+<section class="detail-section reveal" id="specs">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Technical" %}</p>
+    <h2 class="section-title">{% trans "Technical specs" %}</h2>
   </div>
-  {% if car.technical_spec.notes %}<p>{{ car.technical_spec.notes }}</p>{% endif %}
+  <dl class="spec-grid">
+    {% if car.technical_spec.engine %}<div class="spec-item"><dt>{% trans "Engine" %}</dt><dd>{{ car.technical_spec.engine }}</dd></div>{% endif %}
+    {% if car.technical_spec.displacement_cc %}<div class="spec-item"><dt>{% trans "Displacement" %}</dt><dd>{{ car.technical_spec.displacement_cc }} cc</dd></div>{% endif %}
+    {% if car.technical_spec.cylinders %}<div class="spec-item"><dt>{% trans "Cylinders" %}</dt><dd>{{ car.technical_spec.cylinders }}</dd></div>{% endif %}
+    {% if car.technical_spec.transmission %}<div class="spec-item"><dt>{% trans "Transmission" %}</dt><dd>{{ car.technical_spec.transmission }}</dd></div>{% endif %}
+    {% if car.technical_spec.drivetrain %}<div class="spec-item"><dt>{% trans "Drivetrain" %}</dt><dd>{{ car.technical_spec.drivetrain }}</dd></div>{% endif %}
+    {% if car.technical_spec.top_speed_kmh %}<div class="spec-item"><dt>{% trans "Top speed" %}</dt><dd>{{ car.technical_spec.top_speed_kmh }} km/h</dd></div>{% endif %}
+    {% if car.technical_spec.accel_0_100 %}<div class="spec-item"><dt>0–100</dt><dd>{{ car.technical_spec.accel_0_100 }} s</dd></div>{% endif %}
+    {% if car.technical_spec.economy_city %}<div class="spec-item"><dt>{% trans "City" %}</dt><dd>{{ car.technical_spec.economy_city }}</dd></div>{% endif %}
+    {% if car.technical_spec.economy_highway %}<div class="spec-item"><dt>{% trans "Highway" %}</dt><dd>{{ car.technical_spec.economy_highway }}</dd></div>{% endif %}
+    {% if car.technical_spec.emission_standard %}<div class="spec-item"><dt>{% trans "Emissions" %}</dt><dd>{{ car.technical_spec.emission_standard }}</dd></div>{% endif %}
+  </dl>
+  {% if car.technical_spec.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.technical_spec.notes }}</p>{% endif %}
 </section>
 {% endif %}
 
 {% if car.dimensions %}
-<section class="panel reveal">
-  <h2>{% trans "Dimensions" %}</h2>
-  <div class="meta">
-    {% if car.dimensions.length_mm %}<span>{% trans "L" %} {{ car.dimensions.length_mm }} mm</span>{% endif %}
-    {% if car.dimensions.width_mm %}<span>{% trans "W" %} {{ car.dimensions.width_mm }} mm</span>{% endif %}
-    {% if car.dimensions.height_mm %}<span>{% trans "H" %} {{ car.dimensions.height_mm }} mm</span>{% endif %}
-    {% if car.dimensions.wheelbase_mm %}<span>{% trans "Wheelbase" %} {{ car.dimensions.wheelbase_mm }} mm</span>{% endif %}
-    {% if car.dimensions.curb_weight_kg %}<span>{{ car.dimensions.curb_weight_kg }} kg</span>{% endif %}
-    {% if car.dimensions.cargo_l %}<span>{{ car.dimensions.cargo_l }} L {% trans "cargo" %}</span>{% endif %}
-    {% if car.dimensions.seats %}<span>{{ car.dimensions.seats }} {% trans "seats" %}</span>{% endif %}
-    {% if car.dimensions.ground_clearance_mm %}<span>{% trans "Clearance" %} {{ car.dimensions.ground_clearance_mm }} mm</span>{% endif %}
-    {% if car.dimensions.fuel_tank_l %}<span>{% trans "Tank" %} {{ car.dimensions.fuel_tank_l }} L</span>{% endif %}
+<section class="detail-section reveal" id="dimensions">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Body" %}</p>
+    <h2 class="section-title">{% trans "Dimensions" %}</h2>
   </div>
+  <dl class="spec-grid">
+    {% if car.dimensions.length_mm %}<div class="spec-item"><dt>{% trans "Length" %}</dt><dd>{{ car.dimensions.length_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.width_mm %}<div class="spec-item"><dt>{% trans "Width" %}</dt><dd>{{ car.dimensions.width_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.height_mm %}<div class="spec-item"><dt>{% trans "Height" %}</dt><dd>{{ car.dimensions.height_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.wheelbase_mm %}<div class="spec-item"><dt>{% trans "Wheelbase" %}</dt><dd>{{ car.dimensions.wheelbase_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.curb_weight_kg %}<div class="spec-item"><dt>{% trans "Weight" %}</dt><dd>{{ car.dimensions.curb_weight_kg }} kg</dd></div>{% endif %}
+    {% if car.dimensions.cargo_l %}<div class="spec-item"><dt>{% trans "Cargo" %}</dt><dd>{{ car.dimensions.cargo_l }} L</dd></div>{% endif %}
+    {% if car.dimensions.seats %}<div class="spec-item"><dt>{% trans "Seats" %}</dt><dd>{{ car.dimensions.seats }}</dd></div>{% endif %}
+    {% if car.dimensions.ground_clearance_mm %}<div class="spec-item"><dt>{% trans "Clearance" %}</dt><dd>{{ car.dimensions.ground_clearance_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.fuel_tank_l %}<div class="spec-item"><dt>{% trans "Tank" %}</dt><dd>{{ car.dimensions.fuel_tank_l }} L</dd></div>{% endif %}
+  </dl>
 </section>
 {% endif %}
 
 {% if car.features.all %}
-<section class="panel reveal">
-  <h2>{% trans "Features" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="features">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Equipment" %}</p>
+    <h2 class="section-title">{% trans "Features" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for feature in car.features.all %}
-      <li>{{ feature.get_category_display }}: {{ feature.name }}{% if feature.value %} — {{ feature.value }}{% endif %}</li>
+      <li>
+        <strong>{{ feature.name }}</strong>
+        <span class="meta-quiet">{{ feature.get_category_display }}{% if feature.value %} · {{ feature.value }}{% endif %}</span>
+      </li>
     {% endfor %}
   </ul>
 </section>
 {% endif %}
 
 {% if car.maintenance_items.all %}
-<section class="panel reveal">
-  <h2>{% trans "Maintenance" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="maintenance">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Care" %}</p>
+    <h2 class="section-title">{% trans "Maintenance" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for item in car.maintenance_items.all %}
       <li>
         <strong>{{ item.title }}</strong>
-        {% if item.interval_km %} · {{ item.interval_km }} km{% endif %}
-        {% if item.interval_months %} · {{ item.interval_months }} {% trans "months" %}{% endif %}
-        {% if item.estimated_cost %} · {{ item.estimated_cost }}{% endif %}
-        {% if item.description %}<br>{{ item.description }}{% endif %}
+        <span class="meta-quiet">
+          {% if item.interval_km %}{{ item.interval_km }} km{% endif %}
+          {% if item.interval_months %}{% if item.interval_km %} · {% endif %}{{ item.interval_months }} {% trans "months" %}{% endif %}
+          {% if item.estimated_cost %} · {{ item.estimated_cost }}{% endif %}
+        </span>
+        {% if item.description %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ item.description }}</span>{% endif %}
       </li>
     {% endfor %}
   </ul>
@@ -122,14 +162,15 @@
 {% endif %}
 
 {% if car.fluids.all %}
-<section class="panel reveal">
-  <h2>{% trans "Fluids" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="fluids">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Fluids" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for fluid in car.fluids.all %}
       <li>
-        {{ fluid.get_fluid_type_display }}{% if fluid.specification %} — {{ fluid.specification }}{% endif %}
-        {% if fluid.capacity %} · {{ fluid.capacity }}{% endif %}
-        {% if fluid.notes %}<br>{{ fluid.notes }}{% endif %}
+        <strong>{{ fluid.get_fluid_type_display }}</strong>
+        <span class="meta-quiet">{% if fluid.specification %}{{ fluid.specification }}{% endif %}{% if fluid.capacity %} · {{ fluid.capacity }}{% endif %}</span>
       </li>
     {% endfor %}
   </ul>
@@ -137,15 +178,15 @@
 {% endif %}
 
 {% if car.tires.all %}
-<section class="panel reveal">
-  <h2>{% trans "Tires" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="tires">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Tires" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for tire in car.tires.all %}
       <li>
-        {{ tire.get_position_display }}: {{ tire.size }}
-        {% if tire.pressure_psi %} · {{ tire.pressure_psi }} psi{% endif %}
-        {% if tire.load_index %} · LI {{ tire.load_index }}{% endif %}
-        {% if tire.speed_rating %} · {{ tire.speed_rating }}{% endif %}
+        <strong>{{ tire.size }}</strong>
+        <span class="meta-quiet">{{ tire.get_position_display }}{% if tire.pressure_psi %} · {{ tire.pressure_psi }} psi{% endif %}</span>
       </li>
     {% endfor %}
   </ul>
@@ -153,16 +194,19 @@
 {% endif %}
 
 {% if car.batteries.all %}
-<section class="panel reveal">
-  <h2>{% trans "Batteries" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="batteries">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Batteries" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for battery in car.batteries.all %}
       <li>
-        {% if battery.group_size %}{{ battery.group_size }}{% endif %}
-        {% if battery.voltage %} · {{ battery.voltage }} V{% endif %}
-        {% if battery.cca %} · {{ battery.cca }} CCA{% endif %}
-        {% if battery.chemistry %} · {{ battery.chemistry }}{% endif %}
-        {% if battery.notes %}<br>{{ battery.notes }}{% endif %}
+        <strong>{% if battery.group_size %}{{ battery.group_size }}{% else %}{% trans "Battery" %}{% endif %}</strong>
+        <span class="meta-quiet">
+          {% if battery.voltage %}{{ battery.voltage }} V{% endif %}
+          {% if battery.cca %} · {{ battery.cca }} CCA{% endif %}
+          {% if battery.chemistry %} · {{ battery.chemistry }}{% endif %}
+        </span>
       </li>
     {% endfor %}
   </ul>
@@ -170,14 +214,18 @@
 {% endif %}
 
 {% if car.service_schedule.all %}
-<section class="panel reveal">
-  <h2>{% trans "Service schedule" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="service">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Service schedule" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for item in car.service_schedule.all %}
       <li>
-        {% if item.mileage_km %}{{ item.mileage_km }} km{% endif %}
-        {% if item.months %}{% if item.mileage_km %} / {% endif %}{{ item.months }} {% trans "months" %}{% endif %}
-        — {{ item.tasks }}
+        <strong>
+          {% if item.mileage_km %}{{ item.mileage_km }} km{% endif %}
+          {% if item.months %}{% if item.mileage_km %} / {% endif %}{{ item.months }} {% trans "months" %}{% endif %}
+        </strong>
+        <span class="meta-quiet">{{ item.tasks }}</span>
       </li>
     {% endfor %}
   </ul>
@@ -185,14 +233,15 @@
 {% endif %}
 
 {% if car.model.obd_codes.all %}
-<section class="panel reveal">
-  <h2>{% trans "OBD codes" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="obd">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "OBD codes" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for code in car.model.obd_codes.all %}
       <li>
-        <strong>{{ code.code }}</strong> — {{ code.title }}
-        ({{ code.get_severity_display }})
-        {% if code.description %}<br>{{ code.description }}{% endif %}
+        <strong>{{ code.code }}</strong>
+        <span class="meta-quiet">{{ code.title }} · {{ code.get_severity_display }}</span>
       </li>
     {% endfor %}
   </ul>
@@ -200,14 +249,15 @@
 {% endif %}
 
 {% if car.parts.all %}
-<section class="panel reveal">
-  <h2>{% trans "Parts" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="parts">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Parts" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for part in car.parts.all %}
       <li>
-        {{ part.name }}{% if part.oem_number %} · {{ part.oem_number }}{% endif %}
-        {% if part.category %} · {{ part.category }}{% endif %}
-        {% if part.notes %}<br>{{ part.notes }}{% endif %}
+        <strong>{{ part.name }}</strong>
+        <span class="meta-quiet">{% if part.oem_number %}{{ part.oem_number }}{% endif %}{% if part.category %} · {{ part.category }}{% endif %}</span>
       </li>
     {% endfor %}
   </ul>
@@ -215,15 +265,15 @@
 {% endif %}
 
 {% if car.prices.all %}
-<section class="panel reveal">
-  <h2>{% trans "Prices" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="prices">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Prices" %}</h2>
+  </div>
+  <ul class="data-list">
     {% for price in car.prices.all %}
       <li>
-        {{ price.label }}: {{ price.amount }} {{ price.currency }}
-        {% if price.recorded_at %} · {{ price.recorded_at }}{% endif %}
-        {% if price.source %} · {{ price.source }}{% endif %}
-        {% if price.notes %}<br>{{ price.notes }}{% endif %}
+        <strong>{{ price.label }}</strong>
+        <span class="meta-quiet">{{ price.amount }} {{ price.currency }}{% if price.recorded_at %} · {{ price.recorded_at }}{% endif %}</span>
       </li>
     {% endfor %}
   </ul>
@@ -231,40 +281,43 @@
 {% endif %}
 
 {% if dealers %}
-<section class="panel reveal">
-  <h2>{% trans "Dealers" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="dealers">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Places" %}</p>
+    <h2 class="section-title">{% trans "Dealers" %}</h2>
+  </div>
+  <div class="place-grid">
     {% for dealer in dealers %}
-      <li>
+      <a class="place-card" href="{% url 'places:dealer_detail' dealer.pk %}">
         <strong>{{ dealer.name }}</strong>
-        {% if dealer.city %} · {{ dealer.city }}{% endif %}
-        {% if dealer.phone %} · {{ dealer.phone }}{% endif %}
-        {% if dealer.website %} · <a href="{{ dealer.website }}" rel="noopener noreferrer">{{ dealer.website }}</a>{% endif %}
-        {% if dealer.address %}<br>{{ dealer.address }}{% endif %}
-      </li>
+        <span class="meta-quiet">{% if dealer.city %}{{ dealer.city }}{% endif %}{% if dealer.phone %}{% if dealer.city %} · {% endif %}{{ dealer.phone }}{% endif %}</span>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 </section>
 {% endif %}
 
 {% if repair_shops %}
-<section class="panel reveal">
-  <h2>{% trans "Repair shops" %}</h2>
-  <ul>
+<section class="detail-section reveal" id="shops">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Repair shops" %}</h2>
+  </div>
+  <div class="place-grid">
     {% for shop in repair_shops %}
-      <li>
+      <a class="place-card" href="{% url 'places:repair_shop_detail' shop.pk %}">
         <strong>{{ shop.name }}</strong>
-        {% if shop.city %} · {{ shop.city }}{% endif %}
-        {% if shop.phone %} · {{ shop.phone }}{% endif %}
-        {% if shop.website %} · <a href="{{ shop.website }}" rel="noopener noreferrer">{{ shop.website }}</a>{% endif %}
-        {% if shop.address %}<br>{{ shop.address }}{% endif %}
-      </li>
+        <span class="meta-quiet">{% if shop.city %}{{ shop.city }}{% endif %}{% if shop.phone %}{% if shop.city %} · {% endif %}{{ shop.phone }}{% endif %}</span>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
 </section>
 {% endif %}
 
-<div class="panel reveal">
-  <a class="btn btn-ghost" href="{% url 'cars:list' %}">{% trans "Back to catalog" %}</a>
-</div>
+{% url 'cars:list' as cars_url %}
+{% url 'marketplace:list' as market_url %}
+{% trans "Back to catalog" as cars_cta %}
+{% trans "Marketplace" as market_cta %}
+{% trans "Keep exploring" as band_title %}
+{% trans "Compare more models or browse cars for sale." as band_lead %}
+{% include "components/footer_band.html" with title=band_title lead=band_lead cta_url=cars_url cta_label=cars_cta cta2_url=market_url cta2_label=market_cta %}
 {% endblock %}

@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import NoReverseMatch, reverse
 from django.utils.translation import gettext as _
 
-from apps.cars.models import Car, CarPhoto
+from apps.cars.models import Car, CarPhoto, Dealer, RepairShop
 from apps.emergency.models import EmergencyService
 from apps.marketplace.models import Listing, ListingStatus
 from apps.pricing.models import PriceReference
@@ -61,6 +61,12 @@ def home(request):
         PriceReference.objects.filter(is_published=True).prefetch_related("photos")[:4]
     )
     emergency_services = EmergencyService.objects.filter(is_active=True)[:4]
+    place_dealers = Dealer.objects.filter(is_published=True).prefetch_related("brands")[
+        :4
+    ]
+    place_shops = RepairShop.objects.filter(is_published=True).prefetch_related(
+        "brands"
+    )[:4]
 
     social_links = getattr(
         settings,
@@ -84,6 +90,8 @@ def home(request):
             "latest_stories": latest_stories,
             "price_teasers": price_teasers,
             "emergency_services": emergency_services,
+            "place_dealers": place_dealers,
+            "place_shops": place_shops,
             "social_links": social_links,
         },
     )
@@ -106,6 +114,8 @@ def search(request):
             "videos": buckets["videos"],
             "prices": buckets["prices"],
             "services": buckets["services"],
+            "dealers": buckets["dealers"],
+            "repair_shops": buckets["repair_shops"],
         },
     )
 

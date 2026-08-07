@@ -5,13 +5,17 @@
 {% block meta_robots %}noindex, follow{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "Search" %}</h1>
-  {% if q %}
-    <p>{% blocktrans count counter=total %}{{ counter }} result for “{{ q }}”{% plural %}{{ counter }} results for “{{ q }}”{% endblocktrans %}</p>
-  {% else %}
-    <p>{% trans "Find cars, listings, stories, videos, prices, and roadside help." %}</p>
-  {% endif %}
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Hub" %}</p>
+    <h1>{% trans "Search" %}</h1>
+    {% if q %}
+      <p class="page-intro-lead">{% blocktrans count counter=total %}{{ counter }} result for “{{ q }}”{% plural %}{{ counter }} results for “{{ q }}”{% endblocktrans %}</p>
+    {% else %}
+      <p class="page-intro-lead">{% trans "Find cars, listings, stories, videos, prices, places, and roadside help." %}</p>
+    {% endif %}
+  </div>
 </section>
 
 <form class="search-page-form reveal" action="{% url 'core:search' %}" method="get" role="search">
@@ -164,6 +168,29 @@
           <a class="search-list-item" href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'accounts:login' %}?next={% url 'emergency:submit' %}{% endif %}">
             <span class="search-list-title">{{ svc.name }}</span>
             <span class="search-list-meta">{% if svc.description %}{{ svc.description|truncatewords:18 }}{% else %}{% trans "Roadside help" %}{% endif %}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if dealers or repair_shops %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "Places" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'places:index' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="place-grid">
+        {% for dealer in dealers %}
+          <a class="place-card" href="{% url 'places:dealer_detail' dealer.pk %}">
+            <strong>{{ dealer.name }}</strong>
+            <span class="meta-quiet">{% if dealer.city %}{{ dealer.city }} · {% endif %}{% trans "Dealer" %}</span>
+          </a>
+        {% endfor %}
+        {% for shop in repair_shops %}
+          <a class="place-card" href="{% url 'places:repair_shop_detail' shop.pk %}">
+            <strong>{{ shop.name }}</strong>
+            <span class="meta-quiet">{% if shop.city %}{{ shop.city }} · {% endif %}{% trans "Repair shop" %}</span>
           </a>
         {% endfor %}
       </div>

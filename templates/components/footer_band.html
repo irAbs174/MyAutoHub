@@ -1,0 +1,17 @@
+{% load i18n %}
+<section class="footer-band reveal">
+  <div>
+    {% if title %}<strong>{{ title }}</strong>{% endif %}
+    {% if lead %}<p>{{ lead }}</p>{% endif %}
+  </div>
+  {% if cta_url or cta2_url %}
+    <div class="actions">
+      {% if cta_url %}
+        <a class="btn" href="{{ cta_url }}">{{ cta_label }}</a>
+      {% endif %}
+      {% if cta2_url %}
+        <a class="btn btn-ghost" href="{{ cta2_url }}">{{ cta2_label }}</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>

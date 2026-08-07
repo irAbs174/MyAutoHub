@@ -85,6 +85,13 @@ class PanelAccessTests(TestCase):
         response = self.client.get(reverse("panel:overview"))
         self.assertEqual(response.status_code, 403)
 
+    def test_panel_has_language_switcher(self):
+        self.client.login(username="staffer", password="pass12345")
+        response = self.client.get(reverse("panel:overview"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'action="{0}"'.format(reverse("set_language")))
+        self.assertContains(response, 'name="language"')
+
     def test_staff_can_open_overview(self):
         self.client.login(username="staffer", password="pass12345")
         response = self.client.get(reverse("panel:overview"))

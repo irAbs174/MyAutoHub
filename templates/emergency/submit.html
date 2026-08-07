@@ -9,10 +9,10 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>{% trans "Request emergency help" %}</h1>
-  <p>{% trans "Pick a service and pin your location on the map-or use a saved place." %}</p>
-</section>
+{% trans "Help" as e_kicker %}
+{% trans "Request emergency help" as e_title %}
+{% trans "Pick a service and pin your location on the map-or use a saved place." as e_lead %}
+{% include "components/page_intro.html" with kicker=e_kicker title=e_title lead=e_lead %}
 
 <div class="panel panel-emergency-submit">
   <form method="post" class="form-grid" data-emergency-submit>

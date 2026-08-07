@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 03:23+0000\n"
+"POT-Creation-Date: 2026-08-07 21:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,454 +18,486 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/accounts/views.py:22
 msgid "Welcome to MyAutoHub."
 msgstr "Welcome to MyAutoHub."
 
-#: apps/accounts/views.py:52
 msgid "Location saved."
 msgstr "Location saved."
 
-#: apps/accounts/views.py:68
 msgid "Location removed."
 msgstr "Location removed."
 
-#: apps/core/context_processors.py:7 apps/core/search.py:208
-#: templates/core/home.html:51 templates/core/search.html:158
+#, fuzzy
+#| msgid "New status"
+msgid "All fuels"
+msgstr "All fuels"
+
+msgid "Petrol"
+msgstr "Petrol"
+
+msgid "Hybrid"
+msgstr "Hybrid"
+
+msgid "Diesel"
+msgstr "Diesel"
+
+msgid "Electric"
+msgstr "Electric"
+
+#, fuzzy
+#| msgid "Newest cars"
+msgid "Newest first"
+msgstr "Newest first"
+
+msgid "Oldest first"
+msgstr "Oldest first"
+
+msgid "Power (high → low)"
+msgstr "Power (high → low)"
+
+msgid "Model A–Z"
+msgstr "Model A–Z"
+
+msgid "Brand A–Z"
+msgstr "Brand A–Z"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Brand, model, trim…"
+msgstr "Brand, model, trim…"
+
+msgid "All brands"
+msgstr "All brands"
+
+msgid "Brand"
+msgstr "Brand"
+
+msgid "All models"
+msgstr "All models"
+
+msgid "Model"
+msgstr "Model"
+
+msgid "Fuel"
+msgstr "Fuel"
+
+#, fuzzy
+#| msgid "Year"
+msgid "Year from"
+msgstr "Year from"
+
+msgid "From"
+msgstr "From"
+
+#, fuzzy
+#| msgid "Year"
+msgid "Year to"
+msgstr "Year to"
+
+msgid "To"
+msgstr "To"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "Safety"
+msgstr "Safety"
+
+msgid "Comfort"
+msgstr "Comfort"
+
+msgid "Tech"
+msgstr "Tech"
+
+msgid "Exterior"
+msgstr "Exterior"
+
+msgid "Other"
+msgstr "Other"
+
+msgid "Engine oil"
+msgstr "Engine oil"
+
+msgid "Coolant"
+msgstr "Coolant"
+
+msgid "Brake fluid"
+msgstr "Brake fluid"
+
+msgid "Transmission fluid"
+msgstr "Transmission fluid"
+
+msgid "Washer fluid"
+msgstr "Washer fluid"
+
+msgid "All"
+msgstr "All"
+
+msgid "Front"
+msgstr "Front"
+
+msgid "Rear"
+msgstr "Rear"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid "Critical"
+msgstr "Critical"
+
+msgid "Iran (تومان)"
+msgstr "Iran (تومان)"
+
+msgid "Iran (IRR)"
+msgstr "Iran (IRR)"
+
+msgid "United States (USD)"
+msgstr "United States (USD)"
+
+msgid "United Arab Emirates (AED)"
+msgstr "United Arab Emirates (AED)"
+
+msgid "Euro (EUR)"
+msgstr "Euro (EUR)"
+
 msgid "Emergency"
 msgstr "Emergency"
 
-#: apps/core/context_processors.py:8 apps/core/search.py:191
-#: templates/core/home.html:208 templates/core/search.html:139
-#: templates/pricing/detail.html:4
 msgid "Pricing"
 msgstr "Pricing"
 
-#: apps/core/context_processors.py:9 apps/core/search.py:147
-#: templates/core/home.html:41 templates/core/home.html:92
-#: templates/core/search.html:64 templates/marketplace/detail.html:4
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: apps/core/context_processors.py:10 templates/cars/detail.html:4
-#: templates/core/home.html:61 templates/core/search.html:38
 msgid "Cars"
 msgstr "Cars"
 
-#: apps/core/context_processors.py:11 templates/core/home.html:158
-#: templates/core/search.html:117 templates/youtube/detail.html:4
+msgid "Places"
+msgstr "Places"
+
 msgid "YouTube"
 msgstr "YouTube"
 
-#: apps/core/context_processors.py:12 templates/core/home.html:183
-#: templates/core/search.html:91 templates/stories/detail.html:4
-#: templates/stories/list.html:8
 msgid "Stories"
 msgstr "Stories"
 
-#: apps/core/search.py:131
 #, fuzzy
 #| msgid "Cars"
 msgid "Car"
-msgstr "Cars"
+msgstr "Car"
 
-#: apps/core/search.py:162
 #, fuzzy
 #| msgid "Stories"
 msgid "Story"
-msgstr "Stories"
+msgstr "Story"
 
-#: apps/core/search.py:175
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
-#: apps/core/search.py:203 templates/core/search.html:165
 #, fuzzy
 #| msgid "Roadside"
 msgid "Roadside help"
 msgstr "Roadside help"
 
-#: apps/core/views.py:86
+msgid "Dealer"
+msgstr "Dealer"
+
+msgid "Repair shop"
+msgstr "Repair shop"
+
 msgid "Bad request"
 msgstr "Bad request"
 
-#: apps/core/views.py:88
 msgid "The request could not be understood. Please try again."
 msgstr "The request could not be understood. Please try again."
 
-#: apps/core/views.py:101
 msgid "Access denied"
 msgstr "Access denied"
 
-#: apps/core/views.py:103
 msgid "You do not have permission to view this page."
 msgstr "You do not have permission to view this page."
 
-#: apps/core/views.py:116
 msgid "Page not found"
 msgstr "Page not found"
 
-#: apps/core/views.py:118
 msgid "This road does not lead anywhere. Head back to the hub."
 msgstr "This road does not lead anywhere. Head back to the hub."
 
-#: apps/core/views.py:131
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
-#: apps/core/views.py:133
 msgid "We hit a snag on our side. Please try again in a moment."
 msgstr "We hit a snag on our side. Please try again in a moment."
 
-#: apps/emergency/admin.py:35 apps/pricing/admin.py:33 apps/stories/admin.py:25
 msgid "فارسی"
-msgstr ""
+msgstr "فارسی"
 
-#: apps/emergency/admin.py:39 apps/pricing/admin.py:37 apps/stories/admin.py:29
 msgid "English"
-msgstr ""
+msgstr "English"
 
-#: apps/emergency/admin.py:43 apps/pricing/admin.py:41 apps/stories/admin.py:33
 msgid "العربية"
-msgstr ""
+msgstr "العربية"
 
-#: apps/emergency/admin.py:46
 #, fuzzy
 #| msgid "Status"
 msgid "Status & media"
-msgstr "Status"
+msgstr "Status & media"
 
-#: apps/emergency/forms.py:16
 msgid "Select on map"
 msgstr "Select on map"
 
-#: apps/emergency/forms.py:17
 msgid "Use a saved location"
 msgstr "Use a saved location"
 
-#: apps/emergency/forms.py:48
 msgid "Choose a saved location."
 msgstr "Choose a saved location."
 
-#: apps/emergency/forms.py:56 apps/emergency/forms.py:60
 msgid "Provide latitude and longitude from the map."
 msgstr "Provide latitude and longitude from the map."
 
-#: apps/emergency/forms.py:70
 msgid "Optional note for the audit trail."
 msgstr "Optional note for the audit trail."
 
-#: apps/emergency/forms.py:80
 msgid "Accept / start processing"
 msgstr "Accept / start processing"
 
-#: apps/emergency/forms.py:84
 msgid "Finish successfully"
 msgstr "Finish successfully"
 
-#: apps/emergency/forms.py:85
 msgid "Finish as failed"
 msgstr "Finish as failed"
 
-#: apps/emergency/forms.py:93
 msgid "Cancel request"
 msgstr "Cancel request"
 
-#: apps/emergency/forms.py:102 templates/emergency/detail.html:68
-#: templates/panel/emergency/request_detail.html:57
 msgid "Public review"
 msgstr "Public review"
 
-#: apps/emergency/forms.py:108
 msgid "Rating (1–5)"
 msgstr "Rating (1–5)"
 
-#: apps/emergency/forms.py:113 apps/panel/forms.py:8
-#: templates/components/nav.html:20 templates/components/nav.html:33
-#: templates/core/search.html:8 templates/core/search.html:17
-#: templates/core/search.html:27 templates/emergency/list.html:30
-msgid "Search"
-msgstr "Search"
-
-#: apps/emergency/forms.py:117 apps/panel/forms.py:17
-#: templates/core/home.html:73
 msgid "All services"
 msgstr "All services"
 
-#: apps/emergency/models.py:12
 msgid "Waiting for accept"
 msgstr "Waiting for accept"
 
-#: apps/emergency/models.py:13 templates/panel/overview.html:16
 msgid "Processing"
 msgstr "Processing"
 
-#: apps/emergency/models.py:14
 msgid "Finished successfully"
 msgstr "Finished successfully"
 
-#: apps/emergency/models.py:15
 msgid "Finished failed"
 msgstr "Finished failed"
 
-#: apps/emergency/models.py:16
 msgid "Cancelled"
 msgstr "Cancelled"
 
-#: apps/emergency/models.py:32
 msgid "Name (فارسی)"
-msgstr ""
+msgstr "Name (فارسی)"
 
-#: apps/emergency/models.py:33
 msgid "Name (English)"
-msgstr ""
+msgstr "Name (English)"
 
-#: apps/emergency/models.py:34
 msgid "Name (العربية)"
-msgstr ""
+msgstr "Name (العربية)"
 
-#: apps/emergency/models.py:35 apps/marketplace/models.py:39
-#: apps/marketplace/views.py:79
 #, fuzzy
 #| msgid "Description"
 msgid "Description (فارسی)"
-msgstr "Description"
+msgstr "Description (فارسی)"
 
-#: apps/emergency/models.py:36 apps/marketplace/models.py:42
-#: apps/marketplace/views.py:80
 #, fuzzy
 #| msgid "Description"
 msgid "Description (English)"
-msgstr "Description"
+msgstr "Description (English)"
 
-#: apps/emergency/models.py:37 apps/marketplace/models.py:45
-#: apps/marketplace/views.py:81
 msgid "Description (العربية)"
-msgstr ""
+msgstr "Description (العربية)"
 
-#: apps/emergency/models.py:39
 msgid "Coverage notes (فارسی)"
-msgstr ""
+msgstr "Coverage notes (فارسی)"
 
-#: apps/emergency/models.py:42
 msgid "Coverage notes (English)"
-msgstr ""
+msgstr "Coverage notes (English)"
 
-#: apps/emergency/models.py:45
 msgid "Coverage notes (العربية)"
-msgstr ""
+msgstr "Coverage notes (العربية)"
 
-#: apps/emergency/models.py:114
 msgid "Select a saved location or provide map coordinates."
 msgstr "Select a saved location or provide map coordinates."
 
-#: apps/emergency/models.py:117
 msgid "Rating must be between 1 and 5."
 msgstr "Rating must be between 1 and 5."
 
-#: apps/emergency/serializers.py:135
 msgid "That location does not belong to you."
 msgstr "That location does not belong to you."
 
-#: apps/emergency/serializers.py:139
 msgid "Provide saved_location_id or latitude and longitude."
 msgstr "Provide saved_location_id or latitude and longitude."
 
-#: apps/emergency/services.py:44
 #, python-format
 msgid "Cannot change status from %(from)s to %(to)s."
 msgstr "Cannot change status from %(from)s to %(to)s."
 
-#: apps/emergency/services.py:52
 msgid "Only emergency operators can accept requests."
 msgstr "Only emergency operators can accept requests."
 
-#: apps/emergency/services.py:58
 msgid "Only emergency operator administrators can finish requests."
 msgstr "Only emergency operator administrators can finish requests."
 
-#: apps/emergency/services.py:67
 #, python-format
 msgid "Unsupported target status: %(status)s"
 msgstr "Unsupported target status: %(status)s"
 
-#: apps/emergency/services.py:89
 msgid "Request submitted"
 msgstr "Request submitted"
 
-#: apps/emergency/services.py:98
 msgid "This request is already closed."
 msgstr "This request is already closed."
 
-#: apps/emergency/services.py:105
 msgid "You can only cancel your own requests."
 msgstr "You can only cancel your own requests."
 
-#: apps/emergency/services.py:126
 msgid "You cannot buzz this request."
 msgstr "You cannot buzz this request."
 
-#: apps/emergency/services.py:128
 msgid "Cannot buzz a closed request."
 msgstr "Cannot buzz a closed request."
 
-#: apps/emergency/services.py:135
 msgid "Only the requester can leave a review."
 msgstr "Only the requester can leave a review."
 
-#: apps/emergency/services.py:137
 msgid "Reviews are only allowed after the request finishes."
 msgstr "Reviews are only allowed after the request finishes."
 
-#: apps/emergency/services.py:139
 msgid "A review was already submitted."
 msgstr "A review was already submitted."
 
-#: apps/emergency/views.py:80
 msgid "Emergency request submitted-waiting for an operator to accept."
 msgstr "Emergency request submitted-waiting for an operator to accept."
 
-#: apps/emergency/views.py:128 apps/panel/views.py:125
 msgid "Request status updated."
 msgstr "Request status updated."
 
-#: apps/emergency/views.py:132 apps/panel/views.py:129
 msgid "Could not update status."
 msgstr "Could not update status."
 
-#: apps/emergency/views.py:145
 msgid "Cancelled via cancel action"
 msgstr "Cancelled via cancel action"
 
-#: apps/emergency/views.py:147
 msgid "Request cancelled."
 msgstr "Request cancelled."
 
-#: apps/emergency/views.py:159
 msgid "Buzz sent-operators will notice."
 msgstr "Buzz sent-operators will notice."
 
-#: apps/emergency/views.py:178
 msgid "Thanks for sharing your experience."
 msgstr "Thanks for sharing your experience."
 
-#: apps/emergency/views.py:182
 msgid "Please check the review form."
 msgstr "Please check the review form."
 
-#: apps/marketplace/models.py:16
-msgid "Iran (تومان)"
-msgstr ""
-
-#: apps/marketplace/models.py:17
-msgid "Iran (IRR)"
-msgstr ""
-
-#: apps/marketplace/models.py:18
-msgid "United States (USD)"
-msgstr ""
-
-#: apps/marketplace/models.py:19
-msgid "United Arab Emirates (AED)"
-msgstr ""
-
-#: apps/marketplace/models.py:20
-msgid "Euro (EUR)"
-msgstr ""
-
-#: apps/marketplace/models.py:30 apps/marketplace/views.py:76
-#: apps/pricing/models.py:8 apps/stories/models.py:10
 msgid "Title (فارسی)"
-msgstr ""
+msgstr "Title (فارسی)"
 
-#: apps/marketplace/models.py:33 apps/marketplace/views.py:77
-#: apps/pricing/models.py:9 apps/stories/models.py:11
 msgid "Title (English)"
-msgstr ""
+msgstr "Title (English)"
 
-#: apps/marketplace/models.py:36 apps/marketplace/views.py:78
-#: apps/pricing/models.py:10 apps/stories/models.py:12
 msgid "Title (العربية)"
-msgstr ""
+msgstr "Title (العربية)"
 
-#: apps/marketplace/views.py:82 templates/marketplace/create.html:25
+#, fuzzy
+#| msgid "Select on map"
+msgid "Select brand"
+msgstr "Select brand"
+
+msgid "Trim"
+msgstr "Trim"
+
 #, fuzzy
 #| msgid "Photo"
 msgid "Photos"
-msgstr "Photo"
+msgstr "Photos"
 
-#: apps/marketplace/views.py:83 templates/marketplace/create.html:29
 msgid "Price"
 msgstr "Price"
 
-#: apps/marketplace/views.py:84
 msgid "Currency"
 msgstr "Currency"
 
-#: apps/marketplace/views.py:85
 msgid "Year"
 msgstr "Year"
 
-#: apps/marketplace/views.py:86
 msgid "Mileage (km)"
 msgstr "Mileage (km)"
 
-#: apps/marketplace/views.py:87
 msgid "City"
 msgstr "City"
 
-#: apps/marketplace/views.py:90 apps/marketplace/views.py:91
-#: apps/marketplace/views.py:92
 msgid "A short headline buyers will see first."
 msgstr "A short headline buyers will see first."
 
-#: apps/marketplace/views.py:93 apps/marketplace/views.py:94
-#: apps/marketplace/views.py:95
 msgid "Be honest and specific-it builds trust."
 msgstr "Be honest and specific-it builds trust."
 
-#: apps/marketplace/views.py:96
+#, fuzzy
+#| msgid "Where the car is located (optional)."
+msgid "Choose the car brand from the catalog (optional)."
+msgstr "Choose the car brand from the catalog (optional)."
+
+#, fuzzy
+#| msgid "Where the car is located (optional)."
+msgid "Choose the model for the selected brand (optional)."
+msgstr "Choose the model for the selected brand (optional)."
+
+msgid "Trim or variant, e.g. SE, Limited (optional)."
+msgstr "Trim or variant, e.g. SE, Limited (optional)."
+
 #, fuzzy
 #| msgid "Optional, but listings with a photo sell faster."
 msgid ""
 "Optional, but listings with photos sell faster. You can select multiple."
-msgstr "Optional, but listings with a photo sell faster."
+msgstr ""
+"Optional, but listings with photos sell faster. You can select multiple."
 
-#: apps/marketplace/views.py:97
 msgid "Ask a fair market price."
 msgstr "Ask a fair market price."
 
-#: apps/marketplace/views.py:98
 msgid "Prices are shown in the currency you select."
-msgstr ""
+msgstr "Prices are shown in the currency you select."
 
-#: apps/marketplace/views.py:99
 msgid "Model year (optional)."
 msgstr "Model year (optional)."
 
-#: apps/marketplace/views.py:100
 msgid "Odometer reading in kilometres (optional)."
 msgstr "Odometer reading in kilometres (optional)."
 
-#: apps/marketplace/views.py:101
 msgid "Where the car is located (optional)."
 msgstr "Where the car is located (optional)."
 
-#: apps/marketplace/views.py:104 apps/marketplace/views.py:105
-#: apps/marketplace/views.py:106
 msgid "e.g. 2018 Toyota Corolla"
 msgstr "e.g. 2018 Toyota Corolla"
 
-#: apps/marketplace/views.py:107 apps/marketplace/views.py:108
-#: apps/marketplace/views.py:109
 msgid "Condition, extras, reason for selling…"
 msgstr "Condition, extras, reason for selling…"
 
-#: apps/marketplace/views.py:110
+msgid "e.g. SE"
+msgstr "e.g. SE"
+
 msgid "e.g. Tehran"
 msgstr "e.g. Tehran"
 
-#: apps/marketplace/views.py:158 templates/marketplace/create.html:52
+#, fuzzy
+#| msgid "Select on map"
+msgid "Select model"
+msgstr "Select model"
+
 msgid ""
 "Add a title and description in at least one language (فارسی, English, or "
 "العربية)."
@@ -473,350 +505,528 @@ msgstr ""
 "Add a title and description in at least one language (فارسی, English, or "
 "العربية)."
 
-#: apps/marketplace/views.py:169
-msgid "Please upload image files only."
-msgstr ""
+msgid "Selected model does not belong to the chosen brand."
+msgstr "Selected model does not belong to the chosen brand."
 
-#: apps/marketplace/views.py:179 apps/panel/forms.py:11
-#: templates/emergency/list.html:42
-#: templates/panel/emergency/request_list.html:34
-#: templates/panel/overview.html:43
+msgid "Please upload image files only."
+msgstr "Please upload image files only."
+
 msgid "Status"
 msgstr "Status"
 
-#: apps/marketplace/views.py:180
 msgid "Active listings appear in the marketplace."
 msgstr "Active listings appear in the marketplace."
 
-#: apps/marketplace/views.py:211
 msgid "Your message to the seller"
 msgstr "Your message to the seller"
 
-#: apps/marketplace/views.py:212
 msgid "Phone (optional)"
 msgstr "Phone (optional)"
 
-#: apps/marketplace/views.py:287
 msgid "Your car is listed. Buyers can message you from the listing."
 msgstr "Your car is listed. Buyers can message you from the listing."
 
-#: apps/marketplace/views.py:314
 msgid "Listing updated."
 msgstr "Listing updated."
 
-#: apps/marketplace/views.py:331
 msgid "Marked as sold. It no longer appears for buyers."
 msgstr "Marked as sold. It no longer appears for buyers."
 
-#: apps/marketplace/views.py:341
 msgid "Listing withdrawn."
 msgstr "Listing withdrawn."
 
-#: apps/marketplace/views.py:354
 msgid "You cannot inquire on your own listing."
 msgstr "You cannot inquire on your own listing."
 
-#: apps/marketplace/views.py:365
 #, python-format
 msgid "Message sent to %(seller)s. They will see it on this listing."
 msgstr "Message sent to %(seller)s. They will see it on this listing."
 
-#: apps/panel/forms.py:12
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published"
+msgstr "Published"
+
+msgid "Draft"
+msgstr "Draft"
+
 #, fuzzy
 #| msgid "New status"
 msgid "All statuses"
 msgstr "All statuses"
 
-#: apps/panel/forms.py:18 templates/emergency/list.html:41
-#: templates/emergency/submit.html:24
-#: templates/panel/emergency/request_list.html:32
-#: templates/panel/overview.html:41
 msgid "Service"
 msgstr "Service"
 
-#: apps/panel/views.py:152
+msgid "Trim must belong to the selected model."
+msgstr "Trim must belong to the selected model."
+
 #, fuzzy
 #| msgid "Services on call"
 msgid "Service created."
 msgstr "Service created."
 
-#: apps/panel/views.py:174
 #, fuzzy
 #| msgid "Listing updated."
 msgid "Service updated."
 msgstr "Service updated."
 
-#: apps/pricing/admin.py:45
+#, fuzzy
+#| msgid "Services on call"
+msgid "Car created."
+msgstr "Car created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Car updated."
+msgstr "Car updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Brand created."
+msgstr "Brand created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Brand updated."
+msgstr "Brand updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Car model created."
+msgstr "Car model created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Car model updated."
+msgstr "Car model updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Trim created."
+msgstr "Trim created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Trim updated."
+msgstr "Trim updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "OBD code created."
+msgstr "OBD code created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "OBD code updated."
+msgstr "OBD code updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Dealer created."
+msgstr "Dealer created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Dealer updated."
+msgstr "Dealer updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Repair shop created."
+msgstr "Repair shop created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Repair shop updated."
+msgstr "Repair shop updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Video created."
+msgstr "Video created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Video updated."
+msgstr "Video updated."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Story created."
+msgstr "Story created."
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Story updated."
+msgstr "Story updated."
+
 #, fuzzy
 #| msgid "Pricing"
 msgid "Pricing & media"
-msgstr "Pricing"
+msgstr "Pricing & media"
 
-#: apps/pricing/models.py:12
 msgid "Category (فارسی)"
-msgstr ""
+msgstr "Category (فارسی)"
 
-#: apps/pricing/models.py:15
 msgid "Category (English)"
-msgstr ""
+msgstr "Category (English)"
 
-#: apps/pricing/models.py:18
 msgid "Category (العربية)"
-msgstr ""
+msgstr "Category (العربية)"
 
-#: apps/pricing/models.py:22
 msgid "Notes (فارسی)"
-msgstr ""
+msgstr "Notes (فارسی)"
 
-#: apps/pricing/models.py:23
 msgid "Notes (English)"
-msgstr ""
+msgstr "Notes (English)"
 
-#: apps/pricing/models.py:24
 msgid "Notes (العربية)"
-msgstr ""
+msgstr "Notes (العربية)"
 
-#: apps/pricing/models.py:26
 msgid "Source (فارسی)"
-msgstr ""
+msgstr "Source (فارسی)"
 
-#: apps/pricing/models.py:29
 msgid "Source (English)"
-msgstr ""
+msgstr "Source (English)"
 
-#: apps/pricing/models.py:32
 msgid "Source (العربية)"
-msgstr ""
+msgstr "Source (العربية)"
 
-#: apps/stories/admin.py:37
 #, fuzzy
 #| msgid "Publish listing"
 msgid "Publishing"
-msgstr "Publish listing"
+msgstr "Publishing"
 
-#: apps/stories/models.py:15
 msgid "Excerpt (فارسی)"
-msgstr ""
+msgstr "Excerpt (فارسی)"
 
-#: apps/stories/models.py:18
 msgid "Excerpt (English)"
-msgstr ""
+msgstr "Excerpt (English)"
 
-#: apps/stories/models.py:21
 msgid "Excerpt (العربية)"
-msgstr ""
+msgstr "Excerpt (العربية)"
 
-#: apps/stories/models.py:23
 msgid "Body (فارسی)"
-msgstr ""
+msgstr "Body (فارسی)"
 
-#: apps/stories/models.py:24
 msgid "Body (English)"
-msgstr ""
+msgstr "Body (English)"
 
-#: apps/stories/models.py:25
 msgid "Body (العربية)"
-msgstr ""
+msgstr "Body (العربية)"
 
-#: templates/400.html:11 templates/403.html:11 templates/404.html:11
-#: templates/500.html:63 templates/panel/base.html:38
-msgid "Back to hub"
-msgstr "Back to hub"
-
-#: templates/accounts/login.html:4
 msgid "Log in-MyAutoHub"
 msgstr "Log in-MyAutoHub"
 
-#: templates/accounts/login.html:8
+msgid "Account"
+msgstr "Account"
+
 msgid "Welcome back"
 msgstr "Welcome back"
 
-#: templates/accounts/login.html:9
 msgid "Log in to request emergency help, manage listings, and save locations."
-msgstr "Log in to request emergency help, manage listings, and save locations."
+msgstr ""
+"Log in to request emergency help, manage listings, and save locations."
 
-#: templates/accounts/login.html:24 templates/components/nav.html:105
-#: templates/core/home.html:261
 msgid "Log in"
 msgstr "Log in"
 
-#: templates/accounts/login.html:27
 msgid "No account yet?"
 msgstr "No account yet?"
 
-#: templates/accounts/login.html:28 templates/accounts/register.html:8
 msgid "Join MyAutoHub"
 msgstr "Join MyAutoHub"
 
-#: templates/accounts/profile.html:4
 msgid "Profile-MyAutoHub"
 msgstr "Profile-MyAutoHub"
 
-#: templates/accounts/profile.html:13
 msgid "Saved places you can reuse when requesting emergency help."
 msgstr "Saved places you can reuse when requesting emergency help."
 
-#: templates/accounts/profile.html:17
 msgid "My car listings"
 msgstr "My car listings"
 
-#: templates/accounts/profile.html:18 templates/marketplace/create.html:4
 msgid "Sell a car"
 msgstr "Sell a car"
 
-#: templates/accounts/profile.html:22
 msgid "Saved locations"
 msgstr "Saved locations"
 
-#: templates/accounts/profile.html:28
 msgid "Label"
 msgstr "Label"
 
-#: templates/accounts/profile.html:29
 msgid "Address"
 msgstr "Address"
 
-#: templates/accounts/profile.html:30
 msgid "Coordinates"
 msgstr "Coordinates"
 
-#: templates/accounts/profile.html:37
 msgid "Default"
 msgstr "Default"
 
-#: templates/accounts/profile.html:43 templates/marketplace/create.html:154
 msgid "Remove"
 msgstr "Remove"
 
-#: templates/accounts/profile.html:52
 msgid "No saved locations yet."
 msgstr "No saved locations yet."
 
-#: templates/accounts/profile.html:57
 msgid "Add a location"
 msgstr "Add a location"
 
-#: templates/accounts/profile.html:77 templates/emergency/submit.html:30
-#: templates/emergency/submit.html:31
 msgid "Location"
 msgstr "Location"
 
-#: templates/accounts/profile.html:81 templates/emergency/submit.html:45
 msgid "Use my location"
 msgstr "Use my location"
 
-#: templates/accounts/profile.html:84 templates/emergency/submit.html:48
 msgid "Tap the map to drop a pin."
 msgstr "Tap the map to drop a pin."
 
-#: templates/accounts/profile.html:87 templates/emergency/submit.html:51
 msgid "Loading map"
 msgstr "Loading map"
 
-#: templates/accounts/profile.html:99 templates/emergency/submit.html:63
 msgid "Map-tap to set your location"
 msgstr "Map-tap to set your location"
 
-#: templates/accounts/profile.html:121
 msgid "Save location"
 msgstr "Save location"
 
-#: templates/accounts/register.html:4
 msgid "Join-MyAutoHub"
 msgstr "Join-MyAutoHub"
 
-#: templates/accounts/register.html:9
-msgid "Create an account to submit emergency requests and use the marketplace."
+msgid ""
+"Create an account to submit emergency requests and use the marketplace."
 msgstr ""
 "Create an account to submit emergency requests and use the marketplace."
 
-#: templates/accounts/register.html:22 templates/marketplace/detail.html:97
-#: templates/marketplace/list.html:17
 msgid "Create account"
 msgstr "Create account"
 
-#: templates/base.html:45
 msgid "MyAutoHub-cars, help, and community on the road."
 msgstr "MyAutoHub-cars, help, and community on the road."
 
-#: templates/cars/detail.html:37
+msgid "تمامی حقوق برای"
+msgstr "تمامی حقوق برای"
+
+msgid "محفوظ است"
+msgstr "محفوظ است"
+
+msgid "Developer"
+msgstr "Developer"
+
+msgid "Catalog"
+msgstr "Catalog"
+
+#, fuzzy
+#| msgid "Saved locations"
+msgid "Sections"
+msgstr "Sections"
+
+msgid "Specs"
+msgstr "Specs"
+
+msgid "Dimensions"
+msgstr "Dimensions"
+
+msgid "Features"
+msgstr "Features"
+
+msgid "Maintenance"
+msgstr "Maintenance"
+
+msgid "Fluids"
+msgstr "Fluids"
+
+msgid "Tires"
+msgstr "Tires"
+
+#, fuzzy
+#| msgid "Back to stories"
+msgid "Batteries"
+msgstr "Batteries"
+
+msgid "OBD"
+msgstr "OBD"
+
+msgid "Parts"
+msgstr "Parts"
+
+#, fuzzy
+#| msgid "Price"
+msgid "Prices"
+msgstr "Prices"
+
+msgid "Dealers"
+msgstr "Dealers"
+
+msgid "Shops"
+msgstr "Shops"
+
+msgid "Technical"
+msgstr "Technical"
+
+msgid "Technical specs"
+msgstr "Technical specs"
+
+msgid "Engine"
+msgstr "Engine"
+
+msgid "Displacement"
+msgstr "Displacement"
+
+msgid "Cylinders"
+msgstr "Cylinders"
+
+msgid "Transmission"
+msgstr "Transmission"
+
+msgid "Drivetrain"
+msgstr "Drivetrain"
+
+msgid "Top speed"
+msgstr "Top speed"
+
+msgid "Highway"
+msgstr "Highway"
+
+msgid "Emissions"
+msgstr "Emissions"
+
+msgid "Body"
+msgstr "Body"
+
+msgid "Length"
+msgstr "Length"
+
+msgid "Width"
+msgstr "Width"
+
+msgid "Height"
+msgstr "Height"
+
+msgid "Wheelbase"
+msgstr "Wheelbase"
+
+msgid "Weight"
+msgstr "Weight"
+
+msgid "Cargo"
+msgstr "Cargo"
+
+msgid "Seats"
+msgstr "Seats"
+
+#, fuzzy
+#| msgid "Cancel"
+msgid "Clearance"
+msgstr "Clearance"
+
+msgid "Tank"
+msgstr "Tank"
+
+msgid "Equipment"
+msgstr "Equipment"
+
+msgid "Care"
+msgstr "Care"
+
+msgid "months"
+msgstr "months"
+
+msgid "Battery"
+msgstr "Battery"
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Service schedule"
+msgstr "Service schedule"
+
+msgid "OBD codes"
+msgstr "OBD codes"
+
+msgid "Repair shops"
+msgstr "Repair shops"
+
 msgid "Back to catalog"
 msgstr "Back to catalog"
 
-#: templates/cars/list.html:4
+msgid "Keep exploring"
+msgstr "Keep exploring"
+
+msgid "Compare more models or browse cars for sale."
+msgstr "Compare more models or browse cars for sale."
+
 msgid "Cars-MyAutoHub"
 msgstr "Cars-MyAutoHub"
 
-#: templates/cars/list.html:8
+msgid "Explore the MyAutoHub car catalog-brands, models, and specs."
+msgstr "Explore the MyAutoHub car catalog-brands, models, and specs."
+
 msgid "Car catalog"
 msgstr "Car catalog"
 
-#: templates/cars/list.html:9
 msgid "Browse brands and models with the essentials-year, power, and trim."
 msgstr "Browse brands and models with the essentials-year, power, and trim."
 
-#: templates/cars/list.html:13
-msgid "All"
-msgstr "All"
+msgid "Filter"
+msgstr "Filter"
 
-#: templates/cars/list.html:35
+msgid "Reset"
+msgstr "Reset"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s car"
+msgid_plural "%(counter)s cars"
+msgstr[0] "%(counter)s car"
+msgstr[1] "%(counter)s cars"
+
+#, fuzzy
+#| msgid "No requests match this filter."
+msgid "No cars match these filters."
+msgstr "No cars match these filters."
+
 msgid "No cars in the catalog yet."
 msgstr "No cars in the catalog yet."
 
-#: templates/components/nav.html:5
 msgid "Primary"
 msgstr "Primary"
 
-#: templates/components/nav.html:18
 msgid "No matches found"
-msgstr ""
+msgstr "No matches found"
 
-#: templates/components/nav.html:26 templates/core/search.html:23
 msgid "Search the hub…"
 msgstr "Search the hub…"
 
-#: templates/components/nav.html:52
 msgid "Light theme"
 msgstr "Light theme"
 
-#: templates/components/nav.html:53
 msgid "Dark theme"
 msgstr "Dark theme"
 
-#: templates/components/nav.html:54
 msgid "Toggle theme"
 msgstr "Toggle theme"
 
-#: templates/components/nav.html:69
 msgid "Language"
 msgstr "Language"
 
-#: templates/components/nav.html:97 templates/panel/base.html:7
-#: templates/panel/base.html:48 templates/panel/emergency/request_detail.html:4
-#: templates/panel/emergency/request_list.html:4
-#: templates/panel/emergency/service_form.html:4
-#: templates/panel/emergency/service_list.html:4
-#: templates/panel/overview.html:4
 msgid "Panel"
 msgstr "Panel"
 
-#: templates/components/nav.html:102 templates/panel/base.html:41
 msgid "Log out"
 msgstr "Log out"
 
-#: templates/components/nav.html:106 templates/core/home.html:42
 msgid "Join"
 msgstr "Join"
 
-#: templates/core/home.html:4
 msgid "MyAutoHub-Hub"
 msgstr "MyAutoHub-Hub"
 
-#: templates/core/home.html:31
 msgid "Roadside help. Cars to buy and sell. One hub."
 msgstr "Roadside help. Cars to buy and sell. One hub."
 
-#: templates/core/home.html:33
 msgid ""
 "Pin your location for emergency aid, list your car, or browse what other "
 "drivers are selling."
@@ -824,125 +1034,123 @@ msgstr ""
 "Pin your location for emergency aid, list your car, or browse what other "
 "drivers are selling."
 
-#: templates/core/home.html:37
 msgid "Request help"
 msgstr "Request help"
 
-#: templates/core/home.html:38
 msgid "Buy or sell"
 msgstr "Buy or sell"
 
-#: templates/core/home.html:40 templates/emergency/list.html:8
-#: templates/panel/emergency/service_list.html:4
-#: templates/panel/emergency/service_list.html:5
 msgid "Emergency services"
 msgstr "Emergency services"
 
-#: templates/core/home.html:48
 msgid "Main paths"
 msgstr "Main paths"
 
-#: templates/core/home.html:50
 msgid "Help"
 msgstr "Help"
 
-#: templates/core/home.html:52
 msgid "Towing, jump start, lockout-pin yourself on the map."
 msgstr "Towing, jump start, lockout-pin yourself on the map."
 
-#: templates/core/home.html:55
 msgid "Trade"
 msgstr "Trade"
 
-#: templates/core/home.html:56 templates/marketplace/list.html:8
 msgid "Buy & sell"
 msgstr "Buy & sell"
 
-#: templates/core/home.html:57
 msgid "Browse cars from other drivers, or list yours."
 msgstr "Browse cars from other drivers, or list yours."
 
-#: templates/core/home.html:60 templates/core/home.html:127
-msgid "Catalog"
-msgstr "Catalog"
-
-#: templates/core/home.html:62
 msgid "Specs and models-then jump to live marketplace deals."
 msgstr "Specs and models-then jump to live marketplace deals."
 
-#: templates/core/home.html:70
+msgid "Expertise"
+msgstr "Expertise"
+
+msgid "Specs, data, and the models that matter"
+msgstr "Specs, data, and the models that matter"
+
+msgid ""
+"Browse curated vehicle specs from the technical hub-horsepower, fuel, and "
+"trim at a glance."
+msgstr ""
+"Browse curated vehicle specs from the technical hub-horsepower, fuel, and "
+"trim at a glance."
+
+#, fuzzy
+#| msgid "Car catalog"
+msgid "Open catalog"
+msgstr "Open catalog"
+
+msgid "Slide controls"
+msgstr "Slide controls"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
 msgid "Roadside"
 msgstr "Roadside"
 
-#: templates/core/home.html:71
 msgid "Services on call"
 msgstr "Services on call"
 
-#: templates/core/home.html:93
 msgid "Cars for sale"
 msgstr "Cars for sale"
 
-#: templates/core/home.html:97 templates/marketplace/list.html:13
 msgid "Sell my car"
 msgstr "Sell my car"
 
-#: templates/core/home.html:99 templates/core/home.html:130
-#: templates/core/home.html:160 templates/core/home.html:185
-#: templates/core/home.html:211
 msgid "View all"
 msgstr "View all"
 
-#: templates/core/home.html:128
 msgid "Newest cars"
 msgstr "Newest cars"
 
-#: templates/core/home.html:157
+msgid "Dealers & repair shops"
+msgstr "Dealers & repair shops"
+
 msgid "Watch"
 msgstr "Watch"
 
-#: templates/core/home.html:182
 msgid "Community"
 msgstr "Community"
 
-#: templates/core/home.html:209
 msgid "Price references"
 msgstr "Price references"
 
-#: templates/core/home.html:253
-msgid "Manage listings, saved places, and roadside requests from your profile."
+msgid ""
+"Manage listings, saved places, and roadside requests from your profile."
 msgstr ""
 "Manage listings, saved places, and roadside requests from your profile."
 
-#: templates/core/home.html:253
 msgid "Create an account to request help, save map pins, and sell your car."
 msgstr "Create an account to request help, save map pins, and sell your car."
 
-#: templates/core/home.html:257
 msgid "Open profile"
 msgstr "Open profile"
 
-#: templates/core/home.html:258 templates/marketplace/detail.html:52
-#: templates/marketplace/list.html:14 templates/marketplace/mine.html:8
 msgid "My listings"
 msgstr "My listings"
 
-#: templates/core/home.html:260
 msgid "Create an account"
 msgstr "Create an account"
 
-#: templates/core/search.html:4
 #, fuzzy, python-format
 #| msgid "Emergency #%(id)s-MyAutoHub"
 msgid "Search: %(q)s-MyAutoHub"
 msgstr "Search: %(q)s-MyAutoHub"
 
-#: templates/core/search.html:4
 #, fuzzy
 #| msgid "Cars-MyAutoHub"
 msgid "Search-MyAutoHub"
 msgstr "Search-MyAutoHub"
 
-#: templates/core/search.html:10
+msgid "Hub"
+msgstr "Hub"
+
 #, fuzzy, python-format
 #| msgid "%(counter)s car for sale"
 #| msgid_plural "%(counter)s cars for sale"
@@ -951,153 +1159,111 @@ msgid_plural "%(counter)s results for “%(q)s”"
 msgstr[0] "%(counter)s result for “%(q)s”"
 msgstr[1] "%(counter)s results for “%(q)s”"
 
-#: templates/core/search.html:12
-msgid "Find cars, listings, stories, videos, prices, and roadside help."
-msgstr "Find cars, listings, stories, videos, prices, and roadside help."
+#, fuzzy
+#| msgid ""
+#| "Find cars, listings, stories, videos, prices, and roadside help."
+msgid ""
+"Find cars, listings, stories, videos, prices, places, and roadside help."
+msgstr ""
+"Find cars, listings, stories, videos, prices, places, and roadside help."
 
-#: templates/core/search.html:32
 msgid "No matches. Try another word or browse the hub."
 msgstr "No matches. Try another word or browse the hub."
 
-#: templates/core/search.html:39 templates/core/search.html:65
-#: templates/core/search.html:92 templates/core/search.html:118
-#: templates/core/search.html:140 templates/core/search.html:159
 #, fuzzy
 #| msgid "Browse marketplace"
 msgid "Browse all"
 msgstr "Browse all"
 
-#: templates/emergency/detail.html:4
 #, python-format
 msgid "Emergency #%(id)s-MyAutoHub"
 msgstr "Emergency #%(id)s-MyAutoHub"
 
-#: templates/emergency/detail.html:8
-#: templates/panel/emergency/request_detail.html:4
-#: templates/panel/emergency/request_detail.html:5
 #, python-format
 msgid "Request #%(id)s"
 msgstr "Request #%(id)s"
 
-#: templates/emergency/detail.html:14
-#: templates/panel/emergency/request_detail.html:11
 #, python-format
 msgid "Opened %(when)s"
 msgstr "Opened %(when)s"
 
-#: templates/emergency/detail.html:15
-#: templates/panel/emergency/request_detail.html:12
 #, python-format
 msgid "Requester: %(name)s"
 msgstr "Requester: %(name)s"
 
-#: templates/emergency/detail.html:18
-#: templates/panel/emergency/request_detail.html:14
 #, python-format
 msgid "%(counter)s unread buzz"
 msgid_plural "%(counter)s unread buzzes"
 msgstr[0] "%(counter)s unread buzz"
 msgstr[1] "%(counter)s unread buzzes"
 
-#: templates/emergency/detail.html:24
-#: templates/panel/emergency/request_detail.html:19
 msgid "Details"
 msgstr "Details"
 
-#: templates/emergency/detail.html:27
-#: templates/panel/emergency/request_detail.html:22
 msgid "Location:"
 msgstr "Location:"
 
-#: templates/emergency/detail.html:28 templates/emergency/list.html:55
-#: templates/panel/emergency/request_detail.html:23
-#: templates/panel/emergency/request_list.html:52
 msgid "—"
 msgstr "—"
 
-#: templates/emergency/detail.html:36
 msgid "Buzz!"
 msgstr "Buzz!"
 
-#: templates/emergency/detail.html:40 templates/marketplace/create.html:203
-#: templates/marketplace/create.html:205
-#: templates/panel/emergency/service_form.html:73
 msgid "Cancel"
 msgstr "Cancel"
 
-#: templates/emergency/detail.html:44
 msgid "Back to list"
 msgstr "Back to list"
 
-#: templates/emergency/detail.html:50
-#: templates/panel/emergency/request_detail.html:34
 msgid "Update status"
 msgstr "Update status"
 
-#: templates/emergency/detail.html:54
-#: templates/panel/emergency/request_detail.html:39
 msgid "New status"
 msgstr "New status"
 
-#: templates/emergency/detail.html:58
-#: templates/panel/emergency/request_detail.html:43
 msgid "Note"
 msgstr "Note"
 
-#: templates/emergency/detail.html:61
-#: templates/panel/emergency/request_detail.html:46
 msgid "Apply"
 msgstr "Apply"
 
-#: templates/emergency/detail.html:71
-#: templates/panel/emergency/request_detail.html:60
 #, python-format
 msgid "Rating: %(rating)s/5"
 msgstr "Rating: %(rating)s/5"
 
-#: templates/emergency/detail.html:81
 msgid "Share experience"
 msgstr "Share experience"
 
-#: templates/emergency/detail.html:84
 msgid "No review yet."
 msgstr "No review yet."
 
-#: templates/emergency/detail.html:90
-#: templates/panel/emergency/request_detail.html:66
 msgid "Timeline"
 msgstr "Timeline"
 
-#: templates/emergency/detail.html:99
-#: templates/panel/emergency/request_detail.html:75
 msgid "No transitions yet."
 msgstr "No transitions yet."
 
-#: templates/emergency/detail.html:105
-#: templates/panel/emergency/request_detail.html:81
 msgid "Buzz history"
 msgstr "Buzz history"
 
-#: templates/emergency/detail.html:108
-#: templates/panel/emergency/request_detail.html:84
 #, python-format
 msgid "Buzz from %(name)s · %(when)s"
 msgstr "Buzz from %(name)s · %(when)s"
 
-#: templates/emergency/detail.html:109
-#: templates/panel/emergency/request_detail.html:85
 msgid "Unread"
 msgstr "Unread"
 
-#: templates/emergency/detail.html:112
 msgid "No buzzes yet. Use Buzz! when you need faster attention."
 msgstr "No buzzes yet. Use Buzz! when you need faster attention."
 
-#: templates/emergency/list.html:4
 msgid "Emergency-MyAutoHub"
 msgstr "Emergency-MyAutoHub"
 
-#: templates/emergency/list.html:9
+#, fuzzy
+#| msgid "Request emergency help"
+msgid "Request roadside emergency help through MyAutoHub."
+msgstr "Request roadside emergency help through MyAutoHub."
+
 msgid ""
 "Request roadside help, track progress, and buzz operators when you need "
 "attention fast."
@@ -1105,130 +1271,92 @@ msgstr ""
 "Request roadside help, track progress, and buzz operators when you need "
 "attention fast."
 
-#: templates/emergency/list.html:14
 msgid "New request"
 msgstr "New request"
 
-#: templates/emergency/list.html:16
 msgid "Log in to request help"
 msgstr "Log in to request help"
 
-#: templates/emergency/list.html:19
 msgid "Operator view"
 msgstr "Operator view"
 
-#: templates/emergency/list.html:40
-#: templates/panel/emergency/request_list.html:31
-#: templates/panel/overview.html:40
 msgid "ID"
 msgstr "ID"
 
-#: templates/emergency/list.html:43
-#: templates/panel/emergency/request_list.html:35
-#: templates/panel/overview.html:44
 msgid "When"
 msgstr "When"
 
-#: templates/emergency/list.html:44
-#: templates/panel/emergency/request_list.html:36
 msgid "Buzz"
 msgstr "Buzz"
 
-#: templates/emergency/list.html:55
-#: templates/panel/emergency/request_list.html:50
 #, python-format
 msgid "%(counter)s new"
 msgid_plural "%(counter)s new"
 msgstr[0] "%(counter)s new"
 msgstr[1] "%(counter)s new"
 
-#: templates/emergency/list.html:56
-#: templates/panel/emergency/request_list.html:55
-#: templates/panel/overview.html:56
 msgid "Open"
 msgstr "Open"
 
-#: templates/emergency/list.html:63
 msgid "No emergency requests to show."
 msgstr "No emergency requests to show."
 
-#: templates/emergency/submit.html:4
 msgid "New emergency request-MyAutoHub"
 msgstr "New emergency request-MyAutoHub"
 
-#: templates/emergency/submit.html:12
 msgid "Request emergency help"
 msgstr "Request emergency help"
 
-#: templates/emergency/submit.html:13
 msgid "Pick a service and pin your location on the map-or use a saved place."
-msgstr ""
-"Pick a service and pin your location on the map-or use a saved place."
+msgstr "Pick a service and pin your location on the map-or use a saved place."
 
-#: templates/emergency/submit.html:72
 msgid "Latitude"
 msgstr "Latitude"
 
-#: templates/emergency/submit.html:77
 msgid "Longitude"
 msgstr "Longitude"
 
-#: templates/emergency/submit.html:85
 msgid "Saved location"
 msgstr "Saved location"
 
-#: templates/emergency/submit.html:88
 msgid "Manage saved locations"
 msgstr "Manage saved locations"
 
-#: templates/emergency/submit.html:92
 msgid "What happened?"
 msgstr "What happened?"
 
-#: templates/emergency/submit.html:97
 msgid "Submit request"
 msgstr "Submit request"
 
-#: templates/marketplace/create.html:4 templates/marketplace/create.html:8
-#: templates/marketplace/detail.html:41
+msgid "Back to hub"
+msgstr "Back to hub"
+
 msgid "Edit listing"
 msgstr "Edit listing"
 
-#: templates/marketplace/create.html:8
 msgid "Sell your car"
 msgstr "Sell your car"
 
-#: templates/marketplace/create.html:9
 msgid "Update price, photos, or status."
 msgstr "Update price, photos, or status."
 
-#: templates/marketplace/create.html:9
 #, fuzzy
 #| msgid ""
-#| "List your car so other hub users can buy it-add a photo and a clear "
-#| "price."
+#| "List your car so other hub users can buy it-add a photo and a clear price."
 msgid ""
 "List your car so other hub users can buy it-add photos and a clear price."
 msgstr ""
-"List your car so other hub users can buy it-add a photo and a clear price."
+"List your car so other hub users can buy it-add photos and a clear price."
 
-#: templates/marketplace/create.html:13
 msgid "Listing steps"
 msgstr "Listing steps"
 
-#: templates/marketplace/create.html:17
 msgid "Basics"
 msgstr "Basics"
 
-#: templates/marketplace/create.html:21
-msgid "Specs"
-msgstr "Specs"
-
-#: templates/marketplace/create.html:45
 msgid "Describe the car"
 msgstr "Describe the car"
 
-#: templates/marketplace/create.html:46
 msgid ""
 "Add a title and description in at least one language. Other languages are "
 "optional."
@@ -1236,11 +1364,9 @@ msgstr ""
 "Add a title and description in at least one language. Other languages are "
 "optional."
 
-#: templates/marketplace/create.html:49
 msgid "Sell faster tip"
 msgstr "Sell faster tip"
 
-#: templates/marketplace/create.html:50
 msgid ""
 "MyAutoHub is an international platform. Completing all language fields "
 "(فارسی, English, and العربية) helps more buyers find your car-so you can "
@@ -1250,137 +1376,112 @@ msgstr ""
 "(فارسی, English, and العربية) helps more buyers find your car-so you can "
 "sell sooner and often at a better price."
 
-#: templates/marketplace/create.html:54
-#: templates/panel/emergency/service_form.html:17
 #, fuzzy
 #| msgid "Language"
 msgid "Languages"
-msgstr "Language"
+msgstr "Languages"
 
-#: templates/marketplace/create.html:100
 msgid "Specs & location"
 msgstr "Specs & location"
 
-#: templates/marketplace/create.html:101
 msgid "Optional details that help buyers filter and decide."
 msgstr "Optional details that help buyers filter and decide."
 
-#: templates/marketplace/create.html:127
 #, fuzzy
 #| msgid "Add a cover photo"
 msgid "Add photos"
-msgstr "Add a cover photo"
+msgstr "Add photos"
 
-#: templates/marketplace/create.html:128
 #, fuzzy
 #| msgid "A clear exterior shot works best. You can skip this for now."
 msgid ""
 "Upload several clear shots-exterior, interior, and details. You can skip "
 "this for now."
-msgstr "A clear exterior shot works best. You can skip this for now."
+msgstr ""
+"Upload several clear shots-exterior, interior, and details. You can skip "
+"this for now."
 
-#: templates/marketplace/create.html:136
 #, fuzzy
 #| msgid "Choose an image"
 msgid "Choose images"
-msgstr "Choose an image"
+msgstr "Choose images"
 
-#: templates/marketplace/create.html:147
 msgid "Existing photos-check to remove"
-msgstr ""
+msgstr "Existing photos-check to remove"
 
-#: templates/marketplace/create.html:161
 msgid "Current cover photo is kept unless you add new photos."
-msgstr ""
+msgstr "Current cover photo is kept unless you add new photos."
 
-#: templates/marketplace/create.html:172
 msgid "Price & status"
 msgstr "Price & status"
 
-#: templates/marketplace/create.html:172
 msgid "Set your price"
 msgstr "Set your price"
 
-#: templates/marketplace/create.html:173
 msgid "Adjust pricing or listing visibility."
 msgstr "Adjust pricing or listing visibility."
 
-#: templates/marketplace/create.html:173
 msgid "Almost done-set a price and publish."
 msgstr "Almost done-set a price and publish."
 
-#: templates/marketplace/create.html:200 templates/pricing/detail.html:36
 msgid "Back"
 msgstr "Back"
 
-#: templates/marketplace/create.html:207
 msgid "Continue"
 msgstr "Continue"
 
-#: templates/marketplace/create.html:209
-#: templates/panel/emergency/service_form.html:71
 msgid "Save changes"
 msgstr "Save changes"
 
-#: templates/marketplace/create.html:209
 msgid "Publish listing"
 msgstr "Publish listing"
 
-#: templates/marketplace/detail.html:31
 #, python-format
 msgid "Seller: %(name)s"
 msgstr "Seller: %(name)s"
 
-#: templates/marketplace/detail.html:32
 #, python-format
 msgid "Year: %(year)s"
 msgstr "Year: %(year)s"
 
-#: templates/marketplace/detail.html:45
 msgid "Mark sold"
 msgstr "Mark sold"
 
-#: templates/marketplace/detail.html:49
 msgid "Withdraw"
 msgstr "Withdraw"
 
-#: templates/marketplace/detail.html:56
 msgid "Back to marketplace"
 msgstr "Back to marketplace"
 
-#: templates/marketplace/detail.html:61
 msgid "Buyer messages"
 msgstr "Buyer messages"
 
-#: templates/marketplace/detail.html:76
 msgid "No buyer messages yet."
 msgstr "No buyer messages yet."
 
-#: templates/marketplace/detail.html:81
 msgid "Interested in this car?"
 msgstr "Interested in this car?"
 
-#: templates/marketplace/detail.html:82
 msgid "Send a message to the seller. They will see it on this listing."
 msgstr "Send a message to the seller. They will see it on this listing."
 
-#: templates/marketplace/detail.html:93
 msgid "Message seller"
 msgstr "Message seller"
 
-#: templates/marketplace/detail.html:96
 msgid "Log in to message seller"
 msgstr "Log in to message seller"
 
-#: templates/marketplace/detail.html:102
 msgid "This listing is no longer available for purchase."
 msgstr "This listing is no longer available for purchase."
 
-#: templates/marketplace/list.html:4
 msgid "Marketplace-MyAutoHub"
 msgstr "Marketplace-MyAutoHub"
 
-#: templates/marketplace/list.html:9
+#, fuzzy
+#| msgid "Active listings appear in the marketplace."
+msgid "Browse active car listings on MyAutoHub marketplace."
+msgstr "Browse active car listings on MyAutoHub marketplace."
+
 msgid ""
 "Buy cars from other drivers, or list your own for sale. Message sellers "
 "directly-no middleman."
@@ -1388,336 +1489,575 @@ msgstr ""
 "Buy cars from other drivers, or list your own for sale. Message sellers "
 "directly-no middleman."
 
-#: templates/marketplace/list.html:16
 msgid "Log in to sell"
 msgstr "Log in to sell"
 
-#: templates/marketplace/list.html:21
 #, python-format
 msgid "%(counter)s car for sale"
 msgid_plural "%(counter)s cars for sale"
 msgstr[0] "%(counter)s car for sale"
 msgstr[1] "%(counter)s cars for sale"
 
-#: templates/marketplace/list.html:38
 #, python-format
 msgid "by %(name)s"
 msgstr "by %(name)s"
 
-#: templates/marketplace/list.html:40
 msgid "Yours"
 msgstr "Yours"
 
-#: templates/marketplace/list.html:46
 msgid "No cars for sale yet. Be the first to list yours."
 msgstr "No cars for sale yet. Be the first to list yours."
 
-#: templates/marketplace/mine.html:4
 msgid "My listings-MyAutoHub"
 msgstr "My listings-MyAutoHub"
 
-#: templates/marketplace/mine.html:9
 msgid "Cars you are selling-edit, mark sold, or read buyer messages."
 msgstr "Cars you are selling-edit, mark sold, or read buyer messages."
 
-#: templates/marketplace/mine.html:12
 msgid "Sell another car"
 msgstr "Sell another car"
 
-#: templates/marketplace/mine.html:13
 msgid "Browse marketplace"
 msgstr "Browse marketplace"
 
-#: templates/marketplace/mine.html:32
 #, python-format
 msgid "%(counter)s new message"
 msgid_plural "%(counter)s new messages"
 msgstr[0] "%(counter)s new message"
 msgstr[1] "%(counter)s new messages"
 
-#: templates/marketplace/mine.html:34
 #, python-format
 msgid "%(counter)s message"
 msgid_plural "%(counter)s messages"
 msgstr[0] "%(counter)s message"
 msgstr[1] "%(counter)s messages"
 
-#: templates/marketplace/mine.html:40
 msgid "You have not listed a car yet."
 msgstr "You have not listed a car yet."
 
-#: templates/marketplace/mine.html:40
 msgid "Sell your first car"
 msgstr "Sell your first car"
 
-#: templates/panel/base.html:20
 msgid "Panel navigation"
 msgstr "Panel navigation"
 
-#: templates/panel/base.html:31
 msgid "Staff panel"
 msgstr "Staff panel"
 
-#: templates/panel/base.html:33 templates/panel/overview.html:4
-#: templates/panel/overview.html:5
 #, fuzzy
 #| msgid "Operator view"
 msgid "Overview"
 msgstr "Overview"
 
-#: templates/panel/base.html:34 templates/panel/emergency/request_list.html:4
-#: templates/panel/emergency/request_list.html:5
 #, fuzzy
 #| msgid "Emergency"
 msgid "Emergency queue"
 msgstr "Emergency queue"
 
-#: templates/panel/base.html:35
 #, fuzzy
 #| msgid "Service"
 msgid "Services"
 msgstr "Services"
 
-#: templates/panel/base.html:49
 msgid "Light tools for day-to-day ops."
 msgstr "Light tools for day-to-day ops."
 
-#: templates/panel/emergency/request_detail.html:27
+msgid "Edit brand"
+msgstr "Edit brand"
+
+msgid "New brand"
+msgstr "New brand"
+
+msgid "Add a manufacturer to the catalog."
+msgstr "Add a manufacturer to the catalog."
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create brand"
+msgstr "Create brand"
+
+msgid "Brands & models"
+msgstr "Brands & models"
+
+msgid "Organize the car catalog taxonomy."
+msgstr "Organize the car catalog taxonomy."
+
+msgid "New model"
+msgstr "New model"
+
+#, fuzzy
+#| msgid "All services"
+msgid "New trim"
+msgstr "New trim"
+
+#, fuzzy
+#| msgid "Back to list"
+msgid "Back to cars"
+msgstr "Back to cars"
+
+msgid "Country"
+msgstr "Country"
+
+msgid "Models"
+msgstr "Models"
+
+msgid "Add trim"
+msgstr "Add trim"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "Add model"
+msgstr "Add model"
+
+#, fuzzy
+#| msgid "No services yet. Create the first one."
+msgid "No brands yet. Create the first one."
+msgstr "No brands yet. Create the first one."
+
+#, fuzzy
+#| msgid "All services"
+msgid "Edit dealer"
+msgstr "Edit dealer"
+
+msgid "New dealer"
+msgstr "New dealer"
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create dealer"
+msgstr "Create dealer"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Brands"
+msgstr "Brands"
+
+msgid "Yes"
+msgstr "Yes"
+
+#, fuzzy
+#| msgid "Note"
+msgid "No"
+msgstr "No"
+
+#, fuzzy
+#| msgid "No buyer messages yet."
+msgid "No dealers yet."
+msgstr "No dealers yet."
+
+#, fuzzy
+#| msgid "Edit"
+msgid "Edit car"
+msgstr "Edit car"
+
+#, fuzzy
+#| msgid "Newest cars"
+msgid "New car"
+msgstr "New car"
+
+#, fuzzy
+#| msgid "No cars in the catalog yet."
+msgid "Add a car to the catalog."
+msgstr "Add a car to the catalog."
+
+#, fuzzy
+#| msgid "Cover photo"
+msgid "Gallery photos"
+msgstr "Gallery photos"
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create car"
+msgstr "Create car"
+
+msgid "Catalog cars shown on the hub."
+msgstr "Catalog cars shown on the hub."
+
+#, fuzzy
+#| msgid "No services yet. Create the first one."
+msgid "No cars yet. Create the first one."
+msgstr "No cars yet. Create the first one."
+
+msgid "Edit model"
+msgstr "Edit model"
+
+msgid "Add a model under a brand."
+msgstr "Add a model under a brand."
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create model"
+msgstr "Create model"
+
+msgid "Edit OBD code"
+msgstr "Edit OBD code"
+
+msgid "New OBD code"
+msgstr "New OBD code"
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create"
+msgstr "Create"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Severity"
+msgstr "Severity"
+
+#, fuzzy
+#| msgid "No buyer messages yet."
+msgid "No OBD codes yet."
+msgstr "No OBD codes yet."
+
+msgid "Edit repair shop"
+msgstr "Edit repair shop"
+
+msgid "New repair shop"
+msgstr "New repair shop"
+
+msgid "Create repair shop"
+msgstr "Create repair shop"
+
+#, fuzzy
+#| msgid "No transitions yet."
+msgid "No repair shops yet."
+msgstr "No repair shops yet."
+
+#, fuzzy
+#| msgid "Edit listing"
+msgid "Edit trim"
+msgstr "Edit trim"
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create trim"
+msgstr "Create trim"
+
 #, fuzzy
 #| msgid "Back to hub"
 msgid "Back to queue"
 msgstr "Back to queue"
 
-#: templates/panel/emergency/request_detail.html:28
 #, fuzzy
 #| msgid "Public review"
 msgid "Public detail"
 msgstr "Public detail"
 
-#: templates/panel/emergency/request_detail.html:35
 msgid "Uses the same operator rules as the public emergency flow."
 msgstr "Uses the same operator rules as the public emergency flow."
 
-#: templates/panel/emergency/request_detail.html:51
+#, fuzzy
+#| msgid ""
+#| "Status changes need the emergency_operators group (and staff for finish)."
 msgid ""
-"Status changes need the emergency_operators group (and staff for finish)."
+"Status changes need the emergency_operators group (and staff for finish), or"
+" a superuser account."
 msgstr ""
-"Status changes need the emergency_operators group (and staff for finish)."
+"Status changes need the emergency_operators group (and staff for finish), or"
+" a superuser account."
 
-#: templates/panel/emergency/request_detail.html:88
 #, fuzzy
 #| msgid "No buyer messages yet."
 msgid "No buzzes yet."
 msgstr "No buzzes yet."
 
-#: templates/panel/emergency/request_list.html:6
 msgid "All requests-filter, open, update status."
 msgstr "All requests-filter, open, update status."
 
-#: templates/panel/emergency/request_list.html:10
 #, fuzzy
 #| msgid "All services"
 msgid "Manage services"
 msgstr "Manage services"
 
-#: templates/panel/emergency/request_list.html:21
-msgid "Filter"
-msgstr "Filter"
-
-#: templates/panel/emergency/request_list.html:33
-#: templates/panel/overview.html:42
 #, fuzzy
 #| msgid "Request help"
 msgid "Requester"
 msgstr "Requester"
 
-#: templates/panel/emergency/request_list.html:62
 msgid "No requests match this filter."
 msgstr "No requests match this filter."
 
-#: templates/panel/emergency/service_form.html:4
-#: templates/panel/emergency/service_form.html:5
 #, fuzzy
 #| msgid "All services"
 msgid "Edit service"
 msgstr "Edit service"
 
-#: templates/panel/emergency/service_form.html:4
-#: templates/panel/emergency/service_form.html:5
-#: templates/panel/emergency/service_list.html:10
 #, fuzzy
 #| msgid "All services"
 msgid "New service"
 msgstr "New service"
 
-#: templates/panel/emergency/service_form.html:6
 msgid "Add a roadside service operators can fulfill."
 msgstr "Add a roadside service operators can fulfill."
 
-#: templates/panel/emergency/service_form.html:71
 #, fuzzy
 #| msgid "Emergency services"
 msgid "Create service"
 msgstr "Create service"
 
-#: templates/panel/emergency/service_list.html:6
 msgid "Catalog of roadside help offerings."
 msgstr "Catalog of roadside help offerings."
 
-#: templates/panel/emergency/service_list.html:12
 #, fuzzy
 #| msgid "Request help"
 msgid "Request queue"
 msgstr "Request queue"
 
-#: templates/panel/emergency/service_list.html:21
-msgid "Name"
-msgstr "Name"
-
-#: templates/panel/emergency/service_list.html:22
-#: templates/panel/emergency/service_list.html:33
 msgid "Active"
 msgstr "Active"
 
-#: templates/panel/emergency/service_list.html:23
 #, fuzzy
 #| msgid "Request help"
 msgid "Requests"
 msgstr "Requests"
 
-#: templates/panel/emergency/service_list.html:35
 msgid "Inactive"
 msgstr "Inactive"
 
-#: templates/panel/emergency/service_list.html:39
-msgid "Edit"
-msgstr "Edit"
-
-#: templates/panel/emergency/service_list.html:46
 msgid "No services yet. Create the first one."
 msgstr "No services yet. Create the first one."
 
-#: templates/panel/overview.html:6
 #, fuzzy
 #| msgid "Only emergency operators can accept requests."
 msgid "Open emergency work at a glance."
 msgstr "Open emergency work at a glance."
 
-#: templates/panel/overview.html:12
 msgid "Waiting"
 msgstr "Waiting"
 
-#: templates/panel/overview.html:20
 #, fuzzy
 #| msgid "%(counter)s unread buzz"
 #| msgid_plural "%(counter)s unread buzzes"
 msgid "With unread buzz"
 msgstr "With unread buzz"
 
-#: templates/panel/overview.html:24
 #, fuzzy
 #| msgid "All services"
 msgid "Active services"
 msgstr "Active services"
 
-#: templates/panel/overview.html:30
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published cars"
+msgstr "Published cars"
+
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published videos"
+msgstr "Published videos"
+
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published stories"
+msgstr "Published stories"
+
 #, fuzzy
 #| msgid "New request"
 msgid "Recent requests"
 msgstr "Recent requests"
 
-#: templates/panel/overview.html:32
 msgid "Full queue"
 msgstr "Full queue"
 
-#: templates/panel/overview.html:63
 #, fuzzy
 #| msgid "No emergency requests to show."
 msgid "No emergency requests yet."
 msgstr "No emergency requests yet."
 
-#: templates/pricing/detail.html:9 templates/pricing/list.html:24
+#, fuzzy
+#| msgid "All services"
+msgid "Edit story"
+msgstr "Edit story"
+
+#, fuzzy
+#| msgid "New status"
+msgid "New story"
+msgstr "New story"
+
+msgid "Write a multilingual story for the hub."
+msgstr "Write a multilingual story for the hub."
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create story"
+msgstr "Create story"
+
+msgid "Editorial stories on the hub."
+msgstr "Editorial stories on the hub."
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Author"
+msgstr "Author"
+
+#, fuzzy
+#| msgid "No services yet. Create the first one."
+msgid "No stories yet. Create the first one."
+msgstr "No stories yet. Create the first one."
+
+#, fuzzy
+#| msgid "All services"
+msgid "Edit video"
+msgstr "Edit video"
+
+#, fuzzy
+#| msgid "All services"
+msgid "New video"
+msgstr "New video"
+
+msgid "Add a YouTube video to the hub."
+msgstr "Add a YouTube video to the hub."
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create video"
+msgstr "Create video"
+
+msgid "Videos featured on the hub."
+msgstr "Videos featured on the hub."
+
+#, fuzzy
+#| msgid "YouTube"
+msgid "YouTube ID"
+msgstr "YouTube ID"
+
+#, fuzzy
+#| msgid "No services yet. Create the first one."
+msgid "No videos yet. Create the first one."
+msgstr "No videos yet. Create the first one."
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Website"
+msgstr "Website"
+
+#, fuzzy
+#| msgid "All services"
+msgid "All places"
+msgstr "All places"
+
+msgid "Explore more"
+msgstr "Explore more"
+
+msgid "Browse other dealers, shops, and catalog models."
+msgstr "Browse other dealers, shops, and catalog models."
+
+#, fuzzy
+#| msgid "MyAutoHub-Hub"
+msgid "MyAutoHub"
+msgstr "MyAutoHub"
+
+msgid "Find car dealers and repair shops on MyAutoHub."
+msgstr "Find car dealers and repair shops on MyAutoHub."
+
+msgid "Network"
+msgstr "Network"
+
+msgid "Dealers and repair shops linked to brands in the catalog."
+msgstr "Dealers and repair shops linked to brands in the catalog."
+
+#, fuzzy
+#| msgid "Browse marketplace"
+msgid "Browse catalog"
+msgstr "Browse catalog"
+
+msgid "Authorized & local dealers"
+msgstr "Authorized & local dealers"
+
+#, fuzzy
+#| msgid "No videos published yet."
+msgid "No dealers published yet."
+msgstr "No dealers published yet."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Service & repair"
+msgstr "Service & repair"
+
+#, fuzzy
+#| msgid "No videos published yet."
+msgid "No repair shops published yet."
+msgstr "No repair shops published yet."
+
 msgid "General reference"
 msgstr "General reference"
 
-#: templates/pricing/detail.html:34
 #, python-format
 msgid "Source: %(source)s"
 msgstr "Source: %(source)s"
 
-#: templates/pricing/detail.html:35
 #, python-format
 msgid "Updated %(when)s"
 msgstr "Updated %(when)s"
 
-#: templates/pricing/list.html:4
 msgid "Pricing-MyAutoHub"
 msgstr "Pricing-MyAutoHub"
 
-#: templates/pricing/list.html:8
+msgid "Vehicle price references and market guidance on MyAutoHub."
+msgstr "Vehicle price references and market guidance on MyAutoHub."
+
 msgid "Pricing reference"
 msgstr "Pricing reference"
 
-#: templates/pricing/list.html:9
 msgid ""
 "Ballpark figures for cars and common services-useful context, not a quote."
 msgstr ""
 "Ballpark figures for cars and common services-useful context, not a quote."
 
-#: templates/pricing/list.html:28
 msgid "No pricing references published yet."
 msgstr "No pricing references published yet."
 
-#: templates/stories/detail.html:10
 #, python-format
 msgid "By %(name)s · "
 msgstr "By %(name)s · "
 
-#: templates/stories/detail.html:22
 msgid "Back to stories"
 msgstr "Back to stories"
 
-#: templates/stories/list.html:4
 msgid "Stories-MyAutoHub"
 msgstr "Stories-MyAutoHub"
 
-#: templates/stories/list.html:9
+msgid "Automotive stories and community writing from MyAutoHub."
+msgstr "Automotive stories and community writing from MyAutoHub."
+
 msgid "Human moments from the road and the MyAutoHub community."
 msgstr "Human moments from the road and the MyAutoHub community."
 
-#: templates/stories/list.html:27
 msgid "No stories published yet."
 msgstr "No stories published yet."
 
-#: templates/youtube/detail.html:22
 msgid "Back to videos"
 msgstr "Back to videos"
 
-#: templates/youtube/list.html:4
 msgid "YouTube-MyAutoHub"
 msgstr "YouTube-MyAutoHub"
 
-#: templates/youtube/list.html:8
+msgid "Watch the latest MyAutoHub YouTube videos."
+msgstr "Watch the latest MyAutoHub YouTube videos."
+
 msgid "YouTube contents"
 msgstr "YouTube contents"
 
-#: templates/youtube/list.html:9
 msgid "Guides, reviews, and hub stories-watch without leaving the app."
 msgstr "Guides, reviews, and hub stories-watch without leaving the app."
 
-#: templates/youtube/list.html:20
 msgid "Recently added"
 msgstr "Recently added"
 
-#: templates/youtube/list.html:24
 msgid "No videos published yet."
 msgstr "No videos published yet."
-
-#~ msgid "Title"
-#~ msgstr "Title"
-
-#~ msgid "Cover photo"
-#~ msgstr "Cover photo"
 
 #~ msgid "3-letter code such as USD, IRR, AED."
 #~ msgstr "3-letter code such as USD, IRR, AED."

@@ -9,10 +9,10 @@
 {% block twitter_description %}{% trans "Vehicle price references and market guidance on MyAutoHub." %}{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "Pricing reference" %}</h1>
-  <p>{% trans "Ballpark figures for cars and common services-useful context, not a quote." %}</p>
-</section>
+{% trans "Pricing" as p_kicker %}
+{% trans "Pricing reference" as p_title %}
+{% trans "Ballpark figures for cars and common services-useful context, not a quote." as p_lead %}
+{% include "components/page_intro.html" with kicker=p_kicker title=p_title lead=p_lead %}
 <div class="media-grid media-grid-3">
   {% for item in items %}
     <a class="media-card reveal" href="{% url 'pricing:detail' item.pk %}">

@@ -27,12 +27,16 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{{ story.title }}</h1>
-  <p>
-    {% if story.author %}{% blocktrans with name=story.author.username %}By {{ name }} · {% endblocktrans %}{% endif %}
-    {% if story.published_at %}{{ story.published_at|naturaltime }}{% endif %}
-  </p>
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Community" %}</p>
+    <h1>{{ story.title }}</h1>
+    <p class="page-intro-lead">
+      {% if story.author %}{% blocktrans with name=story.author.username %}By {{ name }} · {% endblocktrans %}{% endif %}
+      {% if story.published_at %}{{ story.published_at|naturaltime }}{% endif %}
+    </p>
+  </div>
 </section>
 {% if story.cover_image %}
   <figure class="story-cover reveal">

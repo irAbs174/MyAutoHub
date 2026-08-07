@@ -33,6 +33,7 @@ urlpatterns += i18n_patterns(
     path("pricing/", include("apps.pricing.urls")),
     path("marketplace/", include("apps.marketplace.urls")),
     path("cars/", include("apps.cars.urls")),
+    path("places/", include("apps.cars.place_urls")),
     path("youtube/", include("apps.youtube.urls")),
     path("stories/", include("apps.stories.urls")),
     prefix_default_language=True,

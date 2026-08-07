@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 03:23+0000\n"
+"POT-Creation-Date: 2026-08-07 21:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,811 +18,1014 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: apps/accounts/views.py:22
 msgid "Welcome to MyAutoHub."
 msgstr "به مای‌اتوهاب خوش آمدید."
 
-#: apps/accounts/views.py:52
 msgid "Location saved."
 msgstr "مکان ذخیره شد."
 
-#: apps/accounts/views.py:68
 msgid "Location removed."
 msgstr "مکان حذف شد."
 
-#: apps/core/context_processors.py:7 apps/core/search.py:208
-#: templates/core/home.html:51 templates/core/search.html:158
+#, fuzzy
+#| msgid "New status"
+msgid "All fuels"
+msgstr "وضعیت جدید"
+
+msgid "Petrol"
+msgstr ""
+
+msgid "Hybrid"
+msgstr ""
+
+msgid "Diesel"
+msgstr ""
+
+msgid "Electric"
+msgstr ""
+
+#, fuzzy
+#| msgid "Newest cars"
+msgid "Newest first"
+msgstr "جدیدترین خودروها"
+
+msgid "Oldest first"
+msgstr ""
+
+msgid "Power (high → low)"
+msgstr ""
+
+msgid "Model A–Z"
+msgstr ""
+
+msgid "Brand A–Z"
+msgstr ""
+
+msgid "Search"
+msgstr "جستجو"
+
+msgid "Brand, model, trim…"
+msgstr ""
+
+msgid "All brands"
+msgstr ""
+
+msgid "Brand"
+msgstr "برند"
+
+msgid "All models"
+msgstr ""
+
+msgid "Model"
+msgstr "مدل"
+
+msgid "Fuel"
+msgstr ""
+
+#, fuzzy
+#| msgid "Year"
+msgid "Year from"
+msgstr "سال"
+
+msgid "From"
+msgstr ""
+
+#, fuzzy
+#| msgid "Year"
+msgid "Year to"
+msgstr "سال"
+
+msgid "To"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Safety"
+msgstr ""
+
+msgid "Comfort"
+msgstr ""
+
+msgid "Tech"
+msgstr ""
+
+msgid "Exterior"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Engine oil"
+msgstr ""
+
+msgid "Coolant"
+msgstr ""
+
+msgid "Brake fluid"
+msgstr ""
+
+msgid "Transmission fluid"
+msgstr ""
+
+msgid "Washer fluid"
+msgstr ""
+
+msgid "All"
+msgstr "همه"
+
+msgid "Front"
+msgstr ""
+
+msgid "Rear"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Critical"
+msgstr ""
+
+msgid "Iran (تومان)"
+msgstr ""
+
+msgid "Iran (IRR)"
+msgstr ""
+
+msgid "United States (USD)"
+msgstr ""
+
+msgid "United Arab Emirates (AED)"
+msgstr ""
+
+msgid "Euro (EUR)"
+msgstr ""
+
 msgid "Emergency"
 msgstr "اورژانسی"
 
-#: apps/core/context_processors.py:8 apps/core/search.py:191
-#: templates/core/home.html:208 templates/core/search.html:139
-#: templates/pricing/detail.html:4
 msgid "Pricing"
 msgstr "خدمات رایج"
 
-#: apps/core/context_processors.py:9 apps/core/search.py:147
-#: templates/core/home.html:41 templates/core/home.html:92
-#: templates/core/search.html:64 templates/marketplace/detail.html:4
 msgid "Marketplace"
 msgstr "بازار"
 
-#: apps/core/context_processors.py:10 templates/cars/detail.html:4
-#: templates/core/home.html:61 templates/core/search.html:38
 msgid "Cars"
 msgstr "خودروها"
 
-#: apps/core/context_processors.py:11 templates/core/home.html:158
-#: templates/core/search.html:117 templates/youtube/detail.html:4
+msgid "Places"
+msgstr "مکان‌ها"
+
 msgid "YouTube"
 msgstr "یوتیوب"
 
-#: apps/core/context_processors.py:12 templates/core/home.html:183
-#: templates/core/search.html:91 templates/stories/detail.html:4
-#: templates/stories/list.html:8
 msgid "Stories"
 msgstr "داستان‌ها"
 
-#: apps/core/search.py:131
 #, fuzzy
 #| msgid "Cars"
 msgid "Car"
 msgstr "خودروها"
 
-#: apps/core/search.py:162
 #, fuzzy
 #| msgid "Stories"
 msgid "Story"
 msgstr "داستان‌ها"
 
-#: apps/core/search.py:175
 msgid "Video"
 msgstr ""
 
-#: apps/core/search.py:203 templates/core/search.html:165
 #, fuzzy
 #| msgid "Roadside"
 msgid "Roadside help"
 msgstr "کمک کنار جاده"
 
-#: apps/core/views.py:86
+msgid "Dealer"
+msgstr "نمایندگی"
+
+msgid "Repair shop"
+msgstr "تعمیرگاه"
+
 msgid "Bad request"
 msgstr "درخواست نامعتبر"
 
-#: apps/core/views.py:88
 msgid "The request could not be understood. Please try again."
 msgstr "درخواست قابل فهم نبود. لطفاً دوباره تلاش کنید."
 
-#: apps/core/views.py:101
 msgid "Access denied"
 msgstr "دسترسی مجاز نیست"
 
-#: apps/core/views.py:103
 msgid "You do not have permission to view this page."
 msgstr "اجازه مشاهده این صفحه را ندارید."
 
-#: apps/core/views.py:116
 msgid "Page not found"
 msgstr "صفحه پیدا نشد"
 
-#: apps/core/views.py:118
 msgid "This road does not lead anywhere. Head back to the hub."
 msgstr "این مسیر به جایی نمی‌رسد. به هاب برگردید."
 
-#: apps/core/views.py:131
 msgid "Something went wrong"
 msgstr "مشکلی پیش آمد"
 
-#: apps/core/views.py:133
 msgid "We hit a snag on our side. Please try again in a moment."
 msgstr "در سمت ما مشکلی رخ داد. کمی بعد دوباره تلاش کنید."
 
-#: apps/emergency/admin.py:35 apps/pricing/admin.py:33
-#: apps/stories/admin.py:25
 msgid "فارسی"
 msgstr ""
 
-#: apps/emergency/admin.py:39 apps/pricing/admin.py:37
-#: apps/stories/admin.py:29
 msgid "English"
 msgstr ""
 
-#: apps/emergency/admin.py:43 apps/pricing/admin.py:41
-#: apps/stories/admin.py:33
 msgid "العربية"
 msgstr ""
 
-#: apps/emergency/admin.py:46
 #, fuzzy
 #| msgid "Status"
 msgid "Status & media"
 msgstr "وضعیت"
 
-#: apps/emergency/forms.py:16
 msgid "Select on map"
 msgstr "انتخاب روی نقشه"
 
-#: apps/emergency/forms.py:17
 msgid "Use a saved location"
 msgstr "استفاده از مکان ذخیره‌شده"
 
-#: apps/emergency/forms.py:48
 msgid "Choose a saved location."
 msgstr "یک مکان ذخیره‌شده انتخاب کنید."
 
-#: apps/emergency/forms.py:56 apps/emergency/forms.py:60
 msgid "Provide latitude and longitude from the map."
 msgstr "عرض و طول جغرافیایی را از روی نقشه مشخص کنید."
 
-#: apps/emergency/forms.py:70
 msgid "Optional note for the audit trail."
 msgstr "یادداشت اختیاری برای سابقه تغییرات."
 
-#: apps/emergency/forms.py:80
 msgid "Accept / start processing"
 msgstr "پذیرش / شروع پردازش"
 
-#: apps/emergency/forms.py:84
 msgid "Finish successfully"
 msgstr "اتمام موفق"
 
-#: apps/emergency/forms.py:85
 msgid "Finish as failed"
 msgstr "اتمام ناموفق"
 
-#: apps/emergency/forms.py:93
 msgid "Cancel request"
 msgstr "لغو درخواست"
 
-#: apps/emergency/forms.py:102 templates/emergency/detail.html:68
-#: templates/panel/emergency/request_detail.html:57
 msgid "Public review"
 msgstr "نظر عمومی"
 
-#: apps/emergency/forms.py:108
 msgid "Rating (1–5)"
 msgstr "امتیاز (۱–۵)"
 
-#: apps/emergency/forms.py:113 apps/panel/forms.py:8
-#: templates/components/nav.html:20 templates/components/nav.html:33
-#: templates/core/search.html:8 templates/core/search.html:17
-#: templates/core/search.html:27 templates/emergency/list.html:30
-msgid "Search"
-msgstr "جستجو"
-
-#: apps/emergency/forms.py:117 apps/panel/forms.py:17
-#: templates/core/home.html:73
 msgid "All services"
 msgstr "همه سرویس‌ها"
 
-#: apps/emergency/models.py:12
 msgid "Waiting for accept"
 msgstr "در انتظار پذیرش"
 
-#: apps/emergency/models.py:13 templates/panel/overview.html:16
 msgid "Processing"
 msgstr "در حال پردازش"
 
-#: apps/emergency/models.py:14
 msgid "Finished successfully"
 msgstr "با موفقیت تمام شد"
 
-#: apps/emergency/models.py:15
 msgid "Finished failed"
 msgstr "ناموفق تمام شد"
 
-#: apps/emergency/models.py:16
 msgid "Cancelled"
 msgstr "لغو شده"
 
-#: apps/emergency/models.py:32
 msgid "Name (فارسی)"
 msgstr ""
 
-#: apps/emergency/models.py:33
 msgid "Name (English)"
 msgstr ""
 
-#: apps/emergency/models.py:34
 msgid "Name (العربية)"
 msgstr ""
 
-#: apps/emergency/models.py:35 apps/marketplace/models.py:39
-#: apps/marketplace/views.py:79
 #, fuzzy
 #| msgid "Description"
 msgid "Description (فارسی)"
 msgstr "توضیحات"
 
-#: apps/emergency/models.py:36 apps/marketplace/models.py:42
-#: apps/marketplace/views.py:80
 #, fuzzy
 #| msgid "Description"
 msgid "Description (English)"
 msgstr "توضیحات"
 
-#: apps/emergency/models.py:37 apps/marketplace/models.py:45
-#: apps/marketplace/views.py:81
 msgid "Description (العربية)"
 msgstr ""
 
-#: apps/emergency/models.py:39
 msgid "Coverage notes (فارسی)"
 msgstr ""
 
-#: apps/emergency/models.py:42
 msgid "Coverage notes (English)"
 msgstr ""
 
-#: apps/emergency/models.py:45
 msgid "Coverage notes (العربية)"
 msgstr ""
 
-#: apps/emergency/models.py:114
 msgid "Select a saved location or provide map coordinates."
 msgstr "یک مکان ذخیره‌شده انتخاب کنید یا مختصات نقشه را وارد کنید."
 
-#: apps/emergency/models.py:117
 msgid "Rating must be between 1 and 5."
 msgstr "امتیاز باید بین ۱ تا ۵ باشد."
 
-#: apps/emergency/serializers.py:135
 msgid "That location does not belong to you."
 msgstr "این مکان متعلق به شما نیست."
 
-#: apps/emergency/serializers.py:139
 msgid "Provide saved_location_id or latitude and longitude."
 msgstr "شناسه مکان ذخیره‌شده یا عرض و طول جغرافیایی را وارد کنید."
 
-#: apps/emergency/services.py:44
 #, python-format
 msgid "Cannot change status from %(from)s to %(to)s."
 msgstr "نمی‌توان وضعیت را از %(from)s به %(to)s تغییر داد."
 
-#: apps/emergency/services.py:52
 msgid "Only emergency operators can accept requests."
 msgstr "فقط اپراتورهای امداد می‌توانند درخواست‌ها را بپذیرند."
 
-#: apps/emergency/services.py:58
 msgid "Only emergency operator administrators can finish requests."
 msgstr "فقط مدیران اپراتور امداد می‌توانند درخواست‌ها را تمام کنند."
 
-#: apps/emergency/services.py:67
 #, python-format
 msgid "Unsupported target status: %(status)s"
 msgstr "وضعیت مقصد پشتیبانی نمی‌شود: %(status)s"
 
-#: apps/emergency/services.py:89
 msgid "Request submitted"
 msgstr "درخواست ثبت شد"
 
-#: apps/emergency/services.py:98
 msgid "This request is already closed."
 msgstr "این درخواست قبلاً بسته شده است."
 
-#: apps/emergency/services.py:105
 msgid "You can only cancel your own requests."
 msgstr "فقط می‌توانید درخواست‌های خودتان را لغو کنید."
 
-#: apps/emergency/services.py:126
 msgid "You cannot buzz this request."
 msgstr "نمی‌توانید این درخواست را بازرسانی کنید."
 
-#: apps/emergency/services.py:128
 msgid "Cannot buzz a closed request."
 msgstr "درخواست بسته‌شده را نمی‌توان بازرسانی کرد."
 
-#: apps/emergency/services.py:135
 msgid "Only the requester can leave a review."
 msgstr "فقط درخواست‌کننده می‌تواند نظر بگذارد."
 
-#: apps/emergency/services.py:137
 msgid "Reviews are only allowed after the request finishes."
 msgstr "نظر فقط پس از اتمام درخواست مجاز است."
 
-#: apps/emergency/services.py:139
 msgid "A review was already submitted."
 msgstr "قبلاً نظری ثبت شده است."
 
-#: apps/emergency/views.py:80
 msgid "Emergency request submitted-waiting for an operator to accept."
 msgstr "درخواست امداد ثبت شد-در انتظار پذیرش اپراتور."
 
-#: apps/emergency/views.py:128 apps/panel/views.py:125
 msgid "Request status updated."
 msgstr "وضعیت درخواست به‌روز شد."
 
-#: apps/emergency/views.py:132 apps/panel/views.py:129
 msgid "Could not update status."
 msgstr "وضعیت به‌روز نشد."
 
-#: apps/emergency/views.py:145
 msgid "Cancelled via cancel action"
 msgstr "لغو از طریق اقدام لغو"
 
-#: apps/emergency/views.py:147
 msgid "Request cancelled."
 msgstr "درخواست لغو شد."
 
-#: apps/emergency/views.py:159
 msgid "Buzz sent-operators will notice."
 msgstr "بازرسانی ارسال شد-اپراتورها مطلع می‌شوند."
 
-#: apps/emergency/views.py:178
 msgid "Thanks for sharing your experience."
 msgstr "از اشتراک تجربه شما سپاسگزاریم."
 
-#: apps/emergency/views.py:182
 msgid "Please check the review form."
 msgstr "لطفاً فرم نظر را بررسی کنید."
 
-#: apps/marketplace/models.py:16
-msgid "Iran (تومان)"
-msgstr ""
-
-#: apps/marketplace/models.py:17
-msgid "Iran (IRR)"
-msgstr ""
-
-#: apps/marketplace/models.py:18
-msgid "United States (USD)"
-msgstr ""
-
-#: apps/marketplace/models.py:19
-msgid "United Arab Emirates (AED)"
-msgstr ""
-
-#: apps/marketplace/models.py:20
-msgid "Euro (EUR)"
-msgstr ""
-
-#: apps/marketplace/models.py:30 apps/marketplace/views.py:76
-#: apps/pricing/models.py:8 apps/stories/models.py:10
 msgid "Title (فارسی)"
 msgstr ""
 
-#: apps/marketplace/models.py:33 apps/marketplace/views.py:77
-#: apps/pricing/models.py:9 apps/stories/models.py:11
 msgid "Title (English)"
 msgstr ""
 
-#: apps/marketplace/models.py:36 apps/marketplace/views.py:78
-#: apps/pricing/models.py:10 apps/stories/models.py:12
 msgid "Title (العربية)"
 msgstr ""
 
-#: apps/marketplace/views.py:82 templates/marketplace/create.html:25
+#, fuzzy
+#| msgid "Select on map"
+msgid "Select brand"
+msgstr "انتخاب برند"
+
+msgid "Trim"
+msgstr "تریم"
+
 #, fuzzy
 #| msgid "Photo"
 msgid "Photos"
 msgstr "عکس"
 
-#: apps/marketplace/views.py:83 templates/marketplace/create.html:29
 msgid "Price"
 msgstr "قیمت"
 
-#: apps/marketplace/views.py:84
 msgid "Currency"
 msgstr "واحد پول"
 
-#: apps/marketplace/views.py:85
 msgid "Year"
 msgstr "سال"
 
-#: apps/marketplace/views.py:86
 msgid "Mileage (km)"
 msgstr "کارکرد (کیلومتر)"
 
-#: apps/marketplace/views.py:87
 msgid "City"
 msgstr "شهر"
 
-#: apps/marketplace/views.py:90 apps/marketplace/views.py:91
-#: apps/marketplace/views.py:92
 msgid "A short headline buyers will see first."
 msgstr "عنوان کوتاهی که خریداران اول می‌بینند."
 
-#: apps/marketplace/views.py:93 apps/marketplace/views.py:94
-#: apps/marketplace/views.py:95
 msgid "Be honest and specific-it builds trust."
 msgstr "صادق و مشخص باشید-اعتماد می‌سازد."
 
-#: apps/marketplace/views.py:96
+#, fuzzy
+#| msgid "Where the car is located (optional)."
+msgid "Choose the car brand from the catalog (optional)."
+msgstr "برند خودرو را از کاتالوگ انتخاب کنید (اختیاری)."
+
+#, fuzzy
+#| msgid "Where the car is located (optional)."
+msgid "Choose the model for the selected brand (optional)."
+msgstr "مدل برند انتخاب‌شده را برگزینید (اختیاری)."
+
+msgid "Trim or variant, e.g. SE, Limited (optional)."
+msgstr "تریم یا نسخه، مثل SE یا Limited (اختیاری)."
+
 #, fuzzy
 #| msgid "Optional, but listings with a photo sell faster."
 msgid ""
 "Optional, but listings with photos sell faster. You can select multiple."
 msgstr "اختیاری، اما آگهی با عکس سریع‌تر فروش می‌رود."
 
-#: apps/marketplace/views.py:97
 msgid "Ask a fair market price."
 msgstr "قیمت منصفانه بازار را بگذارید."
 
-#: apps/marketplace/views.py:98
 msgid "Prices are shown in the currency you select."
 msgstr ""
 
-#: apps/marketplace/views.py:99
 msgid "Model year (optional)."
 msgstr "سال ساخت (اختیاری)."
 
-#: apps/marketplace/views.py:100
 msgid "Odometer reading in kilometres (optional)."
 msgstr "عدد کیلومتر کارکرد (اختیاری)."
 
-#: apps/marketplace/views.py:101
 msgid "Where the car is located (optional)."
 msgstr "محل قرارگیری خودرو (اختیاری)."
 
-#: apps/marketplace/views.py:104 apps/marketplace/views.py:105
-#: apps/marketplace/views.py:106
 msgid "e.g. 2018 Toyota Corolla"
 msgstr "مثلاً تویوتا کرولا ۲۰۱۸"
 
-#: apps/marketplace/views.py:107 apps/marketplace/views.py:108
-#: apps/marketplace/views.py:109
 msgid "Condition, extras, reason for selling…"
 msgstr "وضعیت، امکانات، دلیل فروش…"
 
-#: apps/marketplace/views.py:110
+msgid "e.g. SE"
+msgstr ""
+
 msgid "e.g. Tehran"
 msgstr "مثلاً تهران"
 
-#: apps/marketplace/views.py:158 templates/marketplace/create.html:52
+#, fuzzy
+#| msgid "Select on map"
+msgid "Select model"
+msgstr "انتخاب مدل"
+
 msgid ""
 "Add a title and description in at least one language (فارسی, English, or "
 "العربية)."
 msgstr "عنوان و توضیحات را حداقل در یک زبان بنویسید (فارسی، انگلیسی یا عربی)."
 
-#: apps/marketplace/views.py:169
+msgid "Selected model does not belong to the chosen brand."
+msgstr "مدل انتخاب‌شده متعلق به این برند نیست."
+
 msgid "Please upload image files only."
 msgstr ""
 
-#: apps/marketplace/views.py:179 apps/panel/forms.py:11
-#: templates/emergency/list.html:42
-#: templates/panel/emergency/request_list.html:34
-#: templates/panel/overview.html:43
 msgid "Status"
 msgstr "وضعیت"
 
-#: apps/marketplace/views.py:180
 msgid "Active listings appear in the marketplace."
 msgstr "آگهی‌های فعال در بازار نمایش داده می‌شوند."
 
-#: apps/marketplace/views.py:211
 msgid "Your message to the seller"
 msgstr "پیام شما به فروشنده"
 
-#: apps/marketplace/views.py:212
 msgid "Phone (optional)"
 msgstr "تلفن (اختیاری)"
 
-#: apps/marketplace/views.py:287
 msgid "Your car is listed. Buyers can message you from the listing."
 msgstr "خودروی شما آگهی شد. خریداران می‌توانند از صفحه آگهی به شما پیام دهند."
 
-#: apps/marketplace/views.py:314
 msgid "Listing updated."
 msgstr "آگهی به‌روز شد."
 
-#: apps/marketplace/views.py:331
 msgid "Marked as sold. It no longer appears for buyers."
 msgstr ""
 "به‌عنوان فروخته‌شده علامت‌گذاری شد. دیگر برای خریداران نمایش داده نمی‌شود."
 
-#: apps/marketplace/views.py:341
 msgid "Listing withdrawn."
 msgstr "آگهی برداشته شد."
 
-#: apps/marketplace/views.py:354
 msgid "You cannot inquire on your own listing."
 msgstr "نمی‌توانید روی آگهی خودتان پیام بگذارید."
 
-#: apps/marketplace/views.py:365
 #, python-format
 msgid "Message sent to %(seller)s. They will see it on this listing."
 msgstr "پیام به %(seller)s ارسال شد. آن را در این آگهی می‌بینند."
 
-#: apps/panel/forms.py:12
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published"
+msgstr "انتشار آگهی"
+
+msgid "Draft"
+msgstr ""
+
 #, fuzzy
 #| msgid "New status"
 msgid "All statuses"
 msgstr "وضعیت جدید"
 
-#: apps/panel/forms.py:18 templates/emergency/list.html:41
-#: templates/emergency/submit.html:24
-#: templates/panel/emergency/request_list.html:32
-#: templates/panel/overview.html:41
 msgid "Service"
-msgstr "خدمت"
+msgstr "سرویس"
 
-#: apps/panel/views.py:152
+msgid "Trim must belong to the selected model."
+msgstr ""
+
 #, fuzzy
 #| msgid "Services on call"
 msgid "Service created."
 msgstr "سرویس‌های آماده"
 
-#: apps/panel/views.py:174
 #, fuzzy
 #| msgid "Listing updated."
 msgid "Service updated."
 msgstr "آگهی به‌روز شد."
 
-#: apps/pricing/admin.py:45
+#, fuzzy
+#| msgid "Services on call"
+msgid "Car created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Car updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Brand created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Brand updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Car model created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Car model updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Trim created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Trim updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "OBD code created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "OBD code updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Dealer created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Dealer updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Repair shop created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Repair shop updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Video created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Video updated."
+msgstr "آگهی به‌روز شد."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Story created."
+msgstr "سرویس‌های آماده"
+
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Story updated."
+msgstr "آگهی به‌روز شد."
+
 #, fuzzy
 #| msgid "Pricing"
 msgid "Pricing & media"
 msgstr "قیمت‌ها"
 
-#: apps/pricing/models.py:12
 msgid "Category (فارسی)"
 msgstr ""
 
-#: apps/pricing/models.py:15
 msgid "Category (English)"
 msgstr ""
 
-#: apps/pricing/models.py:18
 msgid "Category (العربية)"
 msgstr ""
 
-#: apps/pricing/models.py:22
 msgid "Notes (فارسی)"
 msgstr ""
 
-#: apps/pricing/models.py:23
 msgid "Notes (English)"
 msgstr ""
 
-#: apps/pricing/models.py:24
 msgid "Notes (العربية)"
 msgstr ""
 
-#: apps/pricing/models.py:26
 msgid "Source (فارسی)"
 msgstr ""
 
-#: apps/pricing/models.py:29
 msgid "Source (English)"
 msgstr ""
 
-#: apps/pricing/models.py:32
 msgid "Source (العربية)"
 msgstr ""
 
-#: apps/stories/admin.py:37
 #, fuzzy
 #| msgid "Publish listing"
 msgid "Publishing"
 msgstr "انتشار آگهی"
 
-#: apps/stories/models.py:15
 msgid "Excerpt (فارسی)"
 msgstr ""
 
-#: apps/stories/models.py:18
 msgid "Excerpt (English)"
 msgstr ""
 
-#: apps/stories/models.py:21
 msgid "Excerpt (العربية)"
 msgstr ""
 
-#: apps/stories/models.py:23
 msgid "Body (فارسی)"
 msgstr ""
 
-#: apps/stories/models.py:24
 msgid "Body (English)"
 msgstr ""
 
-#: apps/stories/models.py:25
 msgid "Body (العربية)"
 msgstr ""
 
-#: templates/400.html:11 templates/403.html:11 templates/404.html:11
-#: templates/500.html:63 templates/panel/base.html:38
-msgid "Back to hub"
-msgstr "بازگشت به هاب"
-
-#: templates/accounts/login.html:4
 msgid "Log in-MyAutoHub"
 msgstr "ورود-MyAutoHub"
 
-#: templates/accounts/login.html:8
+msgid "Account"
+msgstr "حساب"
+
 msgid "Welcome back"
 msgstr "خوش آمدید"
 
-#: templates/accounts/login.html:9
 msgid "Log in to request emergency help, manage listings, and save locations."
 msgstr ""
 "وارد شوید تا کمک اورژانسی بخواهید، آگهی‌ها را مدیریت کنید و مکان‌ها را ذخیره"
 " کنید."
 
-#: templates/accounts/login.html:24 templates/components/nav.html:105
-#: templates/core/home.html:261
 msgid "Log in"
 msgstr "ورود"
 
-#: templates/accounts/login.html:27
 msgid "No account yet?"
 msgstr "هنوز حساب ندارید؟"
 
-#: templates/accounts/login.html:28 templates/accounts/register.html:8
 msgid "Join MyAutoHub"
 msgstr "عضویت در MyAutoHub"
 
-#: templates/accounts/profile.html:4
 msgid "Profile-MyAutoHub"
 msgstr "پروفایل-MyAutoHub"
 
-#: templates/accounts/profile.html:13
 msgid "Saved places you can reuse when requesting emergency help."
 msgstr ""
 "مکان‌های ذخیره‌شده که هنگام درخواست کمک اورژانسی دوباره استفاده می‌کنید."
 
-#: templates/accounts/profile.html:17
 msgid "My car listings"
 msgstr "آگهی‌های خودروی من"
 
-#: templates/accounts/profile.html:18 templates/marketplace/create.html:4
 msgid "Sell a car"
 msgstr "فروش خودرو"
 
-#: templates/accounts/profile.html:22
 msgid "Saved locations"
 msgstr "مکان‌های ذخیره‌شده"
 
-#: templates/accounts/profile.html:28
 msgid "Label"
 msgstr "برچسب"
 
-#: templates/accounts/profile.html:29
 msgid "Address"
 msgstr "آدرس"
 
-#: templates/accounts/profile.html:30
 msgid "Coordinates"
 msgstr "مختصات"
 
-#: templates/accounts/profile.html:37
 msgid "Default"
 msgstr "پیش‌فرض"
 
-#: templates/accounts/profile.html:43 templates/marketplace/create.html:154
 msgid "Remove"
 msgstr "حذف"
 
-#: templates/accounts/profile.html:52
 msgid "No saved locations yet."
 msgstr "هنوز مکان ذخیره‌شده‌ای نیست."
 
-#: templates/accounts/profile.html:57
 msgid "Add a location"
 msgstr "افزودن مکان"
 
-#: templates/accounts/profile.html:77 templates/emergency/submit.html:30
-#: templates/emergency/submit.html:31
 msgid "Location"
 msgstr "موقعیت"
 
-#: templates/accounts/profile.html:81 templates/emergency/submit.html:45
 msgid "Use my location"
 msgstr "استفاده از موقعیت من"
 
-#: templates/accounts/profile.html:84 templates/emergency/submit.html:48
 msgid "Tap the map to drop a pin."
 msgstr "روی نقشه بزنید تا پین بگذارید."
 
-#: templates/accounts/profile.html:87 templates/emergency/submit.html:51
 msgid "Loading map"
 msgstr ""
 
-#: templates/accounts/profile.html:99 templates/emergency/submit.html:63
 msgid "Map-tap to set your location"
 msgstr "نقشه-برای تعیین موقعیت ضربه بزنید"
 
-#: templates/accounts/profile.html:121
 msgid "Save location"
 msgstr "ذخیره مکان"
 
-#: templates/accounts/register.html:4
 msgid "Join-MyAutoHub"
 msgstr "عضویت-MyAutoHub"
 
-#: templates/accounts/register.html:9
 msgid ""
 "Create an account to submit emergency requests and use the marketplace."
 msgstr "حساب بسازید تا درخواست اورژانسی ثبت کنید و از بازار استفاده کنید."
 
-#: templates/accounts/register.html:22 templates/marketplace/detail.html:97
-#: templates/marketplace/list.html:17
 msgid "Create account"
 msgstr "ایجاد حساب"
 
-#: templates/base.html:45
 msgid "MyAutoHub-cars, help, and community on the road."
 msgstr "MyAutoHub-خودرو، کمک و جامعه در جاده."
 
-#: templates/cars/detail.html:37
+msgid "تمامی حقوق برای"
+msgstr ""
+
+msgid "محفوظ است"
+msgstr ""
+
+msgid "Developer"
+msgstr ""
+
+msgid "Catalog"
+msgstr "کاتالوگ"
+
+#, fuzzy
+#| msgid "Saved locations"
+msgid "Sections"
+msgstr "بخش‌ها"
+
+msgid "Specs"
+msgstr "مشخصات"
+
+msgid "Dimensions"
+msgstr ""
+
+msgid "Features"
+msgstr ""
+
+msgid "Maintenance"
+msgstr ""
+
+msgid "Fluids"
+msgstr ""
+
+msgid "Tires"
+msgstr ""
+
+#, fuzzy
+#| msgid "Back to stories"
+msgid "Batteries"
+msgstr "بازگشت به داستان‌ها"
+
+msgid "OBD"
+msgstr "OBD"
+
+msgid "Parts"
+msgstr ""
+
+#, fuzzy
+#| msgid "Price"
+msgid "Prices"
+msgstr "قیمت"
+
+msgid "Dealers"
+msgstr ""
+
+msgid "Shops"
+msgstr "تعمیرگاه‌ها"
+
+msgid "Technical"
+msgstr "فنی"
+
+msgid "Technical specs"
+msgstr ""
+
+msgid "Engine"
+msgstr "موتور"
+
+msgid "Displacement"
+msgstr "حجم موتور"
+
+msgid "Cylinders"
+msgstr "سیلندر"
+
+msgid "Transmission"
+msgstr "گیربکس"
+
+msgid "Drivetrain"
+msgstr "محور محرک"
+
+msgid "Top speed"
+msgstr "حداکثر سرعت"
+
+msgid "Highway"
+msgstr "جاده"
+
+msgid "Emissions"
+msgstr "آلایندگی"
+
+msgid "Body"
+msgstr "بدنه"
+
+msgid "Length"
+msgstr "طول"
+
+msgid "Width"
+msgstr "عرض"
+
+msgid "Height"
+msgstr "ارتفاع"
+
+msgid "Wheelbase"
+msgstr ""
+
+msgid "Weight"
+msgstr "وزن"
+
+msgid "Cargo"
+msgstr "صندوق"
+
+msgid "Seats"
+msgstr "صندلی"
+
+#, fuzzy
+#| msgid "Cancel"
+msgid "Clearance"
+msgstr "ارتفاع از زمین"
+
+msgid "Tank"
+msgstr "باک"
+
+msgid "Equipment"
+msgstr "تجهیزات"
+
+msgid "Care"
+msgstr "نگهداری"
+
+msgid "months"
+msgstr ""
+
+msgid "Battery"
+msgstr "باتری"
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Service schedule"
+msgstr "سرویس‌های آماده"
+
+msgid "OBD codes"
+msgstr ""
+
+msgid "Repair shops"
+msgstr ""
+
 msgid "Back to catalog"
 msgstr "بازگشت به کاتالوگ"
 
-#: templates/cars/list.html:4
+msgid "Keep exploring"
+msgstr "ادامه کاوش"
+
+msgid "Compare more models or browse cars for sale."
+msgstr "مدل‌های بیشتر را مقایسه کنید یا خودروهای فروش را ببینید."
+
 msgid "Cars-MyAutoHub"
 msgstr "خودروها-MyAutoHub"
 
-#: templates/cars/list.html:8
+msgid "Explore the MyAutoHub car catalog-brands, models, and specs."
+msgstr ""
+
 msgid "Car catalog"
 msgstr "کاتالوگ خودرو"
 
-#: templates/cars/list.html:9
 msgid "Browse brands and models with the essentials-year, power, and trim."
 msgstr "برندها و مدل‌ها را با ضروریات مرور کنید-سال، قدرت و تریم."
 
-#: templates/cars/list.html:13
-msgid "All"
-msgstr "همه"
+msgid "Filter"
+msgstr ""
 
-#: templates/cars/list.html:35
+msgid "Reset"
+msgstr ""
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s car"
+msgid_plural "%(counter)s cars"
+msgstr[0] "%(counter)s جدید"
+msgstr[1] "%(counter)s جدید"
+
+msgid "No cars match these filters."
+msgstr ""
+
 msgid "No cars in the catalog yet."
 msgstr "هنوز خودرویی در کاتالوگ نیست."
 
-#: templates/components/nav.html:5
 msgid "Primary"
 msgstr "اصلی"
 
-#: templates/components/nav.html:18
 msgid "No matches found"
 msgstr ""
 
-#: templates/components/nav.html:26 templates/core/search.html:23
 msgid "Search the hub…"
 msgstr "جستجو در هاب…"
 
-#: templates/components/nav.html:52
 msgid "Light theme"
 msgstr "تم روشن"
 
-#: templates/components/nav.html:53
 msgid "Dark theme"
 msgstr "تم تیره"
 
-#: templates/components/nav.html:54
 msgid "Toggle theme"
 msgstr "تغییر تم"
 
-#: templates/components/nav.html:69
 msgid "Language"
 msgstr "زبان"
 
-#: templates/components/nav.html:97 templates/panel/base.html:7
-#: templates/panel/base.html:48
-#: templates/panel/emergency/request_detail.html:4
-#: templates/panel/emergency/request_list.html:4
-#: templates/panel/emergency/service_form.html:4
-#: templates/panel/emergency/service_list.html:4
-#: templates/panel/overview.html:4
 msgid "Panel"
 msgstr ""
 
-#: templates/components/nav.html:102 templates/panel/base.html:41
 msgid "Log out"
 msgstr "خروج"
 
-#: templates/components/nav.html:106 templates/core/home.html:42
 msgid "Join"
 msgstr "عضویت"
 
-#: templates/core/home.html:4
-msgid "MyAutoHub"
-msgstr "MyAutoHub"
+#, fuzzy
+#| msgid "MyAutoHub"
+msgid "MyAutoHub-Hub"
+msgstr "MyAutoHub-هاب"
 
-#: templates/core/home.html:31
 msgid "Roadside help. Cars to buy and sell. One hub."
 msgstr "اکوسیستم تخصصی خودرو"
 
-#: templates/core/home.html:33
 msgid ""
 "Pin your location for emergency aid, list your car, or browse what other "
 "drivers are selling."
@@ -830,126 +1033,121 @@ msgstr ""
 "موقعیت خود را برای امداد پین کنید، خودرویتان را آگهی کنید، یا ببینید دیگران "
 "چه می‌فروشند."
 
-#: templates/core/home.html:37
 msgid "Request help"
 msgstr "درخواست کمک"
 
-#: templates/core/home.html:38
 msgid "Buy or sell"
 msgstr "خرید یا فروش"
 
-#: templates/core/home.html:40 templates/emergency/list.html:8
-#: templates/panel/emergency/service_list.html:4
-#: templates/panel/emergency/service_list.html:5
 msgid "Emergency services"
 msgstr "خدمات اورژانسی"
 
-#: templates/core/home.html:48
 msgid "Main paths"
 msgstr "مسیرهای اصلی"
 
-#: templates/core/home.html:50
 msgid "Help"
 msgstr "کمک"
 
-#: templates/core/home.html:52
 msgid "Towing, jump start, lockout-pin yourself on the map."
 msgstr "یدک‌کش، جامپ‌استارت، قفل‌شدن-خودتان را روی نقشه پین کنید."
 
-#: templates/core/home.html:55
 msgid "Trade"
 msgstr "معامله"
 
-#: templates/core/home.html:56 templates/marketplace/list.html:8
 msgid "Buy & sell"
 msgstr "خرید و فروش"
 
-#: templates/core/home.html:57
 msgid "Browse cars from other drivers, or list yours."
 msgstr "خودروهای دیگران را ببینید یا خودروی خود را آگهی کنید."
 
-#: templates/core/home.html:60 templates/core/home.html:127
-msgid "Catalog"
-msgstr "کاتالوگ"
-
-#: templates/core/home.html:62
 msgid "Specs and models-then jump to live marketplace deals."
 msgstr "مشخصات و مدل‌ها-سپس به معاملات زنده بازار بروید."
 
-#: templates/core/home.html:70
+msgid "Expertise"
+msgstr ""
+
+msgid "Specs, data, and the models that matter"
+msgstr ""
+
+msgid ""
+"Browse curated vehicle specs from the technical hub-horsepower, fuel, and "
+"trim at a glance."
+msgstr ""
+
+#, fuzzy
+#| msgid "Car catalog"
+msgid "Open catalog"
+msgstr "کاتالوگ خودرو"
+
+msgid "Slide controls"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
 msgid "Roadside"
 msgstr "جاده‌ای"
 
-#: templates/core/home.html:71
 msgid "Services on call"
 msgstr "سرویس‌های آماده"
 
-#: templates/core/home.html:93
 msgid "Cars for sale"
 msgstr "خودروهای فروشی"
 
-#: templates/core/home.html:97 templates/marketplace/list.html:13
 msgid "Sell my car"
 msgstr "فروش خودروی من"
 
-#: templates/core/home.html:99 templates/core/home.html:130
-#: templates/core/home.html:160 templates/core/home.html:185
-#: templates/core/home.html:211
 msgid "View all"
 msgstr "مشاهده همه"
 
-#: templates/core/home.html:128
 msgid "Newest cars"
 msgstr "جدیدترین خودروها"
 
-#: templates/core/home.html:157
+msgid "Dealers & repair shops"
+msgstr "نمایندگی‌ها و تعمیرگاه‌ها"
+
 msgid "Watch"
 msgstr "تماشا"
 
-#: templates/core/home.html:182
 msgid "Community"
 msgstr "جامعه"
 
-#: templates/core/home.html:209
 msgid "Price references"
 msgstr "مراجع قیمت"
 
-#: templates/core/home.html:253
 msgid ""
 "Manage listings, saved places, and roadside requests from your profile."
 msgstr ""
 "آگهی‌ها، مکان‌های ذخیره‌شده و درخواست‌های امداد را از پروفایل مدیریت کنید."
 
-#: templates/core/home.html:253
 msgid "Create an account to request help, save map pins, and sell your car."
 msgstr "برای درخواست کمک، ذخیره پین نقشه و فروش خودرو حساب بسازید."
 
-#: templates/core/home.html:257
 msgid "Open profile"
 msgstr "باز کردن پروفایل"
 
-#: templates/core/home.html:258 templates/marketplace/detail.html:52
-#: templates/marketplace/list.html:14 templates/marketplace/mine.html:8
 msgid "My listings"
 msgstr "آگهی‌های من"
 
-#: templates/core/home.html:260
 msgid "Create an account"
 msgstr "ایجاد حساب"
 
-#: templates/core/search.html:4
 #, fuzzy, python-format
 #| msgid "Emergency #%(id)s-MyAutoHub"
 msgid "Search: %(q)s-MyAutoHub"
 msgstr "جستجو: %(q)s-MyAutoHub"
 
-#: templates/core/search.html:4
 #, fuzzy
 #| msgid "Cars-MyAutoHub"
 msgid "Search-MyAutoHub"
 msgstr "جستجو-MyAutoHub"
 
-#: templates/core/search.html:10
+msgid "Hub"
+msgstr "هاب"
+
 #, fuzzy, python-format
 #| msgid "%(counter)s car for sale"
 #| msgid_plural "%(counter)s cars for sale"
@@ -958,155 +1156,111 @@ msgid_plural "%(counter)s results for “%(q)s”"
 msgstr[0] "%(counter)s نتیجه برای «%(q)s»"
 msgstr[1] "%(counter)s نتیجه برای «%(q)s»"
 
-#: templates/core/search.html:12
-msgid "Find cars, listings, stories, videos, prices, and roadside help."
-msgstr ""
-"خودروها، آگهی‌ها، داستان‌ها، ویدیوها، قیمت‌ها و کمک کنار جاده را پیدا کنید."
+#, fuzzy
+#| msgid ""
+#| "Find cars, listings, stories, videos, prices, and roadside help."
+msgid ""
+"Find cars, listings, stories, videos, prices, places, and roadside help."
+msgstr "خودرو، آگهی، داستان، ویدیو، قیمت، مکان و کمک کنار جاده را پیدا کنید."
 
-#: templates/core/search.html:32
 msgid "No matches. Try another word or browse the hub."
 msgstr "موردی پیدا نشد. واژه دیگری امتحان کنید یا هاب را مرور کنید."
 
-#: templates/core/search.html:39 templates/core/search.html:65
-#: templates/core/search.html:92 templates/core/search.html:118
-#: templates/core/search.html:140 templates/core/search.html:159
 #, fuzzy
 #| msgid "Browse marketplace"
 msgid "Browse all"
 msgstr "مشاهده همه"
 
-#: templates/emergency/detail.html:4
 #, python-format
 msgid "Emergency #%(id)s-MyAutoHub"
 msgstr "اورژانسی #%(id)s-MyAutoHub"
 
-#: templates/emergency/detail.html:8
-#: templates/panel/emergency/request_detail.html:4
-#: templates/panel/emergency/request_detail.html:5
 #, python-format
 msgid "Request #%(id)s"
 msgstr "درخواست #%(id)s"
 
-#: templates/emergency/detail.html:14
-#: templates/panel/emergency/request_detail.html:11
 #, python-format
 msgid "Opened %(when)s"
 msgstr "باز شده %(when)s"
 
-#: templates/emergency/detail.html:15
-#: templates/panel/emergency/request_detail.html:12
 #, python-format
 msgid "Requester: %(name)s"
 msgstr "درخواست‌کننده: %(name)s"
 
-#: templates/emergency/detail.html:18
-#: templates/panel/emergency/request_detail.html:14
 #, python-format
 msgid "%(counter)s unread buzz"
 msgid_plural "%(counter)s unread buzzes"
 msgstr[0] "%(counter)s باز خوانده‌نشده"
 msgstr[1] "%(counter)s باز خوانده‌نشده"
 
-#: templates/emergency/detail.html:24
-#: templates/panel/emergency/request_detail.html:19
 msgid "Details"
 msgstr "جزئیات"
 
-#: templates/emergency/detail.html:27
-#: templates/panel/emergency/request_detail.html:22
 msgid "Location:"
 msgstr "موقعیت:"
 
-#: templates/emergency/detail.html:28 templates/emergency/list.html:55
-#: templates/panel/emergency/request_detail.html:23
-#: templates/panel/emergency/request_list.html:52
 msgid "—"
 msgstr "—"
 
-#: templates/emergency/detail.html:36
 msgid "Buzz!"
 msgstr "باز!"
 
-#: templates/emergency/detail.html:40 templates/marketplace/create.html:203
-#: templates/marketplace/create.html:205
-#: templates/panel/emergency/service_form.html:73
 msgid "Cancel"
 msgstr "لغو"
 
-#: templates/emergency/detail.html:44
 msgid "Back to list"
 msgstr "بازگشت به فهرست"
 
-#: templates/emergency/detail.html:50
-#: templates/panel/emergency/request_detail.html:34
 msgid "Update status"
 msgstr "به‌روزرسانی وضعیت"
 
-#: templates/emergency/detail.html:54
-#: templates/panel/emergency/request_detail.html:39
 msgid "New status"
 msgstr "وضعیت جدید"
 
-#: templates/emergency/detail.html:58
-#: templates/panel/emergency/request_detail.html:43
 msgid "Note"
 msgstr "یادداشت"
 
-#: templates/emergency/detail.html:61
-#: templates/panel/emergency/request_detail.html:46
 msgid "Apply"
 msgstr "اعمال"
 
-#: templates/emergency/detail.html:71
-#: templates/panel/emergency/request_detail.html:60
 #, python-format
 msgid "Rating: %(rating)s/5"
 msgstr "امتیاز: %(rating)s/۵"
 
-#: templates/emergency/detail.html:81
 msgid "Share experience"
 msgstr "اشتراک تجربه"
 
-#: templates/emergency/detail.html:84
 msgid "No review yet."
 msgstr "هنوز نظری ثبت نشده."
 
-#: templates/emergency/detail.html:90
-#: templates/panel/emergency/request_detail.html:66
 msgid "Timeline"
 msgstr "خط زمان"
 
-#: templates/emergency/detail.html:99
-#: templates/panel/emergency/request_detail.html:75
 msgid "No transitions yet."
 msgstr "هنوز انتقالی نیست."
 
-#: templates/emergency/detail.html:105
-#: templates/panel/emergency/request_detail.html:81
 msgid "Buzz history"
 msgstr "تاریخچه باز"
 
-#: templates/emergency/detail.html:108
-#: templates/panel/emergency/request_detail.html:84
 #, python-format
 msgid "Buzz from %(name)s · %(when)s"
 msgstr "باز از %(name)s · %(when)s"
 
-#: templates/emergency/detail.html:109
-#: templates/panel/emergency/request_detail.html:85
 msgid "Unread"
 msgstr "خوانده‌نشده"
 
-#: templates/emergency/detail.html:112
 msgid "No buzzes yet. Use Buzz! when you need faster attention."
 msgstr ""
 "هنوز بازی ثبت نشده. وقتی نیاز به توجه سریع‌تر دارید از باز! استفاده کنید."
 
-#: templates/emergency/list.html:4
 msgid "Emergency-MyAutoHub"
 msgstr "اورژانسی-MyAutoHub"
 
-#: templates/emergency/list.html:9
+#, fuzzy
+#| msgid "Request emergency help"
+msgid "Request roadside emergency help through MyAutoHub."
+msgstr "درخواست کمک اورژانسی"
+
 msgid ""
 "Request roadside help, track progress, and buzz operators when you need "
 "attention fast."
@@ -1114,105 +1268,77 @@ msgstr ""
 "کمک کنار جاده بخواهید، پیشرفت را پیگیری کنید و وقتی نیاز به توجه سریع دارید "
 "باز بزنید."
 
-#: templates/emergency/list.html:14
 msgid "New request"
 msgstr "درخواست جدید"
 
-#: templates/emergency/list.html:16
 msgid "Log in to request help"
 msgstr "برای درخواست کمک وارد شوید"
 
-#: templates/emergency/list.html:19
 msgid "Operator view"
 msgstr "نمای اپراتور"
 
-#: templates/emergency/list.html:40
-#: templates/panel/emergency/request_list.html:31
-#: templates/panel/overview.html:40
 msgid "ID"
 msgstr "شناسه"
 
-#: templates/emergency/list.html:43
-#: templates/panel/emergency/request_list.html:35
-#: templates/panel/overview.html:44
 msgid "When"
 msgstr "زمان"
 
-#: templates/emergency/list.html:44
-#: templates/panel/emergency/request_list.html:36
 msgid "Buzz"
 msgstr "باز"
 
-#: templates/emergency/list.html:55
-#: templates/panel/emergency/request_list.html:50
 #, python-format
 msgid "%(counter)s new"
 msgid_plural "%(counter)s new"
 msgstr[0] "%(counter)s جدید"
 msgstr[1] "%(counter)s جدید"
 
-#: templates/emergency/list.html:56
-#: templates/panel/emergency/request_list.html:55
-#: templates/panel/overview.html:56
 msgid "Open"
 msgstr "باز کردن"
 
-#: templates/emergency/list.html:63
 msgid "No emergency requests to show."
 msgstr "درخواست اورژانسی برای نمایش نیست."
 
-#: templates/emergency/submit.html:4
 msgid "New emergency request-MyAutoHub"
 msgstr "درخواست اورژانسی جدید-MyAutoHub"
 
-#: templates/emergency/submit.html:12
 msgid "Request emergency help"
 msgstr "درخواست کمک اورژانسی"
 
-#: templates/emergency/submit.html:13
 msgid "Pick a service and pin your location on the map-or use a saved place."
 msgstr ""
 "یک سرویس انتخاب کنید و موقعیت را روی نقشه پین کنید-یا از مکان ذخیره‌شده "
 "استفاده کنید."
 
-#: templates/emergency/submit.html:72
 msgid "Latitude"
 msgstr "عرض جغرافیایی"
 
-#: templates/emergency/submit.html:77
 msgid "Longitude"
 msgstr "طول جغرافیایی"
 
-#: templates/emergency/submit.html:85
 msgid "Saved location"
 msgstr "مکان ذخیره‌شده"
 
-#: templates/emergency/submit.html:88
 msgid "Manage saved locations"
 msgstr "مدیریت مکان‌های ذخیره‌شده"
 
-#: templates/emergency/submit.html:92
 msgid "What happened?"
 msgstr "چه اتفاقی افتاد؟"
 
-#: templates/emergency/submit.html:97
 msgid "Submit request"
 msgstr "ثبت درخواست"
 
-#: templates/marketplace/create.html:4 templates/marketplace/create.html:8
-#: templates/marketplace/detail.html:41
+msgid "Back to hub"
+msgstr "بازگشت به هاب"
+
 msgid "Edit listing"
 msgstr "ویرایش آگهی"
 
-#: templates/marketplace/create.html:8
 msgid "Sell your car"
 msgstr "خودرویتان را بفروشید"
 
-#: templates/marketplace/create.html:9
 msgid "Update price, photos, or status."
 msgstr "قیمت، عکس‌ها یا وضعیت را به‌روز کنید."
 
-#: templates/marketplace/create.html:9
 #, fuzzy
 #| msgid ""
 #| "List your car so other hub users can buy it-add a photo and a clear price."
@@ -1221,34 +1347,24 @@ msgid ""
 msgstr ""
 "خودرویتان را آگهی کنید تا کاربران هاب بخرند-عکس و قیمت واضح اضافه کنید."
 
-#: templates/marketplace/create.html:13
 msgid "Listing steps"
 msgstr "مراحل آگهی"
 
-#: templates/marketplace/create.html:17
 msgid "Basics"
 msgstr "اطلاعات پایه"
 
-#: templates/marketplace/create.html:21
-msgid "Specs"
-msgstr "مشخصات"
-
-#: templates/marketplace/create.html:45
 msgid "Describe the car"
 msgstr "خودرو را توصیف کنید"
 
-#: templates/marketplace/create.html:46
 msgid ""
 "Add a title and description in at least one language. Other languages are "
 "optional."
 msgstr ""
 "عنوان و توضیحات را حداقل در یک زبان بنویسید. زبان‌های دیگر اختیاری‌اند."
 
-#: templates/marketplace/create.html:49
 msgid "Sell faster tip"
 msgstr "نکته فروش سریع‌تر"
 
-#: templates/marketplace/create.html:50
 msgid ""
 "MyAutoHub is an international platform. Completing all language fields "
 "(فارسی, English, and العربية) helps more buyers find your car-so you can "
@@ -1258,28 +1374,22 @@ msgstr ""
 "انگلیسی و عربی) کمک می‌کند خریداران بیشتری خودروی شما را پیدا کنند-تا زودتر "
 "و اغلب با قیمت بهتر بفروشید."
 
-#: templates/marketplace/create.html:54
-#: templates/panel/emergency/service_form.html:17
 #, fuzzy
 #| msgid "Language"
 msgid "Languages"
 msgstr "زبان"
 
-#: templates/marketplace/create.html:100
 msgid "Specs & location"
 msgstr "مشخصات و مکان"
 
-#: templates/marketplace/create.html:101
 msgid "Optional details that help buyers filter and decide."
 msgstr "جزئیات اختیاری که به فیلتر و تصمیم خریدار کمک می‌کند."
 
-#: templates/marketplace/create.html:127
 #, fuzzy
 #| msgid "Add a cover photo"
 msgid "Add photos"
 msgstr "عکس کاور اضافه کنید"
 
-#: templates/marketplace/create.html:128
 #, fuzzy
 #| msgid "A clear exterior shot works best. You can skip this for now."
 msgid ""
@@ -1287,108 +1397,87 @@ msgid ""
 "this for now."
 msgstr "عکس واضح از بیرون بهترین است. فعلاً می‌توانید رد شوید."
 
-#: templates/marketplace/create.html:136
 #, fuzzy
 #| msgid "Choose an image"
 msgid "Choose images"
 msgstr "یک تصویر انتخاب کنید"
 
-#: templates/marketplace/create.html:147
 msgid "Existing photos-check to remove"
 msgstr ""
 
-#: templates/marketplace/create.html:161
 msgid "Current cover photo is kept unless you add new photos."
 msgstr ""
 
-#: templates/marketplace/create.html:172
 msgid "Price & status"
 msgstr "قیمت و وضعیت"
 
-#: templates/marketplace/create.html:172
 msgid "Set your price"
 msgstr "قیمت را مشخص کنید"
 
-#: templates/marketplace/create.html:173
 msgid "Adjust pricing or listing visibility."
 msgstr "قیمت یا نمایش آگهی را تنظیم کنید."
 
-#: templates/marketplace/create.html:173
 msgid "Almost done-set a price and publish."
 msgstr "تقریباً تمام-قیمت بگذارید و منتشر کنید."
 
-#: templates/marketplace/create.html:200 templates/pricing/detail.html:36
 msgid "Back"
 msgstr "بازگشت"
 
-#: templates/marketplace/create.html:207
 msgid "Continue"
 msgstr "ادامه"
 
-#: templates/marketplace/create.html:209
-#: templates/panel/emergency/service_form.html:71
 msgid "Save changes"
 msgstr "ذخیره تغییرات"
 
-#: templates/marketplace/create.html:209
 msgid "Publish listing"
 msgstr "انتشار آگهی"
 
-#: templates/marketplace/detail.html:31
 #, python-format
 msgid "Seller: %(name)s"
 msgstr "فروشنده: %(name)s"
 
-#: templates/marketplace/detail.html:32
 #, python-format
 msgid "Year: %(year)s"
 msgstr "سال: %(year)s"
 
-#: templates/marketplace/detail.html:45
 msgid "Mark sold"
 msgstr "علامت فروخته‌شده"
 
-#: templates/marketplace/detail.html:49
 msgid "Withdraw"
 msgstr "برداشتن"
 
-#: templates/marketplace/detail.html:56
 msgid "Back to marketplace"
 msgstr "بازگشت به بازار"
 
-#: templates/marketplace/detail.html:61
 msgid "Buyer messages"
 msgstr "پیام‌های خریدار"
 
-#: templates/marketplace/detail.html:76
 msgid "No buyer messages yet."
 msgstr "هنوز پیام خریداری نیست."
 
-#: templates/marketplace/detail.html:81
 msgid "Interested in this car?"
 msgstr "به این خودرو علاقه دارید؟"
 
-#: templates/marketplace/detail.html:82
 msgid "Send a message to the seller. They will see it on this listing."
 msgstr "به فروشنده پیام بفرستید. آن را در این آگهی می‌بینند."
 
-#: templates/marketplace/detail.html:93
 msgid "Message seller"
 msgstr "پیام به فروشنده"
 
-#: templates/marketplace/detail.html:96
 msgid "Log in to message seller"
 msgstr "برای پیام به فروشنده وارد شوید"
 
-#: templates/marketplace/detail.html:102
 msgid "This listing is no longer available for purchase."
 msgstr "این آگهی دیگر برای خرید در دسترس نیست."
 
-#: templates/marketplace/list.html:4
 msgid "Marketplace-MyAutoHub"
 msgstr "بازار-MyAutoHub"
 
-#: templates/marketplace/list.html:9
+#, fuzzy
+#| msgid "Active listings appear in the marketplace."
+msgid "Browse active car listings on MyAutoHub marketplace."
+msgstr "آگهی‌های فعال در بازار نمایش داده می‌شوند."
+
 msgid ""
 "Buy cars from other drivers, or list your own for sale. Message sellers "
 "directly-no middleman."
@@ -1396,335 +1485,564 @@ msgstr ""
 "از دیگران بخرید یا خودروی خود را بفروشید. مستقیم به فروشنده پیام دهید-بدون "
 "واسطه."
 
-#: templates/marketplace/list.html:16
 msgid "Log in to sell"
 msgstr "برای فروش وارد شوید"
 
-#: templates/marketplace/list.html:21
 #, python-format
 msgid "%(counter)s car for sale"
 msgid_plural "%(counter)s cars for sale"
 msgstr[0] "%(counter)s خودرو برای فروش"
 msgstr[1] "%(counter)s خودرو برای فروش"
 
-#: templates/marketplace/list.html:38
 #, python-format
 msgid "by %(name)s"
 msgstr "توسط %(name)s"
 
-#: templates/marketplace/list.html:40
 msgid "Yours"
 msgstr "مال شما"
 
-#: templates/marketplace/list.html:46
 msgid "No cars for sale yet. Be the first to list yours."
 msgstr "هنوز خودروی فروشی نیست. اولین نفری باشید که آگهی می‌کند."
 
-#: templates/marketplace/mine.html:4
 msgid "My listings-MyAutoHub"
 msgstr "آگهی‌های من-مای‌اتوهاب"
 
-#: templates/marketplace/mine.html:9
 msgid "Cars you are selling-edit, mark sold, or read buyer messages."
 msgstr ""
 "خودروهایی که می‌فروشید-ویرایش، علامت فروخته‌شده، یا خواندن پیام خریداران."
 
-#: templates/marketplace/mine.html:12
 msgid "Sell another car"
 msgstr "فروش خودروی دیگر"
 
-#: templates/marketplace/mine.html:13
 msgid "Browse marketplace"
 msgstr "مشاهده بازار"
 
-#: templates/marketplace/mine.html:32
 #, python-format
 msgid "%(counter)s new message"
 msgid_plural "%(counter)s new messages"
 msgstr[0] "%(counter)s پیام جدید"
 msgstr[1] "%(counter)s پیام جدید"
 
-#: templates/marketplace/mine.html:34
 #, python-format
 msgid "%(counter)s message"
 msgid_plural "%(counter)s messages"
 msgstr[0] "%(counter)s پیام"
 msgstr[1] "%(counter)s پیام"
 
-#: templates/marketplace/mine.html:40
 msgid "You have not listed a car yet."
 msgstr "هنوز خودرویی آگهی نکرده‌اید."
 
-#: templates/marketplace/mine.html:40
 msgid "Sell your first car"
 msgstr "اولین خودروی خود را بفروشید"
 
-#: templates/panel/base.html:20
 msgid "Panel navigation"
 msgstr ""
 
-#: templates/panel/base.html:31
 msgid "Staff panel"
 msgstr ""
 
-#: templates/panel/base.html:33 templates/panel/overview.html:4
-#: templates/panel/overview.html:5
 #, fuzzy
 #| msgid "Operator view"
 msgid "Overview"
 msgstr "نمای اپراتور"
 
-#: templates/panel/base.html:34 templates/panel/emergency/request_list.html:4
-#: templates/panel/emergency/request_list.html:5
 #, fuzzy
 #| msgid "Emergency"
 msgid "Emergency queue"
 msgstr "اورژانسی"
 
-#: templates/panel/base.html:35
 #, fuzzy
 #| msgid "Service"
 msgid "Services"
 msgstr "خدمت"
 
-#: templates/panel/base.html:49
 msgid "Light tools for day-to-day ops."
 msgstr ""
 
-#: templates/panel/emergency/request_detail.html:27
+msgid "Edit brand"
+msgstr ""
+
+msgid "New brand"
+msgstr ""
+
+msgid "Add a manufacturer to the catalog."
+msgstr ""
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create brand"
+msgstr "ایجاد حساب"
+
+msgid "Brands & models"
+msgstr ""
+
+msgid "Organize the car catalog taxonomy."
+msgstr ""
+
+msgid "New model"
+msgstr ""
+
+#, fuzzy
+#| msgid "All services"
+msgid "New trim"
+msgstr "همه سرویس‌ها"
+
+#, fuzzy
+#| msgid "Back to list"
+msgid "Back to cars"
+msgstr "بازگشت به فهرست"
+
+msgid "Country"
+msgstr ""
+
+msgid "Models"
+msgstr ""
+
+msgid "Add trim"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Add model"
+msgstr ""
+
+msgid "No brands yet. Create the first one."
+msgstr ""
+
+#, fuzzy
+#| msgid "All services"
+msgid "Edit dealer"
+msgstr "همه سرویس‌ها"
+
+msgid "New dealer"
+msgstr ""
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create dealer"
+msgstr "خدمات اورژانسی"
+
+msgid "Name"
+msgstr ""
+
+msgid "Brands"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+#, fuzzy
+#| msgid "Note"
+msgid "No"
+msgstr "یادداشت"
+
+#, fuzzy
+#| msgid "No buyer messages yet."
+msgid "No dealers yet."
+msgstr "هنوز پیام خریداری نیست."
+
+#, fuzzy
+#| msgid "All services"
+msgid "Edit car"
+msgstr "همه سرویس‌ها"
+
+#, fuzzy
+#| msgid "Newest cars"
+msgid "New car"
+msgstr "جدیدترین خودروها"
+
+#, fuzzy
+#| msgid "No cars in the catalog yet."
+msgid "Add a car to the catalog."
+msgstr "هنوز خودرویی در کاتالوگ نیست."
+
+#, fuzzy
+#| msgid "Cover photo"
+msgid "Gallery photos"
+msgstr "عکس کاور"
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create car"
+msgstr "ایجاد حساب"
+
+msgid "Catalog cars shown on the hub."
+msgstr ""
+
+#, fuzzy
+#| msgid "No cars for sale yet. Be the first to list yours."
+msgid "No cars yet. Create the first one."
+msgstr "هنوز خودروی فروشی نیست. اولین نفری باشید که آگهی می‌کند."
+
+msgid "Edit model"
+msgstr ""
+
+msgid "Add a model under a brand."
+msgstr ""
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create model"
+msgstr "ایجاد حساب"
+
+msgid "Edit OBD code"
+msgstr ""
+
+msgid "New OBD code"
+msgstr ""
+
+#, fuzzy
+#| msgid "Create account"
+msgid "Create"
+msgstr "ایجاد حساب"
+
+msgid "Code"
+msgstr ""
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Severity"
+msgstr ""
+
+#, fuzzy
+#| msgid "No buyer messages yet."
+msgid "No OBD codes yet."
+msgstr "هنوز پیام خریداری نیست."
+
+msgid "Edit repair shop"
+msgstr ""
+
+msgid "New repair shop"
+msgstr ""
+
+msgid "Create repair shop"
+msgstr ""
+
+#, fuzzy
+#| msgid "No transitions yet."
+msgid "No repair shops yet."
+msgstr "هنوز انتقالی نیست."
+
+#, fuzzy
+#| msgid "Edit listing"
+msgid "Edit trim"
+msgstr "ویرایش آگهی"
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create trim"
+msgstr "خدمات اورژانسی"
+
 #, fuzzy
 #| msgid "Back to hub"
 msgid "Back to queue"
 msgstr "بازگشت به هاب"
 
-#: templates/panel/emergency/request_detail.html:28
 #, fuzzy
 #| msgid "Public review"
 msgid "Public detail"
 msgstr "نظر عمومی"
 
-#: templates/panel/emergency/request_detail.html:35
 msgid "Uses the same operator rules as the public emergency flow."
 msgstr ""
 
-#: templates/panel/emergency/request_detail.html:51
 msgid ""
-"Status changes need the emergency_operators group (and staff for finish)."
+"Status changes need the emergency_operators group (and staff for finish), or"
+" a superuser account."
 msgstr ""
 
-#: templates/panel/emergency/request_detail.html:88
 #, fuzzy
 #| msgid "No buyer messages yet."
 msgid "No buzzes yet."
 msgstr "هنوز پیام خریداری نیست."
 
-#: templates/panel/emergency/request_list.html:6
 msgid "All requests-filter, open, update status."
 msgstr ""
 
-#: templates/panel/emergency/request_list.html:10
 #, fuzzy
 #| msgid "All services"
 msgid "Manage services"
 msgstr "همه سرویس‌ها"
 
-#: templates/panel/emergency/request_list.html:21
-msgid "Filter"
-msgstr ""
-
-#: templates/panel/emergency/request_list.html:33
-#: templates/panel/overview.html:42
 #, fuzzy
 #| msgid "Request help"
 msgid "Requester"
 msgstr "درخواست کمک"
 
-#: templates/panel/emergency/request_list.html:62
 msgid "No requests match this filter."
 msgstr ""
 
-#: templates/panel/emergency/service_form.html:4
-#: templates/panel/emergency/service_form.html:5
 #, fuzzy
 #| msgid "All services"
 msgid "Edit service"
 msgstr "همه سرویس‌ها"
 
-#: templates/panel/emergency/service_form.html:4
-#: templates/panel/emergency/service_form.html:5
-#: templates/panel/emergency/service_list.html:10
 #, fuzzy
 #| msgid "All services"
 msgid "New service"
 msgstr "همه سرویس‌ها"
 
-#: templates/panel/emergency/service_form.html:6
 msgid "Add a roadside service operators can fulfill."
 msgstr ""
 
-#: templates/panel/emergency/service_form.html:71
 #, fuzzy
 #| msgid "Emergency services"
 msgid "Create service"
 msgstr "خدمات اورژانسی"
 
-#: templates/panel/emergency/service_list.html:6
 msgid "Catalog of roadside help offerings."
 msgstr ""
 
-#: templates/panel/emergency/service_list.html:12
 #, fuzzy
 #| msgid "Request help"
 msgid "Request queue"
 msgstr "درخواست کمک"
 
-#: templates/panel/emergency/service_list.html:21
-msgid "Name"
-msgstr ""
-
-#: templates/panel/emergency/service_list.html:22
-#: templates/panel/emergency/service_list.html:33
 msgid "Active"
 msgstr ""
 
-#: templates/panel/emergency/service_list.html:23
 #, fuzzy
 #| msgid "Request help"
 msgid "Requests"
 msgstr "درخواست کمک"
 
-#: templates/panel/emergency/service_list.html:35
 msgid "Inactive"
 msgstr ""
 
-#: templates/panel/emergency/service_list.html:39
-msgid "Edit"
-msgstr ""
-
-#: templates/panel/emergency/service_list.html:46
 msgid "No services yet. Create the first one."
 msgstr ""
 
-#: templates/panel/overview.html:6
 #, fuzzy
 #| msgid "Only emergency operators can accept requests."
 msgid "Open emergency work at a glance."
 msgstr "فقط اپراتورهای امداد می‌توانند درخواست‌ها را بپذیرند."
 
-#: templates/panel/overview.html:12
 msgid "Waiting"
 msgstr ""
 
-#: templates/panel/overview.html:20
 #, fuzzy
 #| msgid "%(counter)s unread buzz"
 #| msgid_plural "%(counter)s unread buzzes"
 msgid "With unread buzz"
 msgstr "%(counter)s بازرسانی خوانده‌نشده"
 
-#: templates/panel/overview.html:24
 #, fuzzy
 #| msgid "All services"
 msgid "Active services"
 msgstr "همه سرویس‌ها"
 
-#: templates/panel/overview.html:30
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published cars"
+msgstr "انتشار آگهی"
+
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published videos"
+msgstr "انتشار آگهی"
+
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Published stories"
+msgstr "انتشار آگهی"
+
 #, fuzzy
 #| msgid "New request"
 msgid "Recent requests"
 msgstr "درخواست جدید"
 
-#: templates/panel/overview.html:32
 msgid "Full queue"
 msgstr ""
 
-#: templates/panel/overview.html:63
 #, fuzzy
 #| msgid "No emergency requests to show."
 msgid "No emergency requests yet."
 msgstr "درخواست اورژانسی برای نمایش نیست."
 
-#: templates/pricing/detail.html:9 templates/pricing/list.html:24
+#, fuzzy
+#| msgid "All services"
+msgid "Edit story"
+msgstr "همه سرویس‌ها"
+
+#, fuzzy
+#| msgid "New status"
+msgid "New story"
+msgstr "وضعیت جدید"
+
+msgid "Write a multilingual story for the hub."
+msgstr ""
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create story"
+msgstr "خدمات اورژانسی"
+
+msgid "Editorial stories on the hub."
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+#, fuzzy
+#| msgid "No cars for sale yet. Be the first to list yours."
+msgid "No stories yet. Create the first one."
+msgstr "هنوز خودروی فروشی نیست. اولین نفری باشید که آگهی می‌کند."
+
+#, fuzzy
+#| msgid "All services"
+msgid "Edit video"
+msgstr "همه سرویس‌ها"
+
+#, fuzzy
+#| msgid "All services"
+msgid "New video"
+msgstr "همه سرویس‌ها"
+
+msgid "Add a YouTube video to the hub."
+msgstr ""
+
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create video"
+msgstr "خدمات اورژانسی"
+
+msgid "Videos featured on the hub."
+msgstr ""
+
+#, fuzzy
+#| msgid "YouTube"
+msgid "YouTube ID"
+msgstr "یوتیوب"
+
+msgid "No videos yet. Create the first one."
+msgstr ""
+
+msgid "Contact"
+msgstr "تماس"
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "Website"
+msgstr "وب‌سایت"
+
+#, fuzzy
+#| msgid "All services"
+msgid "All places"
+msgstr "همه مکان‌ها"
+
+msgid "Explore more"
+msgstr "بیشتر ببینید"
+
+msgid "Browse other dealers, shops, and catalog models."
+msgstr "نمایندگی‌ها، تعمیرگاه‌ها و مدل‌های کاتالوگ دیگر را ببینید."
+
+msgid "MyAutoHub"
+msgstr "MyAutoHub"
+
+msgid "Find car dealers and repair shops on MyAutoHub."
+msgstr "نمایندگی‌ها و تعمیرگاه‌ها را در مای‌اتوهاب پیدا کنید."
+
+msgid "Network"
+msgstr "شبکه"
+
+msgid "Dealers and repair shops linked to brands in the catalog."
+msgstr "نمایندگی‌ها و تعمیرگاه‌های مرتبط با برندهای کاتالوگ."
+
+#, fuzzy
+#| msgid "Browse marketplace"
+msgid "Browse catalog"
+msgstr "مشاهده همه"
+
+msgid "Authorized & local dealers"
+msgstr "نمایندگی‌های مجاز و محلی"
+
+#, fuzzy
+#| msgid "No videos published yet."
+msgid "No dealers published yet."
+msgstr "هنوز نمایندگی منتشر نشده است."
+
+#, fuzzy
+#| msgid "Services on call"
+msgid "Service & repair"
+msgstr "سرویس و تعمیر"
+
+#, fuzzy
+#| msgid "No videos published yet."
+msgid "No repair shops published yet."
+msgstr "هنوز تعمیرگاهی منتشر نشده است."
+
 msgid "General reference"
 msgstr "مرجع عمومی"
 
-#: templates/pricing/detail.html:34
 #, python-format
 msgid "Source: %(source)s"
 msgstr "منبع: %(source)s"
 
-#: templates/pricing/detail.html:35
 #, python-format
 msgid "Updated %(when)s"
 msgstr "به‌روز شده %(when)s"
 
-#: templates/pricing/list.html:4
 msgid "Pricing-MyAutoHub"
 msgstr "خدمات رایج-MyAutoHub"
 
-#: templates/pricing/list.html:8
+msgid "Vehicle price references and market guidance on MyAutoHub."
+msgstr ""
+
 msgid "Pricing reference"
 msgstr "مرجع قیمت"
 
-#: templates/pricing/list.html:9
 msgid ""
 "Ballpark figures for cars and common services-useful context, not a quote."
 msgstr "اعداد تقریبی برای خودروها و خدمات رایج-زمینه مفید، نه پیشنهاد قیمت."
 
-#: templates/pricing/list.html:28
 msgid "No pricing references published yet."
 msgstr "هنوز مرجع قیمتی منتشر نشده."
 
-#: templates/stories/detail.html:10
 #, python-format
 msgid "By %(name)s · "
 msgstr "از %(name)s · "
 
-#: templates/stories/detail.html:22
 msgid "Back to stories"
 msgstr "بازگشت به داستان‌ها"
 
-#: templates/stories/list.html:4
 msgid "Stories-MyAutoHub"
 msgstr "داستان‌ها-MyAutoHub"
 
-#: templates/stories/list.html:9
+msgid "Automotive stories and community writing from MyAutoHub."
+msgstr ""
+
 msgid "Human moments from the road and the MyAutoHub community."
 msgstr "لحظات انسانی از جاده و جامعه MyAutoHub."
 
-#: templates/stories/list.html:27
 msgid "No stories published yet."
 msgstr "هنوز داستانی منتشر نشده."
 
-#: templates/youtube/detail.html:22
 msgid "Back to videos"
 msgstr "بازگشت به ویدیوها"
 
-#: templates/youtube/list.html:4
 msgid "YouTube-MyAutoHub"
 msgstr "یوتیوب-MyAutoHub"
 
-#: templates/youtube/list.html:8
+msgid "Watch the latest MyAutoHub YouTube videos."
+msgstr ""
+
 msgid "YouTube contents"
 msgstr "محتوای یوتیوب"
 
-#: templates/youtube/list.html:9
 msgid "Guides, reviews, and hub stories-watch without leaving the app."
 msgstr "راهنماها، بررسی‌ها و داستان‌های هاب-بدون ترک اپ ببینید."
 
-#: templates/youtube/list.html:20
 msgid "Recently added"
 msgstr "تازه‌افزوده‌شده"
 
-#: templates/youtube/list.html:24
 msgid "No videos published yet."
 msgstr "هنوز ویدیویی منتشر نشده."
-
-#~ msgid "Title"
-#~ msgstr "عنوان"
-
-#~ msgid "Cover photo"
-#~ msgstr "عکس کاور"
 
 #~ msgid "3-letter code such as USD, IRR, AED."
 #~ msgstr "کد سه‌حرفی مثل USD، IRR، AED."

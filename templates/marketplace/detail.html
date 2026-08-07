@@ -31,9 +31,13 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{{ item.title }}</h1>
-  <p>{{ item.price|floatformat:0|intcomma }} {{ item.currency }} · {{ item.get_status_display }}</p>
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Marketplace" %}</p>
+    <h1>{{ item.title }}</h1>
+    <p class="page-intro-lead">{{ item.price|floatformat:0|intcomma }} {{ item.currency }} · {{ item.get_status_display }}</p>
+  </div>
 </section>
 {% if item.main_image or item.photos.all %}
 <div class="gallery reveal">

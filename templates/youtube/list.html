@@ -9,10 +9,10 @@
 {% block twitter_description %}{% trans "Watch the latest MyAutoHub YouTube videos." %}{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "YouTube contents" %}</h1>
-  <p>{% trans "Guides, reviews, and hub stories-watch without leaving the app." %}</p>
-</section>
+{% trans "Watch" as y_kicker %}
+{% trans "YouTube contents" as y_title %}
+{% trans "Guides, reviews, and hub stories-watch without leaving the app." as y_lead %}
+{% include "components/page_intro.html" with kicker=y_kicker title=y_title lead=y_lead %}
 <div class="media-grid media-grid-4">
   {% for video in videos %}
     <a class="media-card reveal" href="{% url 'youtube:detail' video.pk %}">

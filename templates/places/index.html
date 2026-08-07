@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Places" %}-{% trans "MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Places" %}-{% trans "MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Places" %}-{% trans "MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Find car dealers and repair shops on MyAutoHub." %}{% endblock %}
+{% block og_description %}{% trans "Find car dealers and repair shops on MyAutoHub." %}{% endblock %}
+{% block twitter_description %}{% trans "Find car dealers and repair shops on MyAutoHub." %}{% endblock %}
+
+{% block content %}
+{% trans "Network" as places_kicker %}
+{% trans "Places" as places_title %}
+{% trans "Dealers and repair shops linked to brands in the catalog." as places_lead %}
+{% url 'cars:list' as cars_url %}
+{% trans "Browse catalog" as cars_cta %}
+{% include "components/page_intro.html" with kicker=places_kicker title=places_title lead=places_lead cta_url=cars_url cta_label=cars_cta %}
+
+<section class="home-block reveal" id="dealers">
+  <div class="section-head">
+    <div>
+      <p class="sections-label">{% trans "Dealers" %}</p>
+      <h2 class="section-title">{% trans "Authorized & local dealers" %}</h2>
+    </div>
+  </div>
+  <div class="place-grid">
+    {% for dealer in dealers %}
+      <a class="place-card" href="{% url 'places:dealer_detail' dealer.pk %}">
+        <strong>{{ dealer.name }}</strong>
+        <span class="meta-quiet">
+          {% if dealer.city %}{{ dealer.city }}{% endif %}
+          {% if dealer.brands.all %}
+            {% if dealer.city %} · {% endif %}
+            {% for b in dealer.brands.all %}{{ b.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          {% endif %}
+        </span>
+      </a>
+    {% empty %}
+      <p class="empty">{% trans "No dealers published yet." %}</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="home-block reveal" id="repair-shops">
+  <div class="section-head">
+    <div>
+      <p class="sections-label">{% trans "Repair shops" %}</p>
+      <h2 class="section-title">{% trans "Service & repair" %}</h2>
+    </div>
+  </div>
+  <div class="place-grid">
+    {% for shop in repair_shops %}
+      <a class="place-card" href="{% url 'places:repair_shop_detail' shop.pk %}">
+        <strong>{{ shop.name }}</strong>
+        <span class="meta-quiet">
+          {% if shop.city %}{{ shop.city }}{% endif %}
+          {% if shop.brands.all %}
+            {% if shop.city %} · {% endif %}
+            {% for b in shop.brands.all %}{{ b.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          {% endif %}
+        </span>
+      </a>
+    {% empty %}
+      <p class="empty">{% trans "No repair shops published yet." %}</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

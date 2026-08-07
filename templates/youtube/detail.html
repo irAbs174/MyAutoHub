@@ -26,9 +26,13 @@
 {% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>{{ video.title }}</h1>
-  {% if video.description %}<p>{{ video.description }}</p>{% endif %}
+<section class="page-intro reveal">
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Watch" %}</p>
+    <h1>{{ video.title }}</h1>
+    {% if video.description %}<p class="page-intro-lead">{{ video.description|truncatewords:28 }}</p>{% endif %}
+  </div>
 </section>
 <div class="panel">
   <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px">

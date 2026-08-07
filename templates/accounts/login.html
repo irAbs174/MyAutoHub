@@ -5,10 +5,10 @@
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>{% trans "Welcome back" %}</h1>
-  <p>{% trans "Log in to request emergency help, manage listings, and save locations." %}</p>
-</section>
+{% trans "Account" as a_kicker %}
+{% trans "Welcome back" as a_title %}
+{% trans "Log in to request emergency help, manage listings, and save locations." as a_lead %}
+{% include "components/page_intro.html" with kicker=a_kicker title=a_title lead=a_lead %}
 <div class="panel" style="max-width: 420px">
   <form method="post" class="form-grid">
     {% csrf_token %}

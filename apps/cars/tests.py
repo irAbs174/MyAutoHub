@@ -103,3 +103,39 @@ class CarCatalogFilterTests(TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertContains(res, "2.5L")
         self.assertContains(res, "Sunroof")
+
+
+class PlacesPublicTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        from apps.cars.models import Dealer, RepairShop
+
+        cls.brand = Brand.objects.create(name="ToyotaPlaces", country="JP")
+        cls.dealer = Dealer.objects.create(
+            name="Tokyo Toyota", city="Tehran", is_published=True
+        )
+        cls.dealer.brands.add(cls.brand)
+        cls.shop = RepairShop.objects.create(
+            name="Fast Fix", city="Isfahan", is_published=True
+        )
+        cls.shop.brands.add(cls.brand)
+        Dealer.objects.create(name="Hidden Dealer", is_published=False)
+
+    def test_places_index(self):
+        res = self.client.get(reverse("places:index"))
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "Tokyo Toyota")
+        self.assertContains(res, "Fast Fix")
+        self.assertNotContains(res, "Hidden Dealer")
+
+    def test_dealer_and_shop_detail(self):
+        res = self.client.get(
+            reverse("places:dealer_detail", args=[self.dealer.pk])
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "Tokyo Toyota")
+        res = self.client.get(
+            reverse("places:repair_shop_detail", args=[self.shop.pk])
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "Fast Fix")

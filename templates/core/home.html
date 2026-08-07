@@ -191,6 +191,32 @@
 </section>
 {% endif %}
 
+{% if place_dealers or place_shops %}
+<section class="home-block reveal">
+  <div class="section-head">
+    <div>
+      <p class="sections-label">{% trans "Places" %}</p>
+      <h2 class="section-title">{% trans "Dealers & repair shops" %}</h2>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="{% url 'places:index' %}">{% trans "View all" %}</a>
+  </div>
+  <div class="place-grid">
+    {% for dealer in place_dealers %}
+      <a class="place-card" href="{% url 'places:dealer_detail' dealer.pk %}">
+        <strong>{{ dealer.name }}</strong>
+        <span class="meta-quiet">{% if dealer.city %}{{ dealer.city }} · {% endif %}{% trans "Dealer" %}</span>
+      </a>
+    {% endfor %}
+    {% for shop in place_shops %}
+      <a class="place-card" href="{% url 'places:repair_shop_detail' shop.pk %}">
+        <strong>{{ shop.name }}</strong>
+        <span class="meta-quiet">{% if shop.city %}{{ shop.city }} · {% endif %}{% trans "Repair shop" %}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 <div class="home-split">
   {% if latest_videos %}
   <section class="home-block home-split-col">

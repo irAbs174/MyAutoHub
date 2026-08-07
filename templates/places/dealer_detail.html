@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ dealer.name }}-{% trans "Dealers" %}{% endblock %}
+{% block og_title %}{{ dealer.name }}-{% trans "Dealers" %}{% endblock %}
+{% block twitter_title %}{{ dealer.name }}-{% trans "Dealers" %}{% endblock %}
+{% block meta_description %}{{ dealer.name }}{% if dealer.city %} · {{ dealer.city }}{% endif %}{% endblock %}
+{% block og_description %}{{ dealer.name }}{% if dealer.city %} · {{ dealer.city }}{% endif %}{% endblock %}
+{% block twitter_description %}{{ dealer.name }}{% if dealer.city %} · {{ dealer.city }}{% endif %}{% endblock %}
+
+{% block content %}
+{% trans "Dealer" as kicker %}
+{% include "components/page_intro.html" with kicker=kicker title=dealer.name lead=dealer.city %}
+
+<section class="detail-section reveal">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Contact" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if dealer.phone %}
+      <div class="spec-item"><dt>{% trans "Phone" %}</dt><dd>{{ dealer.phone }}</dd></div>
+    {% endif %}
+    {% if dealer.website %}
+      <div class="spec-item"><dt>{% trans "Website" %}</dt><dd><a href="{{ dealer.website }}" rel="noopener noreferrer">{{ dealer.website }}</a></dd></div>
+    {% endif %}
+    {% if dealer.address %}
+      <div class="spec-item"><dt>{% trans "Address" %}</dt><dd>{{ dealer.address }}</dd></div>
+    {% endif %}
+  </dl>
+  {% if dealer.brands.all %}
+    <div class="chip-row" style="margin-top: 0.75rem">
+      {% for b in dealer.brands.all %}
+        <span class="chip chip-accent">{{ b.name }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+{% url 'places:index' as places_url %}
+{% url 'cars:list' as cars_url %}
+{% trans "All places" as places_cta %}
+{% trans "Car catalog" as cars_cta %}
+{% trans "Explore more" as band_title %}
+{% trans "Browse other dealers, shops, and catalog models." as band_lead %}
+{% include "components/footer_band.html" with title=band_title lead=band_lead cta_url=places_url cta_label=places_cta cta2_url=cars_url cta2_label=cars_cta %}
+{% endblock %}

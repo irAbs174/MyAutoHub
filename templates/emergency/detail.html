@@ -5,9 +5,13 @@
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-<section class="hero" data-buzz-target>
-  <h1>{% blocktrans with id=emergency.id %}Request #{{ id }}{% endblocktrans %}</h1>
-  <p>{{ emergency.service.name }}-{{ emergency.get_status_display }}</p>
+<section class="page-intro reveal" data-buzz-target>
+  <div class="page-intro-glow" aria-hidden="true"></div>
+  <div class="page-intro-inner">
+    <p class="sections-label">{% trans "Help" %}</p>
+    <h1>{% blocktrans with id=emergency.id %}Request #{{ id }}{% endblocktrans %}</h1>
+    <p class="page-intro-lead">{{ emergency.service.name }} · {{ emergency.get_status_display }}</p>
+  </div>
 </section>
 
 <div class="meta">

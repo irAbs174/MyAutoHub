@@ -5,10 +5,10 @@
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-<section class="hero reveal">
-  <h1>{% trans "My listings" %}</h1>
-  <p>{% trans "Cars you are selling-edit, mark sold, or read buyer messages." %}</p>
-</section>
+{% trans "Trade" as m_kicker %}
+{% trans "My listings" as m_title %}
+{% trans "Cars you are selling-edit, mark sold, or read buyer messages." as m_lead %}
+{% include "components/page_intro.html" with kicker=m_kicker title=m_title lead=m_lead %}
 <div class="toolbar reveal">
   <a class="btn" href="{% url 'marketplace:create' %}">{% trans "Sell another car" %}</a>
   <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Browse marketplace" %}</a>
