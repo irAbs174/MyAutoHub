@@ -9,9 +9,15 @@
 {% trans "My listings" as m_title %}
 {% trans "Cars you are selling-edit, mark sold, or read buyer messages." as m_lead %}
 {% include "components/page_intro.html" with kicker=m_kicker title=m_title lead=m_lead %}
+
+{% trans "Learn tip" as tip_title %}
+{% trans "Open a listing to edit details or read buyer messages. Start a new sale anytime." as tip_body %}
+{% include "components/learn_tip.html" with tip_id="marketplace-mine" tip_title=tip_title tip_body=tip_body %}
+
 <div class="toolbar reveal">
-  <a class="btn" href="{% url 'marketplace:create' %}">{% trans "Sell another car" %}</a>
+  <a class="btn btn-glow-accent" href="{% url 'marketplace:create' %}">{% trans "Sell another car" %}</a>
   <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Browse marketplace" %}</a>
+  <a class="btn btn-ghost" href="{% url 'accounts:profile' %}">{% trans "Profile" %}</a>
 </div>
 
 <div class="media-grid media-grid-4">

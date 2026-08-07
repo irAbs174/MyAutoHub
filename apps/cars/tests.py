@@ -94,6 +94,83 @@ class CarCatalogFilterTests(TestCase):
         ids = {c.pk for c in res.context["cars"]}
         self.assertEqual(ids, {self.camry.pk})
 
+    def test_filter_by_trim_and_horsepower(self):
+        res = self.client.get(
+            reverse("cars:list"),
+            {"trim": self.camry.trim_id, "hp_min": 150, "hp_max": 200},
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual({c.pk for c in res.context["cars"]}, {self.camry.pk})
+
+    def test_filter_by_transmission_and_seats(self):
+        from apps.cars.models import Dimensions, TechnicalSpec
+
+        TechnicalSpec.objects.create(car=self.camry, transmission="CVT", drivetrain="FWD")
+        TechnicalSpec.objects.create(
+            car=self.x3, transmission="Automatic", drivetrain="xDrive"
+        )
+        Dimensions.objects.create(car=self.camry, seats=5)
+        Dimensions.objects.create(car=self.x3, seats=5)
+
+        res = self.client.get(reverse("cars:list"), {"transmission": "cvt"})
+        self.assertEqual({c.pk for c in res.context["cars"]}, {self.camry.pk})
+
+        res = self.client.get(reverse("cars:list"), {"drivetrain": "awd"})
+        self.assertEqual({c.pk for c in res.context["cars"]}, {self.x3.pk})
+
+        res = self.client.get(reverse("cars:list"), {"seats": "5"})
+        self.assertEqual({c.pk for c in res.context["cars"]}, {self.camry.pk, self.x3.pk})
+
+    def test_filter_by_manufacturer(self):
+        self.toyota.manufacturer = "Toyota Motor"
+        self.toyota.save(update_fields=["manufacturer"])
+        res = self.client.get(
+            reverse("cars:list"), {"manufacturer": "Toyota Motor"}
+        )
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(
+            {c.pk for c in res.context["cars"]}, {self.camry.pk, self.corolla.pk}
+        )
+
+    def test_filter_by_country_flags(self):
+        iran = Brand.objects.create(name="PeugeotIR", country="Iran")
+        japan = Brand.objects.create(name="ToyotaJP", country="Japan")
+        usa = Brand.objects.create(name="FordUS", country="USA")
+        ir_model = CarModel.objects.create(brand=iran, name="206")
+        jp_model = CarModel.objects.create(brand=japan, name="Corolla")
+        us_model = CarModel.objects.create(brand=usa, name="Mustang")
+        ir_car = make_car(ir_model, year=2020, trim_name="Base", is_published=True)
+        jp_car = make_car(jp_model, year=2022, trim_name="X", is_published=True)
+        us_car = make_car(us_model, year=2021, trim_name="GT", is_published=True)
+
+        res = self.client.get(reverse("cars:list"), {"country": "iran"})
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual({c.pk for c in res.context["cars"]}, {ir_car.pk})
+        self.assertContains(res, "🇮🇷")
+        # Iran is the first country chip after "All".
+        filters = res.context["country_filters"]
+        self.assertEqual(filters[0]["key"], "iran")
+        self.assertNotIn("saudi", {item["key"] for item in filters})
+
+        res = self.client.get(reverse("cars:list"), {"country": "japan"})
+        japan_ids = {c.pk for c in res.context["cars"]}
+        self.assertIn(jp_car.pk, japan_ids)
+        # Seeded Toyota country="JP" also matches the Japan aliases.
+        self.assertIn(self.camry.pk, japan_ids)
+        self.assertContains(res, "🇯🇵")
+
+        res = self.client.get(reverse("cars:list"), {"country": "usa"})
+        self.assertEqual({c.pk for c in res.context["cars"]}, {us_car.pk})
+        self.assertContains(res, "🇺🇸")
+        self.assertNotIn(jp_car.pk, {c.pk for c in res.context["cars"]})
+
+    def test_brands_page(self):
+        Brand.objects.create(name="PublicBrand", country="Iran")
+        res = self.client.get(reverse("cars:brands"))
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "PublicBrand")
+        self.assertContains(res, "🇮🇷")
+
     def test_detail_shows_related_sections(self):
         from apps.cars.models import Feature, TechnicalSpec
 

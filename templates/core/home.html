@@ -5,65 +5,156 @@
 {% block og_title %}{% trans "MyAutoHub-Hub" %}{% endblock %}
 {% block twitter_title %}{% trans "MyAutoHub-Hub" %}{% endblock %}
 
-{% block content %}
-<section class="home-hero reveal">
-  <div class="home-hero-glow" aria-hidden="true"></div>
-  <div class="home-hero-inner">
-    <p class="home-hero-brand">
-      <span class="brand-logo-wrap">
-        <img
-          class="brand-logo brand-logo--light brand-logo--lg"
-          src="{% static 'img/logo.png' %}"
-          alt="MyAutoHub"
-          width="1046"
-          height="280"
-          decoding="async"
-        >
-        <img
-          class="brand-logo brand-logo--dark brand-logo--lg"
-          src="{% static 'img/logo-dark.png' %}"
-          alt=""
-          width="1046"
-          height="280"
-          decoding="async"
-          aria-hidden="true"
-        >
-      </span>
-    </p>
-    <h1>{% trans "Roadside help. Cars to buy and sell. One hub." %}</h1>
-    <p class="home-hero-lead">
-      {% trans "Pin your location for emergency aid, list your car, or browse what other drivers are selling." %}
-    </p>
-    <div class="actions">
-      {% if user.is_authenticated %}
-        <a class="btn" href="{% url 'emergency:submit' %}">{% trans "Request help" %}</a>
-        <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Buy or sell" %}</a>
-      {% else %}
-        <a class="btn" href="{% url 'emergency:list' %}">{% trans "Emergency services" %}</a>
-        <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Marketplace" %}</a>
-        <a class="btn btn-ghost" href="{% url 'accounts:register' %}">{% trans "Join" %}</a>
-      {% endif %}
-    </div>
-  </div>
-</section>
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'vendor/leaflet/leaflet.css' %}">
+{% endblock %}
 
-<section class="home-paths reveal" aria-label="{% trans 'Main paths' %}">
-  <a class="home-path home-path-emergency" href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'emergency:list' %}{% endif %}">
-    <span class="home-path-kicker">{% trans "Help" %}</span>
-    <strong>{% trans "Emergency" %}</strong>
-    <span>{% trans "Towing, jump start, lockout-pin yourself on the map." %}</span>
-  </a>
-  <a class="home-path home-path-market" href="{% url 'marketplace:list' %}">
-    <span class="home-path-kicker">{% trans "Trade" %}</span>
-    <strong>{% trans "Buy & sell" %}</strong>
-    <span>{% trans "Browse cars from other drivers, or list yours." %}</span>
-  </a>
-  <a class="home-path home-path-cars" href="{% url 'cars:list' %}">
-    <span class="home-path-kicker">{% trans "Catalog" %}</span>
-    <strong>{% trans "Cars" %}</strong>
-    <span>{% trans "Specs and models-then jump to live marketplace deals." %}</span>
-  </a>
-</section>
+{% block content %}
+<div class="home-stage reveal">
+  <section class="home-hero-mock" aria-label="{% trans 'Hero' %}">
+    <div class="home-hero-visual" aria-hidden="true">
+      <picture class="home-hero-img home-hero-img--light">
+        <source srcset="{% static 'img/home-hero-light.webp' %}" type="image/webp">
+        <img
+          src="{% static 'img/home-hero-light.jpg' %}"
+          alt=""
+          width="1024"
+          height="683"
+          decoding="async"
+          fetchpriority="high"
+        >
+      </picture>
+      <picture class="home-hero-img home-hero-img--dark">
+        <source srcset="{% static 'img/home-hero-dark.webp' %}" type="image/webp">
+        <img
+          src="{% static 'img/home-hero-dark.jpg' %}"
+          alt=""
+          width="1024"
+          height="683"
+          decoding="async"
+        >
+      </picture>
+      <div class="home-hero-scrim"></div>
+    </div>
+    <div class="home-hero-copy">
+      <p class="home-hero-wordmark" aria-label="MyAutoHub">
+        <span class="home-hero-wordmark-my">My</span><span class="home-hero-wordmark-auto">AutoHub</span>
+      </p>
+      <h1>{% trans "Automotive ecosystem platform" %}</h1>
+      <p class="home-hero-lead">
+        {% trans "Pin your location for towing, battery jump-start, or explore the marketplace." %}
+      </p>
+      <div class="home-hero-actions">
+        {% if user.is_authenticated %}
+          <a class="btn btn-glow-emergency" href="{% url 'emergency:submit' %}">{% trans "Request emergency" %}</a>
+        {% else %}
+          <a class="btn btn-glow-emergency" href="{% url 'accounts:login' %}?next={% url 'emergency:submit' %}">{% trans "Request emergency" %}</a>
+        {% endif %}
+        <a class="btn btn-glow-accent" href="{% url 'marketplace:list' %}">{% trans "Explore marketplace" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="home-hero-after">
+    <ul class="home-hero-chips" aria-label="{% trans 'Quick paths' %}">
+      <li>
+        <a class="home-hero-chip home-hero-chip--emergency" href="{% url 'emergency:list' %}">{% trans "Roadside help" %}</a>
+      </li>
+      <li>
+        <a class="home-hero-chip" href="{% url 'marketplace:list' %}">{% trans "Buy & sell" %}</a>
+      </li>
+      <li>
+        <a class="home-hero-chip" href="{% url 'cars:list' %}">{% trans "Specs & models" %}</a>
+      </li>
+      <li>
+        <a class="home-hero-chip" href="{% url 'places:index' %}">{% trans "Dealers & shops" %}</a>
+      </li>
+      <li>
+        <a class="home-hero-chip" href="{% url 'cars:brands' %}">{% trans "Brands" %}</a>
+      </li>
+    </ul>
+    {% trans "How to start" as home_tip_title %}
+    {% trans "Use Emergency to pin yourself on the map, Marketplace to buy or sell, and Cars for specs. Switch language anytime from FA / EN / AR in the header." as home_tip_body %}
+    {% include "components/learn_tip.html" with tip_id="home-hero" tip_title=home_tip_title tip_body=home_tip_body %}
+  </div>
+
+  <section class="home-live-map reveal" aria-labelledby="home-live-map-title">
+    <div class="home-live-map-head">
+      <div>
+        <p class="home-live-map-kicker">{% trans "Roadside" %}</p>
+        <h2 class="home-live-map-title" id="home-live-map-title">{% trans "Live Map" %}</h2>
+      </div>
+      <a
+        class="btn btn-sm btn-glow-emergency home-live-map-cta"
+        href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'accounts:login' %}?next={% url 'emergency:submit' %}{% endif %}"
+      >
+        {% trans "Pin your location" %}
+      </a>
+    </div>
+    <div class="home-live-map-stage">
+      <div
+        class="home-live-map-canvas is-loading"
+        data-home-live-map
+        data-default-lat="35.6892"
+        data-default-lng="51.3890"
+        data-zoom="12"
+        data-cta-url="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'accounts:login' %}?next={% url 'emergency:submit' %}{% endif %}"
+        data-leaflet-icon-base="{% static 'vendor/leaflet/images/' %}"
+        role="application"
+        aria-label="{% trans 'Live map preview-open to pin your location for roadside help' %}"
+        aria-busy="true"
+      ></div>
+      <div class="home-live-map-loader" data-home-map-loader>
+        {% trans "Loading map" as map_loading_label %}
+        {% include "components/spinner.html" with label=map_loading_label %}
+      </div>
+      <div class="home-live-map-legend" aria-hidden="true">
+        <span class="home-live-map-legend-item home-live-map-legend-item--emergency">{% trans "Emergency" %}</span>
+        <span class="home-live-map-legend-item home-live-map-legend-item--market">{% trans "Marketplace" %}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-feature-grid" aria-label="{% trans 'Main paths' %}">
+    <a
+      class="home-feature-card home-feature-card--emergency"
+      href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'emergency:list' %}{% endif %}"
+    >
+      <span class="home-feature-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v3"/>
+          <path d="M7 6h10l1.2 3.5H5.8L7 6z"/>
+          <rect x="6" y="9.5" width="12" height="7.5" rx="2"/>
+          <path d="M9 17v2M15 17v2M8 13h.01M16 13h.01"/>
+        </svg>
+      </span>
+      <strong>{% trans "Emergency Assistance" %}</strong>
+      <span>{% trans "Towing, jump start, lockout-pin yourself on the map." %}</span>
+    </a>
+    <a class="home-feature-card home-feature-card--market" href="{% url 'marketplace:list' %}">
+      <span class="home-feature-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 14h18l-1.5-5.5A2 2 0 0 0 17.6 7H6.4a2 2 0 0 0-1.9 1.5L3 14z"/>
+          <path d="M5 14v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-4"/>
+          <circle cx="7.5" cy="16.5" r="1"/>
+          <circle cx="16.5" cy="16.5" r="1"/>
+        </svg>
+      </span>
+      <strong>{% trans "Car Marketplace" %}</strong>
+      <span>{% trans "Browse cars from other drivers, or list yours." %}</span>
+    </a>
+    <a class="home-feature-card home-feature-card--maintenance" href="{% url 'cars:list' %}">
+      <span class="home-feature-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-2.5 2.5-2.5z"/>
+          <path d="M16 4l4 4"/>
+        </svg>
+      </span>
+      <strong>{% trans "Maintenance & Specs" %}</strong>
+      <span>{% trans "Specs and models-then jump to live marketplace deals." %}</span>
+    </a>
+  </section>
+</div>
 
 {% if expert_cars %}
 <section class="home-expert reveal" aria-label="{% trans 'Expertise' %}">
@@ -341,4 +432,9 @@
   </div>
   {% endif %}
 </section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'js/home-live-map.js' %}"></script>
 {% endblock %}

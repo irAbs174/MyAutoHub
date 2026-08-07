@@ -87,6 +87,19 @@
       >{% trans "Developer" %}</a>
     </p>
   </footer>
+  <button
+    type="button"
+    class="back-to-top"
+    data-back-to-top
+    hidden
+    aria-label="{% trans 'Back to top' %}"
+    title="{% trans 'Back to top' %}"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5"/>
+      <path d="M5 12l7-7 7 7"/>
+    </svg>
+  </button>
   <script src="{% static 'js/app.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>

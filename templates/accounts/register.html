@@ -1,26 +1,54 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "Join-MyAutoHub" %}{% endblock %}
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-{% trans "Account" as a_kicker %}
-{% trans "Join MyAutoHub" as a_title %}
-{% trans "Create an account to submit emergency requests and use the marketplace." as a_lead %}
-{% include "components/page_intro.html" with kicker=a_kicker title=a_title lead=a_lead %}
-<div class="panel" style="max-width: 480px">
-  <form method="post" class="form-grid">
-    {% csrf_token %}
-    {% for field in form %}
-      <div class="form-row">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% if field.help_text %}<div class="help">{{ field.help_text|safe }}</div>{% endif %}
-        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-      </div>
-    {% endfor %}
-    <button class="btn" type="submit">{% trans "Create account" %}</button>
-  </form>
+<div class="auth-shell reveal">
+  <aside class="auth-brand" aria-hidden="true">
+    <p class="auth-brand-kicker">{% trans "Account" %}</p>
+    <p class="auth-brand-title">{% trans "Join MyAutoHub" %}</p>
+    <p class="auth-brand-lead">
+      {% trans "Create an account to submit emergency requests and use the marketplace." %}
+    </p>
+    <ul class="auth-brand-points">
+      <li>{% trans "One account for help, catalog, and trade" %}</li>
+      <li>{% trans "Listings in فارسی, English, and العربية" %}</li>
+      <li>{% trans "Theme and language stay with your browser" %}</li>
+    </ul>
+  </aside>
+
+  <div class="auth-card">
+    <header class="auth-card-head">
+      <h1>{% trans "Create account" %}</h1>
+      <p>{% trans "A few fields and you are ready to use the hub." %}</p>
+    </header>
+
+    {% trans "Learn tip" as tip_title %}
+    {% trans "Pick a username you can share with buyers. You can add saved locations from Profile after joining." as tip_body %}
+    {% include "components/learn_tip.html" with tip_id="auth-register" tip_title=tip_title tip_body=tip_body %}
+
+    <form method="post" class="form-grid auth-form">
+      {% csrf_token %}
+      {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+      {% endif %}
+      {% for field in form %}
+        <div class="form-row">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}<div class="help">{{ field.help_text|safe }}</div>{% endif %}
+          {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+      <button class="btn btn-glow-accent auth-submit" type="submit">{% trans "Create account" %}</button>
+    </form>
+
+    <p class="auth-footer">
+      {% trans "Already have an account?" %}
+      <a href="{% url 'accounts:login' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}">{% trans "Log in" %}</a>
+    </p>
+  </div>
 </div>
 {% endblock %}

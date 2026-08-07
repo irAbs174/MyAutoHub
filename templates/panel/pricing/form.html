@@ -1,0 +1,76 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if editing %}{% trans "Edit price" %}{% else %}{% trans "New price" %}{% endif %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% if editing %}{% trans "Edit price" %}{% else %}{% trans "New price" %}{% endif %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% if editing %}{{ price.title_en|default:price.title_fa }}{% else %}{% trans "Add a multilingual price reference." %}{% endif %}</p>{% endblock %}
+
+{% block content %}
+<div class="panel" style="max-width: 720px">
+  <form method="post" class="form-grid" enctype="multipart/form-data" data-lang-tabs>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+
+    <div class="lang-tabs">
+      <div class="lang-tabs__nav" role="tablist" aria-label="{% trans 'Languages' %}">
+        <button type="button" class="lang-tabs__btn is-active" role="tab" aria-selected="true" data-lang-tab="fa">فارسی</button>
+        <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="en">English</button>
+        <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="ar">العربية</button>
+      </div>
+
+      <div class="lang-tabs__panel is-active" data-lang-panel="fa" role="tabpanel">
+        {% for field in form %}
+          {% if "_fa" in field.name %}
+            <div class="form-row{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="lang-tabs__panel" data-lang-panel="en" role="tabpanel" hidden>
+        {% for field in form %}
+          {% if "_en" in field.name %}
+            <div class="form-row{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="lang-tabs__panel" data-lang-panel="ar" role="tabpanel" hidden>
+        {% for field in form %}
+          {% if "_ar" in field.name %}
+            <div class="form-row{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% for field in form %}
+      {% if "_fa" not in field.name and "_en" not in field.name and "_ar" not in field.name %}
+        <div class="form-row{% if field.errors %} has-error{% endif %}">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="actions">
+      <button class="btn" type="submit">
+        {% if editing %}{% trans "Save changes" %}{% else %}{% trans "Create price" %}{% endif %}
+      </button>
+      <a class="btn btn-ghost" href="{% url 'panel:price_list' %}">{% trans "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

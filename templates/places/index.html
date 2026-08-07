@@ -16,6 +16,10 @@
 {% trans "Browse catalog" as cars_cta %}
 {% include "components/page_intro.html" with kicker=places_kicker title=places_title lead=places_lead cta_url=cars_url cta_label=cars_cta %}
 
+{% trans "Learn tip" as tip_title %}
+{% trans "Open a dealer or shop for contact details and linked brands from the catalog." as tip_body %}
+{% include "components/learn_tip.html" with tip_id="places-index" tip_title=tip_title tip_body=tip_body %}
+
 <section class="home-block reveal" id="dealers">
   <div class="section-head">
     <div>

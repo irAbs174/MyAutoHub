@@ -14,6 +14,10 @@
 {% trans "Pick a service and pin your location on the map-or use a saved place." as e_lead %}
 {% include "components/page_intro.html" with kicker=e_kicker title=e_title lead=e_lead %}
 
+{% trans "Learn tip" as tip_title %}
+{% trans "Choose a service, then tap the map to drop your pin-or use a saved place from your profile." as tip_body %}
+{% include "components/learn_tip.html" with tip_id="emergency-submit" tip_title=tip_title tip_body=tip_body %}
+
 <div class="panel panel-emergency-submit">
   <form method="post" class="form-grid" data-emergency-submit>
     {% csrf_token %}

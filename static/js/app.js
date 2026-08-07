@@ -191,7 +191,8 @@ function initNavSearch() {
 
   const suggestUrl = form.dataset.suggestUrl || "/api/public/search/";
   const noResultsLabel = form.dataset.noResults || "No matches found";
-  const isDesktop = () => window.matchMedia("(min-width: 761px)").matches;
+  // Compact icon search expands on both desktop and mobile.
+  const useIconSearch = () => true;
 
   let results = [];
   let activeIndex = -1;
@@ -327,12 +328,12 @@ function initNavSearch() {
     debounceTimer = window.setTimeout(() => fetchSuggest(q), 180);
   };
 
-  if (isDesktop() && input.value.trim()) {
+  if (useIconSearch() && input.value.trim()) {
     form.classList.add("is-open");
   }
 
   btn.addEventListener("click", (event) => {
-    if (!isDesktop()) return;
+    if (!useIconSearch()) return;
     const expanded =
       form.classList.contains("is-open") || form.matches(":focus-within");
     if (expanded && input.value.trim()) return;
@@ -341,7 +342,7 @@ function initNavSearch() {
   });
 
   input.addEventListener("focus", () => {
-    if (isDesktop()) form.classList.add("is-open");
+    if (useIconSearch()) form.classList.add("is-open");
     if (input.value.trim() && results.length) setExpanded(true);
     else if (input.value.trim()) scheduleSuggest();
   });
@@ -455,60 +456,40 @@ function initExpertSlider() {
   });
 }
 
-// #region agent log
-function initCarsFilterDebug() {
-  const panel = document.querySelector(".cars-filter-panel");
-  if (!panel) return;
-  const pick = (el) => {
-    if (!el) return null;
-    const cs = getComputedStyle(el);
-    return {
-      tag: el.tagName,
-      name: el.getAttribute("name"),
-      width: el.getBoundingClientRect().width,
-      offsetWidth: el.offsetWidth,
-      parentWidth: el.parentElement
-        ? el.parentElement.getBoundingClientRect().width
-        : null,
-      padding: cs.padding,
-      borderRadius: cs.borderRadius,
-      appearance: cs.appearance || cs.webkitAppearance,
-      background: cs.backgroundColor,
-      border: cs.border,
-      fontSize: cs.fontSize,
-      boxSizing: cs.boxSizing,
-    };
+function initMobileNav() {
+  const header = document.querySelector("[data-site-header]");
+  const burger = document.querySelector("[data-nav-burger]");
+  const drawer = document.querySelector("[data-nav-drawer]");
+  if (!header || !burger || !drawer) return;
+
+  const mq = window.matchMedia("(max-width: 760px)");
+  const labelOpen = burger.dataset.labelOpen || "Open menu";
+  const labelClose = burger.dataset.labelClose || "Close menu";
+
+  const setOpen = (open) => {
+    header.classList.toggle("is-nav-open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    burger.setAttribute("aria-label", open ? labelClose : labelOpen);
   };
-  const controls = Array.from(
-    panel.querySelectorAll("input, select, .cars-filter-actions .btn"),
-  ).map(pick);
-  const label = panel.querySelector(".form-row label");
-  const labelCs = label ? getComputedStyle(label) : null;
-  fetch("http://127.0.0.1:7280/ingest/36ac9add-62dd-4ea2-86a0-df3c6a9bcd69", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Debug-Session-Id": "f3274c",
-    },
-    body: JSON.stringify({
-      sessionId: "f3274c",
-      runId: "pre-fix",
-      hypothesisId: "A-C",
-      location: "app.js:initCarsFilterDebug",
-      message: "cars_filter_computed_styles",
-      data: {
-        panelWidth: panel.getBoundingClientRect().width,
-        panelPadding: getComputedStyle(panel).padding,
-        panelBoxShadow: getComputedStyle(panel).boxShadow,
-        labelFontSize: labelCs ? labelCs.fontSize : null,
-        labelTransform: labelCs ? labelCs.textTransform : null,
-        controls,
-      },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
+
+  burger.addEventListener("click", () => {
+    setOpen(!header.classList.contains("is-nav-open"));
+  });
+
+  drawer.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+
+  const onMq = () => {
+    if (!mq.matches) setOpen(false);
+  };
+  if (mq.addEventListener) mq.addEventListener("change", onMq);
+  else mq.addListener(onMq);
 }
-// #endregion
 
 document.addEventListener("DOMContentLoaded", () => {
   const resolved = applyTheme(getStoredTheme());
@@ -516,11 +497,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveals();
   initMediaLoaders();
   initNavSearch();
+  initMobileNav();
   initExpertSlider();
-  // #region agent log
-  initCarsFilterDebug();
-  // #endregion
-
   const themeBtn = document.querySelector("[data-theme-toggle]");
   if (themeBtn) {
     themeBtn.addEventListener("click", () => toggleTheme());
@@ -613,4 +591,67 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Dismissible learn tips (per tip_id in localStorage)
+  const TIP_PREFIX = "myautohub-tip-dismissed:";
+  document.querySelectorAll("[data-learn-tip]").forEach((tip) => {
+    const id = tip.getAttribute("data-tip-id");
+    if (!id) return;
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(TIP_PREFIX + id) === "1";
+    } catch (e) {
+      dismissed = false;
+    }
+    if (dismissed) {
+      tip.hidden = true;
+      return;
+    }
+    tip.hidden = false;
+    const btn = tip.querySelector("[data-learn-tip-dismiss]");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      tip.hidden = true;
+      try {
+        localStorage.setItem(TIP_PREFIX + id, "1");
+      } catch (e) {
+        /* ignore quota / private mode */
+      }
+    });
+  });
+
+  initBackToTop();
 });
+
+function initBackToTop() {
+  const btn = document.querySelector("[data-back-to-top]");
+  if (!btn) return;
+
+  const threshold = 420;
+  const sync = () => {
+    const show = window.scrollY > threshold;
+    btn.hidden = !show;
+    btn.classList.toggle("is-visible", show);
+  };
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        sync();
+        ticking = false;
+      });
+    },
+    { passive: true },
+  );
+
+  btn.addEventListener("click", () => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  });
+
+  sync();
+}

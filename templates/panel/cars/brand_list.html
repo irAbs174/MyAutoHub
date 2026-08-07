@@ -22,6 +22,7 @@
         <thead>
           <tr>
             <th>{% trans "Brand" %}</th>
+            <th>{% trans "Manufacturer" %}</th>
             <th>{% trans "Country" %}</th>
             <th>{% trans "Models" %}</th>
             <th></th>
@@ -31,6 +32,7 @@
           {% for brand in brands %}
             <tr>
               <td>{{ brand.name }}</td>
+              <td>{{ brand.manufacturer|default:"—" }}</td>
               <td>{{ brand.country|default:"—" }}</td>
               <td>
                 {{ brand.model_count }}

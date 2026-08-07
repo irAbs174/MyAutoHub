@@ -13,6 +13,11 @@
 {% trans "Pricing reference" as p_title %}
 {% trans "Ballpark figures for cars and common services-useful context, not a quote." as p_lead %}
 {% include "components/page_intro.html" with kicker=p_kicker title=p_title lead=p_lead %}
+
+{% trans "Learn tip" as tip_title %}
+{% trans "These are reference prices for context-not a formal quote. Compare with marketplace listings too." as tip_body %}
+{% include "components/learn_tip.html" with tip_id="pricing-list" tip_title=tip_title tip_body=tip_body %}
+
 <div class="media-grid media-grid-3">
   {% for item in items %}
     <a class="media-card reveal" href="{% url 'pricing:detail' item.pk %}">

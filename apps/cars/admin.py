@@ -96,8 +96,8 @@ class OBDCodeInline(admin.TabularInline):
 
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
-    list_display = ("name", "country")
-    search_fields = ("name",)
+    list_display = ("name", "manufacturer", "country")
+    search_fields = ("name", "manufacturer", "country")
     inlines = [CarModelInline]
 
 

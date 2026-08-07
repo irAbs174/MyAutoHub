@@ -61,4 +61,11 @@ urlpatterns = [
     path("stories/", views.story_list, name="story_list"),
     path("stories/new/", views.story_create, name="story_create"),
     path("stories/<int:pk>/edit/", views.story_edit, name="story_edit"),
+    path("marketplace/", views.listing_list, name="listing_list"),
+    path("marketplace/new/", views.listing_create, name="listing_create"),
+    path("marketplace/<int:pk>/edit/", views.listing_edit, name="listing_edit"),
+    path("marketplace/inquiries/", views.inquiry_list, name="inquiry_list"),
+    path("pricing/", views.price_list, name="price_list"),
+    path("pricing/new/", views.price_create, name="price_create"),
+    path("pricing/<int:pk>/edit/", views.price_edit, name="price_edit"),
 ]

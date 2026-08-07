@@ -23,6 +23,8 @@ from apps.cars.models import (
     Trim,
 )
 from apps.emergency.models import EmergencyService, RequestStatus
+from apps.marketplace.models import Listing, ListingStatus
+from apps.pricing.models import PriceReference
 from apps.stories.models import Story
 from apps.youtube.models import YoutubeVideo
 
@@ -101,7 +103,7 @@ class PanelContentSearchForm(forms.Form):
 class BrandForm(forms.ModelForm):
     class Meta:
         model = Brand
-        fields = ("name", "country")
+        fields = ("name", "manufacturer", "country")
 
 
 class CarModelForm(forms.ModelForm):
@@ -442,3 +444,84 @@ class StoryForm(forms.ModelForm):
             self.fields[name].required = True
         self.fields["author"].required = False
         self.fields["slug"].required = False
+
+
+STATUS_CHOICES = [("", _("All statuses"))] + list(ListingStatus.choices)
+
+
+class PanelListingSearchForm(forms.Form):
+    q = forms.CharField(required=False, label=_("Search"))
+    status = forms.ChoiceField(
+        required=False,
+        label=_("Status"),
+        choices=STATUS_CHOICES,
+    )
+
+
+class ListingForm(forms.ModelForm):
+    class Meta:
+        model = Listing
+        fields = (
+            "seller",
+            "title_fa",
+            "title_en",
+            "title_ar",
+            "description_fa",
+            "description_en",
+            "description_ar",
+            "cover_image",
+            "price",
+            "currency",
+            "car_model",
+            "trim",
+            "year",
+            "mileage_km",
+            "city",
+            "status",
+        )
+        widgets = {
+            "description_fa": forms.Textarea(attrs={"rows": 4}),
+            "description_en": forms.Textarea(attrs={"rows": 4}),
+            "description_ar": forms.Textarea(attrs={"rows": 4}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["car_model"].queryset = CarModel.objects.select_related(
+            "brand"
+        ).order_by("brand__name", "name")
+        self.fields["seller"].required = True
+
+
+class PriceReferenceForm(forms.ModelForm):
+    class Meta:
+        model = PriceReference
+        fields = (
+            "title_fa",
+            "title_en",
+            "title_ar",
+            "category_fa",
+            "category_en",
+            "category_ar",
+            "amount",
+            "currency",
+            "notes_fa",
+            "notes_en",
+            "notes_ar",
+            "source_fa",
+            "source_en",
+            "source_ar",
+            "cover_image",
+            "is_published",
+        )
+        widgets = {
+            "notes_fa": forms.Textarea(attrs={"rows": 3}),
+            "notes_en": forms.Textarea(attrs={"rows": 3}),
+            "notes_ar": forms.Textarea(attrs={"rows": 3}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for name in ("title_fa", "title_en", "title_ar"):
+            self.fields[name].required = True
+

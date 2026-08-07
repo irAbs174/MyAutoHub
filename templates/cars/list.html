@@ -12,51 +12,123 @@
 {% trans "Catalog" as cars_kicker %}
 {% trans "Car catalog" as cars_title %}
 {% trans "Browse brands and models with the essentials-year, power, and trim." as cars_lead %}
-{% url 'places:index' as places_url %}
-{% trans "Places" as places_cta %}
-{% include "components/page_intro.html" with kicker=cars_kicker title=cars_title lead=cars_lead cta2_url=places_url cta2_label=places_cta %}
+{% url 'cars:brands' as brands_url %}
+{% trans "Brands" as brands_cta %}
+{% include "components/page_intro.html" with kicker=cars_kicker title=cars_title lead=cars_lead cta2_url=brands_url cta2_label=brands_cta %}
+
+{% trans "Learn tip" as tip_title %}
+{% trans "Filter by country, brand, model, trim, fuel, power, transmission, or seats. Open a car for full specs." as tip_body %}
+{% include "components/learn_tip.html" with tip_id="cars-list" tip_title=tip_title tip_body=tip_body %}
 
 <div class="panel filter-panel cars-filter-panel compact-filter reveal">
-  <form method="get" class="filter-bar cars-filter-bar" action="{% url 'cars:list' %}">
-    <div class="form-row cars-filter-search">
-      <label for="{{ form.q.id_for_label }}">{{ form.q.label }}</label>
-      {{ form.q }}
-    </div>
-    <div class="form-row">
-      <label for="{{ form.brand.id_for_label }}">{{ form.brand.label }}</label>
-      {{ form.brand }}
-    </div>
-    <div class="form-row">
-      <label for="{{ form.model.id_for_label }}">{{ form.model.label }}</label>
-      {{ form.model }}
-    </div>
-    <div class="form-row">
-      <label for="{{ form.fuel.id_for_label }}">{{ form.fuel.label }}</label>
-      {{ form.fuel }}
-    </div>
-    <div class="form-row cars-filter-years">
-      <label for="{{ form.year_min.id_for_label }}">{% trans "Year" %}</label>
-      <div class="cars-filter-year-pair">
-        {{ form.year_min }}
-        <span class="cars-filter-year-sep" aria-hidden="true">–</span>
-        {{ form.year_max }}
+  <form method="get" class="cars-filter-form" action="{% url 'cars:list' %}" data-cars-filter>
+    <fieldset class="cars-country-filters">
+      <legend class="cars-country-legend">{% trans "Country" %}</legend>
+      <div class="cars-country-chips" role="radiogroup" aria-label="{% trans 'Filter by country' %}">
+        <label class="cars-country-chip{% if not selected_country %} is-active{% endif %}">
+          <input
+            type="radio"
+            name="country"
+            value=""
+            {% if not selected_country %}checked{% endif %}
+          >
+          <span class="cars-country-chip-label">{% trans "All" %}</span>
+        </label>
+        {% for item in country_filters %}
+          <label class="cars-country-chip{% if selected_country == item.key %} is-active{% endif %}">
+            <input
+              type="radio"
+              name="country"
+              value="{{ item.key }}"
+              {% if selected_country == item.key %}checked{% endif %}
+            >
+            <span class="cars-country-flag" aria-hidden="true">{{ item.flag }}</span>
+            <span class="cars-country-chip-label">{{ item.label }}</span>
+          </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <div class="filter-bar cars-filter-bar">
+      <div class="form-row cars-filter-search">
+        <label for="{{ form.q.id_for_label }}">{{ form.q.label }}</label>
+        {{ form.q }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.brand.id_for_label }}">{{ form.brand.label }}</label>
+        {{ form.brand }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.model.id_for_label }}">{{ form.model.label }}</label>
+        {{ form.model }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.trim.id_for_label }}">{{ form.trim.label }}</label>
+        {{ form.trim }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.manufacturer.id_for_label }}">{{ form.manufacturer.label }}</label>
+        {{ form.manufacturer }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.fuel.id_for_label }}">{{ form.fuel.label }}</label>
+        {{ form.fuel }}
       </div>
     </div>
-    <div class="form-row">
-      <label for="{{ form.sort.id_for_label }}">{{ form.sort.label }}</label>
-      {{ form.sort }}
-    </div>
-    <div class="cars-filter-actions">
-      <button class="btn btn-sm" type="submit">{% trans "Filter" %}</button>
-      {% if filters_active %}
-        <a class="btn btn-ghost btn-sm" href="{% url 'cars:list' %}">{% trans "Reset" %}</a>
-      {% endif %}
+
+    <div class="filter-bar cars-filter-bar cars-filter-bar--specs">
+      <div class="form-row">
+        <label for="{{ form.transmission.id_for_label }}">{{ form.transmission.label }}</label>
+        {{ form.transmission }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.drivetrain.id_for_label }}">{{ form.drivetrain.label }}</label>
+        {{ form.drivetrain }}
+      </div>
+      <div class="form-row">
+        <label for="{{ form.seats.id_for_label }}">{{ form.seats.label }}</label>
+        {{ form.seats }}
+      </div>
+      <div class="form-row cars-filter-years">
+        <label for="{{ form.year_min.id_for_label }}">{% trans "Year" %}</label>
+        <div class="cars-filter-year-pair">
+          {{ form.year_min }}
+          <span class="cars-filter-year-sep" aria-hidden="true">–</span>
+          {{ form.year_max }}
+        </div>
+      </div>
+      <div class="form-row cars-filter-years">
+        <label for="{{ form.hp_min.id_for_label }}">{% trans "Horsepower" %}</label>
+        <div class="cars-filter-year-pair">
+          {{ form.hp_min }}
+          <span class="cars-filter-year-sep" aria-hidden="true">–</span>
+          {{ form.hp_max }}
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="{{ form.sort.id_for_label }}">{{ form.sort.label }}</label>
+        {{ form.sort }}
+      </div>
+      <div class="cars-filter-actions">
+        <button class="btn btn-sm" type="submit">{% trans "Filter" %}</button>
+        {% if filters_active %}
+          <a class="btn btn-ghost btn-sm" href="{% url 'cars:list' %}">{% trans "Reset" %}</a>
+        {% endif %}
+      </div>
     </div>
   </form>
 </div>
 
 <p class="list-count reveal">
   {% blocktrans count counter=result_count %}{{ counter }} car{% plural %}{{ counter }} cars{% endblocktrans %}
+  {% if selected_country %}
+    ·
+    {% for item in country_filters %}
+      {% if selected_country == item.key %}
+        <span class="cars-result-country">{{ item.flag }} {{ item.label }}</span>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 </p>
 
 <div class="media-grid">
@@ -67,6 +139,9 @@
           <img src="{{ car.main_image.url }}" alt="{{ car.model }}" loading="lazy">
         {% else %}
           <div class="media-fallback">{{ car.model.brand.name|slice:":1" }}</div>
+        {% endif %}
+        {% if car.country_flag %}
+          <span class="media-flag" title="{{ car.model.brand.country }}" aria-hidden="true">{{ car.country_flag }}</span>
         {% endif %}
       </div>
       <div class="media-body">
@@ -80,4 +155,93 @@
     <p class="empty">{% if filters_active %}{% trans "No cars match these filters." %}{% else %}{% trans "No cars in the catalog yet." %}{% endif %}</p>
   {% endfor %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var form = document.querySelector("[data-cars-filter]");
+  if (!form) return;
+  form.querySelectorAll('.cars-country-chip input[type="radio"]').forEach(function (input) {
+    input.addEventListener("change", function () {
+      form.querySelectorAll(".cars-country-chip").forEach(function (chip) {
+        chip.classList.toggle("is-active", chip.querySelector("input").checked);
+      });
+      form.requestSubmit();
+    });
+  });
+
+  // #region agent log
+  try {
+    var sortRow = form.querySelector('label[for="{{ form.sort.id_for_label }}"]');
+    sortRow = sortRow && sortRow.closest(".form-row");
+    var searchRow = form.querySelector(".cars-filter-search");
+    var brandRow = form.querySelector('label[for="{{ form.brand.id_for_label }}"]');
+    brandRow = brandRow && brandRow.closest(".form-row");
+    var bars = Array.from(form.querySelectorAll(".cars-filter-bar")).map(function (bar, i) {
+      var r = bar.getBoundingClientRect();
+      return {
+        index: i,
+        classes: bar.className,
+        top: Math.round(r.top),
+        left: Math.round(r.left),
+        width: Math.round(r.width),
+        height: Math.round(r.height),
+        childCount: bar.children.length,
+      };
+    });
+    function rectOf(el) {
+      if (!el) return null;
+      var r = el.getBoundingClientRect();
+      var parent = el.parentElement;
+      var kids = parent ? Array.from(parent.children) : [];
+      return {
+        top: Math.round(r.top),
+        left: Math.round(r.left),
+        width: Math.round(r.width),
+        height: Math.round(r.height),
+        parentIndex: parent && parent.classList.contains("cars-filter-bar")
+          ? bars.findIndex(function (b) { return form.querySelectorAll(".cars-filter-bar")[b.index] === parent; })
+          : -1,
+        siblingIndex: kids.indexOf(el),
+        order: window.getComputedStyle(el).order,
+        zIndex: window.getComputedStyle(el).zIndex,
+      };
+    }
+    var payload = {
+      sessionId: "89cf22",
+      runId: "pre-fix",
+      hypothesisId: "A-E",
+      location: "cars/list.html:filter-layout",
+      message: "cars filter Sort by layout probe",
+      data: {
+        viewport: { w: window.innerWidth, h: window.innerHeight },
+        bars: bars,
+        sort: rectOf(sortRow),
+        search: rectOf(searchRow),
+        brand: rectOf(brandRow),
+        sortAboveSearch: sortRow && searchRow
+          ? sortRow.getBoundingClientRect().top < searchRow.getBoundingClientRect().top - 2
+          : null,
+        sortOverlapsSearch: (function () {
+          if (!sortRow || !searchRow) return null;
+          var a = sortRow.getBoundingClientRect();
+          var b = searchRow.getBoundingClientRect();
+          return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
+        })(),
+      },
+      timestamp: Date.now(),
+    };
+    fetch("http://127.0.0.1:7305/ingest/04a028a5-2553-4256-bd15-acb80b331ab9", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Debug-Session-Id": "89cf22",
+      },
+      body: JSON.stringify(payload),
+    }).catch(function () {});
+  } catch (e) {}
+  // #endregion
+})();
+</script>
 {% endblock %}

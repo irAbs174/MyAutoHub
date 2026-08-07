@@ -11,6 +11,7 @@ def site_nav(request):
             {"label": _("Pricing"), "url_name": "pricing:list"},
             {"label": _("Marketplace"), "url_name": "marketplace:list"},
             {"label": _("Cars"), "url_name": "cars:list"},
+            {"label": _("Brands"), "url_name": "cars:brands"},
             {"label": _("Places"), "url_name": "places:index"},
             {"label": _("YouTube"), "url_name": "youtube:list"},
             {"label": _("Stories"), "url_name": "stories:list"},

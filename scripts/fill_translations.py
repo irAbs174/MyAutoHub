@@ -191,6 +191,233 @@ t("Join", fa="عضویت", ar="انضمام", fr="Rejoindre", de="Beitreten", es
 
 # Home
 t("MyAutoHub-Hub", fa="MyAutoHub-هاب", ar="ماي أوتو هب-المركز", fr="MyAutoHub-Hub", de="MyAutoHub-Hub", es="MyAutoHub-Hub", ru="MyAutoHub-Хаб")
+t("Hero", fa="بخش اصلی", ar="القسم الرئيسي", fr="Héro", de="Hero", es="Héroe", ru="Герой")
+t(
+    "Automotive ecosystem platform",
+    fa="پلتفرم اکوسیستم خودرو",
+    ar="منصة النظام البيئي للسيارات",
+)
+t(
+    "Pin your location for towing, battery jump-start, or explore the marketplace.",
+    fa="موقعیت خود را برای بکسل، استارت باتری، یا کاوش در بازار پین کنید.",
+    ar="ثبّت موقعك للقطر أو تشغيل البطارية أو استكشف السوق.",
+)
+t("Request emergency", fa="درخواست اورژانسی", ar="طلب طوارئ")
+t("Explore marketplace", fa="کاوش در بازار", ar="استكشف السوق")
+t("Live Map", fa="نقشه زنده", ar="الخريطة المباشرة")
+t("Pin your location", fa="موقعیت خود را پین کنید", ar="ثبّت موقعك")
+t(
+    "Open live map for roadside help",
+    fa="باز کردن نقشه زنده برای کمک کنار جاده",
+    ar="افتح الخريطة المباشرة للمساعدة على الطريق",
+)
+t(
+    "Live map preview-open to pin your location for roadside help",
+    fa="پیش‌نمایش نقشه زنده-برای پین کردن موقعیت و کمک کنار جاده باز کنید",
+    ar="معاينة الخريطة المباشرة-افتح لتثبيت موقعك للمساعدة على الطريق",
+)
+t("Loading map", fa="در حال بارگذاری نقشه", ar="جاري تحميل الخريطة")
+t("Emergency Assistance", fa="کمک اورژانسی", ar="المساعدة الطارئة")
+t("Car Marketplace", fa="بازار خودرو", ar="سوق السيارات")
+t("Maintenance & Specs", fa="نگهداری و مشخصات", ar="الصيانة والمواصفات")
+t("Browse cars", fa="مرور خودروها", ar="تصفح السيارات")
+t("Quick paths", fa="مسیرهای سریع", ar="مسارات سريعة")
+t("Roadside help", fa="کمک کنار جاده", ar="مساعدة على الطريق")
+t("Specs & models", fa="مشخصات و مدل‌ها", ar="المواصفات والنماذج")
+t("Dealers & shops", fa="نمایندگی‌ها و تعمیرگاه‌ها", ar="الوكلاء والورش")
+t("How to start", fa="چطور شروع کنید", ar="كيف تبدأ")
+t(
+    "Use Emergency to pin yourself on the map, Marketplace to buy or sell, and Cars for specs. Switch language anytime from FA / EN / AR in the header.",
+    fa="از اورژانسی برای پین روی نقشه، از بازار برای خرید و فروش، و از خودروها برای مشخصات استفاده کنید. زبان را هر وقت از FA / EN / AR در هدر عوض کنید.",
+    ar="استخدم الطوارئ لتثبيت موقعك على الخريطة، والسوق للبيع والشراء، والسيارات للمواصفات. بدّل اللغة في أي وقت من FA / EN / AR في الرأس.",
+)
+t("Learn tip", fa="نکته آموزشی", ar="نصيحة تعليمية")
+t("Dismiss tip", fa="بستن نکته", ar="إخفاء النصيحة")
+t(
+    "Log in, tap New request, then drop a pin on the map (or pick a saved place) so operators can find you fast.",
+    fa="وارد شوید، روی درخواست جدید بزنید، سپس روی نقشه پین بگذارید (یا مکان ذخیره‌شده را انتخاب کنید) تا اپراتورها سریع پیدایتان کنند.",
+    ar="سجّل الدخول، اضغط طلب جديد، ثم ضع دبوساً على الخريطة (أو اختر مكاناً محفوظاً) ليجدك المشغّلون بسرعة.",
+)
+t(
+    "Browse listings to buy, or sell your car with photos and titles in فارسی, English, and العربية so more buyers can find you.",
+    fa="آگهی‌ها را برای خرید ببینید، یا خودروی خود را با عکس و عنوان به فارسی، English و العربية بفروشید تا خریداران بیشتری شما را پیدا کنند.",
+    ar="تصفح الإعلانات للشراء، أو بِع سيارتك مع صور وعناوين بالفارسية والإنجليزية والعربية ليجدك المزيد من المشترين.",
+)
+t(
+    "Filter by brand, model, or year. Open a car for specs, then jump to marketplace deals for that model.",
+    fa="با برند، مدل یا سال فیلتر کنید. خودرو را برای مشخصات باز کنید، سپس به معاملات بازار همان مدل بروید.",
+    ar="صفِّ حسب العلامة أو النموذج أو السنة. افتح سيارة للمواصفات، ثم انتقل إلى عروض السوق لذلك النموذج.",
+)
+t(
+    "Filter by country flag, brand, model, or year. Open a car for specs, then jump to marketplace deals for that model.",
+    fa="با پرچم کشور، برند، مدل یا سال فیلتر کنید. خودرو را برای مشخصات باز کنید، سپس به معاملات بازار همان مدل بروید.",
+    ar="صفِّ بعلم الدولة أو العلامة أو النموذج أو السنة. افتح سيارة للمواصفات، ثم انتقل إلى عروض السوق لذلك النموذج.",
+)
+t("Open menu", fa="باز کردن منو", ar="فتح القائمة")
+t("Close menu", fa="بستن منو", ar="إغلاق القائمة")
+t("Country", fa="کشور", ar="الدولة")
+t("Filter by country", fa="فیلتر بر اساس کشور", ar="التصفية حسب الدولة")
+t("All countries", fa="همه کشورها", ar="كل الدول")
+t("All", fa="همه", ar="الكل")
+t("Iran", fa="ایران", ar="إيران")
+t("USA", fa="آمریکا", ar="الولايات المتحدة")
+t("Japan", fa="ژاپن", ar="اليابان")
+t("Germany", fa="آلمان", ar="ألمانيا")
+t("South Korea", fa="کره جنوبی", ar="كوريا الجنوبية")
+t("France", fa="فرانسه", ar="فرنسا")
+t("Italy", fa="ایتالیا", ar="إيطاليا")
+t("China", fa="چین", ar="الصين")
+t("United Kingdom", fa="بریتانیا", ar="المملكة المتحدة")
+t("Brands", fa="برندها", ar="العلامات")
+t("Brands-MyAutoHub", fa="برندها-مای‌اتوهاب", ar="العلامات-ماي أوتو هب")
+t(
+    "Browse car brands on MyAutoHub by country and manufacturer.",
+    fa="برندهای خودرو را در مای‌اتوهاب بر اساس کشور و سازنده مرور کنید.",
+    ar="تصفح علامات السيارات في ماي أوتو هب حسب الدولة والشركة المصنعة.",
+)
+t(
+    "Explore manufacturers and marques-filter the catalog by brand or open a brand page for models.",
+    fa="سازندگان و برندها را ببینید-کاتالوگ را بر اساس برند فیلتر کنید یا صفحه برند را برای مدل‌ها باز کنید.",
+    ar="استكشف الشركات والموديلات-صفِّ الكتالوج حسب العلامة أو افتح صفحة العلامة للنماذج.",
+)
+t("No brands in the catalog yet.", fa="هنوز برندی در کاتالوگ نیست.", ar="لا توجد علامات في الكتالوج بعد.")
+t("Other", fa="سایر", ar="أخرى")
+t("All brands", fa="همه برندها", ar="كل العلامات")
+t("View in catalog", fa="مشاهده در کاتالوگ", ar="عرض في الكتالوج")
+t("No models for this brand yet.", fa="هنوز مدلی برای این برند نیست.", ar="لا توجد نماذج لهذه العلامة بعد.")
+t("Models", fa="مدل‌ها", ar="النماذج")
+t("See all", fa="مشاهده همه", ar="عرض الكل")
+t("Car catalog", fa="کاتالوگ خودرو", ar="كتالوج السيارات")
+tp(
+    "%(counter)s brand",
+    "%(counter)s brands",
+    fa=("%(counter)s برند", "%(counter)s برند"),
+    ar=(
+        "%(counter)s علامة",
+        "%(counter)s علامات",
+        "%(counter)s علامتان",
+        "%(counter)s علامات",
+        "%(counter)s علامة",
+        "%(counter)s علامة",
+    ),
+)
+tp(
+    "%(counter)s model",
+    "%(counter)s models",
+    fa=("%(counter)s مدل", "%(counter)s مدل"),
+    ar=(
+        "%(counter)s نموذج",
+        "%(counter)s نماذج",
+        "%(counter)s نموذجان",
+        "%(counter)s نماذج",
+        "%(counter)s نموذجاً",
+        "%(counter)s نموذج",
+    ),
+)
+t(
+    "Models and cars for %(name)s on MyAutoHub.",
+    fa="مدل‌ها و خودروهای %(name)s در مای‌اتوهاب.",
+    ar="نماذج وسيارات %(name)s في ماي أوتو هب.",
+)
+t("Marketplace listings", fa="آگهی‌های بازار", ar="إعلانات السوق")
+t("Price references", fa="قیمت‌های مرجع", ar="أسعار مرجعية")
+t("Site administration", fa="مدیریت سایت", ar="إدارة الموقع")
+t(
+    "Change records across every hub model-multilingual fields use FA / EN / AR tabs.",
+    fa="رکوردها را در همه مدل‌های هاب ویرایش کنید-فیلدهای چندزبانه با تب‌های فارسی / انگلیسی / عربی.",
+    ar="عدّل السجلات عبر كل نماذج المركز-الحقول متعددة اللغات عبر تبويبات FA / EN / AR.",
+)
+t("New listing", fa="آگهی جدید", ar="إعلان جديد")
+t("Edit listing", fa="ویرایش آگهی", ar="تعديل الإعلان")
+t("New price", fa="قیمت جدید", ar="سعر جديد")
+t("Edit price", fa="ویرایش قیمت", ar="تعديل السعر")
+t("Listing created.", fa="آگهی ساخته شد.", ar="تم إنشاء الإعلان.")
+t("Listing updated.", fa="آگهی به‌روز شد.", ar="تم تحديث الإعلان.")
+t("Price reference created.", fa="قیمت مرجع ساخته شد.", ar="تم إنشاء السعر المرجعي.")
+t("Price reference updated.", fa="قیمت مرجع به‌روز شد.", ar="تم تحديث السعر المرجعي.")
+t("No listings yet.", fa="هنوز آگهی‌ای نیست.", ar="لا توجد إعلانات بعد.")
+t("No price references yet.", fa="هنوز قیمت مرجعی نیست.", ar="لا توجد أسعار مرجعية بعد.")
+t("Catalog", fa="کاتالوگ", ar="الكتالوج")
+t("Content", fa="محتوا", ar="المحتوى")
+t("Change", fa="تغییر", ar="تغيير")
+t("Add", fa="افزودن", ar="إضافة")
+t("Inquiries", fa="پیام‌ها", ar="الاستفسارات")
+t(
+    "Open a dealer or shop for contact details and linked brands from the catalog.",
+    fa="یک نمایندگی یا تعمیرگاه را برای جزئیات تماس و برندهای مرتبط از کاتالوگ باز کنید.",
+    ar="افتح وكيلاً أو ورشة لمعرفة تفاصيل الاتصال والعلامات المرتبطة من الكتالوج.",
+)
+t(
+    "Choose a service, then tap the map to drop your pin-or use a saved place from your profile.",
+    fa="یک خدمت را انتخاب کنید، سپس روی نقشه بزنید تا پین بگذارید-یا از مکان ذخیره‌شده در پروفایل استفاده کنید.",
+    ar="اختر خدمة، ثم اضغط الخريطة لوضع دبوسك-أو استخدم مكاناً محفوظاً من ملفك.",
+)
+t(
+    "These are reference prices for context-not a formal quote. Compare with marketplace listings too.",
+    fa="این‌ها قیمت‌های مرجع برای زمینه هستند-نه پیشنهاد رسمی. با آگهی‌های بازار هم مقایسه کنید.",
+    ar="هذه أسعار مرجعية للسياق-وليست عرضاً رسمياً. قارن أيضاً مع إعلانات السوق.",
+)
+t("Pin roadside emergencies on the map", fa="اورژانس کنار جاده را روی نقشه پین کنید", ar="ثبّت طوارئ الطريق على الخريطة")
+t("Buy and sell cars on the marketplace", fa="خرید و فروش خودرو در بازار", ar="اشترِ وبِع السيارات في السوق")
+t("Reuse saved places for faster help", fa="از مکان‌های ذخیره‌شده برای کمک سریع‌تر استفاده کنید", ar="أعد استخدام الأماكن المحفوظة لمساعدة أسرع")
+t("Use your MyAutoHub username and password.", fa="از نام کاربری و رمز عبور MyAutoHub استفاده کنید.", ar="استخدم اسم مستخدم وكلمة مرور ماي أوتو هب.")
+t(
+    "After login you can open Profile to save map pins, or Marketplace to sell a car.",
+    fa="بعد ورود می‌توانید پروفایل را برای ذخیره پین نقشه باز کنید، یا در بازار خودرو بفروشید.",
+    ar="بعد تسجيل الدخول يمكنك فتح الملف لحفظ دبابيس الخريطة، أو السوق لبيع سيارة.",
+)
+t("One account for help, catalog, and trade", fa="یک حساب برای کمک، کاتالوگ و معامله", ar="حساب واحد للمساعدة والكتالوج والتجارة")
+t(
+    "Listings in فارسی, English, and العربية",
+    fa="آگهی‌ها به فارسی، English و العربية",
+    ar="إعلانات بالفارسية والإنجليزية والعربية",
+)
+t("Theme and language stay with your browser", fa="تم و زبان با مرورگر شما می‌مانند", ar="المظهر واللغة يبقيان مع متصفحك")
+t("A few fields and you are ready to use the hub.", fa="چند فیلد و آماده استفاده از هاب هستید.", ar="حقول قليلة وتكون جاهزاً لاستخدام المركز.")
+t(
+    "Pick a username you can share with buyers. You can add saved locations from Profile after joining.",
+    fa="نام کاربری‌ای انتخاب کنید که بتوانید با خریداران به اشتراک بگذارید. بعد از عضویت از پروفایل مکان ذخیره کنید.",
+    ar="اختر اسم مستخدم يمكنك مشاركته مع المشترين. يمكنك إضافة أماكن محفوظة من الملف بعد الانضمام.",
+)
+t("Already have an account?", fa="از قبل حساب دارید؟", ar="هل لديك حساب بالفعل؟")
+t(
+    "Your hub desk-listings, saved places, and shortcuts for roadside help.",
+    fa="میز هاب شما-آگهی‌ها، مکان‌های ذخیره‌شده و میان‌برهای کمک کنار جاده.",
+    ar="مكتب مركزك-الإعلانات والأماكن المحفوظة واختصارات المساعدة على الطريق.",
+)
+t(
+    "Save places you use often, then pick them when requesting emergency help. Sell cars from Marketplace.",
+    fa="مکان‌هایی که زیاد استفاده می‌کنید ذخیره کنید، سپس هنگام درخواست اورژانسی انتخابشان کنید. خودرو را از بازار بفروشید.",
+    ar="احفظ الأماكن التي تستخدمها كثيراً، ثم اخترها عند طلب الطوارئ. بِع السيارات من السوق.",
+)
+t("Shortcuts", fa="میان‌برها", ar="اختصارات")
+t("Edit, mark sold, or read buyer messages.", fa="ویرایش، علامت فروخته‌شده، یا خواندن پیام خریدار.", ar="عدّل أو علّم كمباع أو اقرأ رسائل المشتري.")
+t(
+    "Create a listing with photos and multilingual titles.",
+    fa="آگهی با عکس و عنوان چندزبانه بسازید.",
+    ar="أنشئ إعلاناً مع صور وعناوين متعددة اللغات.",
+)
+t("Pin yourself on the map or use a saved place.", fa="خود را روی نقشه پین کنید یا از مکان ذخیره‌شده استفاده کنید.", ar="ثبّت نفسك على الخريطة أو استخدم مكاناً محفوظاً.")
+t("Open the catalog for specs and models.", fa="کاتالوگ را برای مشخصات و مدل‌ها باز کنید.", ar="افتح الكتالوج للمواصفات والنماذج.")
+t("Map", fa="نقشه", ar="الخريطة")
+t("No address note", fa="بدون یادداشت آدرس", ar="بدون ملاحظة عنوان")
+t(
+    "No saved locations yet. Add one below for faster emergency requests.",
+    fa="هنوز مکان ذخیره‌شده‌ای نیست. یکی را پایین اضافه کنید تا درخواست اورژانسی سریع‌تر شود.",
+    ar="لا أماكن محفوظة بعد. أضف واحداً أدناه لطلبات طوارئ أسرع.",
+)
+t("Tap the map to drop a pin before saving.", fa="قبل ذخیره روی نقشه بزنید تا پین بگذارید.", ar="اضغط الخريطة لوضع دبوس قبل الحفظ.")
+t(
+    "Open a listing to edit details or read buyer messages. Start a new sale anytime.",
+    fa="یک آگهی را برای ویرایش جزئیات یا خواندن پیام خریدار باز کنید. هر وقت فروش جدید شروع کنید.",
+    ar="افتح إعلاناً لتعديل التفاصيل أو قراءة رسائل المشتري. ابدأ بيعاً جديداً في أي وقت.",
+)
+tp(
+    "%(counter)s place",
+    "%(counter)s places",
+    fa=("%(counter)s مکان", "%(counter)s مکان"),
+    ar=("%(counter)s مكان", "%(counter)s مكان", "%(counter)s مكانان", "%(counter)s أماكن", "%(counter)s مكاناً", "%(counter)s مكان"),
+)
 t(
     "Your car hub, ready when you are",
     fa="هاب خودروی شما، آماده وقتی شما آماده‌اید",
@@ -680,6 +907,67 @@ tp(
     ru=("%(counter)s непрочитанный сигнал", "%(counter)s непрочитанных сигнала", "%(counter)s непрочитанных сигналов", "%(counter)s непрочитанных сигналов"),
 )
 
+t("No inquiries yet.", fa="هنوز پیامی نیست.", ar="لا توجد استفسارات بعد.")
+t(
+    "Moderate buy & sell listings. Titles and descriptions support FA / EN / AR.",
+    fa="آگهی‌های خرید و فروش را مدیریت کنید. عنوان و توضیح از فارسی / انگلیسی / عربی پشتیبانی می‌کنند.",
+    ar="أدِر إعلانات البيع والشراء. العناوين والأوصاف تدعم FA / EN / AR.",
+)
+t("Create a multilingual marketplace listing.", fa="یک آگهی چندزبانه برای بازار بسازید.", ar="أنشئ إعلاناً متعدد اللغات للسوق.")
+t("Create listing", fa="ایجاد آگهی", ar="إنشاء إعلان")
+t("Buyer messages on marketplace listings.", fa="پیام‌های خریداران روی آگهی‌های بازار.", ar="رسائل المشترين على إعلانات السوق.")
+t("Reference prices with FA / EN / AR titles and notes.", fa="قیمت‌های مرجع با عنوان و یادداشت فارسی / انگلیسی / عربی.", ar="أسعار مرجعية بعناوين وملاحظات FA / EN / AR.")
+t("Add a multilingual price reference.", fa="یک قیمت مرجع چندزبانه اضافه کنید.", ar="أضف سعراً مرجعياً متعدد اللغات.")
+t("Create price", fa="ایجاد قیمت", ar="إنشاء سعر")
+t("Listing", fa="آگهی", ar="إعلان")
+t("Buyer", fa="خریدار", ar="المشتري")
+t("Message", fa="پیام", ar="الرسالة")
+t("Read", fa="خوانده‌شده", ar="مقروء")
+t("Yes", fa="بله", ar="نعم")
+t("No", fa="خیر", ar="لا")
+t("OBD codes", fa="کدهای OBD", ar="رموز OBD")
+t("Amount", fa="مبلغ", ar="المبلغ")
+t("Category", fa="دسته", ar="الفئة")
+t("Seller", fa="فروشنده", ar="البائع")
+t("Status", fa="وضعیت", ar="الحالة")
+t("Price", fa="قیمت", ar="السعر")
+
+t(
+    "Filter by country, brand, model, trim, fuel, power, transmission, or seats. Open a car for full specs.",
+    fa="با کشور، برند، مدل، تریم، سوخت، قدرت، گیربکس یا صندلی فیلتر کنید. خودرو را برای مشخصات کامل باز کنید.",
+    ar="صفِّ حسب الدولة أو العلامة أو النموذج أو الفئة أو الوقود أو القوة أو ناقل الحركة أو المقاعد. افتح سيارة للمواصفات الكاملة.",
+)
+t("All trims", fa="همه تریم‌ها", ar="كل الفئات")
+t("Trim", fa="تریم", ar="الفئة")
+t("All manufacturers", fa="همه سازندگان", ar="كل الشركات المصنعة")
+t("Manufacturer", fa="سازنده", ar="الشركة المصنعة")
+t("All transmissions", fa="همه گیربکس‌ها", ar="كل نواقل الحركة")
+t("Transmission", fa="گیربکس", ar="ناقل الحركة")
+t("Automatic", fa="اتوماتیک", ar="أوتوماتيك")
+t("Manual", fa="دستی", ar="يدوي")
+t("CVT", fa="CVT", ar="CVT")
+t("All drivetrains", fa="همه سامانه‌های انتقال قدرت", ar="كل أنظمة الدفع")
+t("Drivetrain", fa="محور محرک", ar="نظام الدفع")
+t("FWD", fa="دیفرانسیل جلو", ar="دفع أمامي")
+t("RWD", fa="دیفرانسیل عقب", ar="دفع خلفي")
+t("AWD / 4WD", fa="چهار چرخ محرک", ar="دفع رباعي")
+t("Any seats", fa="هر تعداد صندلی", ar="أي عدد مقاعد")
+t("Seats", fa="صندلی", ar="المقاعد")
+t("2 seats", fa="۲ صندلی", ar="مقعدان")
+t("4 seats", fa="۴ صندلی", ar="٤ مقاعد")
+t("5 seats", fa="۵ صندلی", ar="٥ مقاعد")
+t("7+ seats", fa="۷+ صندلی", ar="٧+ مقاعد")
+t("HP from", fa="حداقل اسب بخار", ar="الحد الأدنى للقوة")
+t("HP to", fa="حداکثر اسب بخار", ar="الحد الأقصى للقوة")
+t("Horsepower", fa="اسب بخار", ar="القوة الحصانية")
+t("Horsepower from", fa="حداقل اسب بخار", ar="القوة من")
+t("Horsepower to", fa="حداکثر اسب بخار", ar="القوة إلى")
+t("Power (low → high)", fa="قدرت (کم → زیاد)", ar="القوة (من الأقل إلى الأعلى)")
+t("Min", fa="حداقل", ar="الحد الأدنى")
+t("Max", fa="حداکثر", ar="الحد الأقصى")
+
+t("Back to top", fa="بازگشت به بالا", ar="العودة للأعلى")
+
 LANGS = ("fa", "ar", "en")
 NPLURALS = {"fa": 2, "ar": 6, "en": 2}
 
@@ -708,12 +996,16 @@ def fill_lang(lang: str) -> None:
             continue
         if lang == "en":
             entry.msgstr = entry.msgid
+            if "fuzzy" in entry.flags:
+                entry.flags = [f for f in entry.flags if f != "fuzzy"]
             continue
         trans = SINGULAR.get(entry.msgid, {}).get(lang)
         if trans is None:
             missing.append(entry.msgid)
         else:
             entry.msgstr = trans
+            if "fuzzy" in entry.flags:
+                entry.flags = [f for f in entry.flags if f != "fuzzy"]
     po.save(path)
     print(f"{lang}: missing={len(missing)}")
     for m in missing:

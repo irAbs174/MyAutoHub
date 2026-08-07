@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Brands-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Brands-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Brands-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Browse car brands on MyAutoHub by country and manufacturer." %}{% endblock %}
+{% block og_description %}{% trans "Browse car brands on MyAutoHub by country and manufacturer." %}{% endblock %}
+{% block twitter_description %}{% trans "Browse car brands on MyAutoHub by country and manufacturer." %}{% endblock %}
+
+{% block content %}
+{% trans "Catalog" as brands_kicker %}
+{% trans "Brands" as brands_title %}
+{% trans "Explore manufacturers and marques-filter the catalog by brand or open a brand page for models." as brands_lead %}
+{% url 'cars:list' as cars_url %}
+{% trans "Car catalog" as cars_cta %}
+{% include "components/page_intro.html" with kicker=brands_kicker title=brands_title lead=brands_lead cta2_url=cars_url cta2_label=cars_cta %}
+
+<p class="list-count reveal">
+  {% blocktrans count counter=brand_count %}{{ counter }} brand{% plural %}{{ counter }} brands{% endblocktrans %}
+</p>
+
+{% if brand_groups %}
+  {% for group in brand_groups %}
+    <section class="brand-country-group reveal">
+      <header class="brand-country-head">
+        {% if group.flag %}<span class="brand-country-flag" aria-hidden="true">{{ group.flag }}</span>{% endif %}
+        <h2 class="brand-country-title">
+          {% if group.key == "other" %}
+            {% if group.label %}{{ group.label }}{% else %}{% trans "Other" %}{% endif %}
+          {% else %}
+            {{ group.label }}
+          {% endif %}
+        </h2>
+      </header>
+      <div class="brand-grid">
+        {% for brand in group.brands %}
+          <a class="brand-card" href="{% url 'cars:brand_detail' brand.pk %}">
+            <div class="brand-card-top">
+              <h3>{{ brand.name }}</h3>
+              {% if brand.country_flag %}
+                <span class="brand-card-flag" aria-hidden="true">{{ brand.country_flag }}</span>
+              {% endif %}
+            </div>
+            {% if brand.manufacturer %}
+              <p class="brand-card-meta">{{ brand.manufacturer }}</p>
+            {% endif %}
+            <p class="brand-card-stats">
+              {% blocktrans count counter=brand.model_count %}{{ counter }} model{% plural %}{{ counter }} models{% endblocktrans %}
+              ·
+              {% blocktrans count counter=brand.car_count %}{{ counter }} car{% plural %}{{ counter }} cars{% endblocktrans %}
+            </p>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+{% else %}
+  <p class="empty">{% trans "No brands in the catalog yet." %}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "panel/base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Price references" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Price references" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Reference prices with FA / EN / AR titles and notes." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:price_create' %}">{% trans "New price" %}</a>
+</div>
+
+<div class="panel filter-panel">
+  <form method="get" class="filter-bar">
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-ghost" type="submit">{% trans "Filter" %}</button>
+  </form>
+</div>
+
+<div class="panel">
+  {% if prices %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Category" %}</th>
+            <th>{% trans "Amount" %}</th>
+            <th>{% trans "Published" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in prices %}
+            <tr>
+              <td>{{ item.title_en|default:item.title_fa }}</td>
+              <td>{{ item.category_en|default:item.category_fa|default:"—" }}</td>
+              <td>{{ item.amount|floatformat:0|intcomma }} {{ item.currency }}</td>
+              <td>
+                {% if item.is_published %}
+                  <span class="badge badge-active">{% trans "Published" %}</span>
+                {% else %}
+                  <span class="badge badge-draft">{% trans "Draft" %}</span>
+                {% endif %}
+              </td>
+              <td><a class="link-action" href="{% url 'panel:price_edit' item.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No price references yet." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

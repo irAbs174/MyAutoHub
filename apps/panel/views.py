@@ -3,6 +3,7 @@ from django.core.exceptions import PermissionDenied, ValidationError
 from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 
 from apps.cars.models import Brand, Car, CarModel, Dealer, OBDCode, RepairShop, Trim
 from apps.emergency.forms import VerifyEmergencyTransitionForm
@@ -12,6 +13,8 @@ from apps.emergency.services import (
     is_emergency_operator_admin,
     transition_request,
 )
+from apps.marketplace.models import Listing, ListingInquiry
+from apps.pricing.models import PriceReference
 from apps.stories.models import Story
 from apps.youtube.models import YoutubeVideo
 
@@ -22,9 +25,12 @@ from .forms import (
     CarModelForm,
     DealerForm,
     EmergencyServiceForm,
+    ListingForm,
     OBDCodeForm,
     PanelContentSearchForm,
     PanelEmergencySearchForm,
+    PanelListingSearchForm,
+    PriceReferenceForm,
     RepairShopForm,
     StoryForm,
     TrimForm,
@@ -51,6 +57,115 @@ def _apply_published_filter(qs, published):
     if published == "0":
         return qs.filter(is_published=False)
     return qs
+
+
+
+def _admin_modules():
+    """Django-admin-style index of changable models for the staff panel."""
+    return [
+        {
+            "name": _lazy("Emergency"),
+            "models": [
+                {
+                    "label": _lazy("Emergency queue"),
+                    "count": EmergencyRequest.objects.count(),
+                    "change_url": "panel:emergency_request_list",
+                    "add_url": None,
+                },
+                {
+                    "label": _lazy("Services"),
+                    "count": EmergencyService.objects.count(),
+                    "change_url": "panel:emergency_service_list",
+                    "add_url": "panel:emergency_service_create",
+                },
+            ],
+        },
+        {
+            "name": _lazy("Catalog"),
+            "models": [
+                {
+                    "label": _lazy("Cars"),
+                    "count": Car.objects.count(),
+                    "change_url": "panel:car_list",
+                    "add_url": "panel:car_create",
+                },
+                {
+                    "label": _lazy("Brands"),
+                    "count": Brand.objects.count(),
+                    "change_url": "panel:brand_list",
+                    "add_url": "panel:brand_create",
+                },
+                {
+                    "label": _lazy("OBD codes"),
+                    "count": OBDCode.objects.count(),
+                    "change_url": "panel:obd_list",
+                    "add_url": "panel:obd_create",
+                },
+            ],
+        },
+        {
+            "name": _lazy("Places"),
+            "models": [
+                {
+                    "label": _lazy("Dealers"),
+                    "count": Dealer.objects.count(),
+                    "change_url": "panel:dealer_list",
+                    "add_url": "panel:dealer_create",
+                },
+                {
+                    "label": _lazy("Repair shops"),
+                    "count": RepairShop.objects.count(),
+                    "change_url": "panel:repair_shop_list",
+                    "add_url": "panel:repair_shop_create",
+                },
+            ],
+        },
+        {
+            "name": _lazy("Marketplace"),
+            "models": [
+                {
+                    "label": _lazy("Marketplace listings"),
+                    "count": Listing.objects.count(),
+                    "change_url": "panel:listing_list",
+                    "add_url": "panel:listing_create",
+                },
+                {
+                    "label": _lazy("Inquiries"),
+                    "count": ListingInquiry.objects.count(),
+                    "change_url": "panel:inquiry_list",
+                    "add_url": None,
+                },
+            ],
+        },
+        {
+            "name": _lazy("Pricing"),
+            "models": [
+                {
+                    "label": _lazy("Price references"),
+                    "count": PriceReference.objects.count(),
+                    "change_url": "panel:price_list",
+                    "add_url": "panel:price_create",
+                },
+            ],
+        },
+        {
+            "name": _lazy("Content"),
+            "models": [
+                {
+                    "label": _lazy("YouTube"),
+                    "count": YoutubeVideo.objects.count(),
+                    "change_url": "panel:youtube_list",
+                    "add_url": "panel:youtube_create",
+                },
+                {
+                    "label": _lazy("Stories"),
+                    "count": Story.objects.count(),
+                    "change_url": "panel:story_list",
+                    "add_url": "panel:story_create",
+                },
+            ],
+        },
+    ]
 
 
 @staff_required
@@ -81,6 +196,7 @@ def overview(request):
                 "published_videos": published_videos,
                 "published_stories": published_stories,
             },
+            "admin_modules": _admin_modules(),
             "recent_requests": recent,
             "panel_section": "overview",
         },
@@ -318,7 +434,7 @@ def brand_list(request):
         "panel/cars/brand_list.html",
         {
             "brands": brands,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -339,7 +455,7 @@ def brand_create(request):
         {
             "form": form,
             "editing": False,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -362,7 +478,7 @@ def brand_edit(request, pk):
             "form": form,
             "editing": True,
             "brand": brand,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -387,7 +503,7 @@ def car_model_create(request):
         {
             "form": form,
             "editing": False,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -410,7 +526,7 @@ def car_model_edit(request, pk):
             "form": form,
             "editing": True,
             "car_model": car_model,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -435,7 +551,7 @@ def trim_create(request):
         {
             "form": form,
             "editing": False,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -458,7 +574,7 @@ def trim_edit(request, pk):
             "form": form,
             "editing": True,
             "trim": trim,
-            "panel_section": "cars",
+            "panel_section": "brands",
         },
     )
 
@@ -484,7 +600,7 @@ def obd_list(request):
         {
             "codes": qs,
             "form": form,
-            "panel_section": "cars",
+            "panel_section": "obd",
         },
     )
 
@@ -509,7 +625,7 @@ def obd_create(request):
         {
             "form": form,
             "editing": False,
-            "panel_section": "cars",
+            "panel_section": "obd",
         },
     )
 
@@ -532,7 +648,7 @@ def obd_edit(request, pk):
             "form": form,
             "editing": True,
             "code": code,
-            "panel_section": "cars",
+            "panel_section": "obd",
         },
     )
 
@@ -812,5 +928,179 @@ def story_edit(request, pk):
             "editing": True,
             "story": story,
             "panel_section": "stories",
+        },
+    )
+
+
+@staff_required
+def listing_list(request):
+    form = PanelListingSearchForm(request.GET or None)
+    qs = Listing.objects.select_related("seller", "car_model__brand")
+    if form.is_valid():
+        q = form.cleaned_data.get("q")
+        status = form.cleaned_data.get("status")
+        if q:
+            qs = qs.filter(
+                Q(title_fa__icontains=q)
+                | Q(title_en__icontains=q)
+                | Q(title_ar__icontains=q)
+                | Q(city__icontains=q)
+                | Q(seller__username__icontains=q)
+            )
+        if status:
+            qs = qs.filter(status=status)
+    return render(
+        request,
+        "panel/marketplace/list.html",
+        {
+            "listings": qs,
+            "form": form,
+            "panel_section": "marketplace",
+        },
+    )
+
+
+@staff_required
+def listing_create(request):
+    if request.method == "POST":
+        form = ListingForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Listing created."))
+            return redirect("panel:listing_list")
+    else:
+        form = ListingForm(initial={"seller": request.user})
+    return render(
+        request,
+        "panel/marketplace/form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "marketplace",
+        },
+    )
+
+
+@staff_required
+def listing_edit(request, pk):
+    listing = get_object_or_404(
+        Listing.objects.select_related("seller", "car_model__brand"), pk=pk
+    )
+    if request.method == "POST":
+        form = ListingForm(request.POST, request.FILES, instance=listing)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Listing updated."))
+            return redirect("panel:listing_list")
+    else:
+        form = ListingForm(instance=listing)
+    return render(
+        request,
+        "panel/marketplace/form.html",
+        {
+            "form": form,
+            "editing": True,
+            "listing": listing,
+            "panel_section": "marketplace",
+        },
+    )
+
+
+@staff_required
+def inquiry_list(request):
+    form = PanelContentSearchForm(request.GET or None)
+    qs = ListingInquiry.objects.select_related(
+        "listing", "buyer", "listing__seller"
+    )
+    # Drop unused published filter semantics for inquiries.
+    if form.is_valid():
+        q = form.cleaned_data.get("q")
+        if q:
+            qs = qs.filter(
+                Q(message__icontains=q)
+                | Q(buyer__username__icontains=q)
+                | Q(listing__title_fa__icontains=q)
+                | Q(listing__title_en__icontains=q)
+                | Q(listing__title_ar__icontains=q)
+            )
+    return render(
+        request,
+        "panel/marketplace/inquiry_list.html",
+        {
+            "inquiries": qs,
+            "form": form,
+            "panel_section": "inquiries",
+        },
+    )
+
+
+@staff_required
+def price_list(request):
+    form = PanelContentSearchForm(request.GET or None)
+    qs = PriceReference.objects.all()
+    if form.is_valid():
+        q = form.cleaned_data.get("q")
+        published = form.cleaned_data.get("published")
+        if q:
+            qs = qs.filter(
+                Q(title_fa__icontains=q)
+                | Q(title_en__icontains=q)
+                | Q(title_ar__icontains=q)
+                | Q(category_fa__icontains=q)
+                | Q(category_en__icontains=q)
+                | Q(category_ar__icontains=q)
+            )
+        qs = _apply_published_filter(qs, published)
+    return render(
+        request,
+        "panel/pricing/list.html",
+        {
+            "prices": qs,
+            "form": form,
+            "panel_section": "pricing",
+        },
+    )
+
+
+@staff_required
+def price_create(request):
+    if request.method == "POST":
+        form = PriceReferenceForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Price reference created."))
+            return redirect("panel:price_list")
+    else:
+        form = PriceReferenceForm()
+    return render(
+        request,
+        "panel/pricing/form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "pricing",
+        },
+    )
+
+
+@staff_required
+def price_edit(request, pk):
+    price = get_object_or_404(PriceReference, pk=pk)
+    if request.method == "POST":
+        form = PriceReferenceForm(request.POST, request.FILES, instance=price)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Price reference updated."))
+            return redirect("panel:price_list")
+    else:
+        form = PriceReferenceForm(instance=price)
+    return render(
+        request,
+        "panel/pricing/form.html",
+        {
+            "form": form,
+            "editing": True,
+            "price": price,
+            "panel_section": "pricing",
         },
     )

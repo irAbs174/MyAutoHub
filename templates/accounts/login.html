@@ -1,32 +1,53 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "Log in-MyAutoHub" %}{% endblock %}
 {% block meta_robots %}noindex, nofollow{% endblock %}
 
 {% block content %}
-{% trans "Account" as a_kicker %}
-{% trans "Welcome back" as a_title %}
-{% trans "Log in to request emergency help, manage listings, and save locations." as a_lead %}
-{% include "components/page_intro.html" with kicker=a_kicker title=a_title lead=a_lead %}
-<div class="panel" style="max-width: 420px">
-  <form method="post" class="form-grid">
-    {% csrf_token %}
-    {% for field in form %}
-      <div class="form-row">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-      </div>
-    {% endfor %}
-    {% if form.non_field_errors %}
-      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-    {% endif %}
-    <button class="btn" type="submit">{% trans "Log in" %}</button>
-  </form>
-  <p class="help" style="margin-top:1rem">
-    {% trans "No account yet?" %}
-    <a href="{% url 'accounts:register' %}">{% trans "Join MyAutoHub" %}</a>
-  </p>
+<div class="auth-shell reveal">
+  <aside class="auth-brand" aria-hidden="true">
+    <p class="auth-brand-kicker">{% trans "Account" %}</p>
+    <p class="auth-brand-title">{% trans "Welcome back" %}</p>
+    <p class="auth-brand-lead">
+      {% trans "Log in to request emergency help, manage listings, and save locations." %}
+    </p>
+    <ul class="auth-brand-points">
+      <li>{% trans "Pin roadside emergencies on the map" %}</li>
+      <li>{% trans "Buy and sell cars on the marketplace" %}</li>
+      <li>{% trans "Reuse saved places for faster help" %}</li>
+    </ul>
+  </aside>
+
+  <div class="auth-card">
+    <header class="auth-card-head">
+      <h1>{% trans "Log in" %}</h1>
+      <p>{% trans "Use your MyAutoHub username and password." %}</p>
+    </header>
+
+    {% trans "Learn tip" as tip_title %}
+    {% trans "After login you can open Profile to save map pins, or Marketplace to sell a car." as tip_body %}
+    {% include "components/learn_tip.html" with tip_id="auth-login" tip_title=tip_title tip_body=tip_body %}
+
+    <form method="post" class="form-grid auth-form">
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      {% endif %}
+      {% for field in form %}
+        <div class="form-row">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+      <button class="btn btn-glow-accent auth-submit" type="submit">{% trans "Log in" %}</button>
+    </form>
+
+    <p class="auth-footer">
+      {% trans "No account yet?" %}
+      <a href="{% url 'accounts:register' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}">{% trans "Join MyAutoHub" %}</a>
+    </p>
+  </div>
 </div>
 {% endblock %}

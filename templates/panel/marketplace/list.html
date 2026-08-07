@@ -1,0 +1,56 @@
+{% extends "panel/base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Marketplace listings" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Marketplace listings" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Moderate buy & sell listings. Titles and descriptions support FA / EN / AR." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:listing_create' %}">{% trans "New listing" %}</a>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:inquiry_list' %}">{% trans "Inquiries" %}</a>
+</div>
+
+<div class="panel filter-panel">
+  <form method="get" class="filter-bar">
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-ghost" type="submit">{% trans "Filter" %}</button>
+  </form>
+</div>
+
+<div class="panel">
+  {% if listings %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Seller" %}</th>
+            <th>{% trans "Price" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in listings %}
+            <tr>
+              <td>{{ item.title_en|default:item.title_fa|default:item.title_ar }}</td>
+              <td>{{ item.seller.username }}</td>
+              <td>{{ item.price|floatformat:0|intcomma }} {{ item.currency }}</td>
+              <td><span class="badge">{{ item.get_status_display }}</span></td>
+              <td><a class="link-action" href="{% url 'panel:listing_edit' item.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No listings yet." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -2,8 +2,8 @@
 {% load humanize i18n %}
 
 {% block title %}{% trans "Overview" %}-{% trans "Panel" %}{% endblock %}
-{% block page_title %}{% trans "Overview" %}{% endblock %}
-{% block page_lead %}<p class="panel-lead">{% trans "Open emergency work at a glance." %}</p>{% endblock %}
+{% block page_title %}{% trans "Site administration" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Change records across every hub model-multilingual fields use FA / EN / AR tabs." %}</p>{% endblock %}
 
 {% block content %}
 <section class="panel-stats">
@@ -35,6 +35,33 @@
     <span class="panel-stat-value">{{ stats.published_stories }}</span>
     <span class="panel-stat-label">{% trans "Published stories" %}</span>
   </a>
+</section>
+
+<section class="admin-index">
+  {% for app in admin_modules %}
+    <div class="admin-app panel">
+      <h2 class="admin-app-title">{{ app.name }}</h2>
+      <table class="data admin-model-table">
+        <tbody>
+          {% for model in app.models %}
+            <tr>
+              <th scope="row">
+                <a href="{% url model.change_url %}">{{ model.label }}</a>
+              </th>
+              <td class="admin-model-count">{{ model.count }}</td>
+              <td class="admin-model-actions">
+                <a class="link-action" href="{% url model.change_url %}">{% trans "Change" %}</a>
+                {% if model.add_url %}
+                  ·
+                  <a class="link-action" href="{% url model.add_url %}">{% trans "Add" %}</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
 </section>
 
 <div class="panel">

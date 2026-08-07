@@ -96,7 +96,9 @@ class PanelAccessTests(TestCase):
         self.client.login(username="staffer", password="pass12345")
         response = self.client.get(reverse("panel:overview"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Overview")
+        self.assertContains(response, 'class="admin-index"')
+        self.assertContains(response, reverse("panel:listing_list"))
+        self.assertContains(response, reverse("panel:price_list"))
 
     def test_non_staff_forbidden_on_content_lists(self):
         self.client.login(username="member", password="pass12345")
@@ -351,3 +353,59 @@ class PanelContentTests(TestCase):
         story.refresh_from_db()
         self.assertEqual(story.title_en, "Our launch updated")
         self.assertEqual(story.body_en, "English body revised")
+
+    def test_listing_and_price_create(self):
+        from apps.marketplace.models import Listing
+        from apps.pricing.models import PriceReference
+
+        response = self.client.get(reverse("panel:overview"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'class="admin-index"')
+        self.assertContains(response, reverse("panel:listing_list"))
+        self.assertContains(response, reverse("panel:price_list"))
+
+        response = self.client.post(
+            reverse("panel:listing_create"),
+            {
+                "seller": self.staff.pk,
+                "title_fa": "فروش",
+                "title_en": "For sale",
+                "title_ar": "للبيع",
+                "description_fa": "",
+                "description_en": "Nice car",
+                "description_ar": "",
+                "price": "120000000",
+                "currency": "تومان",
+                "car_model": self.car_model.pk,
+                "trim": "",
+                "year": 2020,
+                "mileage_km": 40000,
+                "city": "Tehran",
+                "status": "active",
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Listing.objects.filter(title_en="For sale").exists())
+
+        response = self.client.post(
+            reverse("panel:price_create"),
+            {
+                "title_fa": "تعویض روغن",
+                "title_en": "Oil change",
+                "title_ar": "تغيير الزيت",
+                "category_fa": "سرویس",
+                "category_en": "Service",
+                "category_ar": "خدمة",
+                "amount": "1500000",
+                "currency": "تومان",
+                "notes_fa": "",
+                "notes_en": "",
+                "notes_ar": "",
+                "source_fa": "",
+                "source_en": "",
+                "source_ar": "",
+                "is_published": True,
+            },
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(PriceReference.objects.filter(title_en="Oil change").exists())

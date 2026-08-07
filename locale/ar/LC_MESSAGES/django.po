@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 21:58+0000\n"
+"POT-Creation-Date: 2026-08-07 23:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,8 +27,6 @@ msgstr "تم حفظ الموقع."
 msgid "Location removed."
 msgstr "تم حذف الموقع."
 
-#, fuzzy
-#| msgid "New status"
 msgid "All fuels"
 msgstr "حالة جديدة"
 
@@ -44,8 +42,75 @@ msgstr ""
 msgid "Electric"
 msgstr ""
 
-#, fuzzy
-#| msgid "Newest cars"
+msgid "All transmissions"
+msgstr "كل نواقل الحركة"
+
+msgid "Automatic"
+msgstr "أوتوماتيك"
+
+msgid "Manual"
+msgstr "يدوي"
+
+msgid "CVT"
+msgstr "CVT"
+
+msgid "All drivetrains"
+msgstr "كل أنظمة الدفع"
+
+msgid "FWD"
+msgstr "دفع أمامي"
+
+msgid "RWD"
+msgstr "دفع خلفي"
+
+msgid "AWD / 4WD"
+msgstr "دفع رباعي"
+
+msgid "Any seats"
+msgstr "أي عدد مقاعد"
+
+msgid "2 seats"
+msgstr "مقعدان"
+
+msgid "4 seats"
+msgstr "٤ مقاعد"
+
+msgid "5 seats"
+msgstr "٥ مقاعد"
+
+msgid "7+ seats"
+msgstr "٧+ مقاعد"
+
+msgid "Iran"
+msgstr "إيران"
+
+msgid "Japan"
+msgstr "اليابان"
+
+msgid "Germany"
+msgstr "ألمانيا"
+
+msgid "South Korea"
+msgstr "كوريا الجنوبية"
+
+msgid "USA"
+msgstr "الولايات المتحدة"
+
+msgid "France"
+msgstr "فرنسا"
+
+msgid "Italy"
+msgstr "إيطاليا"
+
+msgid "China"
+msgstr "الصين"
+
+msgid "United Kingdom"
+msgstr "المملكة المتحدة"
+
+msgid "All countries"
+msgstr "كل الدول"
+
 msgid "Newest first"
 msgstr "أحدث السيارات"
 
@@ -54,6 +119,9 @@ msgstr ""
 
 msgid "Power (high → low)"
 msgstr ""
+
+msgid "Power (low → high)"
+msgstr "القوة (من الأقل إلى الأعلى)"
 
 msgid "Model A–Z"
 msgstr ""
@@ -67,8 +135,11 @@ msgstr "بحث"
 msgid "Brand, model, trim…"
 msgstr ""
 
+msgid "Country"
+msgstr "الدولة"
+
 msgid "All brands"
-msgstr ""
+msgstr "كل العلامات"
 
 msgid "Brand"
 msgstr "العلامة"
@@ -79,24 +150,59 @@ msgstr ""
 msgid "Model"
 msgstr "الطراز"
 
+msgid "All trims"
+msgstr "كل الفئات"
+
+msgid "Trim"
+msgstr "الفئة"
+
+msgid "All manufacturers"
+msgstr "كل الشركات المصنعة"
+
+msgid "Manufacturer"
+msgstr "الشركة المصنعة"
+
 msgid "Fuel"
 msgstr ""
 
-#, fuzzy
-#| msgid "Year"
+msgid "Transmission"
+msgstr "ناقل الحركة"
+
+msgid "Drivetrain"
+msgstr "نظام الدفع"
+
+msgid "Seats"
+msgstr "المقاعد"
+
 msgid "Year from"
 msgstr "السنة"
 
 msgid "From"
 msgstr ""
 
-#, fuzzy
-#| msgid "Year"
 msgid "Year to"
 msgstr "السنة"
 
 msgid "To"
 msgstr ""
+
+msgid "HP from"
+msgstr "الحد الأدنى للقوة"
+
+msgid "Min"
+msgstr "الحد الأدنى"
+
+msgid "Horsepower from"
+msgstr "القوة من"
+
+msgid "HP to"
+msgstr "الحد الأقصى للقوة"
+
+msgid "Max"
+msgstr "الحد الأقصى"
+
+msgid "Horsepower to"
+msgstr "القوة إلى"
 
 msgid "Sort by"
 msgstr ""
@@ -114,7 +220,7 @@ msgid "Exterior"
 msgstr ""
 
 msgid "Other"
-msgstr ""
+msgstr "أخرى"
 
 msgid "Engine oil"
 msgstr ""
@@ -176,6 +282,9 @@ msgstr "السوق"
 msgid "Cars"
 msgstr "السيارات"
 
+msgid "Brands"
+msgstr "العلامات"
+
 msgid "Places"
 msgstr "الأماكن"
 
@@ -185,21 +294,15 @@ msgstr "يوتيوب"
 msgid "Stories"
 msgstr "القصص"
 
-#, fuzzy
-#| msgid "Cars"
 msgid "Car"
 msgstr "السيارات"
 
-#, fuzzy
-#| msgid "Stories"
 msgid "Story"
 msgstr "القصص"
 
 msgid "Video"
 msgstr ""
 
-#, fuzzy
-#| msgid "Roadside"
 msgid "Roadside help"
 msgstr "مساعدة على الطريق"
 
@@ -242,8 +345,6 @@ msgstr ""
 msgid "العربية"
 msgstr ""
 
-#, fuzzy
-#| msgid "Status"
 msgid "Status & media"
 msgstr "الحالة"
 
@@ -307,13 +408,9 @@ msgstr ""
 msgid "Name (العربية)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Description"
 msgid "Description (فارسی)"
 msgstr "الوصف"
 
-#, fuzzy
-#| msgid "Description"
 msgid "Description (English)"
 msgstr "الوصف"
 
@@ -412,16 +509,9 @@ msgstr ""
 msgid "Title (العربية)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Select on map"
 msgid "Select brand"
 msgstr "اختر العلامة"
 
-msgid "Trim"
-msgstr "الفئة"
-
-#, fuzzy
-#| msgid "Photo"
 msgid "Photos"
 msgstr "صورة"
 
@@ -446,21 +536,15 @@ msgstr "عنوان قصير يراه المشترون أولاً."
 msgid "Be honest and specific-it builds trust."
 msgstr "كن صادقاً ومحدداً-هذا يبني الثقة."
 
-#, fuzzy
-#| msgid "Where the car is located (optional)."
 msgid "Choose the car brand from the catalog (optional)."
 msgstr "اختر علامة السيارة من الكتالوج (اختياري)."
 
-#, fuzzy
-#| msgid "Where the car is located (optional)."
 msgid "Choose the model for the selected brand (optional)."
 msgstr "اختر الطراز للعلامة المحددة (اختياري)."
 
 msgid "Trim or variant, e.g. SE, Limited (optional)."
 msgstr "الفئة أو الطراز الفرعي مثل SE أو Limited (اختياري)."
 
-#, fuzzy
-#| msgid "Optional, but listings with a photo sell faster."
 msgid ""
 "Optional, but listings with photos sell faster. You can select multiple."
 msgstr "اختياري، لكن الإعلانات مع صورة تُباع أسرع."
@@ -492,8 +576,6 @@ msgstr ""
 msgid "e.g. Tehran"
 msgstr "مثال: طهران"
 
-#, fuzzy
-#| msgid "Select on map"
 msgid "Select model"
 msgstr "اختر الطراز"
 
@@ -540,16 +622,12 @@ msgstr "لا يمكنك الاستفسار عن إعلانك الخاص."
 msgid "Message sent to %(seller)s. They will see it on this listing."
 msgstr "أُرسلت الرسالة إلى %(seller)s. سيراها على هذا الإعلان."
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published"
 msgstr "نشر الإعلان"
 
 msgid "Draft"
 msgstr ""
 
-#, fuzzy
-#| msgid "New status"
 msgid "All statuses"
 msgstr "حالة جديدة"
 
@@ -559,108 +637,75 @@ msgstr "الخدمة"
 msgid "Trim must belong to the selected model."
 msgstr ""
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Service created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Service updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Car created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Car updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Brand created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Brand updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Car model created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Car model updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Trim created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Trim updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "OBD code created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "OBD code updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Dealer created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Dealer updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Repair shop created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Repair shop updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Video created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Video updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Story created."
 msgstr "خدمات عند الطلب"
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Story updated."
 msgstr "تم تحديث الإعلان."
 
-#, fuzzy
-#| msgid "Pricing"
+msgid "Listing created."
+msgstr "تم إنشاء الإعلان."
+
+msgid "Price reference created."
+msgstr "تم إنشاء السعر المرجعي."
+
+msgid "Price reference updated."
+msgstr "تم تحديث السعر المرجعي."
+
 msgid "Pricing & media"
 msgstr "الأسعار"
 
@@ -691,8 +736,6 @@ msgstr ""
 msgid "Source (العربية)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Publishing"
 msgstr "نشر الإعلان"
 
@@ -726,8 +769,29 @@ msgstr "مرحباً بعودتك"
 msgid "Log in to request emergency help, manage listings, and save locations."
 msgstr "سجّل الدخول لطلب المساعدة الطارئة وإدارة الإعلانات وحفظ المواقع."
 
+msgid "Pin roadside emergencies on the map"
+msgstr "ثبّت طوارئ الطريق على الخريطة"
+
+msgid "Buy and sell cars on the marketplace"
+msgstr "اشترِ وبِع السيارات في السوق"
+
+msgid "Reuse saved places for faster help"
+msgstr "أعد استخدام الأماكن المحفوظة لمساعدة أسرع"
+
 msgid "Log in"
 msgstr "تسجيل الدخول"
+
+msgid "Use your MyAutoHub username and password."
+msgstr "استخدم اسم مستخدم وكلمة مرور ماي أوتو هب."
+
+msgid "Learn tip"
+msgstr "نصيحة تعليمية"
+
+msgid ""
+"After login you can open Profile to save map pins, or Marketplace to sell a "
+"car."
+msgstr ""
+"بعد تسجيل الدخول يمكنك فتح الملف لحفظ دبابيس الخريطة، أو السوق لبيع سيارة."
 
 msgid "No account yet?"
 msgstr "ليس لديك حساب بعد؟"
@@ -738,35 +802,72 @@ msgstr "انضم إلى ماي أوتو هب"
 msgid "Profile-MyAutoHub"
 msgstr "الملف-ماي أوتو هب"
 
-msgid "Saved places you can reuse when requesting emergency help."
-msgstr "أماكن محفوظة يمكنك إعادة استخدامها عند طلب المساعدة الطارئة."
+msgid "Your hub desk-listings, saved places, and shortcuts for roadside help."
+msgstr "مكتب مركزك-الإعلانات والأماكن المحفوظة واختصارات المساعدة على الطريق."
+
+msgid ""
+"Save places you use often, then pick them when requesting emergency help. "
+"Sell cars from Marketplace."
+msgstr ""
+"احفظ الأماكن التي تستخدمها كثيراً، ثم اخترها عند طلب الطوارئ. بِع السيارات "
+"من السوق."
+
+msgid "Shortcuts"
+msgstr "اختصارات"
 
 msgid "My car listings"
 msgstr "إعلانات سيارتي"
 
+msgid "Edit, mark sold, or read buyer messages."
+msgstr "عدّل أو علّم كمباع أو اقرأ رسائل المشتري."
+
 msgid "Sell a car"
 msgstr "بيع سيارة"
+
+msgid "Create a listing with photos and multilingual titles."
+msgstr "أنشئ إعلاناً مع صور وعناوين متعددة اللغات."
+
+msgid "Request emergency"
+msgstr "طلب طوارئ"
+
+msgid "Pin yourself on the map or use a saved place."
+msgstr "ثبّت نفسك على الخريطة أو استخدم مكاناً محفوظاً."
+
+msgid "Browse cars"
+msgstr "تصفح السيارات"
+
+msgid "Open the catalog for specs and models."
+msgstr "افتح الكتالوج للمواصفات والنماذج."
 
 msgid "Saved locations"
 msgstr "المواقع المحفوظة"
 
-msgid "Label"
-msgstr "التسمية"
-
-msgid "Address"
-msgstr "العنوان"
-
-msgid "Coordinates"
-msgstr "الإحداثيات"
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s place"
+msgid_plural "%(counter)s places"
+msgstr[0] "%(counter)s مكان"
+msgstr[1] "%(counter)s مكان"
+msgstr[2] "%(counter)s مكانان"
+msgstr[3] "%(counter)s أماكن"
+msgstr[4] "%(counter)s مكاناً"
+msgstr[5] "%(counter)s مكان"
 
 msgid "Default"
 msgstr "افتراضي"
 
+msgid "No address note"
+msgstr "بدون ملاحظة عنوان"
+
 msgid "Remove"
 msgstr "إزالة"
 
-msgid "No saved locations yet."
-msgstr "لا توجد مواقع محفوظة بعد."
+msgid "No saved locations yet. Add one below for faster emergency requests."
+msgstr "لا أماكن محفوظة بعد. أضف واحداً أدناه لطلبات طوارئ أسرع."
+
+msgid "Map"
+msgstr "الخريطة"
 
 msgid "Add a location"
 msgstr "إضافة موقع"
@@ -781,13 +882,16 @@ msgid "Tap the map to drop a pin."
 msgstr "انقر على الخريطة لوضع دبوس."
 
 msgid "Loading map"
-msgstr ""
+msgstr "جاري تحميل الخريطة"
 
 msgid "Map-tap to set your location"
 msgstr "الخريطة-انقر لتحديد موقعك"
 
 msgid "Save location"
 msgstr "حفظ الموقع"
+
+msgid "Tap the map to drop a pin before saving."
+msgstr "اضغط الخريطة لوضع دبوس قبل الحفظ."
 
 msgid "Join-MyAutoHub"
 msgstr "انضمام-ماي أوتو هب"
@@ -796,8 +900,30 @@ msgid ""
 "Create an account to submit emergency requests and use the marketplace."
 msgstr "أنشئ حساباً لإرسال طلبات الطوارئ واستخدام السوق."
 
+msgid "One account for help, catalog, and trade"
+msgstr "حساب واحد للمساعدة والكتالوج والتجارة"
+
+msgid "Listings in فارسی, English, and العربية"
+msgstr "إعلانات بالفارسية والإنجليزية والعربية"
+
+msgid "Theme and language stay with your browser"
+msgstr "المظهر واللغة يبقيان مع متصفحك"
+
 msgid "Create account"
 msgstr "إنشاء حساب"
+
+msgid "A few fields and you are ready to use the hub."
+msgstr "حقول قليلة وتكون جاهزاً لاستخدام المركز."
+
+msgid ""
+"Pick a username you can share with buyers. You can add saved locations from "
+"Profile after joining."
+msgstr ""
+"اختر اسم مستخدم يمكنك مشاركته مع المشترين. يمكنك إضافة أماكن محفوظة من الملف"
+" بعد الانضمام."
+
+msgid "Already have an account?"
+msgstr "هل لديك حساب بالفعل؟"
 
 msgid "MyAutoHub-cars, help, and community on the road."
 msgstr "ماي أوتو هب-سيارات ومساعدة ومجتمع على الطريق."
@@ -811,11 +937,84 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
+#| msgid "Back to list"
+msgid "Back to top"
+msgstr "العودة للأعلى"
+
+msgid "Brands-MyAutoHub"
+msgstr "العلامات-ماي أوتو هب"
+
+#, python-format
+msgid "Models and cars for %(name)s on MyAutoHub."
+msgstr "نماذج وسيارات %(name)s في ماي أوتو هب."
+
+msgid "View in catalog"
+msgstr "عرض في الكتالوج"
+
+msgid "Models"
+msgstr "النماذج"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s car"
+msgid_plural "%(counter)s cars"
+msgstr[0] "%(counter)s جديد"
+msgstr[1] "%(counter)s جديد"
+msgstr[2] "%(counter)s جديد"
+msgstr[3] "%(counter)s جديدة"
+msgstr[4] "%(counter)s جديد"
+msgstr[5] "%(counter)s جديد"
+
+msgid "No models for this brand yet."
+msgstr "لا توجد نماذج لهذه العلامة بعد."
+
+msgid "See all"
+msgstr "عرض الكل"
+
+msgid "Browse car brands on MyAutoHub by country and manufacturer."
+msgstr "تصفح علامات السيارات في ماي أوتو هب حسب الدولة والشركة المصنعة."
+
 msgid "Catalog"
 msgstr "الكتالوج"
 
-#, fuzzy
-#| msgid "Saved locations"
+msgid ""
+"Explore manufacturers and marques-filter the catalog by brand or open a "
+"brand page for models."
+msgstr ""
+"استكشف الشركات والموديلات-صفِّ الكتالوج حسب العلامة أو افتح صفحة العلامة "
+"للنماذج."
+
+msgid "Car catalog"
+msgstr "كتالوج السيارات"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s brand"
+msgid_plural "%(counter)s brands"
+msgstr[0] "%(counter)s علامة"
+msgstr[1] "%(counter)s علامات"
+msgstr[2] "%(counter)s علامتان"
+msgstr[3] "%(counter)s علامات"
+msgstr[4] "%(counter)s علامة"
+msgstr[5] "%(counter)s علامة"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s model"
+msgid_plural "%(counter)s models"
+msgstr[0] "%(counter)s نموذج"
+msgstr[1] "%(counter)s نماذج"
+msgstr[2] "%(counter)s نموذجان"
+msgstr[3] "%(counter)s نماذج"
+msgstr[4] "%(counter)s نموذجاً"
+msgstr[5] "%(counter)s نموذج"
+
+msgid "No brands in the catalog yet."
+msgstr "لا توجد علامات في الكتالوج بعد."
+
 msgid "Sections"
 msgstr "الأقسام"
 
@@ -837,8 +1036,6 @@ msgstr ""
 msgid "Tires"
 msgstr ""
 
-#, fuzzy
-#| msgid "Back to stories"
 msgid "Batteries"
 msgstr "العودة إلى القصص"
 
@@ -848,8 +1045,6 @@ msgstr "OBD"
 msgid "Parts"
 msgstr ""
 
-#, fuzzy
-#| msgid "Price"
 msgid "Prices"
 msgstr "السعر"
 
@@ -873,12 +1068,6 @@ msgstr "السعة"
 
 msgid "Cylinders"
 msgstr "الأسطوانات"
-
-msgid "Transmission"
-msgstr "ناقل الحركة"
-
-msgid "Drivetrain"
-msgstr "نظام الدفع"
 
 msgid "Top speed"
 msgstr "السرعة القصوى"
@@ -910,11 +1099,6 @@ msgstr "الوزن"
 msgid "Cargo"
 msgstr "الحمولة"
 
-msgid "Seats"
-msgstr "المقاعد"
-
-#, fuzzy
-#| msgid "Cancel"
 msgid "Clearance"
 msgstr "الخلوص"
 
@@ -933,13 +1117,11 @@ msgstr ""
 msgid "Battery"
 msgstr "البطارية"
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Service schedule"
 msgstr "خدمات عند الطلب"
 
 msgid "OBD codes"
-msgstr ""
+msgstr "رموز OBD"
 
 msgid "Repair shops"
 msgstr ""
@@ -959,11 +1141,21 @@ msgstr "السيارات-ماي أوتو هب"
 msgid "Explore the MyAutoHub car catalog-brands, models, and specs."
 msgstr ""
 
-msgid "Car catalog"
-msgstr "كتالوج السيارات"
-
 msgid "Browse brands and models with the essentials-year, power, and trim."
 msgstr "تصفح العلامات والنماذج مع الأساسيات-السنة والقوة والتجهيز."
+
+msgid ""
+"Filter by country, brand, model, trim, fuel, power, transmission, or seats. "
+"Open a car for full specs."
+msgstr ""
+"صفِّ حسب الدولة أو العلامة أو النموذج أو الفئة أو الوقود أو القوة أو ناقل "
+"الحركة أو المقاعد. افتح سيارة للمواصفات الكاملة."
+
+msgid "Filter by country"
+msgstr "التصفية حسب الدولة"
+
+msgid "Horsepower"
+msgstr "القوة الحصانية"
 
 msgid "Filter"
 msgstr ""
@@ -971,26 +1163,14 @@ msgstr ""
 msgid "Reset"
 msgstr ""
 
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s car"
-msgid_plural "%(counter)s cars"
-msgstr[0] "%(counter)s جديد"
-msgstr[1] "%(counter)s جديد"
-msgstr[2] "%(counter)s جديد"
-msgstr[3] "%(counter)s جديدة"
-msgstr[4] "%(counter)s جديد"
-msgstr[5] "%(counter)s جديد"
-
 msgid "No cars match these filters."
 msgstr ""
 
 msgid "No cars in the catalog yet."
 msgstr "لا توجد سيارات في الكتالوج بعد."
 
-msgid "Primary"
-msgstr "رئيسي"
+msgid "Dismiss tip"
+msgstr "إخفاء النصيحة"
 
 msgid "No matches found"
 msgstr ""
@@ -1010,6 +1190,15 @@ msgstr "تبديل المظهر"
 msgid "Language"
 msgstr "اللغة"
 
+msgid "Open menu"
+msgstr "فتح القائمة"
+
+msgid "Close menu"
+msgstr "إغلاق القائمة"
+
+msgid "Primary"
+msgstr "رئيسي"
+
 msgid "Panel"
 msgstr ""
 
@@ -1022,41 +1211,71 @@ msgstr "انضمام"
 msgid "MyAutoHub-Hub"
 msgstr "ماي أوتو هب-المركز"
 
-msgid "Roadside help. Cars to buy and sell. One hub."
-msgstr "مساعدة على الطريق. سيارات للبيع والشراء. مركز واحد."
+msgid "Hero"
+msgstr "القسم الرئيسي"
+
+msgid "Automotive ecosystem platform"
+msgstr "منصة النظام البيئي للسيارات"
 
 msgid ""
-"Pin your location for emergency aid, list your car, or browse what other "
-"drivers are selling."
-msgstr ""
-"ثبّت موقعك لطلب الإغاثة، أو أدرج سيارتك، أو تصفّح ما يبيعه السائقون الآخرون."
+"Pin your location for towing, battery jump-start, or explore the "
+"marketplace."
+msgstr "ثبّت موقعك للقطر أو تشغيل البطارية أو استكشف السوق."
 
-msgid "Request help"
-msgstr "طلب مساعدة"
+msgid "Explore marketplace"
+msgstr "استكشف السوق"
 
-msgid "Buy or sell"
-msgstr "شراء أو بيع"
-
-msgid "Emergency services"
-msgstr "خدمات الطوارئ"
-
-msgid "Main paths"
-msgstr "المسارات الرئيسية"
-
-msgid "Help"
-msgstr "مساعدة"
-
-msgid "Towing, jump start, lockout-pin yourself on the map."
-msgstr "قطر، تشغيل بالبطارية، فتح الأبواب-ثبّت موقعك على الخريطة."
-
-msgid "Trade"
-msgstr "تبادل"
+msgid "Quick paths"
+msgstr "مسارات سريعة"
 
 msgid "Buy & sell"
 msgstr "شراء وبيع"
 
+msgid "Specs & models"
+msgstr "المواصفات والنماذج"
+
+msgid "Dealers & shops"
+msgstr "الوكلاء والورش"
+
+msgid "How to start"
+msgstr "كيف تبدأ"
+
+msgid ""
+"Use Emergency to pin yourself on the map, Marketplace to buy or sell, and "
+"Cars for specs. Switch language anytime from FA / EN / AR in the header."
+msgstr ""
+"استخدم الطوارئ لتثبيت موقعك على الخريطة، والسوق للبيع والشراء، والسيارات "
+"للمواصفات. بدّل اللغة في أي وقت من FA / EN / AR في الرأس."
+
+msgid "Roadside"
+msgstr "على الطريق"
+
+msgid "Live Map"
+msgstr "الخريطة المباشرة"
+
+msgid "Pin your location"
+msgstr "ثبّت موقعك"
+
+msgid "Live map preview-open to pin your location for roadside help"
+msgstr "معاينة الخريطة المباشرة-افتح لتثبيت موقعك للمساعدة على الطريق"
+
+msgid "Main paths"
+msgstr "المسارات الرئيسية"
+
+msgid "Emergency Assistance"
+msgstr "المساعدة الطارئة"
+
+msgid "Towing, jump start, lockout-pin yourself on the map."
+msgstr "قطر، تشغيل بالبطارية، فتح الأبواب-ثبّت موقعك على الخريطة."
+
+msgid "Car Marketplace"
+msgstr "سوق السيارات"
+
 msgid "Browse cars from other drivers, or list yours."
 msgstr "تصفح سيارات السائقين الآخرين، أو أدرج سيارتك."
+
+msgid "Maintenance & Specs"
+msgstr "الصيانة والمواصفات"
 
 msgid "Specs and models-then jump to live marketplace deals."
 msgstr "المواصفات والطرازات-ثم انتقل إلى صفقات السوق المباشرة."
@@ -1072,8 +1291,6 @@ msgid ""
 "trim at a glance."
 msgstr ""
 
-#, fuzzy
-#| msgid "Car catalog"
 msgid "Open catalog"
 msgstr "كتالوج السيارات"
 
@@ -1085,9 +1302,6 @@ msgstr ""
 
 msgid "Next"
 msgstr ""
-
-msgid "Roadside"
-msgstr "على الطريق"
 
 msgid "Services on call"
 msgstr "خدمات عند الطلب"
@@ -1114,7 +1328,7 @@ msgid "Community"
 msgstr "المجتمع"
 
 msgid "Price references"
-msgstr "مراجع الأسعار"
+msgstr "أسعار مرجعية"
 
 msgid ""
 "Manage listings, saved places, and roadside requests from your profile."
@@ -1132,13 +1346,10 @@ msgstr "إعلاناتي"
 msgid "Create an account"
 msgstr "إنشاء حساب"
 
-#, fuzzy, python-format
-#| msgid "Emergency #%(id)s-MyAutoHub"
+#, python-format
 msgid "Search: %(q)s-MyAutoHub"
 msgstr "بحث: %(q)s-ماي أوتو هب"
 
-#, fuzzy
-#| msgid "Cars-MyAutoHub"
 msgid "Search-MyAutoHub"
 msgstr "بحث-ماي أوتو هب"
 
@@ -1157,9 +1368,6 @@ msgstr[3] "%(counter)s نتائج لـ «%(q)s»"
 msgstr[4] "%(counter)s نتيجة لـ «%(q)s»"
 msgstr[5] "%(counter)s نتيجة لـ «%(q)s»"
 
-#, fuzzy
-#| msgid ""
-#| "Find cars, listings, stories, videos, prices, and roadside help."
 msgid ""
 "Find cars, listings, stories, videos, prices, places, and roadside help."
 msgstr "اعثر على سيارات وإعلانات وقصص وفيديوهات وأسعار وأماكن ومساعدة الطريق."
@@ -1167,14 +1375,15 @@ msgstr "اعثر على سيارات وإعلانات وقصص وفيديوها�
 msgid "No matches. Try another word or browse the hub."
 msgstr "لا توجد نتائج. جرّب كلمة أخرى أو تصفّح المركز."
 
-#, fuzzy
-#| msgid "Browse marketplace"
 msgid "Browse all"
 msgstr "عرض الكل"
 
 #, python-format
 msgid "Emergency #%(id)s-MyAutoHub"
 msgstr "طوارئ #%(id)s-ماي أوتو هب"
+
+msgid "Help"
+msgstr "مساعدة"
 
 #, python-format
 msgid "Request #%(id)s"
@@ -1260,10 +1469,11 @@ msgstr "لا توجد تنبيهات بعد. استخدم تنبيه! عندما
 msgid "Emergency-MyAutoHub"
 msgstr "الطوارئ-ماي أوتو هب"
 
-#, fuzzy
-#| msgid "Request emergency help"
 msgid "Request roadside emergency help through MyAutoHub."
 msgstr "طلب مساعدة طارئة"
+
+msgid "Emergency services"
+msgstr "خدمات الطوارئ"
 
 msgid ""
 "Request roadside help, track progress, and buzz operators when you need "
@@ -1271,6 +1481,13 @@ msgid ""
 msgstr ""
 "اطلب مساعدة الطريق، وتتبع التقدم، ونبّه المشغّلين عندما تحتاج انتباهاً "
 "سريعاً."
+
+msgid ""
+"Log in, tap New request, then drop a pin on the map (or pick a saved place) "
+"so operators can find you fast."
+msgstr ""
+"سجّل الدخول، اضغط طلب جديد، ثم ضع دبوساً على الخريطة (أو اختر مكاناً "
+"محفوظاً) ليجدك المشغّلون بسرعة."
 
 msgid "New request"
 msgstr "طلب جديد"
@@ -1315,6 +1532,12 @@ msgstr "طلب مساعدة طارئة"
 msgid "Pick a service and pin your location on the map-or use a saved place."
 msgstr "اختر خدمة وثبّت موقعك على الخريطة-أو استخدم مكاناً محفوظاً."
 
+msgid ""
+"Choose a service, then tap the map to drop your pin-or use a saved place "
+"from your profile."
+msgstr ""
+"اختر خدمة، ثم اضغط الخريطة لوضع دبوسك-أو استخدم مكاناً محفوظاً من ملفك."
+
 msgid "Latitude"
 msgstr "خط العرض"
 
@@ -1339,15 +1562,15 @@ msgstr "العودة إلى المركز"
 msgid "Edit listing"
 msgstr "تعديل الإعلان"
 
+msgid "Trade"
+msgstr "تبادل"
+
 msgid "Sell your car"
 msgstr "بِع سيارتك"
 
 msgid "Update price, photos, or status."
 msgstr "حدّث السعر أو الصور أو الحالة."
 
-#, fuzzy
-#| msgid ""
-#| "List your car so other hub users can buy it-add a photo and a clear price."
 msgid ""
 "List your car so other hub users can buy it-add photos and a clear price."
 msgstr "أدرج سيارتك ليشتريها مستخدمو المركز-أضف صورة وسعراً واضحاً."
@@ -1377,8 +1600,6 @@ msgstr ""
 "ماي أوتو هب منصة دولية. إكمال حقول كل اللغات (الفارسية والإنجليزية والعربية)"
 " يساعد مزيدًا من المشترين على إيجاد سيارتك-فتبيع أسرع وغالبًا بسعر أفضل."
 
-#, fuzzy
-#| msgid "Language"
 msgid "Languages"
 msgstr "اللغة"
 
@@ -1388,20 +1609,14 @@ msgstr "المواصفات والموقع"
 msgid "Optional details that help buyers filter and decide."
 msgstr "تفاصيل اختيارية تساعد المشتري على التصفية والقرار."
 
-#, fuzzy
-#| msgid "Add a cover photo"
 msgid "Add photos"
 msgstr "أضف صورة غلاف"
 
-#, fuzzy
-#| msgid "A clear exterior shot works best. You can skip this for now."
 msgid ""
 "Upload several clear shots-exterior, interior, and details. You can skip "
 "this for now."
 msgstr "لقطة خارجية واضحة هي الأفضل. يمكنك التخطي الآن."
 
-#, fuzzy
-#| msgid "Choose an image"
 msgid "Choose images"
 msgstr "اختر صورة"
 
@@ -1476,8 +1691,6 @@ msgstr "هذا الإعلان لم يعد متاحاً للشراء."
 msgid "Marketplace-MyAutoHub"
 msgstr "السوق-ماي أوتو هب"
 
-#, fuzzy
-#| msgid "Active listings appear in the marketplace."
 msgid "Browse active car listings on MyAutoHub marketplace."
 msgstr "تظهر الإعلانات النشطة في السوق."
 
@@ -1486,6 +1699,13 @@ msgid ""
 "directly-no middleman."
 msgstr ""
 "اشترِ من سائقين آخرين أو أدرج سيارتك للبيع. راسل البائعين مباشرة-بلا وسيط."
+
+msgid ""
+"Browse listings to buy, or sell your car with photos and titles in فارسی, "
+"English, and العربية so more buyers can find you."
+msgstr ""
+"تصفح الإعلانات للشراء، أو بِع سيارتك مع صور وعناوين بالفارسية والإنجليزية "
+"والعربية ليجدك المزيد من المشترين."
 
 msgid "Log in to sell"
 msgstr "سجّل الدخول للبيع"
@@ -1516,11 +1736,21 @@ msgstr "إعلاناتي-ماي أوتو هاب"
 msgid "Cars you are selling-edit, mark sold, or read buyer messages."
 msgstr "السيارات التي تبيعها-عدّل أو وسم كمباع أو اقرأ رسائل المشترين."
 
+msgid ""
+"Open a listing to edit details or read buyer messages. Start a new sale "
+"anytime."
+msgstr ""
+"افتح إعلاناً لتعديل التفاصيل أو قراءة رسائل المشتري. ابدأ بيعاً جديداً في أي"
+" وقت."
+
 msgid "Sell another car"
 msgstr "بيع سيارة أخرى"
 
 msgid "Browse marketplace"
 msgstr "تصفّح السوق"
+
+msgid "Profile"
+msgstr "فتح الملف"
 
 #, python-format
 msgid "%(counter)s new message"
@@ -1554,20 +1784,23 @@ msgstr ""
 msgid "Staff panel"
 msgstr ""
 
-#, fuzzy
-#| msgid "Operator view"
 msgid "Overview"
 msgstr "عرض المشغّل"
 
-#, fuzzy
-#| msgid "Emergency"
 msgid "Emergency queue"
 msgstr "الطوارئ"
 
-#, fuzzy
-#| msgid "Service"
 msgid "Services"
 msgstr "الخدمة"
+
+msgid "Marketplace listings"
+msgstr "إعلانات السوق"
+
+msgid "Inquiries"
+msgstr "الاستفسارات"
+
+msgid "Content"
+msgstr "المحتوى"
 
 msgid "Light tools for day-to-day ops."
 msgstr ""
@@ -1581,8 +1814,6 @@ msgstr ""
 msgid "Add a manufacturer to the catalog."
 msgstr ""
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create brand"
 msgstr "إنشاء حساب"
 
@@ -1595,21 +1826,11 @@ msgstr ""
 msgid "New model"
 msgstr ""
 
-#, fuzzy
-#| msgid "All services"
 msgid "New trim"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "Back to list"
 msgid "Back to cars"
 msgstr "العودة إلى القائمة"
-
-msgid "Country"
-msgstr ""
-
-msgid "Models"
-msgstr ""
 
 msgid "Add trim"
 msgstr ""
@@ -1623,68 +1844,45 @@ msgstr ""
 msgid "No brands yet. Create the first one."
 msgstr ""
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit dealer"
 msgstr "كل الخدمات"
 
 msgid "New dealer"
 msgstr ""
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create dealer"
 msgstr "خدمات الطوارئ"
 
 msgid "Name"
 msgstr ""
 
-msgid "Brands"
-msgstr ""
-
 msgid "Yes"
-msgstr ""
+msgstr "نعم"
 
-#, fuzzy
-#| msgid "Note"
 msgid "No"
-msgstr "ملاحظة"
+msgstr "لا"
 
-#, fuzzy
-#| msgid "No buyer messages yet."
 msgid "No dealers yet."
 msgstr "لا توجد رسائل مشترين بعد."
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit car"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "Newest cars"
 msgid "New car"
 msgstr "أحدث السيارات"
 
-#, fuzzy
-#| msgid "No cars in the catalog yet."
 msgid "Add a car to the catalog."
 msgstr "لا توجد سيارات في الكتالوج بعد."
 
-#, fuzzy
-#| msgid "Cover photo"
 msgid "Gallery photos"
 msgstr "صورة الغلاف"
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create car"
 msgstr "إنشاء حساب"
 
 msgid "Catalog cars shown on the hub."
 msgstr ""
 
-#, fuzzy
-#| msgid "No cars for sale yet. Be the first to list yours."
 msgid "No cars yet. Create the first one."
 msgstr "لا توجد سيارات للبيع بعد. كن أول من يدرج سيارته."
 
@@ -1694,8 +1892,6 @@ msgstr ""
 msgid "Add a model under a brand."
 msgstr ""
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create model"
 msgstr "إنشاء حساب"
 
@@ -1705,8 +1901,6 @@ msgstr ""
 msgid "New OBD code"
 msgstr ""
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create"
 msgstr "إنشاء حساب"
 
@@ -1719,8 +1913,6 @@ msgstr "العنوان"
 msgid "Severity"
 msgstr ""
 
-#, fuzzy
-#| msgid "No buyer messages yet."
 msgid "No OBD codes yet."
 msgstr "لا توجد رسائل مشترين بعد."
 
@@ -1733,28 +1925,18 @@ msgstr ""
 msgid "Create repair shop"
 msgstr ""
 
-#, fuzzy
-#| msgid "No transitions yet."
 msgid "No repair shops yet."
 msgstr "لا توجد انتقالات بعد."
 
-#, fuzzy
-#| msgid "Edit listing"
 msgid "Edit trim"
 msgstr "تعديل الإعلان"
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create trim"
 msgstr "خدمات الطوارئ"
 
-#, fuzzy
-#| msgid "Back to hub"
 msgid "Back to queue"
 msgstr "العودة إلى المركز"
 
-#, fuzzy
-#| msgid "Public review"
 msgid "Public detail"
 msgstr "مراجعة عامة"
 
@@ -1766,58 +1948,42 @@ msgid ""
 " a superuser account."
 msgstr ""
 
-#, fuzzy
-#| msgid "No buyer messages yet."
 msgid "No buzzes yet."
 msgstr "لا توجد رسائل مشترين بعد."
 
 msgid "All requests-filter, open, update status."
 msgstr ""
 
-#, fuzzy
-#| msgid "All services"
 msgid "Manage services"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "Request help"
 msgid "Requester"
 msgstr "طلب مساعدة"
 
 msgid "No requests match this filter."
 msgstr ""
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit service"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "All services"
 msgid "New service"
 msgstr "كل الخدمات"
 
 msgid "Add a roadside service operators can fulfill."
 msgstr ""
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create service"
 msgstr "خدمات الطوارئ"
 
 msgid "Catalog of roadside help offerings."
 msgstr ""
 
-#, fuzzy
-#| msgid "Request help"
 msgid "Request queue"
 msgstr "طلب مساعدة"
 
 msgid "Active"
 msgstr ""
 
-#, fuzzy
-#| msgid "Request help"
 msgid "Requests"
 msgstr "طلب مساعدة"
 
@@ -1827,68 +1993,119 @@ msgstr ""
 msgid "No services yet. Create the first one."
 msgstr ""
 
-#, fuzzy
-#| msgid "Only emergency operators can accept requests."
-msgid "Open emergency work at a glance."
-msgstr "فقط مشغّلو الطوارئ يمكنهم قبول الطلبات."
+msgid "New listing"
+msgstr "إعلان جديد"
+
+msgid "Create a multilingual marketplace listing."
+msgstr "أنشئ إعلاناً متعدد اللغات للسوق."
+
+msgid "Create listing"
+msgstr "إنشاء إعلان"
+
+msgid "Buyer messages on marketplace listings."
+msgstr "رسائل المشترين على إعلانات السوق."
+
+msgid "Listing"
+msgstr "إعلان"
+
+msgid "Buyer"
+msgstr "المشتري"
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Read"
+msgstr "مقروء"
+
+msgid "No inquiries yet."
+msgstr "لا توجد استفسارات بعد."
+
+msgid ""
+"Moderate buy & sell listings. Titles and descriptions support FA / EN / AR."
+msgstr "أدِر إعلانات البيع والشراء. العناوين والأوصاف تدعم FA / EN / AR."
+
+msgid "Seller"
+msgstr "البائع"
+
+msgid "No listings yet."
+msgstr "لا توجد إعلانات بعد."
+
+msgid "Site administration"
+msgstr "إدارة الموقع"
+
+msgid ""
+"Change records across every hub model-multilingual fields use FA / EN / AR "
+"tabs."
+msgstr ""
+"عدّل السجلات عبر كل نماذج المركز-الحقول متعددة اللغات عبر تبويبات FA / EN / "
+"AR."
 
 msgid "Waiting"
 msgstr ""
 
-#, fuzzy
-#| msgid "%(counter)s unread buzz"
-#| msgid_plural "%(counter)s unread buzzes"
 msgid "With unread buzz"
 msgstr "%(counter)s تنبيه غير مقروء"
 
-#, fuzzy
-#| msgid "All services"
 msgid "Active services"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published cars"
 msgstr "نشر الإعلان"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published videos"
 msgstr "نشر الإعلان"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published stories"
 msgstr "نشر الإعلان"
 
-#, fuzzy
-#| msgid "New request"
+msgid "Change"
+msgstr "تغيير"
+
+msgid "Add"
+msgstr "إضافة"
+
 msgid "Recent requests"
 msgstr "طلب جديد"
 
 msgid "Full queue"
 msgstr ""
 
-#, fuzzy
-#| msgid "No emergency requests to show."
 msgid "No emergency requests yet."
 msgstr "لا توجد طلبات طوارئ للعرض."
 
-#, fuzzy
-#| msgid "All services"
+msgid "Edit price"
+msgstr "تعديل السعر"
+
+msgid "New price"
+msgstr "سعر جديد"
+
+msgid "Add a multilingual price reference."
+msgstr "أضف سعراً مرجعياً متعدد اللغات."
+
+msgid "Create price"
+msgstr "إنشاء سعر"
+
+msgid "Reference prices with FA / EN / AR titles and notes."
+msgstr "أسعار مرجعية بعناوين وملاحظات FA / EN / AR."
+
+msgid "Category"
+msgstr "الفئة"
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "No price references yet."
+msgstr "لا توجد أسعار مرجعية بعد."
+
 msgid "Edit story"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "New status"
 msgid "New story"
 msgstr "حالة جديدة"
 
 msgid "Write a multilingual story for the hub."
 msgstr ""
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create story"
 msgstr "خدمات الطوارئ"
 
@@ -1901,34 +2118,24 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#, fuzzy
-#| msgid "No cars for sale yet. Be the first to list yours."
 msgid "No stories yet. Create the first one."
 msgstr "لا توجد سيارات للبيع بعد. كن أول من يدرج سيارته."
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit video"
 msgstr "كل الخدمات"
 
-#, fuzzy
-#| msgid "All services"
 msgid "New video"
 msgstr "كل الخدمات"
 
 msgid "Add a YouTube video to the hub."
 msgstr ""
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create video"
 msgstr "خدمات الطوارئ"
 
 msgid "Videos featured on the hub."
 msgstr ""
 
-#, fuzzy
-#| msgid "YouTube"
 msgid "YouTube ID"
 msgstr "يوتيوب"
 
@@ -1944,8 +2151,9 @@ msgstr "الهاتف"
 msgid "Website"
 msgstr "الموقع"
 
-#, fuzzy
-#| msgid "All services"
+msgid "Address"
+msgstr "العنوان"
+
 msgid "All places"
 msgstr "كل الأماكن"
 
@@ -1955,8 +2163,6 @@ msgstr "استكشف المزيد"
 msgid "Browse other dealers, shops, and catalog models."
 msgstr "تصفّح وكلاء وورش ونماذج كتالوج أخرى."
 
-#, fuzzy
-#| msgid "MyAutoHub-Hub"
 msgid "MyAutoHub"
 msgstr "ماي أوتو هب-المركز"
 
@@ -1969,26 +2175,24 @@ msgstr "شبكة"
 msgid "Dealers and repair shops linked to brands in the catalog."
 msgstr "وكلاء وورش مرتبطة بعلامات الكتالوج."
 
-#, fuzzy
-#| msgid "Browse marketplace"
 msgid "Browse catalog"
 msgstr "عرض الكل"
+
+msgid ""
+"Open a dealer or shop for contact details and linked brands from the "
+"catalog."
+msgstr ""
+"افتح وكيلاً أو ورشة لمعرفة تفاصيل الاتصال والعلامات المرتبطة من الكتالوج."
 
 msgid "Authorized & local dealers"
 msgstr "وكلاء معتمدون ومحليون"
 
-#, fuzzy
-#| msgid "No videos published yet."
 msgid "No dealers published yet."
 msgstr "لا يوجد وكلاء منشورون بعد."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Service & repair"
 msgstr "خدمة وإصلاح"
 
-#, fuzzy
-#| msgid "No videos published yet."
 msgid "No repair shops published yet."
 msgstr "لا توجد ورش منشورة بعد."
 
@@ -2015,6 +2219,12 @@ msgstr "مرجع الأسعار"
 msgid ""
 "Ballpark figures for cars and common services-useful context, not a quote."
 msgstr "أرقام تقريبية للسيارات والخدمات الشائعة-سياق مفيد وليس عرض سعر."
+
+msgid ""
+"These are reference prices for context-not a formal quote. Compare with "
+"marketplace listings too."
+msgstr ""
+"هذه أسعار مرجعية للسياق-وليست عرضاً رسمياً. قارن أيضاً مع إعلانات السوق."
 
 msgid "No pricing references published yet."
 msgstr "لم تُنشر مراجع أسعار بعد."
@@ -2059,8 +2269,27 @@ msgstr "أُضيف مؤخراً"
 msgid "No videos published yet."
 msgstr "لم تُنشر فيديوهات بعد."
 
-#~ msgid "3-letter code such as USD, IRR, AED."
-#~ msgstr "رمز من 3 أحرف مثل USD أو IRR أو AED."
+#~ msgid ""
+#~ "Filter by country flag, brand, model, or year. Open a car for specs, then "
+#~ "jump to marketplace deals for that model."
+#~ msgstr ""
+#~ "صفِّ بعلم الدولة أو العلامة أو النموذج أو السنة. افتح سيارة للمواصفات، ثم "
+#~ "انتقل إلى عروض السوق لذلك النموذج."
 
-#~ msgid "Start with a clear title and what buyers need to know."
-#~ msgstr "ابدأ بعنوان واضح وما يحتاج المشتري معرفته."
+#~ msgid "Saudi Arabia"
+#~ msgstr "السعودية"
+
+#~ msgid "Open emergency work at a glance."
+#~ msgstr "فقط مشغّلو الطوارئ يمكنهم قبول الطلبات."
+
+#~ msgid "Label"
+#~ msgstr "التسمية"
+
+#~ msgid "Coordinates"
+#~ msgstr "الإحداثيات"
+
+#~ msgid "No saved locations yet."
+#~ msgstr "لا توجد مواقع محفوظة بعد."
+
+#~ msgid "Open live map for roadside help"
+#~ msgstr "افتح الخريطة المباشرة للمساعدة على الطريق"

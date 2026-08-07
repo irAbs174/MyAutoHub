@@ -32,30 +32,74 @@
       <p class="panel-brand-sub">{% trans "Staff panel" %}</p>
       <nav class="panel-nav">
         <a href="{% url 'panel:overview' %}" class="{% if panel_section == 'overview' %}is-active{% endif %}">{% trans "Overview" %}</a>
+
+        <p class="panel-nav-group">{% trans "Emergency" %}</p>
         <a href="{% url 'panel:emergency_request_list' %}" class="{% if panel_section == 'emergency' %}is-active{% endif %}">{% trans "Emergency queue" %}</a>
         <a href="{% url 'panel:emergency_service_list' %}" class="{% if panel_section == 'services' %}is-active{% endif %}">{% trans "Services" %}</a>
+
+        <p class="panel-nav-group">{% trans "Catalog" %}</p>
         <a href="{% url 'panel:car_list' %}" class="{% if panel_section == 'cars' %}is-active{% endif %}">{% trans "Cars" %}</a>
+        <a href="{% url 'panel:brand_list' %}" class="{% if panel_section == 'brands' %}is-active{% endif %}">{% trans "Brands" %}</a>
+        <a href="{% url 'panel:obd_list' %}" class="{% if panel_section == 'obd' %}is-active{% endif %}">{% trans "OBD codes" %}</a>
+
+        <p class="panel-nav-group">{% trans "Places" %}</p>
         <a href="{% url 'panel:dealer_list' %}" class="{% if panel_section == 'dealers' %}is-active{% endif %}">{% trans "Dealers" %}</a>
         <a href="{% url 'panel:repair_shop_list' %}" class="{% if panel_section == 'repair_shops' %}is-active{% endif %}">{% trans "Repair shops" %}</a>
+
+        <p class="panel-nav-group">{% trans "Marketplace" %}</p>
+        <a href="{% url 'panel:listing_list' %}" class="{% if panel_section == 'marketplace' %}is-active{% endif %}">{% trans "Marketplace listings" %}</a>
+        <a href="{% url 'panel:inquiry_list' %}" class="{% if panel_section == 'inquiries' %}is-active{% endif %}">{% trans "Inquiries" %}</a>
+
+        <p class="panel-nav-group">{% trans "Pricing" %}</p>
+        <a href="{% url 'panel:price_list' %}" class="{% if panel_section == 'pricing' %}is-active{% endif %}">{% trans "Price references" %}</a>
+
+        <p class="panel-nav-group">{% trans "Content" %}</p>
         <a href="{% url 'panel:youtube_list' %}" class="{% if panel_section == 'youtube' %}is-active{% endif %}">{% trans "YouTube" %}</a>
         <a href="{% url 'panel:story_list' %}" class="{% if panel_section == 'stories' %}is-active{% endif %}">{% trans "Stories" %}</a>
       </nav>
       <div class="panel-side-foot">
         <div class="panel-lang">
-          <details class="lang-switcher">
+          <details class="lang-switcher lang-switcher--codes">
             <summary aria-label="{% trans 'Language' %}">
               {% get_current_language as LANGUAGE_CODE %}
-              {% get_language_info for LANGUAGE_CODE as lang %}
-              <span class="lang-label">{{ lang.name_local }}</span>
+              <span class="lang-codes" aria-hidden="true">
+                <span class="lang-code{% if LANGUAGE_CODE == 'fa' %} is-current{% endif %}">
+                  <span class="lang-flag">🇮🇷</span>
+                  <span class="lang-code-text">FA</span>
+                </span>
+                <span class="lang-code-sep">/</span>
+                <span class="lang-code{% if LANGUAGE_CODE == 'en' %} is-current{% endif %}">
+                  <span class="lang-flag">🇺🇸</span>
+                  <span class="lang-code-text">EN</span>
+                </span>
+                <span class="lang-code-sep">/</span>
+                <span class="lang-code{% if LANGUAGE_CODE == 'ar' %} is-current{% endif %}">
+                  <span class="lang-flag">🇸🇦</span>
+                  <span class="lang-code-text">AR</span>
+                </span>
+              </span>
             </summary>
-            <form class="lang-menu" action="{% url 'set_language' %}" method="post">
+            <form class="lang-menu lang-menu--codes" action="{% url 'set_language' %}" method="post">
               {% csrf_token %}
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
               {% get_available_languages as LANGUAGES %}
-              {% get_language_info_list for LANGUAGES as languages %}
-              {% for language in languages %}
-                <button type="submit" name="language" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}aria-current="true"{% endif %}>
-                  {{ language.name_local }}
+              {% for code, name in LANGUAGES %}
+                <button
+                  type="submit"
+                  name="language"
+                  value="{{ code }}"
+                  class="{% if code == LANGUAGE_CODE %}is-active{% endif %}"
+                  lang="{{ code }}"
+                  {% if code == LANGUAGE_CODE %}aria-current="true"{% endif %}
+                >
+                  {% if code == "fa" %}
+                    <span class="lang-flag" aria-hidden="true">🇮🇷</span>
+                  {% elif code == "ar" %}
+                    <span class="lang-flag" aria-hidden="true">🇸🇦</span>
+                  {% else %}
+                    <span class="lang-flag" aria-hidden="true">🇺🇸</span>
+                  {% endif %}
+                  <span>{{ code|upper }}</span>
                 </button>
               {% endfor %}
             </form>

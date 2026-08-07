@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 21:58+0000\n"
+"POT-Creation-Date: 2026-08-07 23:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,8 +27,6 @@ msgstr "Location saved."
 msgid "Location removed."
 msgstr "Location removed."
 
-#, fuzzy
-#| msgid "New status"
 msgid "All fuels"
 msgstr "All fuels"
 
@@ -44,8 +42,75 @@ msgstr "Diesel"
 msgid "Electric"
 msgstr "Electric"
 
-#, fuzzy
-#| msgid "Newest cars"
+msgid "All transmissions"
+msgstr "All transmissions"
+
+msgid "Automatic"
+msgstr "Automatic"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "CVT"
+msgstr "CVT"
+
+msgid "All drivetrains"
+msgstr "All drivetrains"
+
+msgid "FWD"
+msgstr "FWD"
+
+msgid "RWD"
+msgstr "RWD"
+
+msgid "AWD / 4WD"
+msgstr "AWD / 4WD"
+
+msgid "Any seats"
+msgstr "Any seats"
+
+msgid "2 seats"
+msgstr "2 seats"
+
+msgid "4 seats"
+msgstr "4 seats"
+
+msgid "5 seats"
+msgstr "5 seats"
+
+msgid "7+ seats"
+msgstr "7+ seats"
+
+msgid "Iran"
+msgstr "Iran"
+
+msgid "Japan"
+msgstr "Japan"
+
+msgid "Germany"
+msgstr "Germany"
+
+msgid "South Korea"
+msgstr "South Korea"
+
+msgid "USA"
+msgstr "USA"
+
+msgid "France"
+msgstr "France"
+
+msgid "Italy"
+msgstr "Italy"
+
+msgid "China"
+msgstr "China"
+
+msgid "United Kingdom"
+msgstr "United Kingdom"
+
+msgid "All countries"
+msgstr "All countries"
+
 msgid "Newest first"
 msgstr "Newest first"
 
@@ -54,6 +119,9 @@ msgstr "Oldest first"
 
 msgid "Power (high → low)"
 msgstr "Power (high → low)"
+
+msgid "Power (low → high)"
+msgstr "Power (low → high)"
 
 msgid "Model A–Z"
 msgstr "Model A–Z"
@@ -67,6 +135,9 @@ msgstr "Search"
 msgid "Brand, model, trim…"
 msgstr "Brand, model, trim…"
 
+msgid "Country"
+msgstr "Country"
+
 msgid "All brands"
 msgstr "All brands"
 
@@ -79,24 +150,59 @@ msgstr "All models"
 msgid "Model"
 msgstr "Model"
 
+msgid "All trims"
+msgstr "All trims"
+
+msgid "Trim"
+msgstr "Trim"
+
+msgid "All manufacturers"
+msgstr "All manufacturers"
+
+msgid "Manufacturer"
+msgstr "Manufacturer"
+
 msgid "Fuel"
 msgstr "Fuel"
 
-#, fuzzy
-#| msgid "Year"
+msgid "Transmission"
+msgstr "Transmission"
+
+msgid "Drivetrain"
+msgstr "Drivetrain"
+
+msgid "Seats"
+msgstr "Seats"
+
 msgid "Year from"
 msgstr "Year from"
 
 msgid "From"
 msgstr "From"
 
-#, fuzzy
-#| msgid "Year"
 msgid "Year to"
 msgstr "Year to"
 
 msgid "To"
 msgstr "To"
+
+msgid "HP from"
+msgstr "HP from"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Horsepower from"
+msgstr "Horsepower from"
+
+msgid "HP to"
+msgstr "HP to"
+
+msgid "Max"
+msgstr "Max"
+
+msgid "Horsepower to"
+msgstr "Horsepower to"
 
 msgid "Sort by"
 msgstr "Sort by"
@@ -176,6 +282,9 @@ msgstr "Marketplace"
 msgid "Cars"
 msgstr "Cars"
 
+msgid "Brands"
+msgstr "Brands"
+
 msgid "Places"
 msgstr "Places"
 
@@ -185,21 +294,15 @@ msgstr "YouTube"
 msgid "Stories"
 msgstr "Stories"
 
-#, fuzzy
-#| msgid "Cars"
 msgid "Car"
 msgstr "Car"
 
-#, fuzzy
-#| msgid "Stories"
 msgid "Story"
 msgstr "Story"
 
 msgid "Video"
 msgstr "Video"
 
-#, fuzzy
-#| msgid "Roadside"
 msgid "Roadside help"
 msgstr "Roadside help"
 
@@ -242,8 +345,6 @@ msgstr "English"
 msgid "العربية"
 msgstr "العربية"
 
-#, fuzzy
-#| msgid "Status"
 msgid "Status & media"
 msgstr "Status & media"
 
@@ -307,13 +408,9 @@ msgstr "Name (English)"
 msgid "Name (العربية)"
 msgstr "Name (العربية)"
 
-#, fuzzy
-#| msgid "Description"
 msgid "Description (فارسی)"
 msgstr "Description (فارسی)"
 
-#, fuzzy
-#| msgid "Description"
 msgid "Description (English)"
 msgstr "Description (English)"
 
@@ -412,16 +509,9 @@ msgstr "Title (English)"
 msgid "Title (العربية)"
 msgstr "Title (العربية)"
 
-#, fuzzy
-#| msgid "Select on map"
 msgid "Select brand"
 msgstr "Select brand"
 
-msgid "Trim"
-msgstr "Trim"
-
-#, fuzzy
-#| msgid "Photo"
 msgid "Photos"
 msgstr "Photos"
 
@@ -446,21 +536,15 @@ msgstr "A short headline buyers will see first."
 msgid "Be honest and specific-it builds trust."
 msgstr "Be honest and specific-it builds trust."
 
-#, fuzzy
-#| msgid "Where the car is located (optional)."
 msgid "Choose the car brand from the catalog (optional)."
 msgstr "Choose the car brand from the catalog (optional)."
 
-#, fuzzy
-#| msgid "Where the car is located (optional)."
 msgid "Choose the model for the selected brand (optional)."
 msgstr "Choose the model for the selected brand (optional)."
 
 msgid "Trim or variant, e.g. SE, Limited (optional)."
 msgstr "Trim or variant, e.g. SE, Limited (optional)."
 
-#, fuzzy
-#| msgid "Optional, but listings with a photo sell faster."
 msgid ""
 "Optional, but listings with photos sell faster. You can select multiple."
 msgstr ""
@@ -493,8 +577,6 @@ msgstr "e.g. SE"
 msgid "e.g. Tehran"
 msgstr "e.g. Tehran"
 
-#, fuzzy
-#| msgid "Select on map"
 msgid "Select model"
 msgstr "Select model"
 
@@ -542,16 +624,12 @@ msgstr "You cannot inquire on your own listing."
 msgid "Message sent to %(seller)s. They will see it on this listing."
 msgstr "Message sent to %(seller)s. They will see it on this listing."
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published"
 msgstr "Published"
 
 msgid "Draft"
 msgstr "Draft"
 
-#, fuzzy
-#| msgid "New status"
 msgid "All statuses"
 msgstr "All statuses"
 
@@ -561,108 +639,75 @@ msgstr "Service"
 msgid "Trim must belong to the selected model."
 msgstr "Trim must belong to the selected model."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Service created."
 msgstr "Service created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Service updated."
 msgstr "Service updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Car created."
 msgstr "Car created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Car updated."
 msgstr "Car updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Brand created."
 msgstr "Brand created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Brand updated."
 msgstr "Brand updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Car model created."
 msgstr "Car model created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Car model updated."
 msgstr "Car model updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Trim created."
 msgstr "Trim created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Trim updated."
 msgstr "Trim updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "OBD code created."
 msgstr "OBD code created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "OBD code updated."
 msgstr "OBD code updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Dealer created."
 msgstr "Dealer created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Dealer updated."
 msgstr "Dealer updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Repair shop created."
 msgstr "Repair shop created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Repair shop updated."
 msgstr "Repair shop updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Video created."
 msgstr "Video created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Video updated."
 msgstr "Video updated."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Story created."
 msgstr "Story created."
 
-#, fuzzy
-#| msgid "Listing updated."
 msgid "Story updated."
 msgstr "Story updated."
 
-#, fuzzy
-#| msgid "Pricing"
+msgid "Listing created."
+msgstr "Listing created."
+
+msgid "Price reference created."
+msgstr "Price reference created."
+
+msgid "Price reference updated."
+msgstr "Price reference updated."
+
 msgid "Pricing & media"
 msgstr "Pricing & media"
 
@@ -693,8 +738,6 @@ msgstr "Source (English)"
 msgid "Source (العربية)"
 msgstr "Source (العربية)"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Publishing"
 msgstr "Publishing"
 
@@ -729,8 +772,30 @@ msgid "Log in to request emergency help, manage listings, and save locations."
 msgstr ""
 "Log in to request emergency help, manage listings, and save locations."
 
+msgid "Pin roadside emergencies on the map"
+msgstr "Pin roadside emergencies on the map"
+
+msgid "Buy and sell cars on the marketplace"
+msgstr "Buy and sell cars on the marketplace"
+
+msgid "Reuse saved places for faster help"
+msgstr "Reuse saved places for faster help"
+
 msgid "Log in"
 msgstr "Log in"
+
+msgid "Use your MyAutoHub username and password."
+msgstr "Use your MyAutoHub username and password."
+
+msgid "Learn tip"
+msgstr "Learn tip"
+
+msgid ""
+"After login you can open Profile to save map pins, or Marketplace to sell a "
+"car."
+msgstr ""
+"After login you can open Profile to save map pins, or Marketplace to sell a "
+"car."
 
 msgid "No account yet?"
 msgstr "No account yet?"
@@ -741,35 +806,69 @@ msgstr "Join MyAutoHub"
 msgid "Profile-MyAutoHub"
 msgstr "Profile-MyAutoHub"
 
-msgid "Saved places you can reuse when requesting emergency help."
-msgstr "Saved places you can reuse when requesting emergency help."
+msgid "Your hub desk-listings, saved places, and shortcuts for roadside help."
+msgstr ""
+"Your hub desk-listings, saved places, and shortcuts for roadside help."
+
+msgid ""
+"Save places you use often, then pick them when requesting emergency help. "
+"Sell cars from Marketplace."
+msgstr ""
+"Save places you use often, then pick them when requesting emergency help. "
+"Sell cars from Marketplace."
+
+msgid "Shortcuts"
+msgstr "Shortcuts"
 
 msgid "My car listings"
 msgstr "My car listings"
 
+msgid "Edit, mark sold, or read buyer messages."
+msgstr "Edit, mark sold, or read buyer messages."
+
 msgid "Sell a car"
 msgstr "Sell a car"
+
+msgid "Create a listing with photos and multilingual titles."
+msgstr "Create a listing with photos and multilingual titles."
+
+msgid "Request emergency"
+msgstr "Request emergency"
+
+msgid "Pin yourself on the map or use a saved place."
+msgstr "Pin yourself on the map or use a saved place."
+
+msgid "Browse cars"
+msgstr "Browse cars"
+
+msgid "Open the catalog for specs and models."
+msgstr "Open the catalog for specs and models."
 
 msgid "Saved locations"
 msgstr "Saved locations"
 
-msgid "Label"
-msgstr "Label"
-
-msgid "Address"
-msgstr "Address"
-
-msgid "Coordinates"
-msgstr "Coordinates"
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s place"
+msgid_plural "%(counter)s places"
+msgstr[0] "%(counter)s place"
+msgstr[1] "%(counter)s places"
 
 msgid "Default"
 msgstr "Default"
 
+msgid "No address note"
+msgstr "No address note"
+
 msgid "Remove"
 msgstr "Remove"
 
-msgid "No saved locations yet."
-msgstr "No saved locations yet."
+msgid "No saved locations yet. Add one below for faster emergency requests."
+msgstr "No saved locations yet. Add one below for faster emergency requests."
+
+msgid "Map"
+msgstr "Map"
 
 msgid "Add a location"
 msgstr "Add a location"
@@ -792,6 +891,9 @@ msgstr "Map-tap to set your location"
 msgid "Save location"
 msgstr "Save location"
 
+msgid "Tap the map to drop a pin before saving."
+msgstr "Tap the map to drop a pin before saving."
+
 msgid "Join-MyAutoHub"
 msgstr "Join-MyAutoHub"
 
@@ -800,8 +902,30 @@ msgid ""
 msgstr ""
 "Create an account to submit emergency requests and use the marketplace."
 
+msgid "One account for help, catalog, and trade"
+msgstr "One account for help, catalog, and trade"
+
+msgid "Listings in فارسی, English, and العربية"
+msgstr "Listings in فارسی, English, and العربية"
+
+msgid "Theme and language stay with your browser"
+msgstr "Theme and language stay with your browser"
+
 msgid "Create account"
 msgstr "Create account"
+
+msgid "A few fields and you are ready to use the hub."
+msgstr "A few fields and you are ready to use the hub."
+
+msgid ""
+"Pick a username you can share with buyers. You can add saved locations from "
+"Profile after joining."
+msgstr ""
+"Pick a username you can share with buyers. You can add saved locations from "
+"Profile after joining."
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
 
 msgid "MyAutoHub-cars, help, and community on the road."
 msgstr "MyAutoHub-cars, help, and community on the road."
@@ -815,11 +939,72 @@ msgstr "محفوظ است"
 msgid "Developer"
 msgstr "Developer"
 
+#| msgid "Back to list"
+msgid "Back to top"
+msgstr "Back to top"
+
+msgid "Brands-MyAutoHub"
+msgstr "Brands-MyAutoHub"
+
+#, python-format
+msgid "Models and cars for %(name)s on MyAutoHub."
+msgstr "Models and cars for %(name)s on MyAutoHub."
+
+msgid "View in catalog"
+msgstr "View in catalog"
+
+msgid "Models"
+msgstr "Models"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s car"
+msgid_plural "%(counter)s cars"
+msgstr[0] "%(counter)s car"
+msgstr[1] "%(counter)s cars"
+
+msgid "No models for this brand yet."
+msgstr "No models for this brand yet."
+
+msgid "See all"
+msgstr "See all"
+
+msgid "Browse car brands on MyAutoHub by country and manufacturer."
+msgstr "Browse car brands on MyAutoHub by country and manufacturer."
+
 msgid "Catalog"
 msgstr "Catalog"
 
-#, fuzzy
-#| msgid "Saved locations"
+msgid ""
+"Explore manufacturers and marques-filter the catalog by brand or open a "
+"brand page for models."
+msgstr ""
+"Explore manufacturers and marques-filter the catalog by brand or open a "
+"brand page for models."
+
+msgid "Car catalog"
+msgstr "Car catalog"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s brand"
+msgid_plural "%(counter)s brands"
+msgstr[0] "%(counter)s brand"
+msgstr[1] "%(counter)s brands"
+
+#, fuzzy, python-format
+#| msgid "%(counter)s new"
+#| msgid_plural "%(counter)s new"
+msgid "%(counter)s model"
+msgid_plural "%(counter)s models"
+msgstr[0] "%(counter)s model"
+msgstr[1] "%(counter)s models"
+
+msgid "No brands in the catalog yet."
+msgstr "No brands in the catalog yet."
+
 msgid "Sections"
 msgstr "Sections"
 
@@ -841,8 +1026,6 @@ msgstr "Fluids"
 msgid "Tires"
 msgstr "Tires"
 
-#, fuzzy
-#| msgid "Back to stories"
 msgid "Batteries"
 msgstr "Batteries"
 
@@ -852,8 +1035,6 @@ msgstr "OBD"
 msgid "Parts"
 msgstr "Parts"
 
-#, fuzzy
-#| msgid "Price"
 msgid "Prices"
 msgstr "Prices"
 
@@ -877,12 +1058,6 @@ msgstr "Displacement"
 
 msgid "Cylinders"
 msgstr "Cylinders"
-
-msgid "Transmission"
-msgstr "Transmission"
-
-msgid "Drivetrain"
-msgstr "Drivetrain"
 
 msgid "Top speed"
 msgstr "Top speed"
@@ -914,11 +1089,6 @@ msgstr "Weight"
 msgid "Cargo"
 msgstr "Cargo"
 
-msgid "Seats"
-msgstr "Seats"
-
-#, fuzzy
-#| msgid "Cancel"
 msgid "Clearance"
 msgstr "Clearance"
 
@@ -937,8 +1107,6 @@ msgstr "months"
 msgid "Battery"
 msgstr "Battery"
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Service schedule"
 msgstr "Service schedule"
 
@@ -963,11 +1131,21 @@ msgstr "Cars-MyAutoHub"
 msgid "Explore the MyAutoHub car catalog-brands, models, and specs."
 msgstr "Explore the MyAutoHub car catalog-brands, models, and specs."
 
-msgid "Car catalog"
-msgstr "Car catalog"
-
 msgid "Browse brands and models with the essentials-year, power, and trim."
 msgstr "Browse brands and models with the essentials-year, power, and trim."
+
+msgid ""
+"Filter by country, brand, model, trim, fuel, power, transmission, or seats. "
+"Open a car for full specs."
+msgstr ""
+"Filter by country, brand, model, trim, fuel, power, transmission, or seats. "
+"Open a car for full specs."
+
+msgid "Filter by country"
+msgstr "Filter by country"
+
+msgid "Horsepower"
+msgstr "Horsepower"
 
 msgid "Filter"
 msgstr "Filter"
@@ -975,24 +1153,14 @@ msgstr "Filter"
 msgid "Reset"
 msgstr "Reset"
 
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s car"
-msgid_plural "%(counter)s cars"
-msgstr[0] "%(counter)s car"
-msgstr[1] "%(counter)s cars"
-
-#, fuzzy
-#| msgid "No requests match this filter."
 msgid "No cars match these filters."
 msgstr "No cars match these filters."
 
 msgid "No cars in the catalog yet."
 msgstr "No cars in the catalog yet."
 
-msgid "Primary"
-msgstr "Primary"
+msgid "Dismiss tip"
+msgstr "Dismiss tip"
 
 msgid "No matches found"
 msgstr "No matches found"
@@ -1012,6 +1180,15 @@ msgstr "Toggle theme"
 msgid "Language"
 msgstr "Language"
 
+msgid "Open menu"
+msgstr "Open menu"
+
+msgid "Close menu"
+msgstr "Close menu"
+
+msgid "Primary"
+msgstr "Primary"
+
 msgid "Panel"
 msgstr "Panel"
 
@@ -1024,42 +1201,73 @@ msgstr "Join"
 msgid "MyAutoHub-Hub"
 msgstr "MyAutoHub-Hub"
 
-msgid "Roadside help. Cars to buy and sell. One hub."
-msgstr "Roadside help. Cars to buy and sell. One hub."
+msgid "Hero"
+msgstr "Hero"
+
+msgid "Automotive ecosystem platform"
+msgstr "Automotive ecosystem platform"
 
 msgid ""
-"Pin your location for emergency aid, list your car, or browse what other "
-"drivers are selling."
+"Pin your location for towing, battery jump-start, or explore the "
+"marketplace."
 msgstr ""
-"Pin your location for emergency aid, list your car, or browse what other "
-"drivers are selling."
+"Pin your location for towing, battery jump-start, or explore the "
+"marketplace."
 
-msgid "Request help"
-msgstr "Request help"
+msgid "Explore marketplace"
+msgstr "Explore marketplace"
 
-msgid "Buy or sell"
-msgstr "Buy or sell"
-
-msgid "Emergency services"
-msgstr "Emergency services"
-
-msgid "Main paths"
-msgstr "Main paths"
-
-msgid "Help"
-msgstr "Help"
-
-msgid "Towing, jump start, lockout-pin yourself on the map."
-msgstr "Towing, jump start, lockout-pin yourself on the map."
-
-msgid "Trade"
-msgstr "Trade"
+msgid "Quick paths"
+msgstr "Quick paths"
 
 msgid "Buy & sell"
 msgstr "Buy & sell"
 
+msgid "Specs & models"
+msgstr "Specs & models"
+
+msgid "Dealers & shops"
+msgstr "Dealers & shops"
+
+msgid "How to start"
+msgstr "How to start"
+
+msgid ""
+"Use Emergency to pin yourself on the map, Marketplace to buy or sell, and "
+"Cars for specs. Switch language anytime from FA / EN / AR in the header."
+msgstr ""
+"Use Emergency to pin yourself on the map, Marketplace to buy or sell, and "
+"Cars for specs. Switch language anytime from FA / EN / AR in the header."
+
+msgid "Roadside"
+msgstr "Roadside"
+
+msgid "Live Map"
+msgstr "Live Map"
+
+msgid "Pin your location"
+msgstr "Pin your location"
+
+msgid "Live map preview-open to pin your location for roadside help"
+msgstr "Live map preview-open to pin your location for roadside help"
+
+msgid "Main paths"
+msgstr "Main paths"
+
+msgid "Emergency Assistance"
+msgstr "Emergency Assistance"
+
+msgid "Towing, jump start, lockout-pin yourself on the map."
+msgstr "Towing, jump start, lockout-pin yourself on the map."
+
+msgid "Car Marketplace"
+msgstr "Car Marketplace"
+
 msgid "Browse cars from other drivers, or list yours."
 msgstr "Browse cars from other drivers, or list yours."
+
+msgid "Maintenance & Specs"
+msgstr "Maintenance & Specs"
 
 msgid "Specs and models-then jump to live marketplace deals."
 msgstr "Specs and models-then jump to live marketplace deals."
@@ -1077,8 +1285,6 @@ msgstr ""
 "Browse curated vehicle specs from the technical hub-horsepower, fuel, and "
 "trim at a glance."
 
-#, fuzzy
-#| msgid "Car catalog"
 msgid "Open catalog"
 msgstr "Open catalog"
 
@@ -1090,9 +1296,6 @@ msgstr "Previous"
 
 msgid "Next"
 msgstr "Next"
-
-msgid "Roadside"
-msgstr "Roadside"
 
 msgid "Services on call"
 msgstr "Services on call"
@@ -1138,13 +1341,10 @@ msgstr "My listings"
 msgid "Create an account"
 msgstr "Create an account"
 
-#, fuzzy, python-format
-#| msgid "Emergency #%(id)s-MyAutoHub"
+#, python-format
 msgid "Search: %(q)s-MyAutoHub"
 msgstr "Search: %(q)s-MyAutoHub"
 
-#, fuzzy
-#| msgid "Cars-MyAutoHub"
 msgid "Search-MyAutoHub"
 msgstr "Search-MyAutoHub"
 
@@ -1159,9 +1359,6 @@ msgid_plural "%(counter)s results for “%(q)s”"
 msgstr[0] "%(counter)s result for “%(q)s”"
 msgstr[1] "%(counter)s results for “%(q)s”"
 
-#, fuzzy
-#| msgid ""
-#| "Find cars, listings, stories, videos, prices, and roadside help."
 msgid ""
 "Find cars, listings, stories, videos, prices, places, and roadside help."
 msgstr ""
@@ -1170,14 +1367,15 @@ msgstr ""
 msgid "No matches. Try another word or browse the hub."
 msgstr "No matches. Try another word or browse the hub."
 
-#, fuzzy
-#| msgid "Browse marketplace"
 msgid "Browse all"
 msgstr "Browse all"
 
 #, python-format
 msgid "Emergency #%(id)s-MyAutoHub"
 msgstr "Emergency #%(id)s-MyAutoHub"
+
+msgid "Help"
+msgstr "Help"
 
 #, python-format
 msgid "Request #%(id)s"
@@ -1259,10 +1457,11 @@ msgstr "No buzzes yet. Use Buzz! when you need faster attention."
 msgid "Emergency-MyAutoHub"
 msgstr "Emergency-MyAutoHub"
 
-#, fuzzy
-#| msgid "Request emergency help"
 msgid "Request roadside emergency help through MyAutoHub."
 msgstr "Request roadside emergency help through MyAutoHub."
+
+msgid "Emergency services"
+msgstr "Emergency services"
 
 msgid ""
 "Request roadside help, track progress, and buzz operators when you need "
@@ -1270,6 +1469,13 @@ msgid ""
 msgstr ""
 "Request roadside help, track progress, and buzz operators when you need "
 "attention fast."
+
+msgid ""
+"Log in, tap New request, then drop a pin on the map (or pick a saved place) "
+"so operators can find you fast."
+msgstr ""
+"Log in, tap New request, then drop a pin on the map (or pick a saved place) "
+"so operators can find you fast."
 
 msgid "New request"
 msgstr "New request"
@@ -1310,6 +1516,13 @@ msgstr "Request emergency help"
 msgid "Pick a service and pin your location on the map-or use a saved place."
 msgstr "Pick a service and pin your location on the map-or use a saved place."
 
+msgid ""
+"Choose a service, then tap the map to drop your pin-or use a saved place "
+"from your profile."
+msgstr ""
+"Choose a service, then tap the map to drop your pin-or use a saved place "
+"from your profile."
+
 msgid "Latitude"
 msgstr "Latitude"
 
@@ -1334,15 +1547,15 @@ msgstr "Back to hub"
 msgid "Edit listing"
 msgstr "Edit listing"
 
+msgid "Trade"
+msgstr "Trade"
+
 msgid "Sell your car"
 msgstr "Sell your car"
 
 msgid "Update price, photos, or status."
 msgstr "Update price, photos, or status."
 
-#, fuzzy
-#| msgid ""
-#| "List your car so other hub users can buy it-add a photo and a clear price."
 msgid ""
 "List your car so other hub users can buy it-add photos and a clear price."
 msgstr ""
@@ -1376,8 +1589,6 @@ msgstr ""
 "(فارسی, English, and العربية) helps more buyers find your car-so you can "
 "sell sooner and often at a better price."
 
-#, fuzzy
-#| msgid "Language"
 msgid "Languages"
 msgstr "Languages"
 
@@ -1387,13 +1598,9 @@ msgstr "Specs & location"
 msgid "Optional details that help buyers filter and decide."
 msgstr "Optional details that help buyers filter and decide."
 
-#, fuzzy
-#| msgid "Add a cover photo"
 msgid "Add photos"
 msgstr "Add photos"
 
-#, fuzzy
-#| msgid "A clear exterior shot works best. You can skip this for now."
 msgid ""
 "Upload several clear shots-exterior, interior, and details. You can skip "
 "this for now."
@@ -1401,8 +1608,6 @@ msgstr ""
 "Upload several clear shots-exterior, interior, and details. You can skip "
 "this for now."
 
-#, fuzzy
-#| msgid "Choose an image"
 msgid "Choose images"
 msgstr "Choose images"
 
@@ -1477,8 +1682,6 @@ msgstr "This listing is no longer available for purchase."
 msgid "Marketplace-MyAutoHub"
 msgstr "Marketplace-MyAutoHub"
 
-#, fuzzy
-#| msgid "Active listings appear in the marketplace."
 msgid "Browse active car listings on MyAutoHub marketplace."
 msgstr "Browse active car listings on MyAutoHub marketplace."
 
@@ -1488,6 +1691,13 @@ msgid ""
 msgstr ""
 "Buy cars from other drivers, or list your own for sale. Message sellers "
 "directly-no middleman."
+
+msgid ""
+"Browse listings to buy, or sell your car with photos and titles in فارسی, "
+"English, and العربية so more buyers can find you."
+msgstr ""
+"Browse listings to buy, or sell your car with photos and titles in فارسی, "
+"English, and العربية so more buyers can find you."
 
 msgid "Log in to sell"
 msgstr "Log in to sell"
@@ -1514,11 +1724,21 @@ msgstr "My listings-MyAutoHub"
 msgid "Cars you are selling-edit, mark sold, or read buyer messages."
 msgstr "Cars you are selling-edit, mark sold, or read buyer messages."
 
+msgid ""
+"Open a listing to edit details or read buyer messages. Start a new sale "
+"anytime."
+msgstr ""
+"Open a listing to edit details or read buyer messages. Start a new sale "
+"anytime."
+
 msgid "Sell another car"
 msgstr "Sell another car"
 
 msgid "Browse marketplace"
 msgstr "Browse marketplace"
+
+msgid "Profile"
+msgstr "Profile"
 
 #, python-format
 msgid "%(counter)s new message"
@@ -1544,20 +1764,23 @@ msgstr "Panel navigation"
 msgid "Staff panel"
 msgstr "Staff panel"
 
-#, fuzzy
-#| msgid "Operator view"
 msgid "Overview"
 msgstr "Overview"
 
-#, fuzzy
-#| msgid "Emergency"
 msgid "Emergency queue"
 msgstr "Emergency queue"
 
-#, fuzzy
-#| msgid "Service"
 msgid "Services"
 msgstr "Services"
+
+msgid "Marketplace listings"
+msgstr "Marketplace listings"
+
+msgid "Inquiries"
+msgstr "Inquiries"
+
+msgid "Content"
+msgstr "Content"
 
 msgid "Light tools for day-to-day ops."
 msgstr "Light tools for day-to-day ops."
@@ -1571,8 +1794,6 @@ msgstr "New brand"
 msgid "Add a manufacturer to the catalog."
 msgstr "Add a manufacturer to the catalog."
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create brand"
 msgstr "Create brand"
 
@@ -1585,21 +1806,11 @@ msgstr "Organize the car catalog taxonomy."
 msgid "New model"
 msgstr "New model"
 
-#, fuzzy
-#| msgid "All services"
 msgid "New trim"
 msgstr "New trim"
 
-#, fuzzy
-#| msgid "Back to list"
 msgid "Back to cars"
 msgstr "Back to cars"
-
-msgid "Country"
-msgstr "Country"
-
-msgid "Models"
-msgstr "Models"
 
 msgid "Add trim"
 msgstr "Add trim"
@@ -1610,73 +1821,48 @@ msgstr "Edit"
 msgid "Add model"
 msgstr "Add model"
 
-#, fuzzy
-#| msgid "No services yet. Create the first one."
 msgid "No brands yet. Create the first one."
 msgstr "No brands yet. Create the first one."
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit dealer"
 msgstr "Edit dealer"
 
 msgid "New dealer"
 msgstr "New dealer"
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create dealer"
 msgstr "Create dealer"
 
 msgid "Name"
 msgstr "Name"
 
-msgid "Brands"
-msgstr "Brands"
-
 msgid "Yes"
 msgstr "Yes"
 
-#, fuzzy
-#| msgid "Note"
 msgid "No"
 msgstr "No"
 
-#, fuzzy
-#| msgid "No buyer messages yet."
 msgid "No dealers yet."
 msgstr "No dealers yet."
 
-#, fuzzy
-#| msgid "Edit"
 msgid "Edit car"
 msgstr "Edit car"
 
-#, fuzzy
-#| msgid "Newest cars"
 msgid "New car"
 msgstr "New car"
 
-#, fuzzy
-#| msgid "No cars in the catalog yet."
 msgid "Add a car to the catalog."
 msgstr "Add a car to the catalog."
 
-#, fuzzy
-#| msgid "Cover photo"
 msgid "Gallery photos"
 msgstr "Gallery photos"
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create car"
 msgstr "Create car"
 
 msgid "Catalog cars shown on the hub."
 msgstr "Catalog cars shown on the hub."
 
-#, fuzzy
-#| msgid "No services yet. Create the first one."
 msgid "No cars yet. Create the first one."
 msgstr "No cars yet. Create the first one."
 
@@ -1686,8 +1872,6 @@ msgstr "Edit model"
 msgid "Add a model under a brand."
 msgstr "Add a model under a brand."
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create model"
 msgstr "Create model"
 
@@ -1697,8 +1881,6 @@ msgstr "Edit OBD code"
 msgid "New OBD code"
 msgstr "New OBD code"
 
-#, fuzzy
-#| msgid "Create account"
 msgid "Create"
 msgstr "Create"
 
@@ -1711,8 +1893,6 @@ msgstr "Title"
 msgid "Severity"
 msgstr "Severity"
 
-#, fuzzy
-#| msgid "No buyer messages yet."
 msgid "No OBD codes yet."
 msgstr "No OBD codes yet."
 
@@ -1725,37 +1905,24 @@ msgstr "New repair shop"
 msgid "Create repair shop"
 msgstr "Create repair shop"
 
-#, fuzzy
-#| msgid "No transitions yet."
 msgid "No repair shops yet."
 msgstr "No repair shops yet."
 
-#, fuzzy
-#| msgid "Edit listing"
 msgid "Edit trim"
 msgstr "Edit trim"
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create trim"
 msgstr "Create trim"
 
-#, fuzzy
-#| msgid "Back to hub"
 msgid "Back to queue"
 msgstr "Back to queue"
 
-#, fuzzy
-#| msgid "Public review"
 msgid "Public detail"
 msgstr "Public detail"
 
 msgid "Uses the same operator rules as the public emergency flow."
 msgstr "Uses the same operator rules as the public emergency flow."
 
-#, fuzzy
-#| msgid ""
-#| "Status changes need the emergency_operators group (and staff for finish)."
 msgid ""
 "Status changes need the emergency_operators group (and staff for finish), or"
 " a superuser account."
@@ -1763,58 +1930,42 @@ msgstr ""
 "Status changes need the emergency_operators group (and staff for finish), or"
 " a superuser account."
 
-#, fuzzy
-#| msgid "No buyer messages yet."
 msgid "No buzzes yet."
 msgstr "No buzzes yet."
 
 msgid "All requests-filter, open, update status."
 msgstr "All requests-filter, open, update status."
 
-#, fuzzy
-#| msgid "All services"
 msgid "Manage services"
 msgstr "Manage services"
 
-#, fuzzy
-#| msgid "Request help"
 msgid "Requester"
 msgstr "Requester"
 
 msgid "No requests match this filter."
 msgstr "No requests match this filter."
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit service"
 msgstr "Edit service"
 
-#, fuzzy
-#| msgid "All services"
 msgid "New service"
 msgstr "New service"
 
 msgid "Add a roadside service operators can fulfill."
 msgstr "Add a roadside service operators can fulfill."
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create service"
 msgstr "Create service"
 
 msgid "Catalog of roadside help offerings."
 msgstr "Catalog of roadside help offerings."
 
-#, fuzzy
-#| msgid "Request help"
 msgid "Request queue"
 msgstr "Request queue"
 
 msgid "Active"
 msgstr "Active"
 
-#, fuzzy
-#| msgid "Request help"
 msgid "Requests"
 msgstr "Requests"
 
@@ -1824,68 +1975,120 @@ msgstr "Inactive"
 msgid "No services yet. Create the first one."
 msgstr "No services yet. Create the first one."
 
-#, fuzzy
-#| msgid "Only emergency operators can accept requests."
-msgid "Open emergency work at a glance."
-msgstr "Open emergency work at a glance."
+msgid "New listing"
+msgstr "New listing"
+
+msgid "Create a multilingual marketplace listing."
+msgstr "Create a multilingual marketplace listing."
+
+msgid "Create listing"
+msgstr "Create listing"
+
+msgid "Buyer messages on marketplace listings."
+msgstr "Buyer messages on marketplace listings."
+
+msgid "Listing"
+msgstr "Listing"
+
+msgid "Buyer"
+msgstr "Buyer"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Read"
+msgstr "Read"
+
+msgid "No inquiries yet."
+msgstr "No inquiries yet."
+
+msgid ""
+"Moderate buy & sell listings. Titles and descriptions support FA / EN / AR."
+msgstr ""
+"Moderate buy & sell listings. Titles and descriptions support FA / EN / AR."
+
+msgid "Seller"
+msgstr "Seller"
+
+msgid "No listings yet."
+msgstr "No listings yet."
+
+msgid "Site administration"
+msgstr "Site administration"
+
+msgid ""
+"Change records across every hub model-multilingual fields use FA / EN / AR "
+"tabs."
+msgstr ""
+"Change records across every hub model-multilingual fields use FA / EN / AR "
+"tabs."
 
 msgid "Waiting"
 msgstr "Waiting"
 
-#, fuzzy
-#| msgid "%(counter)s unread buzz"
-#| msgid_plural "%(counter)s unread buzzes"
 msgid "With unread buzz"
 msgstr "With unread buzz"
 
-#, fuzzy
-#| msgid "All services"
 msgid "Active services"
 msgstr "Active services"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published cars"
 msgstr "Published cars"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published videos"
 msgstr "Published videos"
 
-#, fuzzy
-#| msgid "Publish listing"
 msgid "Published stories"
 msgstr "Published stories"
 
-#, fuzzy
-#| msgid "New request"
+msgid "Change"
+msgstr "Change"
+
+msgid "Add"
+msgstr "Add"
+
 msgid "Recent requests"
 msgstr "Recent requests"
 
 msgid "Full queue"
 msgstr "Full queue"
 
-#, fuzzy
-#| msgid "No emergency requests to show."
 msgid "No emergency requests yet."
 msgstr "No emergency requests yet."
 
-#, fuzzy
-#| msgid "All services"
+msgid "Edit price"
+msgstr "Edit price"
+
+msgid "New price"
+msgstr "New price"
+
+msgid "Add a multilingual price reference."
+msgstr "Add a multilingual price reference."
+
+msgid "Create price"
+msgstr "Create price"
+
+msgid "Reference prices with FA / EN / AR titles and notes."
+msgstr "Reference prices with FA / EN / AR titles and notes."
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Amount"
+msgstr "Amount"
+
+msgid "No price references yet."
+msgstr "No price references yet."
+
 msgid "Edit story"
 msgstr "Edit story"
 
-#, fuzzy
-#| msgid "New status"
 msgid "New story"
 msgstr "New story"
 
 msgid "Write a multilingual story for the hub."
 msgstr "Write a multilingual story for the hub."
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create story"
 msgstr "Create story"
 
@@ -1898,39 +2101,27 @@ msgstr "Slug"
 msgid "Author"
 msgstr "Author"
 
-#, fuzzy
-#| msgid "No services yet. Create the first one."
 msgid "No stories yet. Create the first one."
 msgstr "No stories yet. Create the first one."
 
-#, fuzzy
-#| msgid "All services"
 msgid "Edit video"
 msgstr "Edit video"
 
-#, fuzzy
-#| msgid "All services"
 msgid "New video"
 msgstr "New video"
 
 msgid "Add a YouTube video to the hub."
 msgstr "Add a YouTube video to the hub."
 
-#, fuzzy
-#| msgid "Emergency services"
 msgid "Create video"
 msgstr "Create video"
 
 msgid "Videos featured on the hub."
 msgstr "Videos featured on the hub."
 
-#, fuzzy
-#| msgid "YouTube"
 msgid "YouTube ID"
 msgstr "YouTube ID"
 
-#, fuzzy
-#| msgid "No services yet. Create the first one."
 msgid "No videos yet. Create the first one."
 msgstr "No videos yet. Create the first one."
 
@@ -1943,8 +2134,9 @@ msgstr "Phone"
 msgid "Website"
 msgstr "Website"
 
-#, fuzzy
-#| msgid "All services"
+msgid "Address"
+msgstr "Address"
+
 msgid "All places"
 msgstr "All places"
 
@@ -1954,8 +2146,6 @@ msgstr "Explore more"
 msgid "Browse other dealers, shops, and catalog models."
 msgstr "Browse other dealers, shops, and catalog models."
 
-#, fuzzy
-#| msgid "MyAutoHub-Hub"
 msgid "MyAutoHub"
 msgstr "MyAutoHub"
 
@@ -1968,26 +2158,25 @@ msgstr "Network"
 msgid "Dealers and repair shops linked to brands in the catalog."
 msgstr "Dealers and repair shops linked to brands in the catalog."
 
-#, fuzzy
-#| msgid "Browse marketplace"
 msgid "Browse catalog"
 msgstr "Browse catalog"
+
+msgid ""
+"Open a dealer or shop for contact details and linked brands from the "
+"catalog."
+msgstr ""
+"Open a dealer or shop for contact details and linked brands from the "
+"catalog."
 
 msgid "Authorized & local dealers"
 msgstr "Authorized & local dealers"
 
-#, fuzzy
-#| msgid "No videos published yet."
 msgid "No dealers published yet."
 msgstr "No dealers published yet."
 
-#, fuzzy
-#| msgid "Services on call"
 msgid "Service & repair"
 msgstr "Service & repair"
 
-#, fuzzy
-#| msgid "No videos published yet."
 msgid "No repair shops published yet."
 msgstr "No repair shops published yet."
 
@@ -2015,6 +2204,13 @@ msgid ""
 "Ballpark figures for cars and common services-useful context, not a quote."
 msgstr ""
 "Ballpark figures for cars and common services-useful context, not a quote."
+
+msgid ""
+"These are reference prices for context-not a formal quote. Compare with "
+"marketplace listings too."
+msgstr ""
+"These are reference prices for context-not a formal quote. Compare with "
+"marketplace listings too."
 
 msgid "No pricing references published yet."
 msgstr "No pricing references published yet."
@@ -2059,8 +2255,27 @@ msgstr "Recently added"
 msgid "No videos published yet."
 msgstr "No videos published yet."
 
-#~ msgid "3-letter code such as USD, IRR, AED."
-#~ msgstr "3-letter code such as USD, IRR, AED."
+#~ msgid ""
+#~ "Filter by country flag, brand, model, or year. Open a car for specs, then "
+#~ "jump to marketplace deals for that model."
+#~ msgstr ""
+#~ "Filter by country flag, brand, model, or year. Open a car for specs, then "
+#~ "jump to marketplace deals for that model."
 
-#~ msgid "Start with a clear title and what buyers need to know."
-#~ msgstr "Start with a clear title and what buyers need to know."
+#~ msgid "Saudi Arabia"
+#~ msgstr "Saudi Arabia"
+
+#~ msgid "Open emergency work at a glance."
+#~ msgstr "Open emergency work at a glance."
+
+#~ msgid "Label"
+#~ msgstr "Label"
+
+#~ msgid "Coordinates"
+#~ msgstr "Coordinates"
+
+#~ msgid "No saved locations yet."
+#~ msgstr "No saved locations yet."
+
+#~ msgid "Open live map for roadside help"
+#~ msgstr "Open live map for roadside help"

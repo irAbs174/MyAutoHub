@@ -1,0 +1,24 @@
+{% load i18n %}
+{# Simple dismissible learn tip. tip_id is required for localStorage. #}
+{% if tip_id and tip_body %}
+<aside
+  class="learn-tip"
+  data-learn-tip
+  data-tip-id="{{ tip_id }}"
+  role="note"
+  hidden
+>
+  <div class="learn-tip-body">
+    {% if tip_title %}<strong class="learn-tip-title">{{ tip_title }}</strong>{% endif %}
+    <p class="learn-tip-text">{{ tip_body }}</p>
+  </div>
+  <button
+    type="button"
+    class="learn-tip-dismiss"
+    data-learn-tip-dismiss
+    aria-label="{% trans 'Dismiss tip' %}"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</aside>
+{% endif %}

@@ -1,14 +1,24 @@
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, render
 
-from .forms import FUEL_ALIASES, SORT_ORDERING, CarCatalogFilterForm
-from .models import Brand, Car, Dealer, RepairShop
+from .forms import (
+    COUNTRY_FILTERS,
+    DRIVETRAIN_ALIASES,
+    FUEL_ALIASES,
+    SORT_ORDERING,
+    TRANSMISSION_ALIASES,
+    CarCatalogFilterForm,
+    alias_filter_q,
+    country_filter_q,
+    country_flag_for,
+)
+from .models import Brand, Car, CarModel, Dealer, RepairShop
 
 
 def list_cars(request):
     cars = (
         Car.objects.filter(is_published=True)
-        .select_related("model__brand", "trim")
+        .select_related("model__brand", "trim", "technical_spec", "dimensions")
         .prefetch_related("photos")
     )
 
@@ -27,16 +37,30 @@ def list_cars(request):
 
     filters_active = False
     sort_key = "yearDesc"
+    selected_country = ""
 
     if form.is_bound and form.is_valid():
         data = form.cleaned_data
         q = (data.get("q") or "").strip()
         brand = data.get("brand")
         model = data.get("model")
+        trim = data.get("trim")
+        manufacturer = (data.get("manufacturer") or "").strip()
         fuel = data.get("fuel") or ""
+        transmission = data.get("transmission") or ""
+        drivetrain = data.get("drivetrain") or ""
+        seats = data.get("seats") or ""
         year_min = data.get("year_min")
         year_max = data.get("year_max")
+        hp_min = data.get("hp_min")
+        hp_max = data.get("hp_max")
         sort_key = data.get("sort") or "yearDesc"
+        selected_country = data.get("country") or ""
+
+        country_q = country_filter_q(selected_country)
+        if country_q is not None:
+            cars = cars.filter(country_q)
+            filters_active = True
 
         if q:
             cars = cars.filter(
@@ -44,6 +68,10 @@ def list_cars(request):
                 | Q(trim__name__icontains=q)
                 | Q(model__brand__name__icontains=q)
                 | Q(fuel_type__icontains=q)
+                | Q(model__brand__country__icontains=q)
+                | Q(model__brand__manufacturer__icontains=q)
+                | Q(technical_spec__transmission__icontains=q)
+                | Q(technical_spec__drivetrain__icontains=q)
             )
             filters_active = True
 
@@ -55,11 +83,40 @@ def list_cars(request):
             cars = cars.filter(model=model)
             filters_active = True
 
+        if trim and (not model or trim.car_model_id == model.id):
+            cars = cars.filter(trim=trim)
+            filters_active = True
+
+        if manufacturer:
+            cars = cars.filter(model__brand__manufacturer=manufacturer)
+            filters_active = True
+
         if fuel in FUEL_ALIASES:
             fuel_q = Q()
             for alias in FUEL_ALIASES[fuel]:
                 fuel_q |= Q(fuel_type__iexact=alias)
             cars = cars.filter(fuel_q)
+            filters_active = True
+
+        transmission_q = alias_filter_q(
+            "technical_spec__transmission", transmission, TRANSMISSION_ALIASES
+        )
+        if transmission_q is not None:
+            cars = cars.filter(transmission_q)
+            filters_active = True
+
+        drivetrain_q = alias_filter_q(
+            "technical_spec__drivetrain", drivetrain, DRIVETRAIN_ALIASES
+        )
+        if drivetrain_q is not None:
+            cars = cars.filter(drivetrain_q)
+            filters_active = True
+
+        if seats == "7":
+            cars = cars.filter(dimensions__seats__gte=7)
+            filters_active = True
+        elif seats.isdigit():
+            cars = cars.filter(dimensions__seats=int(seats))
             filters_active = True
 
         if year_min is not None:
@@ -68,6 +125,14 @@ def list_cars(request):
 
         if year_max is not None:
             cars = cars.filter(year__lte=year_max)
+            filters_active = True
+
+        if hp_min is not None:
+            cars = cars.filter(horsepower__gte=hp_min)
+            filters_active = True
+
+        if hp_max is not None:
+            cars = cars.filter(horsepower__lte=hp_max)
             filters_active = True
     elif brand_raw:
         if brand_raw.isdigit():
@@ -78,14 +143,96 @@ def list_cars(request):
 
     cars = cars.order_by(*SORT_ORDERING.get(sort_key, SORT_ORDERING["yearDesc"]))
 
+    # Attach display flags for cards (avoid template logic).
+    car_list = list(cars)
+    for car in car_list:
+        car.country_flag = country_flag_for(car.model.brand.country)
+
     return render(
         request,
         "cars/list.html",
         {
-            "cars": cars,
+            "cars": car_list,
             "form": form,
             "filters_active": filters_active,
-            "result_count": cars.count(),
+            "result_count": len(car_list),
+            "country_filters": COUNTRY_FILTERS,
+            "selected_country": selected_country
+            or (form["country"].value() if form.is_bound else ""),
+        },
+    )
+
+
+def brand_list(request):
+    brands = Brand.objects.annotate(
+        model_count=Count("models", distinct=True),
+        car_count=Count(
+            "models__cars",
+            filter=Q(models__cars__is_published=True),
+            distinct=True,
+        ),
+    ).order_by("name")
+    brand_list_items = list(brands)
+    for brand in brand_list_items:
+        brand.country_flag = country_flag_for(brand.country)
+
+    # Group by country filter order (Iran first), then unknown.
+    country_order = {item["key"]: i for i, item in enumerate(COUNTRY_FILTERS)}
+    groups: dict[str, dict] = {}
+    for brand in brand_list_items:
+        flag = brand.country_flag
+        key = next(
+            (item["key"] for item in COUNTRY_FILTERS if item["flag"] == flag),
+            "other",
+        )
+        if key not in groups:
+            meta = next((item for item in COUNTRY_FILTERS if item["key"] == key), None)
+            groups[key] = {
+                "key": key,
+                "label": meta["label"] if meta else brand.country or "",
+                "flag": flag,
+                "brands": [],
+                "sort": country_order.get(key, 999),
+            }
+        groups[key]["brands"].append(brand)
+
+    brand_groups = sorted(groups.values(), key=lambda g: (g["sort"], str(g["label"])))
+
+    return render(
+        request,
+        "cars/brands.html",
+        {
+            "brands": brand_list_items,
+            "brand_groups": brand_groups,
+            "brand_count": len(brand_list_items),
+        },
+    )
+
+
+def brand_detail(request, pk):
+    brand = get_object_or_404(Brand, pk=pk)
+    models = (
+        CarModel.objects.filter(brand=brand)
+        .annotate(
+            car_count=Count("cars", filter=Q(cars__is_published=True), distinct=True)
+        )
+        .prefetch_related("trims")
+        .order_by("name")
+    )
+    cars = (
+        Car.objects.filter(is_published=True, model__brand=brand)
+        .select_related("model", "trim")
+        .prefetch_related("photos")
+        .order_by("-year", "model__name")[:24]
+    )
+    return render(
+        request,
+        "cars/brand_detail.html",
+        {
+            "brand": brand,
+            "country_flag": country_flag_for(brand.country),
+            "models": models,
+            "cars": cars,
         },
     )
 

@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 class Brand(models.Model):
     name = models.CharField(max_length=80, unique=True)
     country = models.CharField(max_length=80, blank=True)
+    manufacturer = models.CharField(max_length=80, blank=True)
 
     class Meta:
         ordering = ["name"]
