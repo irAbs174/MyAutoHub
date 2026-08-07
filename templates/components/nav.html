@@ -60,39 +60,20 @@
           </svg>
         </button>
 
-        <details class="lang-switcher lang-switcher--codes">
+        <details class="lang-switcher lang-switcher--flags">
           <summary aria-label="{% trans 'Language' %}">
             {% get_current_language as LANGUAGE_CODE %}
             <span class="lang-current" aria-hidden="true">
               {% if LANGUAGE_CODE == "fa" %}
                 <span class="lang-flag">🇮🇷</span>
-                <span class="lang-code-text">FA</span>
               {% elif LANGUAGE_CODE == "ar" %}
                 <span class="lang-flag">🇸🇦</span>
-                <span class="lang-code-text">AR</span>
               {% else %}
                 <span class="lang-flag">🇺🇸</span>
-                <span class="lang-code-text">EN</span>
               {% endif %}
             </span>
-            <span class="lang-codes lang-codes--desktop" aria-hidden="true">
-              <span class="lang-code{% if LANGUAGE_CODE == 'fa' %} is-current{% endif %}">
-                <span class="lang-flag">🇮🇷</span>
-                <span class="lang-code-text">FA</span>
-              </span>
-              <span class="lang-code-sep">/</span>
-              <span class="lang-code{% if LANGUAGE_CODE == 'en' %} is-current{% endif %}">
-                <span class="lang-flag">🇺🇸</span>
-                <span class="lang-code-text">EN</span>
-              </span>
-              <span class="lang-code-sep">/</span>
-              <span class="lang-code{% if LANGUAGE_CODE == 'ar' %} is-current{% endif %}">
-                <span class="lang-flag">🇸🇦</span>
-                <span class="lang-code-text">AR</span>
-              </span>
-            </span>
           </summary>
-          <form class="lang-menu lang-menu--codes" action="{% url 'set_language' %}" method="post">
+          <form class="lang-menu lang-menu--flags" action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
             {% get_available_languages as LANGUAGES %}
@@ -103,6 +84,8 @@
                 value="{{ code }}"
                 class="{% if code == LANGUAGE_CODE %}is-active{% endif %}"
                 lang="{{ code }}"
+                title="{{ name }}"
+                aria-label="{{ name }}"
                 {% if code == LANGUAGE_CODE %}aria-current="true"{% endif %}
               >
                 {% if code == "fa" %}
@@ -112,7 +95,6 @@
                 {% else %}
                   <span class="lang-flag" aria-hidden="true">🇺🇸</span>
                 {% endif %}
-                <span>{{ code|upper }}</span>
               </button>
             {% endfor %}
           </form>

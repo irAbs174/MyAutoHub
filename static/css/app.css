@@ -379,13 +379,9 @@ p {
 }
 
 .lang-current {
-  display: none;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.lang-codes--desktop {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* —— Shared header icon controls —— */
@@ -665,10 +661,6 @@ p {
     display: none;
   }
 
-  .lang-code-text {
-    display: none;
-  }
-
   .nav-search:focus-within input[type="search"],
   .nav-search.is-open input[type="search"] {
     width: min(14rem, 40vw);
@@ -755,52 +747,14 @@ html:not(.dark) .theme-toggle:hover {
   background: var(--accent-soft);
 }
 
-.lang-switcher--codes summary {
-  border-radius: 10px;
-  padding: 0.4rem 0.65rem;
+.lang-switcher--flags summary {
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border-radius: 12px;
+  justify-content: center;
   letter-spacing: 0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: none;
   background: transparent;
-}
-
-.lang-codes {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  color: var(--muted);
-}
-
-.lang-code {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  color: var(--muted);
-}
-
-.lang-code.is-current {
-  color: var(--fg);
-}
-
-.lang-code.is-current .lang-flag {
-  filter: none;
-  opacity: 1;
-}
-
-.lang-code:not(.is-current) .lang-flag {
-  opacity: 0.72;
-}
-
-.lang-code-text {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.lang-code-sep {
-  color: color-mix(in oklab, var(--muted) 70%, transparent);
-  font-weight: 500;
 }
 
 .lang-menu {
@@ -821,12 +775,13 @@ html:not(.dark) .theme-toggle:hover {
   animation: pop-in 0.22s var(--ease-out);
 }
 
-.lang-menu--codes {
-  min-width: 8.5rem;
+.lang-menu--flags {
+  min-width: 0;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.25rem;
+  flex-wrap: nowrap;
+  gap: 0.2rem;
+  padding: 0.3rem;
 }
 
 .lang-menu button {
@@ -846,15 +801,13 @@ html:not(.dark) .theme-toggle:hover {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.lang-menu--codes button {
-  width: auto;
-  flex: 1 1 auto;
+.lang-menu--flags button {
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: 0 0 auto;
   justify-content: center;
-  padding: 0.45rem 0.55rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  padding: 0;
+  border-radius: 10px;
 }
 
 .lang-flag {
@@ -2136,25 +2089,6 @@ table.data th {
 
   .nav-search-results {
     width: min(16rem, calc(100vw - 5.5rem));
-  }
-
-  .lang-codes--desktop {
-    display: none;
-  }
-
-  .lang-current {
-    display: inline-flex;
-  }
-
-  .lang-switcher--codes summary {
-    padding: 0.35rem 0.5rem;
-    min-height: 2.4rem;
-    border-radius: 12px;
-  }
-
-  .lang-menu--codes {
-    inset-inline-end: 0;
-    min-width: 9.5rem;
   }
 
   @keyframes nav-drawer-in {
@@ -5018,8 +4952,9 @@ html.panel-root .panel-lang {
 }
 
 html.panel-root .panel-lang .lang-switcher summary {
-  font-size: 0.8rem;
-  padding: 0.35rem 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
 }
 
 @media (max-width: 760px) {
