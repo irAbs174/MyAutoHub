@@ -59,7 +59,8 @@ jobs:
 
       - name: Pack release
         run: |
-          tar -czf myautohub-release.tar.gz \
+          ARCHIVE="${RUNNER_TEMP}/myautohub-release.tar.gz"
+          tar -czf "$ARCHIVE" \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='.deploy' \
@@ -72,8 +73,9 @@ jobs:
             --exclude='.venv' \
             --exclude='__pycache__' \
             --exclude='*.pyc' \
-            --exclude='myautohub-release.tar.gz' \
             .
+          cp "$ARCHIVE" "${GITHUB_WORKSPACE}/myautohub-release.tar.gz"
+          ls -lh myautohub-release.tar.gz
 
       - name: Upload release
         uses: appleboy/scp-action@v0.1.7

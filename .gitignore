@@ -17,6 +17,7 @@ htmlcov/
 .idea/
 .vscode/
 *.pem
+myautohub-release.tar.gz
 .deploy/
 deploy_key
 deploy_key.pub
