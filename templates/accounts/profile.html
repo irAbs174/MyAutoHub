@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load humanize i18n static %}
+
+{% block title %}{% trans "Profile-MyAutoHub" %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'vendor/leaflet/leaflet.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{{ user.get_username }}</h1>
+  <p>{% trans "Saved places you can reuse when requesting emergency help." %}</p>
+</section>
+
+<div class="toolbar">
+  <a class="btn" href="{% url 'marketplace:mine' %}">{% trans "My car listings" %}</a>
+  <a class="btn btn-ghost" href="{% url 'marketplace:create' %}">{% trans "Sell a car" %}</a>
+</div>
+
+<div class="panel">
+  <h2>{% trans "Saved locations" %}</h2>
+  {% if locations %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Label" %}</th>
+            <th>{% trans "Address" %}</th>
+            <th>{% trans "Coordinates" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for loc in locations %}
+            <tr>
+              <td>{{ loc.label }}{% if loc.is_default %} <span class="badge">{% trans "Default" %}</span>{% endif %}</td>
+              <td>{{ loc.address|default:"—" }}</td>
+              <td>{{ loc.latitude }}, {{ loc.longitude }}</td>
+              <td>
+                <form method="post" action="{% url 'accounts:delete_location' loc.pk %}">
+                  {% csrf_token %}
+                  <button class="btn btn-ghost btn-sm" type="submit">{% trans "Remove" %}</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No saved locations yet." %}</p>
+  {% endif %}
+</div>
+
+<div class="panel">
+  <h2>{% trans "Add a location" %}</h2>
+  <form method="post" class="form-grid" data-save-location-form>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+
+    <div class="form-row">
+      <label for="{{ form.label.id_for_label }}">{{ form.label.label }}</label>
+      {{ form.label }}
+      {% for error in form.label.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="form-row">
+      <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+      {{ form.address }}
+      {% for error in form.address.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="form-row">
+      <label>{% trans "Location" %}</label>
+      <div class="map-picker-block">
+        <div class="map-toolbar">
+          <button type="button" class="btn btn-ghost btn-sm" data-map-locate>
+            {% trans "Use my location" %}
+          </button>
+          <p class="help map-hint" data-map-hint>
+            {% trans "Tap the map to drop a pin." %}
+          </p>
+        </div>
+        {% trans "Loading map" as map_loading_label %}
+        <div class="map-stage">
+          <div
+            id="saved-location-map"
+            class="emergency-map is-loading"
+            data-location-map
+            data-default-lat="35.6892"
+            data-default-lng="51.3890"
+            data-lat-input="#{{ form.latitude.id_for_label }}"
+            data-lng-input="#{{ form.longitude.id_for_label }}"
+            data-leaflet-icon-base="{% static 'vendor/leaflet/images/' %}"
+            role="application"
+            aria-label="{% trans 'Map-tap to set your location' %}"
+            aria-busy="true"
+          ></div>
+          <div class="emergency-map-loader" data-map-loader>
+            {% include "components/spinner.html" with label=map_loading_label %}
+          </div>
+        </div>
+        {{ form.latitude }}
+        {{ form.longitude }}
+        {% for error in form.latitude.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        {% for error in form.longitude.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    </div>
+
+    <div class="form-row form-row--check">
+      <label for="{{ form.is_default.id_for_label }}">
+        {{ form.is_default }}
+        <span>{{ form.is_default.label }}</span>
+      </label>
+      {% for error in form.is_default.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <button class="btn" type="submit">{% trans "Save location" %}</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'js/emergency-map.js' %}"></script>
+<script>
+(function () {
+  var form = document.querySelector("[data-save-location-form]");
+  if (!form) return;
+  form.addEventListener("submit", function (event) {
+    var lat = form.querySelector("#id_latitude");
+    var lng = form.querySelector("#id_longitude");
+    var latVal = lat ? String(lat.value || "").trim() : "";
+    var lngVal = lng ? String(lng.value || "").trim() : "";
+    var hasPin = latVal !== "" && lngVal !== "";
+    if (!hasPin) {
+      event.preventDefault();
+      var hint = document.querySelector("[data-map-hint]");
+      if (hint) hint.textContent = "Tap the map to drop a pin before saving.";
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.classList.remove("is-loading");
+        btn.removeAttribute("aria-busy");
+        var spinner = btn.querySelector(".spinner-dots");
+        if (spinner) spinner.remove();
+      }
+    }
+  });
+})();
+</script>
+{% endblock %}

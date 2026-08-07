@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{{ story.title }}-{% trans "Stories" %}{% endblock %}
+{% block og_title %}{{ story.title }}-{% trans "Stories" %}{% endblock %}
+{% block twitter_title %}{{ story.title }}-{% trans "Stories" %}{% endblock %}
+{% block meta_description %}{% firstof story.excerpt story.body|striptags|truncatechars:160 %}{% endblock %}
+{% block og_description %}{% firstof story.excerpt story.body|striptags|truncatechars:160 %}{% endblock %}
+{% block twitter_description %}{% firstof story.excerpt story.body|striptags|truncatechars:160 %}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{% if story.cover_image %}{{ seo_site_url }}{{ story.cover_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block twitter_image %}{% if story.cover_image %}{{ seo_site_url }}{{ story.cover_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ story.title|escapejs }}",
+  "description": "{% firstof story.excerpt story.body|striptags|truncatechars:200|escapejs %}",
+  "url": "{{ seo_canonical }}",
+  {% if story.cover_image %}"image": "{{ seo_site_url }}{{ story.cover_image.url }}",{% endif %}
+  {% if story.published_at %}"datePublished": "{{ story.published_at|date:'c' }}",{% endif %}
+  "dateModified": "{{ story.updated_at|date:'c' }}"
+  {% if story.author %},"author": {"@type": "Person", "name": "{{ story.author.username|escapejs }}"}{% endif %}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{{ story.title }}</h1>
+  <p>
+    {% if story.author %}{% blocktrans with name=story.author.username %}By {{ name }} · {% endblocktrans %}{% endif %}
+    {% if story.published_at %}{{ story.published_at|naturaltime }}{% endif %}
+  </p>
+</section>
+{% if story.cover_image %}
+  <figure class="story-cover reveal">
+    <img src="{{ story.cover_image.url }}" alt="{{ story.title }}">
+  </figure>
+{% endif %}
+<div class="panel reveal">
+  <div class="story-body">{{ story.body }}</div>
+  <div class="actions">
+    <a class="btn btn-ghost" href="{% url 'stories:list' %}">{% trans "Back to stories" %}</a>
+  </div>
+</div>
+{% endblock %}

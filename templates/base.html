@@ -1,0 +1,93 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" style="color-scheme: dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}MyAutoHub{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ seo_default_description }}{% endblock %}">
+  <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+  <link rel="canonical" href="{% block canonical %}{{ seo_canonical }}{% endblock %}">
+  {% for alt in seo_hreflang %}
+  <link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.url }}">
+  {% endfor %}
+  <meta property="og:site_name" content="MyAutoHub">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:locale" content="{{ seo_og_locale }}">
+  <meta property="og:title" content="{% block og_title %}MyAutoHub{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ seo_default_description }}{% endblock %}">
+  <meta property="og:url" content="{% block og_url %}{{ seo_canonical }}{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{{ seo_default_image }}{% endblock %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}MyAutoHub{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}{{ seo_default_description }}{% endblock %}">
+  <meta name="twitter:image" content="{% block twitter_image %}{{ seo_default_image }}{% endblock %}">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("myautohub-theme");
+        var dark = true;
+        if (t === "light") dark = false;
+        else if (t === "dark") dark = true;
+        else if (t === "system")
+          dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        else {
+          t = "dark";
+          localStorage.setItem("myautohub-theme", "dark");
+        }
+        document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      } catch (e) {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="icon" href="{% static 'img/logo-mark.png' %}" type="image/png" sizes="any" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="{% static 'img/logo-mark-dark.png' %}" type="image/png" sizes="any" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="{% static 'img/logo-mark.png' %}">
+  {% block structured_data %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MyAutoHub",
+    "url": "{{ seo_site_url|default:seo_canonical }}",
+    "description": "{{ seo_default_description|escapejs }}",
+    "inLanguage": "{{ LANGUAGE_CODE }}"
+  }
+  </script>
+  {% endblock %}
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  {% include "components/nav.html" %}
+  {% include "components/messages.html" %}
+  <main class="page">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <p>{% trans "MyAutoHub-cars, help, and community on the road." %}</p>
+    <p class="site-footer-meta">
+      <span>
+        {% trans "تمامی حقوق برای" %}
+        <a class="site-footer-brand" href="{{ landing_url }}" target="_blank" rel="noopener noreferrer">AutoMyHub</a>
+        {% trans "محفوظ است" %}
+      </span>
+      <span class="site-footer-sep" aria-hidden="true">·</span>
+      <a
+        class="site-footer-dev"
+        href="https://t.me/unique174"
+        target="_blank"
+        rel="noopener noreferrer"
+      >{% trans "Developer" %}</a>
+    </p>
+  </footer>
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

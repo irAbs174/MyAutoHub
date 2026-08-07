@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "YouTube-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "YouTube-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "YouTube-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Watch the latest MyAutoHub YouTube videos." %}{% endblock %}
+{% block og_description %}{% trans "Watch the latest MyAutoHub YouTube videos." %}{% endblock %}
+{% block twitter_description %}{% trans "Watch the latest MyAutoHub YouTube videos." %}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "YouTube contents" %}</h1>
+  <p>{% trans "Guides, reviews, and hub stories-watch without leaving the app." %}</p>
+</section>
+<div class="media-grid media-grid-4">
+  {% for video in videos %}
+    <a class="media-card reveal" href="{% url 'youtube:detail' video.pk %}">
+      <div class="media-thumb media-thumb-video">
+        <img src="{{ video.thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
+        <span class="play-dot" aria-hidden="true"></span>
+      </div>
+      <div class="media-body">
+        <h3>{{ video.title }}</h3>
+        <p>{% if video.published_at %}{{ video.published_at|naturalday }}{% else %}{% trans "Recently added" %}{% endif %}</p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty">{% trans "No videos published yet." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

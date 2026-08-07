@@ -1,0 +1,48 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Brands & models" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Brands & models" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Organize the car catalog taxonomy." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:brand_create' %}">{% trans "New brand" %}</a>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:car_model_create' %}">{% trans "New model" %}</a>
+  <span class="spacer"></span>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:car_list' %}">{% trans "Back to cars" %}</a>
+</div>
+
+<div class="panel">
+  {% if brands %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Brand" %}</th>
+            <th>{% trans "Country" %}</th>
+            <th>{% trans "Models" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for brand in brands %}
+            <tr>
+              <td>{{ brand.name }}</td>
+              <td>{{ brand.country|default:"—" }}</td>
+              <td>{{ brand.model_count }}</td>
+              <td>
+                <a class="link-action" href="{% url 'panel:brand_edit' brand.pk %}">{% trans "Edit" %}</a>
+                ·
+                <a class="link-action" href="{% url 'panel:car_model_create' %}?brand={{ brand.pk }}">{% trans "Add model" %}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No brands yet. Create the first one." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

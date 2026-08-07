@@ -1,0 +1,112 @@
+{% load i18n %}
+<header class="site-header">
+  <div class="nav-inner">
+    {% include "components/logo.html" %}
+    <nav class="nav-links" aria-label="{% trans 'Primary' %}">
+      {% for item in nav_items %}
+        <a href="{% url item.url_name %}">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+    <div class="nav-end">
+      <form
+        class="nav-search"
+        action="{% url 'core:search' %}"
+        method="get"
+        role="search"
+        data-nav-search
+        data-suggest-url="/api/public/search/"
+        data-no-results="{% trans 'No matches found' %}"
+      >
+        <label class="sr-only" for="nav-search-q">{% trans "Search" %}</label>
+        <input
+          id="nav-search-q"
+          type="search"
+          name="q"
+          value="{{ request.GET.q|default:'' }}"
+          placeholder="{% trans 'Search the hub…' %}"
+          autocomplete="off"
+          aria-autocomplete="list"
+          aria-controls="nav-search-results"
+          aria-expanded="false"
+          data-nav-search-input
+        >
+        <button type="submit" aria-label="{% trans 'Search' %}" data-nav-search-btn>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M20 20l-3.5-3.5"/>
+          </svg>
+        </button>
+        <div
+          id="nav-search-results"
+          class="nav-search-results"
+          role="listbox"
+          hidden
+          data-nav-search-results
+        ></div>
+      </form>
+      <div class="nav-tools">
+        <button
+          type="button"
+          class="theme-toggle"
+          data-theme-toggle
+          data-label-light="{% trans 'Light theme' %}"
+          data-label-dark="{% trans 'Dark theme' %}"
+          aria-label="{% trans 'Toggle theme' %}"
+          aria-pressed="false"
+        >
+          <span class="theme-toggle-knob" data-theme-knob aria-hidden="true"></span>
+          <span class="theme-toggle-icons" aria-hidden="true">
+            <svg data-icon-moon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3a7 7 0 0 0 11.5 11.5z"/>
+            </svg>
+            <svg data-icon-sun viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </span>
+        </button>
+        <details class="lang-switcher">
+          <summary aria-label="{% trans 'Language' %}">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_language_info for LANGUAGE_CODE as lang %}
+            <span class="lang-flag" aria-hidden="true">{% if LANGUAGE_CODE == "fa" %}🇮🇷{% elif LANGUAGE_CODE == "ar" %}🇸🇦{% else %}🇺🇸{% endif %}</span>
+            <span class="lang-label">{{ lang.name_local }}</span>
+          </summary>
+          <form class="lang-menu" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+              <button
+                type="submit"
+                name="language"
+                value="{{ language.code }}"
+                class="{% if language.code == LANGUAGE_CODE %}is-active{% endif %}"
+                lang="{{ language.code }}"
+              >
+                <span class="lang-flag" aria-hidden="true">{% if language.code == "fa" %}🇮🇷{% elif language.code == "ar" %}🇸🇦{% else %}🇺🇸{% endif %}</span>
+                <span>{{ language.name_local }}</span>
+              </button>
+            {% endfor %}
+          </form>
+        </details>
+        <div class="nav-auth">
+          {% if user.is_authenticated %}
+            {% if user.is_staff %}
+              <a class="btn btn-ghost btn-sm" href="{% url 'panel:overview' %}">{% trans "Panel" %}</a>
+            {% endif %}
+            <a class="btn btn-ghost btn-sm" href="{% url 'accounts:profile' %}">{{ user.get_username }}</a>
+            <form method="post" action="{% url 'accounts:logout' %}" style="display:inline">
+              {% csrf_token %}
+              <button class="btn btn-ghost btn-sm" type="submit">{% trans "Log out" %}</button>
+            </form>
+          {% else %}
+            <a class="btn btn-ghost btn-sm" href="{% url 'accounts:login' %}">{% trans "Log in" %}</a>
+            <a class="btn btn-sm" href="{% url 'accounts:register' %}">{% trans "Join" %}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

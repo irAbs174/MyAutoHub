@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "New emergency request-MyAutoHub" %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'vendor/leaflet/leaflet.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{% trans "Request emergency help" %}</h1>
+  <p>{% trans "Pick a service and pin your location on the map-or use a saved place." %}</p>
+</section>
+
+<div class="panel panel-emergency-submit">
+  <form method="post" class="form-grid" data-emergency-submit>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+
+    <div class="form-row">
+      <label for="{{ form.service.id_for_label }}">{% trans "Service" %}</label>
+      {{ form.service }}
+      {% for error in form.service.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="form-row">
+      <label>{% trans "Location" %}</label>
+      <div class="location-mode-list" role="radiogroup" aria-label="{% trans 'Location' %}">
+        {% for radio in form.location_mode %}
+          <label class="location-mode-option">
+            {{ radio.tag }}
+            <span>{{ radio.choice_label }}</span>
+          </label>
+        {% endfor %}
+      </div>
+      {% for error in form.location_mode.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div data-map-fields class="map-picker-block">
+      <div class="map-toolbar">
+        <button type="button" class="btn btn-ghost btn-sm" data-map-locate>
+          {% trans "Use my location" %}
+        </button>
+        <p class="help map-hint" data-map-hint>
+          {% trans "Tap the map to drop a pin." %}
+        </p>
+      </div>
+      {% trans "Loading map" as map_loading_label %}
+      <div class="map-stage">
+        <div
+          id="emergency-map"
+          class="emergency-map is-loading"
+          data-emergency-map
+          data-default-lat="35.6892"
+          data-default-lng="51.3890"
+          data-lat-input="#{{ form.latitude.id_for_label }}"
+          data-lng-input="#{{ form.longitude.id_for_label }}"
+          data-leaflet-icon-base="{% static 'vendor/leaflet/images/' %}"
+          role="application"
+          aria-label="{% trans 'Map-tap to set your location' %}"
+          aria-busy="true"
+        ></div>
+        <div class="emergency-map-loader" data-map-loader>
+          {% include "components/spinner.html" with label=map_loading_label %}
+        </div>
+      </div>
+      <div class="map-coords-row">
+        <div class="form-row">
+          <label for="{{ form.latitude.id_for_label }}">{% trans "Latitude" %}</label>
+          {{ form.latitude }}
+          {% for error in form.latitude.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="form-row">
+          <label for="{{ form.longitude.id_for_label }}">{% trans "Longitude" %}</label>
+          {{ form.longitude }}
+          {% for error in form.longitude.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div data-saved-fields class="form-row" hidden>
+      <label for="{{ form.saved_location.id_for_label }}">{% trans "Saved location" %}</label>
+      {{ form.saved_location }}
+      {% for error in form.saved_location.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      <p class="help"><a href="{% url 'accounts:profile' %}">{% trans "Manage saved locations" %}</a></p>
+    </div>
+
+    <div class="form-row">
+      <label for="{{ form.description.id_for_label }}">{% trans "What happened?" %}</label>
+      {{ form.description }}
+      {% for error in form.description.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <button class="btn" type="submit">{% trans "Submit request" %}</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'vendor/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'js/emergency-map.js' %}"></script>
+{% endblock %}

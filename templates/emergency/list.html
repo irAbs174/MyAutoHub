@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Emergency-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Emergency-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Emergency-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Request roadside emergency help through MyAutoHub." %}{% endblock %}
+{% block og_description %}{% trans "Request roadside emergency help through MyAutoHub." %}{% endblock %}
+{% block twitter_description %}{% trans "Request roadside emergency help through MyAutoHub." %}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "Emergency services" %}</h1>
+  <p>{% trans "Request roadside help, track progress, and buzz operators when you need attention fast." %}</p>
+</section>
+
+<div class="toolbar reveal reveal-delay-1">
+  {% if user.is_authenticated %}
+    <a class="btn" href="{% url 'emergency:submit' %}">{% trans "New request" %}</a>
+  {% else %}
+    <a class="btn" href="{% url 'accounts:login' %}?next={% url 'emergency:submit' %}">{% trans "Log in to request help" %}</a>
+  {% endif %}
+  <span class="spacer"></span>
+  {% if is_operator %}<span class="badge">{% trans "Operator view" %}</span>{% endif %}
+</div>
+
+<div class="panel filter-panel reveal reveal-delay-2">
+  <form method="get" class="filter-bar">
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-ghost" type="submit">{% trans "Search" %}</button>
+  </form>
+</div>
+
+<div class="panel reveal reveal-delay-3">
+  {% if requests %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "ID" %}</th>
+            <th>{% trans "Service" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "When" %}</th>
+            <th>{% trans "Buzz" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in requests %}
+            <tr>
+              <td>#{{ item.id }}</td>
+              <td>{{ item.service.name }}</td>
+              <td><span class="badge badge-{{ item.status }}">{{ item.get_status_display }}</span></td>
+              <td>{{ item.created_at|naturaltime }}</td>
+              <td>{% if item.buzz_count %}<span class="badge">{% blocktrans count counter=item.buzz_count %}{{ counter }} new{% plural %}{{ counter }} new{% endblocktrans %}</span>{% else %}{% trans "—" %}{% endif %}</td>
+              <td><a class="link-action" href="{% url 'emergency:detail' item.pk %}">{% trans "Open" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No emergency requests to show." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

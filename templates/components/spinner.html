@@ -1,0 +1,11 @@
+{% comment %}Three-dot pulse loader. size: sm|md|lg. on_accent: true for buttons.{% endcomment %}
+<span
+  class="spinner-dots{% if size == 'sm' %} spinner-dots--sm{% elif size == 'lg' %} spinner-dots--lg{% endif %}{% if on_accent %} spinner-dots--on-accent{% endif %}"
+  role="status"
+  aria-live="polite"
+  aria-label="{{ label|default:'Loading' }}"
+>
+  <span class="spinner-dots__dot" aria-hidden="true"></span>
+  <span class="spinner-dots__dot" aria-hidden="true"></span>
+  <span class="spinner-dots__dot" aria-hidden="true"></span>
+</span>

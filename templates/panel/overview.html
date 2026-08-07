@@ -1,0 +1,78 @@
+{% extends "panel/base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Overview" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Overview" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Open emergency work at a glance." %}</p>{% endblock %}
+
+{% block content %}
+<section class="panel-stats">
+  <a class="panel-stat" href="{% url 'panel:emergency_request_list' %}?status=wait_for_accept">
+    <span class="panel-stat-value">{{ stats.waiting }}</span>
+    <span class="panel-stat-label">{% trans "Waiting" %}</span>
+  </a>
+  <a class="panel-stat" href="{% url 'panel:emergency_request_list' %}?status=processing_request">
+    <span class="panel-stat-value">{{ stats.processing }}</span>
+    <span class="panel-stat-label">{% trans "Processing" %}</span>
+  </a>
+  <div class="panel-stat">
+    <span class="panel-stat-value">{{ stats.unread_buzzes }}</span>
+    <span class="panel-stat-label">{% trans "With unread buzz" %}</span>
+  </div>
+  <a class="panel-stat" href="{% url 'panel:emergency_service_list' %}">
+    <span class="panel-stat-value">{{ stats.active_services }}</span>
+    <span class="panel-stat-label">{% trans "Active services" %}</span>
+  </a>
+  <a class="panel-stat" href="{% url 'panel:car_list' %}?published=1">
+    <span class="panel-stat-value">{{ stats.published_cars }}</span>
+    <span class="panel-stat-label">{% trans "Published cars" %}</span>
+  </a>
+  <a class="panel-stat" href="{% url 'panel:youtube_list' %}?published=1">
+    <span class="panel-stat-value">{{ stats.published_videos }}</span>
+    <span class="panel-stat-label">{% trans "Published videos" %}</span>
+  </a>
+  <a class="panel-stat" href="{% url 'panel:story_list' %}?published=1">
+    <span class="panel-stat-value">{{ stats.published_stories }}</span>
+    <span class="panel-stat-label">{% trans "Published stories" %}</span>
+  </a>
+</section>
+
+<div class="panel">
+  <div class="section-head">
+    <h2>{% trans "Recent requests" %}</h2>
+    <div class="section-head-actions">
+      <a class="btn btn-ghost btn-sm" href="{% url 'panel:emergency_request_list' %}">{% trans "Full queue" %}</a>
+    </div>
+  </div>
+  {% if recent_requests %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "ID" %}</th>
+            <th>{% trans "Service" %}</th>
+            <th>{% trans "Requester" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "When" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in recent_requests %}
+            <tr>
+              <td>#{{ item.id }}</td>
+              <td>{{ item.service.name }}</td>
+              <td>{{ item.requester.username }}</td>
+              <td><span class="badge badge-{{ item.status }}">{{ item.get_status_display }}</span></td>
+              <td>{{ item.created_at|naturaltime }}</td>
+              <td><a class="link-action" href="{% url 'panel:emergency_request_detail' item.pk %}">{% trans "Open" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No emergency requests yet." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

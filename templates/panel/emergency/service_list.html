@@ -1,0 +1,49 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Emergency services" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Emergency services" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Catalog of roadside help offerings." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:emergency_service_create' %}">{% trans "New service" %}</a>
+  <span class="spacer"></span>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:emergency_request_list' %}">{% trans "Request queue" %}</a>
+</div>
+
+<div class="panel">
+  {% if services %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Active" %}</th>
+            <th>{% trans "Requests" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for service in services %}
+            <tr>
+              <td>{{ service.name }}</td>
+              <td>
+                {% if service.is_active %}
+                  <span class="badge badge-active">{% trans "Active" %}</span>
+                {% else %}
+                  <span class="badge badge-draft">{% trans "Inactive" %}</span>
+                {% endif %}
+              </td>
+              <td>{{ service.request_count }}</td>
+              <td><a class="link-action" href="{% url 'panel:emergency_service_edit' service.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No services yet. Create the first one." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

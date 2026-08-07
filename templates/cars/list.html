@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Cars-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Cars-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Cars-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Explore the MyAutoHub car catalog-brands, models, and specs." %}{% endblock %}
+{% block og_description %}{% trans "Explore the MyAutoHub car catalog-brands, models, and specs." %}{% endblock %}
+{% block twitter_description %}{% trans "Explore the MyAutoHub car catalog-brands, models, and specs." %}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "Car catalog" %}</h1>
+  <p>{% trans "Browse brands and models with the essentials-year, power, and trim." %}</p>
+</section>
+
+<div class="panel filter-panel cars-filter-panel reveal">
+  <form method="get" class="filter-bar cars-filter-bar" action="{% url 'cars:list' %}">
+    <div class="form-row cars-filter-search">
+      <label for="{{ form.q.id_for_label }}">{{ form.q.label }}</label>
+      {{ form.q }}
+    </div>
+    <div class="form-row">
+      <label for="{{ form.brand.id_for_label }}">{{ form.brand.label }}</label>
+      {{ form.brand }}
+    </div>
+    <div class="form-row">
+      <label for="{{ form.model.id_for_label }}">{{ form.model.label }}</label>
+      {{ form.model }}
+    </div>
+    <div class="form-row">
+      <label for="{{ form.fuel.id_for_label }}">{{ form.fuel.label }}</label>
+      {{ form.fuel }}
+    </div>
+    <div class="form-row cars-filter-years">
+      <label for="{{ form.year_min.id_for_label }}">{% trans "Year" %}</label>
+      <div class="cars-filter-year-pair">
+        {{ form.year_min }}
+        <span class="cars-filter-year-sep" aria-hidden="true">–</span>
+        {{ form.year_max }}
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="{{ form.sort.id_for_label }}">{{ form.sort.label }}</label>
+      {{ form.sort }}
+    </div>
+    <div class="cars-filter-actions">
+      <button class="btn btn-sm" type="submit">{% trans "Filter" %}</button>
+      {% if filters_active %}
+        <a class="btn btn-ghost btn-sm" href="{% url 'cars:list' %}">{% trans "Reset" %}</a>
+      {% endif %}
+    </div>
+  </form>
+</div>
+
+<p class="list-count reveal">
+  {% blocktrans count counter=result_count %}{{ counter }} car{% plural %}{{ counter }} cars{% endblocktrans %}
+</p>
+
+<div class="media-grid">
+  {% for car in cars %}
+    <a class="media-card reveal" href="{% url 'cars:detail' car.pk %}">
+      <div class="media-thumb">
+        {% if car.main_image %}
+          <img src="{{ car.main_image.url }}" alt="{{ car.model }}" loading="lazy">
+        {% else %}
+          <div class="media-fallback">{{ car.model.brand.name|slice:":1" }}</div>
+        {% endif %}
+      </div>
+      <div class="media-body">
+        <h3>{{ car.model.brand.name }} {{ car.model.name }}</h3>
+        <p>
+          {{ car.year }}{% if car.horsepower %} · {{ car.horsepower }} hp{% endif %}{% if car.fuel_type %} · {{ car.fuel_type }}{% endif %}{% if car.trim %} · {{ car.trim }}{% endif %}
+        </p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty">{% if filters_active %}{% trans "No cars match these filters." %}{% else %}{% trans "No cars in the catalog yet." %}{% endif %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

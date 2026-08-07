@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Pricing-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Pricing-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Pricing-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Vehicle price references and market guidance on MyAutoHub." %}{% endblock %}
+{% block og_description %}{% trans "Vehicle price references and market guidance on MyAutoHub." %}{% endblock %}
+{% block twitter_description %}{% trans "Vehicle price references and market guidance on MyAutoHub." %}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "Pricing reference" %}</h1>
+  <p>{% trans "Ballpark figures for cars and common services-useful context, not a quote." %}</p>
+</section>
+<div class="media-grid media-grid-3">
+  {% for item in items %}
+    <a class="media-card reveal" href="{% url 'pricing:detail' item.pk %}">
+      <div class="media-thumb">
+        {% if item.main_image %}
+          <img src="{{ item.main_image.url }}" alt="{{ item.title }}" loading="lazy">
+        {% else %}
+          <div class="media-fallback">$</div>
+        {% endif %}
+        <span class="media-badge">{{ item.amount|floatformat:0|intcomma }} {{ item.currency }}</span>
+      </div>
+      <div class="media-body">
+        <h3>{{ item.title }}</h3>
+        <p>{% if item.category %}{{ item.category }}{% else %}{% trans "General reference" %}{% endif %} · {{ item.updated_at|naturaltime }}</p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty">{% trans "No pricing references published yet." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

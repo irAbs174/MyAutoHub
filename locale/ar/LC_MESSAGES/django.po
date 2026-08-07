@@ -1,0 +1,1744 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-06 03:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: apps/accounts/views.py:22
+msgid "Welcome to MyAutoHub."
+msgstr "مرحباً بك في ماي أوتو هاب."
+
+#: apps/accounts/views.py:52
+msgid "Location saved."
+msgstr "تم حفظ الموقع."
+
+#: apps/accounts/views.py:68
+msgid "Location removed."
+msgstr "تم حذف الموقع."
+
+#: apps/core/context_processors.py:7 apps/core/search.py:208
+#: templates/core/home.html:51 templates/core/search.html:158
+msgid "Emergency"
+msgstr "الطوارئ"
+
+#: apps/core/context_processors.py:8 apps/core/search.py:191
+#: templates/core/home.html:208 templates/core/search.html:139
+#: templates/pricing/detail.html:4
+msgid "Pricing"
+msgstr "الأسعار"
+
+#: apps/core/context_processors.py:9 apps/core/search.py:147
+#: templates/core/home.html:41 templates/core/home.html:92
+#: templates/core/search.html:64 templates/marketplace/detail.html:4
+msgid "Marketplace"
+msgstr "السوق"
+
+#: apps/core/context_processors.py:10 templates/cars/detail.html:4
+#: templates/core/home.html:61 templates/core/search.html:38
+msgid "Cars"
+msgstr "السيارات"
+
+#: apps/core/context_processors.py:11 templates/core/home.html:158
+#: templates/core/search.html:117 templates/youtube/detail.html:4
+msgid "YouTube"
+msgstr "يوتيوب"
+
+#: apps/core/context_processors.py:12 templates/core/home.html:183
+#: templates/core/search.html:91 templates/stories/detail.html:4
+#: templates/stories/list.html:8
+msgid "Stories"
+msgstr "القصص"
+
+#: apps/core/search.py:131
+#, fuzzy
+#| msgid "Cars"
+msgid "Car"
+msgstr "السيارات"
+
+#: apps/core/search.py:162
+#, fuzzy
+#| msgid "Stories"
+msgid "Story"
+msgstr "القصص"
+
+#: apps/core/search.py:175
+msgid "Video"
+msgstr ""
+
+#: apps/core/search.py:203 templates/core/search.html:165
+#, fuzzy
+#| msgid "Roadside"
+msgid "Roadside help"
+msgstr "مساعدة على الطريق"
+
+#: apps/core/views.py:86
+msgid "Bad request"
+msgstr "طلب غير صالح"
+
+#: apps/core/views.py:88
+msgid "The request could not be understood. Please try again."
+msgstr "تعذر فهم الطلب. يرجى المحاولة مرة أخرى."
+
+#: apps/core/views.py:101
+msgid "Access denied"
+msgstr "الوصول مرفوض"
+
+#: apps/core/views.py:103
+msgid "You do not have permission to view this page."
+msgstr "ليس لديك إذن لعرض هذه الصفحة."
+
+#: apps/core/views.py:116
+msgid "Page not found"
+msgstr "الصفحة غير موجودة"
+
+#: apps/core/views.py:118
+msgid "This road does not lead anywhere. Head back to the hub."
+msgstr "هذا الطريق لا يؤدي إلى أي مكان. عد إلى المركز."
+
+#: apps/core/views.py:131
+msgid "Something went wrong"
+msgstr "حدث خطأ ما"
+
+#: apps/core/views.py:133
+msgid "We hit a snag on our side. Please try again in a moment."
+msgstr "واجهنا مشكلة من جانبنا. يرجى المحاولة بعد لحظات."
+
+#: apps/emergency/admin.py:35 apps/pricing/admin.py:33
+#: apps/stories/admin.py:25
+msgid "فارسی"
+msgstr ""
+
+#: apps/emergency/admin.py:39 apps/pricing/admin.py:37
+#: apps/stories/admin.py:29
+msgid "English"
+msgstr ""
+
+#: apps/emergency/admin.py:43 apps/pricing/admin.py:41
+#: apps/stories/admin.py:33
+msgid "العربية"
+msgstr ""
+
+#: apps/emergency/admin.py:46
+#, fuzzy
+#| msgid "Status"
+msgid "Status & media"
+msgstr "الحالة"
+
+#: apps/emergency/forms.py:16
+msgid "Select on map"
+msgstr "التحديد على الخريطة"
+
+#: apps/emergency/forms.py:17
+msgid "Use a saved location"
+msgstr "استخدام موقع محفوظ"
+
+#: apps/emergency/forms.py:48
+msgid "Choose a saved location."
+msgstr "اختر موقعاً محفوظاً."
+
+#: apps/emergency/forms.py:56 apps/emergency/forms.py:60
+msgid "Provide latitude and longitude from the map."
+msgstr "حدّد خط العرض وخط الطول من الخريطة."
+
+#: apps/emergency/forms.py:70
+msgid "Optional note for the audit trail."
+msgstr "ملاحظة اختيارية لسجل التدقيق."
+
+#: apps/emergency/forms.py:80
+msgid "Accept / start processing"
+msgstr "قبول / بدء المعالجة"
+
+#: apps/emergency/forms.py:84
+msgid "Finish successfully"
+msgstr "إنهاء بنجاح"
+
+#: apps/emergency/forms.py:85
+msgid "Finish as failed"
+msgstr "إنهاء كفشل"
+
+#: apps/emergency/forms.py:93
+msgid "Cancel request"
+msgstr "إلغاء الطلب"
+
+#: apps/emergency/forms.py:102 templates/emergency/detail.html:68
+#: templates/panel/emergency/request_detail.html:57
+msgid "Public review"
+msgstr "مراجعة عامة"
+
+#: apps/emergency/forms.py:108
+msgid "Rating (1–5)"
+msgstr "التقييم (١–٥)"
+
+#: apps/emergency/forms.py:113 apps/panel/forms.py:8
+#: templates/components/nav.html:20 templates/components/nav.html:33
+#: templates/core/search.html:8 templates/core/search.html:17
+#: templates/core/search.html:27 templates/emergency/list.html:30
+msgid "Search"
+msgstr "بحث"
+
+#: apps/emergency/forms.py:117 apps/panel/forms.py:17
+#: templates/core/home.html:73
+msgid "All services"
+msgstr "كل الخدمات"
+
+#: apps/emergency/models.py:12
+msgid "Waiting for accept"
+msgstr "بانتظار القبول"
+
+#: apps/emergency/models.py:13 templates/panel/overview.html:16
+msgid "Processing"
+msgstr "قيد المعالجة"
+
+#: apps/emergency/models.py:14
+msgid "Finished successfully"
+msgstr "انتهى بنجاح"
+
+#: apps/emergency/models.py:15
+msgid "Finished failed"
+msgstr "انتهى بالفشل"
+
+#: apps/emergency/models.py:16
+msgid "Cancelled"
+msgstr "ملغى"
+
+#: apps/emergency/models.py:32
+msgid "Name (فارسی)"
+msgstr ""
+
+#: apps/emergency/models.py:33
+msgid "Name (English)"
+msgstr ""
+
+#: apps/emergency/models.py:34
+msgid "Name (العربية)"
+msgstr ""
+
+#: apps/emergency/models.py:35 apps/marketplace/models.py:39
+#: apps/marketplace/views.py:79
+#, fuzzy
+#| msgid "Description"
+msgid "Description (فارسی)"
+msgstr "الوصف"
+
+#: apps/emergency/models.py:36 apps/marketplace/models.py:42
+#: apps/marketplace/views.py:80
+#, fuzzy
+#| msgid "Description"
+msgid "Description (English)"
+msgstr "الوصف"
+
+#: apps/emergency/models.py:37 apps/marketplace/models.py:45
+#: apps/marketplace/views.py:81
+msgid "Description (العربية)"
+msgstr ""
+
+#: apps/emergency/models.py:39
+msgid "Coverage notes (فارسی)"
+msgstr ""
+
+#: apps/emergency/models.py:42
+msgid "Coverage notes (English)"
+msgstr ""
+
+#: apps/emergency/models.py:45
+msgid "Coverage notes (العربية)"
+msgstr ""
+
+#: apps/emergency/models.py:114
+msgid "Select a saved location or provide map coordinates."
+msgstr "اختر موقعاً محفوظاً أو أدخل إحداثيات الخريطة."
+
+#: apps/emergency/models.py:117
+msgid "Rating must be between 1 and 5."
+msgstr "يجب أن يكون التقييم بين ١ و٥."
+
+#: apps/emergency/serializers.py:135
+msgid "That location does not belong to you."
+msgstr "هذا الموقع لا يخصك."
+
+#: apps/emergency/serializers.py:139
+msgid "Provide saved_location_id or latitude and longitude."
+msgstr "قدّم معرّف الموقع المحفوظ أو خط العرض وخط الطول."
+
+#: apps/emergency/services.py:44
+#, python-format
+msgid "Cannot change status from %(from)s to %(to)s."
+msgstr "لا يمكن تغيير الحالة من %(from)s إلى %(to)s."
+
+#: apps/emergency/services.py:52
+msgid "Only emergency operators can accept requests."
+msgstr "فقط مشغّلو الطوارئ يمكنهم قبول الطلبات."
+
+#: apps/emergency/services.py:58
+msgid "Only emergency operator administrators can finish requests."
+msgstr "فقط مسؤولو مشغّلي الطوارئ يمكنهم إنهاء الطلبات."
+
+#: apps/emergency/services.py:67
+#, python-format
+msgid "Unsupported target status: %(status)s"
+msgstr "حالة الوجهة غير مدعومة: %(status)s"
+
+#: apps/emergency/services.py:89
+msgid "Request submitted"
+msgstr "تم إرسال الطلب"
+
+#: apps/emergency/services.py:98
+msgid "This request is already closed."
+msgstr "هذا الطلب مغلق بالفعل."
+
+#: apps/emergency/services.py:105
+msgid "You can only cancel your own requests."
+msgstr "يمكنك إلغاء طلباتك فقط."
+
+#: apps/emergency/services.py:126
+msgid "You cannot buzz this request."
+msgstr "لا يمكنك تنبيه هذا الطلب."
+
+#: apps/emergency/services.py:128
+msgid "Cannot buzz a closed request."
+msgstr "لا يمكن تنبيه طلب مغلق."
+
+#: apps/emergency/services.py:135
+msgid "Only the requester can leave a review."
+msgstr "فقط مقدّم الطلب يمكنه ترك مراجعة."
+
+#: apps/emergency/services.py:137
+msgid "Reviews are only allowed after the request finishes."
+msgstr "المراجعات مسموحة فقط بعد انتهاء الطلب."
+
+#: apps/emergency/services.py:139
+msgid "A review was already submitted."
+msgstr "تم إرسال مراجعة مسبقاً."
+
+#: apps/emergency/views.py:80
+msgid "Emergency request submitted-waiting for an operator to accept."
+msgstr "تم إرسال طلب الطوارئ-بانتظار قبول المشغّل."
+
+#: apps/emergency/views.py:128 apps/panel/views.py:125
+msgid "Request status updated."
+msgstr "تم تحديث حالة الطلب."
+
+#: apps/emergency/views.py:132 apps/panel/views.py:129
+msgid "Could not update status."
+msgstr "تعذّر تحديث الحالة."
+
+#: apps/emergency/views.py:145
+msgid "Cancelled via cancel action"
+msgstr "أُلغي عبر إجراء الإلغاء"
+
+#: apps/emergency/views.py:147
+msgid "Request cancelled."
+msgstr "تم إلغاء الطلب."
+
+#: apps/emergency/views.py:159
+msgid "Buzz sent-operators will notice."
+msgstr "تم إرسال التنبيه-سيلاحظ المشغّلون."
+
+#: apps/emergency/views.py:178
+msgid "Thanks for sharing your experience."
+msgstr "شكراً لمشاركة تجربتك."
+
+#: apps/emergency/views.py:182
+msgid "Please check the review form."
+msgstr "يرجى التحقق من نموذج المراجعة."
+
+#: apps/marketplace/models.py:16
+msgid "Iran (تومان)"
+msgstr ""
+
+#: apps/marketplace/models.py:17
+msgid "Iran (IRR)"
+msgstr ""
+
+#: apps/marketplace/models.py:18
+msgid "United States (USD)"
+msgstr ""
+
+#: apps/marketplace/models.py:19
+msgid "United Arab Emirates (AED)"
+msgstr ""
+
+#: apps/marketplace/models.py:20
+msgid "Euro (EUR)"
+msgstr ""
+
+#: apps/marketplace/models.py:30 apps/marketplace/views.py:76
+#: apps/pricing/models.py:8 apps/stories/models.py:10
+msgid "Title (فارسی)"
+msgstr ""
+
+#: apps/marketplace/models.py:33 apps/marketplace/views.py:77
+#: apps/pricing/models.py:9 apps/stories/models.py:11
+msgid "Title (English)"
+msgstr ""
+
+#: apps/marketplace/models.py:36 apps/marketplace/views.py:78
+#: apps/pricing/models.py:10 apps/stories/models.py:12
+msgid "Title (العربية)"
+msgstr ""
+
+#: apps/marketplace/views.py:82 templates/marketplace/create.html:25
+#, fuzzy
+#| msgid "Photo"
+msgid "Photos"
+msgstr "صورة"
+
+#: apps/marketplace/views.py:83 templates/marketplace/create.html:29
+msgid "Price"
+msgstr "السعر"
+
+#: apps/marketplace/views.py:84
+msgid "Currency"
+msgstr "العملة"
+
+#: apps/marketplace/views.py:85
+msgid "Year"
+msgstr "السنة"
+
+#: apps/marketplace/views.py:86
+msgid "Mileage (km)"
+msgstr "المسافة المقطوعة (كم)"
+
+#: apps/marketplace/views.py:87
+msgid "City"
+msgstr "المدينة"
+
+#: apps/marketplace/views.py:90 apps/marketplace/views.py:91
+#: apps/marketplace/views.py:92
+msgid "A short headline buyers will see first."
+msgstr "عنوان قصير يراه المشترون أولاً."
+
+#: apps/marketplace/views.py:93 apps/marketplace/views.py:94
+#: apps/marketplace/views.py:95
+msgid "Be honest and specific-it builds trust."
+msgstr "كن صادقاً ومحدداً-هذا يبني الثقة."
+
+#: apps/marketplace/views.py:96
+#, fuzzy
+#| msgid "Optional, but listings with a photo sell faster."
+msgid ""
+"Optional, but listings with photos sell faster. You can select multiple."
+msgstr "اختياري، لكن الإعلانات مع صورة تُباع أسرع."
+
+#: apps/marketplace/views.py:97
+msgid "Ask a fair market price."
+msgstr "اطلب سعراً عادلاً في السوق."
+
+#: apps/marketplace/views.py:98
+msgid "Prices are shown in the currency you select."
+msgstr ""
+
+#: apps/marketplace/views.py:99
+msgid "Model year (optional)."
+msgstr "سنة الطراز (اختياري)."
+
+#: apps/marketplace/views.py:100
+msgid "Odometer reading in kilometres (optional)."
+msgstr "قراءة العداد بالكيلومتر (اختياري)."
+
+#: apps/marketplace/views.py:101
+msgid "Where the car is located (optional)."
+msgstr "مكان وجود السيارة (اختياري)."
+
+#: apps/marketplace/views.py:104 apps/marketplace/views.py:105
+#: apps/marketplace/views.py:106
+msgid "e.g. 2018 Toyota Corolla"
+msgstr "مثال: تويوتا كورولا 2018"
+
+#: apps/marketplace/views.py:107 apps/marketplace/views.py:108
+#: apps/marketplace/views.py:109
+msgid "Condition, extras, reason for selling…"
+msgstr "الحالة، الإضافات، سبب البيع…"
+
+#: apps/marketplace/views.py:110
+msgid "e.g. Tehran"
+msgstr "مثال: طهران"
+
+#: apps/marketplace/views.py:158 templates/marketplace/create.html:52
+msgid ""
+"Add a title and description in at least one language (فارسی, English, or "
+"العربية)."
+msgstr ""
+"أضف عنوانًا ووصفًا بلغة واحدة على الأقل (الفارسية أو الإنجليزية أو العربية)."
+
+#: apps/marketplace/views.py:169
+msgid "Please upload image files only."
+msgstr ""
+
+#: apps/marketplace/views.py:179 apps/panel/forms.py:11
+#: templates/emergency/list.html:42
+#: templates/panel/emergency/request_list.html:34
+#: templates/panel/overview.html:43
+msgid "Status"
+msgstr "الحالة"
+
+#: apps/marketplace/views.py:180
+msgid "Active listings appear in the marketplace."
+msgstr "تظهر الإعلانات النشطة في السوق."
+
+#: apps/marketplace/views.py:211
+msgid "Your message to the seller"
+msgstr "رسالتك إلى البائع"
+
+#: apps/marketplace/views.py:212
+msgid "Phone (optional)"
+msgstr "الهاتف (اختياري)"
+
+#: apps/marketplace/views.py:287
+msgid "Your car is listed. Buyers can message you from the listing."
+msgstr "تم إدراج سيارتك. يمكن للمشترين مراسلتك من الإعلان."
+
+#: apps/marketplace/views.py:314
+msgid "Listing updated."
+msgstr "تم تحديث الإعلان."
+
+#: apps/marketplace/views.py:331
+msgid "Marked as sold. It no longer appears for buyers."
+msgstr "وُسِم كمباع. لم يعد يظهر للمشترين."
+
+#: apps/marketplace/views.py:341
+msgid "Listing withdrawn."
+msgstr "تم سحب الإعلان."
+
+#: apps/marketplace/views.py:354
+msgid "You cannot inquire on your own listing."
+msgstr "لا يمكنك الاستفسار عن إعلانك الخاص."
+
+#: apps/marketplace/views.py:365
+#, python-format
+msgid "Message sent to %(seller)s. They will see it on this listing."
+msgstr "أُرسلت الرسالة إلى %(seller)s. سيراها على هذا الإعلان."
+
+#: apps/panel/forms.py:12
+#, fuzzy
+#| msgid "New status"
+msgid "All statuses"
+msgstr "حالة جديدة"
+
+#: apps/panel/forms.py:18 templates/emergency/list.html:41
+#: templates/emergency/submit.html:24
+#: templates/panel/emergency/request_list.html:32
+#: templates/panel/overview.html:41
+msgid "Service"
+msgstr "الخدمة"
+
+#: apps/panel/views.py:152
+#, fuzzy
+#| msgid "Services on call"
+msgid "Service created."
+msgstr "خدمات عند الطلب"
+
+#: apps/panel/views.py:174
+#, fuzzy
+#| msgid "Listing updated."
+msgid "Service updated."
+msgstr "تم تحديث الإعلان."
+
+#: apps/pricing/admin.py:45
+#, fuzzy
+#| msgid "Pricing"
+msgid "Pricing & media"
+msgstr "الأسعار"
+
+#: apps/pricing/models.py:12
+msgid "Category (فارسی)"
+msgstr ""
+
+#: apps/pricing/models.py:15
+msgid "Category (English)"
+msgstr ""
+
+#: apps/pricing/models.py:18
+msgid "Category (العربية)"
+msgstr ""
+
+#: apps/pricing/models.py:22
+msgid "Notes (فارسی)"
+msgstr ""
+
+#: apps/pricing/models.py:23
+msgid "Notes (English)"
+msgstr ""
+
+#: apps/pricing/models.py:24
+msgid "Notes (العربية)"
+msgstr ""
+
+#: apps/pricing/models.py:26
+msgid "Source (فارسی)"
+msgstr ""
+
+#: apps/pricing/models.py:29
+msgid "Source (English)"
+msgstr ""
+
+#: apps/pricing/models.py:32
+msgid "Source (العربية)"
+msgstr ""
+
+#: apps/stories/admin.py:37
+#, fuzzy
+#| msgid "Publish listing"
+msgid "Publishing"
+msgstr "نشر الإعلان"
+
+#: apps/stories/models.py:15
+msgid "Excerpt (فارسی)"
+msgstr ""
+
+#: apps/stories/models.py:18
+msgid "Excerpt (English)"
+msgstr ""
+
+#: apps/stories/models.py:21
+msgid "Excerpt (العربية)"
+msgstr ""
+
+#: apps/stories/models.py:23
+msgid "Body (فارسی)"
+msgstr ""
+
+#: apps/stories/models.py:24
+msgid "Body (English)"
+msgstr ""
+
+#: apps/stories/models.py:25
+msgid "Body (العربية)"
+msgstr ""
+
+#: templates/400.html:11 templates/403.html:11 templates/404.html:11
+#: templates/500.html:63 templates/panel/base.html:38
+msgid "Back to hub"
+msgstr "العودة إلى المركز"
+
+#: templates/accounts/login.html:4
+msgid "Log in-MyAutoHub"
+msgstr "تسجيل الدخول-ماي أوتو هب"
+
+#: templates/accounts/login.html:8
+msgid "Welcome back"
+msgstr "مرحباً بعودتك"
+
+#: templates/accounts/login.html:9
+msgid "Log in to request emergency help, manage listings, and save locations."
+msgstr "سجّل الدخول لطلب المساعدة الطارئة وإدارة الإعلانات وحفظ المواقع."
+
+#: templates/accounts/login.html:24 templates/components/nav.html:105
+#: templates/core/home.html:261
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+#: templates/accounts/login.html:27
+msgid "No account yet?"
+msgstr "ليس لديك حساب بعد؟"
+
+#: templates/accounts/login.html:28 templates/accounts/register.html:8
+msgid "Join MyAutoHub"
+msgstr "انضم إلى ماي أوتو هب"
+
+#: templates/accounts/profile.html:4
+msgid "Profile-MyAutoHub"
+msgstr "الملف-ماي أوتو هب"
+
+#: templates/accounts/profile.html:13
+msgid "Saved places you can reuse when requesting emergency help."
+msgstr "أماكن محفوظة يمكنك إعادة استخدامها عند طلب المساعدة الطارئة."
+
+#: templates/accounts/profile.html:17
+msgid "My car listings"
+msgstr "إعلانات سيارتي"
+
+#: templates/accounts/profile.html:18 templates/marketplace/create.html:4
+msgid "Sell a car"
+msgstr "بيع سيارة"
+
+#: templates/accounts/profile.html:22
+msgid "Saved locations"
+msgstr "المواقع المحفوظة"
+
+#: templates/accounts/profile.html:28
+msgid "Label"
+msgstr "التسمية"
+
+#: templates/accounts/profile.html:29
+msgid "Address"
+msgstr "العنوان"
+
+#: templates/accounts/profile.html:30
+msgid "Coordinates"
+msgstr "الإحداثيات"
+
+#: templates/accounts/profile.html:37
+msgid "Default"
+msgstr "افتراضي"
+
+#: templates/accounts/profile.html:43 templates/marketplace/create.html:154
+msgid "Remove"
+msgstr "إزالة"
+
+#: templates/accounts/profile.html:52
+msgid "No saved locations yet."
+msgstr "لا توجد مواقع محفوظة بعد."
+
+#: templates/accounts/profile.html:57
+msgid "Add a location"
+msgstr "إضافة موقع"
+
+#: templates/accounts/profile.html:77 templates/emergency/submit.html:30
+#: templates/emergency/submit.html:31
+msgid "Location"
+msgstr "الموقع"
+
+#: templates/accounts/profile.html:81 templates/emergency/submit.html:45
+msgid "Use my location"
+msgstr "استخدم موقعي"
+
+#: templates/accounts/profile.html:84 templates/emergency/submit.html:48
+msgid "Tap the map to drop a pin."
+msgstr "انقر على الخريطة لوضع دبوس."
+
+#: templates/accounts/profile.html:87 templates/emergency/submit.html:51
+msgid "Loading map"
+msgstr ""
+
+#: templates/accounts/profile.html:99 templates/emergency/submit.html:63
+msgid "Map-tap to set your location"
+msgstr "الخريطة-انقر لتحديد موقعك"
+
+#: templates/accounts/profile.html:121
+msgid "Save location"
+msgstr "حفظ الموقع"
+
+#: templates/accounts/register.html:4
+msgid "Join-MyAutoHub"
+msgstr "انضمام-ماي أوتو هب"
+
+#: templates/accounts/register.html:9
+msgid ""
+"Create an account to submit emergency requests and use the marketplace."
+msgstr "أنشئ حساباً لإرسال طلبات الطوارئ واستخدام السوق."
+
+#: templates/accounts/register.html:22 templates/marketplace/detail.html:97
+#: templates/marketplace/list.html:17
+msgid "Create account"
+msgstr "إنشاء حساب"
+
+#: templates/base.html:45
+msgid "MyAutoHub-cars, help, and community on the road."
+msgstr "ماي أوتو هب-سيارات ومساعدة ومجتمع على الطريق."
+
+#: templates/cars/detail.html:37
+msgid "Back to catalog"
+msgstr "العودة إلى الكتالوج"
+
+#: templates/cars/list.html:4
+msgid "Cars-MyAutoHub"
+msgstr "السيارات-ماي أوتو هب"
+
+#: templates/cars/list.html:8
+msgid "Car catalog"
+msgstr "كتالوج السيارات"
+
+#: templates/cars/list.html:9
+msgid "Browse brands and models with the essentials-year, power, and trim."
+msgstr "تصفح العلامات والنماذج مع الأساسيات-السنة والقوة والتجهيز."
+
+#: templates/cars/list.html:13
+msgid "All"
+msgstr "الكل"
+
+#: templates/cars/list.html:35
+msgid "No cars in the catalog yet."
+msgstr "لا توجد سيارات في الكتالوج بعد."
+
+#: templates/components/nav.html:5
+msgid "Primary"
+msgstr "رئيسي"
+
+#: templates/components/nav.html:18
+msgid "No matches found"
+msgstr ""
+
+#: templates/components/nav.html:26 templates/core/search.html:23
+msgid "Search the hub…"
+msgstr "ابحث في المركز…"
+
+#: templates/components/nav.html:52
+msgid "Light theme"
+msgstr "مظهر فاتح"
+
+#: templates/components/nav.html:53
+msgid "Dark theme"
+msgstr "مظهر داكن"
+
+#: templates/components/nav.html:54
+msgid "Toggle theme"
+msgstr "تبديل المظهر"
+
+#: templates/components/nav.html:69
+msgid "Language"
+msgstr "اللغة"
+
+#: templates/components/nav.html:97 templates/panel/base.html:7
+#: templates/panel/base.html:48
+#: templates/panel/emergency/request_detail.html:4
+#: templates/panel/emergency/request_list.html:4
+#: templates/panel/emergency/service_form.html:4
+#: templates/panel/emergency/service_list.html:4
+#: templates/panel/overview.html:4
+msgid "Panel"
+msgstr ""
+
+#: templates/components/nav.html:102 templates/panel/base.html:41
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+#: templates/components/nav.html:106 templates/core/home.html:42
+msgid "Join"
+msgstr "انضمام"
+
+#: templates/core/home.html:4
+msgid "MyAutoHub-Hub"
+msgstr "ماي أوتو هب-المركز"
+
+#: templates/core/home.html:31
+msgid "Roadside help. Cars to buy and sell. One hub."
+msgstr "مساعدة على الطريق. سيارات للبيع والشراء. مركز واحد."
+
+#: templates/core/home.html:33
+msgid ""
+"Pin your location for emergency aid, list your car, or browse what other "
+"drivers are selling."
+msgstr ""
+"ثبّت موقعك لطلب الإغاثة، أو أدرج سيارتك، أو تصفّح ما يبيعه السائقون الآخرون."
+
+#: templates/core/home.html:37
+msgid "Request help"
+msgstr "طلب مساعدة"
+
+#: templates/core/home.html:38
+msgid "Buy or sell"
+msgstr "شراء أو بيع"
+
+#: templates/core/home.html:40 templates/emergency/list.html:8
+#: templates/panel/emergency/service_list.html:4
+#: templates/panel/emergency/service_list.html:5
+msgid "Emergency services"
+msgstr "خدمات الطوارئ"
+
+#: templates/core/home.html:48
+msgid "Main paths"
+msgstr "المسارات الرئيسية"
+
+#: templates/core/home.html:50
+msgid "Help"
+msgstr "مساعدة"
+
+#: templates/core/home.html:52
+msgid "Towing, jump start, lockout-pin yourself on the map."
+msgstr "قطر، تشغيل بالبطارية، فتح الأبواب-ثبّت موقعك على الخريطة."
+
+#: templates/core/home.html:55
+msgid "Trade"
+msgstr "تبادل"
+
+#: templates/core/home.html:56 templates/marketplace/list.html:8
+msgid "Buy & sell"
+msgstr "شراء وبيع"
+
+#: templates/core/home.html:57
+msgid "Browse cars from other drivers, or list yours."
+msgstr "تصفح سيارات السائقين الآخرين، أو أدرج سيارتك."
+
+#: templates/core/home.html:60 templates/core/home.html:127
+msgid "Catalog"
+msgstr "الكتالوج"
+
+#: templates/core/home.html:62
+msgid "Specs and models-then jump to live marketplace deals."
+msgstr "المواصفات والطرازات-ثم انتقل إلى صفقات السوق المباشرة."
+
+#: templates/core/home.html:70
+msgid "Roadside"
+msgstr "على الطريق"
+
+#: templates/core/home.html:71
+msgid "Services on call"
+msgstr "خدمات عند الطلب"
+
+#: templates/core/home.html:93
+msgid "Cars for sale"
+msgstr "سيارات للبيع"
+
+#: templates/core/home.html:97 templates/marketplace/list.html:13
+msgid "Sell my car"
+msgstr "بيع سيارتي"
+
+#: templates/core/home.html:99 templates/core/home.html:130
+#: templates/core/home.html:160 templates/core/home.html:185
+#: templates/core/home.html:211
+msgid "View all"
+msgstr "عرض الكل"
+
+#: templates/core/home.html:128
+msgid "Newest cars"
+msgstr "أحدث السيارات"
+
+#: templates/core/home.html:157
+msgid "Watch"
+msgstr "مشاهدة"
+
+#: templates/core/home.html:182
+msgid "Community"
+msgstr "المجتمع"
+
+#: templates/core/home.html:209
+msgid "Price references"
+msgstr "مراجع الأسعار"
+
+#: templates/core/home.html:253
+msgid ""
+"Manage listings, saved places, and roadside requests from your profile."
+msgstr "أدِر الإعلانات والأماكن المحفوظة وطلبات الطريق من ملفك."
+
+#: templates/core/home.html:253
+msgid "Create an account to request help, save map pins, and sell your car."
+msgstr "أنشئ حساباً لطلب المساعدة وحفظ الدبابيس وبيع سيارتك."
+
+#: templates/core/home.html:257
+msgid "Open profile"
+msgstr "فتح الملف"
+
+#: templates/core/home.html:258 templates/marketplace/detail.html:52
+#: templates/marketplace/list.html:14 templates/marketplace/mine.html:8
+msgid "My listings"
+msgstr "إعلاناتي"
+
+#: templates/core/home.html:260
+msgid "Create an account"
+msgstr "إنشاء حساب"
+
+#: templates/core/search.html:4
+#, fuzzy, python-format
+#| msgid "Emergency #%(id)s-MyAutoHub"
+msgid "Search: %(q)s-MyAutoHub"
+msgstr "بحث: %(q)s-ماي أوتو هب"
+
+#: templates/core/search.html:4
+#, fuzzy
+#| msgid "Cars-MyAutoHub"
+msgid "Search-MyAutoHub"
+msgstr "بحث-ماي أوتو هب"
+
+#: templates/core/search.html:10
+#, fuzzy, python-format
+#| msgid "%(counter)s car for sale"
+#| msgid_plural "%(counter)s cars for sale"
+msgid "%(counter)s result for “%(q)s”"
+msgid_plural "%(counter)s results for “%(q)s”"
+msgstr[0] "%(counter)s نتيجة لـ «%(q)s»"
+msgstr[1] "%(counter)s نتيجة لـ «%(q)s»"
+msgstr[2] "%(counter)s نتيجتان لـ «%(q)s»"
+msgstr[3] "%(counter)s نتائج لـ «%(q)s»"
+msgstr[4] "%(counter)s نتيجة لـ «%(q)s»"
+msgstr[5] "%(counter)s نتيجة لـ «%(q)s»"
+
+#: templates/core/search.html:12
+msgid "Find cars, listings, stories, videos, prices, and roadside help."
+msgstr ""
+"اعثر على السيارات والإعلانات والقصص والفيديوهات والأسعار ومساعدة الطريق."
+
+#: templates/core/search.html:32
+msgid "No matches. Try another word or browse the hub."
+msgstr "لا توجد نتائج. جرّب كلمة أخرى أو تصفّح المركز."
+
+#: templates/core/search.html:39 templates/core/search.html:65
+#: templates/core/search.html:92 templates/core/search.html:118
+#: templates/core/search.html:140 templates/core/search.html:159
+#, fuzzy
+#| msgid "Browse marketplace"
+msgid "Browse all"
+msgstr "عرض الكل"
+
+#: templates/emergency/detail.html:4
+#, python-format
+msgid "Emergency #%(id)s-MyAutoHub"
+msgstr "طوارئ #%(id)s-ماي أوتو هب"
+
+#: templates/emergency/detail.html:8
+#: templates/panel/emergency/request_detail.html:4
+#: templates/panel/emergency/request_detail.html:5
+#, python-format
+msgid "Request #%(id)s"
+msgstr "طلب #%(id)s"
+
+#: templates/emergency/detail.html:14
+#: templates/panel/emergency/request_detail.html:11
+#, python-format
+msgid "Opened %(when)s"
+msgstr "فُتح %(when)s"
+
+#: templates/emergency/detail.html:15
+#: templates/panel/emergency/request_detail.html:12
+#, python-format
+msgid "Requester: %(name)s"
+msgstr "مقدّم الطلب: %(name)s"
+
+#: templates/emergency/detail.html:18
+#: templates/panel/emergency/request_detail.html:14
+#, python-format
+msgid "%(counter)s unread buzz"
+msgid_plural "%(counter)s unread buzzes"
+msgstr[0] "%(counter)s تنبيه غير مقروء"
+msgstr[1] "%(counter)s تنبيه غير مقروء"
+msgstr[2] "%(counter)s تنبيهان غير مقروءين"
+msgstr[3] "%(counter)s تنبيهات غير مقروءة"
+msgstr[4] "%(counter)s تنبيهاً غير مقروء"
+msgstr[5] "%(counter)s تنبيه غير مقروء"
+
+#: templates/emergency/detail.html:24
+#: templates/panel/emergency/request_detail.html:19
+msgid "Details"
+msgstr "التفاصيل"
+
+#: templates/emergency/detail.html:27
+#: templates/panel/emergency/request_detail.html:22
+msgid "Location:"
+msgstr "الموقع:"
+
+#: templates/emergency/detail.html:28 templates/emergency/list.html:55
+#: templates/panel/emergency/request_detail.html:23
+#: templates/panel/emergency/request_list.html:52
+msgid "—"
+msgstr "—"
+
+#: templates/emergency/detail.html:36
+msgid "Buzz!"
+msgstr "تنبيه!"
+
+#: templates/emergency/detail.html:40 templates/marketplace/create.html:203
+#: templates/marketplace/create.html:205
+#: templates/panel/emergency/service_form.html:73
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: templates/emergency/detail.html:44
+msgid "Back to list"
+msgstr "العودة إلى القائمة"
+
+#: templates/emergency/detail.html:50
+#: templates/panel/emergency/request_detail.html:34
+msgid "Update status"
+msgstr "تحديث الحالة"
+
+#: templates/emergency/detail.html:54
+#: templates/panel/emergency/request_detail.html:39
+msgid "New status"
+msgstr "حالة جديدة"
+
+#: templates/emergency/detail.html:58
+#: templates/panel/emergency/request_detail.html:43
+msgid "Note"
+msgstr "ملاحظة"
+
+#: templates/emergency/detail.html:61
+#: templates/panel/emergency/request_detail.html:46
+msgid "Apply"
+msgstr "تطبيق"
+
+#: templates/emergency/detail.html:71
+#: templates/panel/emergency/request_detail.html:60
+#, python-format
+msgid "Rating: %(rating)s/5"
+msgstr "التقييم: %(rating)s/5"
+
+#: templates/emergency/detail.html:81
+msgid "Share experience"
+msgstr "مشاركة التجربة"
+
+#: templates/emergency/detail.html:84
+msgid "No review yet."
+msgstr "لا توجد مراجعة بعد."
+
+#: templates/emergency/detail.html:90
+#: templates/panel/emergency/request_detail.html:66
+msgid "Timeline"
+msgstr "الجدول الزمني"
+
+#: templates/emergency/detail.html:99
+#: templates/panel/emergency/request_detail.html:75
+msgid "No transitions yet."
+msgstr "لا توجد انتقالات بعد."
+
+#: templates/emergency/detail.html:105
+#: templates/panel/emergency/request_detail.html:81
+msgid "Buzz history"
+msgstr "سجل التنبيهات"
+
+#: templates/emergency/detail.html:108
+#: templates/panel/emergency/request_detail.html:84
+#, python-format
+msgid "Buzz from %(name)s · %(when)s"
+msgstr "تنبيه من %(name)s · %(when)s"
+
+#: templates/emergency/detail.html:109
+#: templates/panel/emergency/request_detail.html:85
+msgid "Unread"
+msgstr "غير مقروء"
+
+#: templates/emergency/detail.html:112
+msgid "No buzzes yet. Use Buzz! when you need faster attention."
+msgstr "لا توجد تنبيهات بعد. استخدم تنبيه! عندما تحتاج انتباهاً أسرع."
+
+#: templates/emergency/list.html:4
+msgid "Emergency-MyAutoHub"
+msgstr "الطوارئ-ماي أوتو هب"
+
+#: templates/emergency/list.html:9
+msgid ""
+"Request roadside help, track progress, and buzz operators when you need "
+"attention fast."
+msgstr ""
+"اطلب مساعدة الطريق، وتتبع التقدم، ونبّه المشغّلين عندما تحتاج انتباهاً "
+"سريعاً."
+
+#: templates/emergency/list.html:14
+msgid "New request"
+msgstr "طلب جديد"
+
+#: templates/emergency/list.html:16
+msgid "Log in to request help"
+msgstr "سجّل الدخول لطلب المساعدة"
+
+#: templates/emergency/list.html:19
+msgid "Operator view"
+msgstr "عرض المشغّل"
+
+#: templates/emergency/list.html:40
+#: templates/panel/emergency/request_list.html:31
+#: templates/panel/overview.html:40
+msgid "ID"
+msgstr "المعرّف"
+
+#: templates/emergency/list.html:43
+#: templates/panel/emergency/request_list.html:35
+#: templates/panel/overview.html:44
+msgid "When"
+msgstr "الوقت"
+
+#: templates/emergency/list.html:44
+#: templates/panel/emergency/request_list.html:36
+msgid "Buzz"
+msgstr "تنبيه"
+
+#: templates/emergency/list.html:55
+#: templates/panel/emergency/request_list.html:50
+#, python-format
+msgid "%(counter)s new"
+msgid_plural "%(counter)s new"
+msgstr[0] "%(counter)s جديد"
+msgstr[1] "%(counter)s جديد"
+msgstr[2] "%(counter)s جديد"
+msgstr[3] "%(counter)s جديدة"
+msgstr[4] "%(counter)s جديد"
+msgstr[5] "%(counter)s جديد"
+
+#: templates/emergency/list.html:56
+#: templates/panel/emergency/request_list.html:55
+#: templates/panel/overview.html:56
+msgid "Open"
+msgstr "فتح"
+
+#: templates/emergency/list.html:63
+msgid "No emergency requests to show."
+msgstr "لا توجد طلبات طوارئ للعرض."
+
+#: templates/emergency/submit.html:4
+msgid "New emergency request-MyAutoHub"
+msgstr "طلب طوارئ جديد-ماي أوتو هب"
+
+#: templates/emergency/submit.html:12
+msgid "Request emergency help"
+msgstr "طلب مساعدة طارئة"
+
+#: templates/emergency/submit.html:13
+msgid "Pick a service and pin your location on the map-or use a saved place."
+msgstr "اختر خدمة وثبّت موقعك على الخريطة-أو استخدم مكاناً محفوظاً."
+
+#: templates/emergency/submit.html:72
+msgid "Latitude"
+msgstr "خط العرض"
+
+#: templates/emergency/submit.html:77
+msgid "Longitude"
+msgstr "خط الطول"
+
+#: templates/emergency/submit.html:85
+msgid "Saved location"
+msgstr "موقع محفوظ"
+
+#: templates/emergency/submit.html:88
+msgid "Manage saved locations"
+msgstr "إدارة المواقع المحفوظة"
+
+#: templates/emergency/submit.html:92
+msgid "What happened?"
+msgstr "ماذا حدث؟"
+
+#: templates/emergency/submit.html:97
+msgid "Submit request"
+msgstr "إرسال الطلب"
+
+#: templates/marketplace/create.html:4 templates/marketplace/create.html:8
+#: templates/marketplace/detail.html:41
+msgid "Edit listing"
+msgstr "تعديل الإعلان"
+
+#: templates/marketplace/create.html:8
+msgid "Sell your car"
+msgstr "بِع سيارتك"
+
+#: templates/marketplace/create.html:9
+msgid "Update price, photos, or status."
+msgstr "حدّث السعر أو الصور أو الحالة."
+
+#: templates/marketplace/create.html:9
+#, fuzzy
+#| msgid ""
+#| "List your car so other hub users can buy it-add a photo and a clear price."
+msgid ""
+"List your car so other hub users can buy it-add photos and a clear price."
+msgstr "أدرج سيارتك ليشتريها مستخدمو المركز-أضف صورة وسعراً واضحاً."
+
+#: templates/marketplace/create.html:13
+msgid "Listing steps"
+msgstr "خطوات الإعلان"
+
+#: templates/marketplace/create.html:17
+msgid "Basics"
+msgstr "الأساسيات"
+
+#: templates/marketplace/create.html:21
+msgid "Specs"
+msgstr "المواصفات"
+
+#: templates/marketplace/create.html:45
+msgid "Describe the car"
+msgstr "صف السيارة"
+
+#: templates/marketplace/create.html:46
+msgid ""
+"Add a title and description in at least one language. Other languages are "
+"optional."
+msgstr "أضف عنوانًا ووصفًا بلغة واحدة على الأقل. اللغات الأخرى اختيارية."
+
+#: templates/marketplace/create.html:49
+msgid "Sell faster tip"
+msgstr "نصيحة للبيع أسرع"
+
+#: templates/marketplace/create.html:50
+msgid ""
+"MyAutoHub is an international platform. Completing all language fields "
+"(فارسی, English, and العربية) helps more buyers find your car-so you can "
+"sell sooner and often at a better price."
+msgstr ""
+"ماي أوتو هب منصة دولية. إكمال حقول كل اللغات (الفارسية والإنجليزية والعربية)"
+" يساعد مزيدًا من المشترين على إيجاد سيارتك-فتبيع أسرع وغالبًا بسعر أفضل."
+
+#: templates/marketplace/create.html:54
+#: templates/panel/emergency/service_form.html:17
+#, fuzzy
+#| msgid "Language"
+msgid "Languages"
+msgstr "اللغة"
+
+#: templates/marketplace/create.html:100
+msgid "Specs & location"
+msgstr "المواصفات والموقع"
+
+#: templates/marketplace/create.html:101
+msgid "Optional details that help buyers filter and decide."
+msgstr "تفاصيل اختيارية تساعد المشتري على التصفية والقرار."
+
+#: templates/marketplace/create.html:127
+#, fuzzy
+#| msgid "Add a cover photo"
+msgid "Add photos"
+msgstr "أضف صورة غلاف"
+
+#: templates/marketplace/create.html:128
+#, fuzzy
+#| msgid "A clear exterior shot works best. You can skip this for now."
+msgid ""
+"Upload several clear shots-exterior, interior, and details. You can skip "
+"this for now."
+msgstr "لقطة خارجية واضحة هي الأفضل. يمكنك التخطي الآن."
+
+#: templates/marketplace/create.html:136
+#, fuzzy
+#| msgid "Choose an image"
+msgid "Choose images"
+msgstr "اختر صورة"
+
+#: templates/marketplace/create.html:147
+msgid "Existing photos-check to remove"
+msgstr ""
+
+#: templates/marketplace/create.html:161
+msgid "Current cover photo is kept unless you add new photos."
+msgstr ""
+
+#: templates/marketplace/create.html:172
+msgid "Price & status"
+msgstr "السعر والحالة"
+
+#: templates/marketplace/create.html:172
+msgid "Set your price"
+msgstr "حدد سعرك"
+
+#: templates/marketplace/create.html:173
+msgid "Adjust pricing or listing visibility."
+msgstr "عدّل التسعير أو ظهور الإعلان."
+
+#: templates/marketplace/create.html:173
+msgid "Almost done-set a price and publish."
+msgstr "أوشكت على الانتهاء-حدد سعراً وانشر."
+
+#: templates/marketplace/create.html:200 templates/pricing/detail.html:36
+msgid "Back"
+msgstr "رجوع"
+
+#: templates/marketplace/create.html:207
+msgid "Continue"
+msgstr "متابعة"
+
+#: templates/marketplace/create.html:209
+#: templates/panel/emergency/service_form.html:71
+msgid "Save changes"
+msgstr "حفظ التغييرات"
+
+#: templates/marketplace/create.html:209
+msgid "Publish listing"
+msgstr "نشر الإعلان"
+
+#: templates/marketplace/detail.html:31
+#, python-format
+msgid "Seller: %(name)s"
+msgstr "البائع: %(name)s"
+
+#: templates/marketplace/detail.html:32
+#, python-format
+msgid "Year: %(year)s"
+msgstr "السنة: %(year)s"
+
+#: templates/marketplace/detail.html:45
+msgid "Mark sold"
+msgstr "وسم كمباع"
+
+#: templates/marketplace/detail.html:49
+msgid "Withdraw"
+msgstr "سحب"
+
+#: templates/marketplace/detail.html:56
+msgid "Back to marketplace"
+msgstr "العودة إلى السوق"
+
+#: templates/marketplace/detail.html:61
+msgid "Buyer messages"
+msgstr "رسائل المشترين"
+
+#: templates/marketplace/detail.html:76
+msgid "No buyer messages yet."
+msgstr "لا توجد رسائل مشترين بعد."
+
+#: templates/marketplace/detail.html:81
+msgid "Interested in this car?"
+msgstr "مهتم بهذه السيارة؟"
+
+#: templates/marketplace/detail.html:82
+msgid "Send a message to the seller. They will see it on this listing."
+msgstr "أرسل رسالة إلى البائع. سيراها على هذا الإعلان."
+
+#: templates/marketplace/detail.html:93
+msgid "Message seller"
+msgstr "مراسلة البائع"
+
+#: templates/marketplace/detail.html:96
+msgid "Log in to message seller"
+msgstr "سجّل الدخول لمراسلة البائع"
+
+#: templates/marketplace/detail.html:102
+msgid "This listing is no longer available for purchase."
+msgstr "هذا الإعلان لم يعد متاحاً للشراء."
+
+#: templates/marketplace/list.html:4
+msgid "Marketplace-MyAutoHub"
+msgstr "السوق-ماي أوتو هب"
+
+#: templates/marketplace/list.html:9
+msgid ""
+"Buy cars from other drivers, or list your own for sale. Message sellers "
+"directly-no middleman."
+msgstr ""
+"اشترِ من سائقين آخرين أو أدرج سيارتك للبيع. راسل البائعين مباشرة-بلا وسيط."
+
+#: templates/marketplace/list.html:16
+msgid "Log in to sell"
+msgstr "سجّل الدخول للبيع"
+
+#: templates/marketplace/list.html:21
+#, python-format
+msgid "%(counter)s car for sale"
+msgid_plural "%(counter)s cars for sale"
+msgstr[0] "%(counter)s سيارة للبيع"
+msgstr[1] "%(counter)s سيارة للبيع"
+msgstr[2] "%(counter)s سيارة للبيع"
+msgstr[3] "%(counter)s سيارة للبيع"
+msgstr[4] "%(counter)s سيارة للبيع"
+msgstr[5] "%(counter)s سيارة للبيع"
+
+#: templates/marketplace/list.html:38
+#, python-format
+msgid "by %(name)s"
+msgstr "بواسطة %(name)s"
+
+#: templates/marketplace/list.html:40
+msgid "Yours"
+msgstr "خاصتك"
+
+#: templates/marketplace/list.html:46
+msgid "No cars for sale yet. Be the first to list yours."
+msgstr "لا توجد سيارات للبيع بعد. كن أول من يدرج سيارته."
+
+#: templates/marketplace/mine.html:4
+msgid "My listings-MyAutoHub"
+msgstr "إعلاناتي-ماي أوتو هاب"
+
+#: templates/marketplace/mine.html:9
+msgid "Cars you are selling-edit, mark sold, or read buyer messages."
+msgstr "السيارات التي تبيعها-عدّل أو وسم كمباع أو اقرأ رسائل المشترين."
+
+#: templates/marketplace/mine.html:12
+msgid "Sell another car"
+msgstr "بيع سيارة أخرى"
+
+#: templates/marketplace/mine.html:13
+msgid "Browse marketplace"
+msgstr "تصفّح السوق"
+
+#: templates/marketplace/mine.html:32
+#, python-format
+msgid "%(counter)s new message"
+msgid_plural "%(counter)s new messages"
+msgstr[0] "%(counter)s رسالة جديدة"
+msgstr[1] "%(counter)s رسالة جديدة"
+msgstr[2] "%(counter)s رسالة جديدة"
+msgstr[3] "%(counter)s رسالة جديدة"
+msgstr[4] "%(counter)s رسالة جديدة"
+msgstr[5] "%(counter)s رسالة جديدة"
+
+#: templates/marketplace/mine.html:34
+#, python-format
+msgid "%(counter)s message"
+msgid_plural "%(counter)s messages"
+msgstr[0] "%(counter)s رسالة"
+msgstr[1] "%(counter)s رسالة"
+msgstr[2] "%(counter)s رسالة"
+msgstr[3] "%(counter)s رسالة"
+msgstr[4] "%(counter)s رسالة"
+msgstr[5] "%(counter)s رسالة"
+
+#: templates/marketplace/mine.html:40
+msgid "You have not listed a car yet."
+msgstr "لم تدرج سيارة بعد."
+
+#: templates/marketplace/mine.html:40
+msgid "Sell your first car"
+msgstr "بِع سيارتك الأولى"
+
+#: templates/panel/base.html:20
+msgid "Panel navigation"
+msgstr ""
+
+#: templates/panel/base.html:31
+msgid "Staff panel"
+msgstr ""
+
+#: templates/panel/base.html:33 templates/panel/overview.html:4
+#: templates/panel/overview.html:5
+#, fuzzy
+#| msgid "Operator view"
+msgid "Overview"
+msgstr "عرض المشغّل"
+
+#: templates/panel/base.html:34 templates/panel/emergency/request_list.html:4
+#: templates/panel/emergency/request_list.html:5
+#, fuzzy
+#| msgid "Emergency"
+msgid "Emergency queue"
+msgstr "الطوارئ"
+
+#: templates/panel/base.html:35
+#, fuzzy
+#| msgid "Service"
+msgid "Services"
+msgstr "الخدمة"
+
+#: templates/panel/base.html:49
+msgid "Light tools for day-to-day ops."
+msgstr ""
+
+#: templates/panel/emergency/request_detail.html:27
+#, fuzzy
+#| msgid "Back to hub"
+msgid "Back to queue"
+msgstr "العودة إلى المركز"
+
+#: templates/panel/emergency/request_detail.html:28
+#, fuzzy
+#| msgid "Public review"
+msgid "Public detail"
+msgstr "مراجعة عامة"
+
+#: templates/panel/emergency/request_detail.html:35
+msgid "Uses the same operator rules as the public emergency flow."
+msgstr ""
+
+#: templates/panel/emergency/request_detail.html:51
+msgid ""
+"Status changes need the emergency_operators group (and staff for finish)."
+msgstr ""
+
+#: templates/panel/emergency/request_detail.html:88
+#, fuzzy
+#| msgid "No buyer messages yet."
+msgid "No buzzes yet."
+msgstr "لا توجد رسائل مشترين بعد."
+
+#: templates/panel/emergency/request_list.html:6
+msgid "All requests-filter, open, update status."
+msgstr ""
+
+#: templates/panel/emergency/request_list.html:10
+#, fuzzy
+#| msgid "All services"
+msgid "Manage services"
+msgstr "كل الخدمات"
+
+#: templates/panel/emergency/request_list.html:21
+msgid "Filter"
+msgstr ""
+
+#: templates/panel/emergency/request_list.html:33
+#: templates/panel/overview.html:42
+#, fuzzy
+#| msgid "Request help"
+msgid "Requester"
+msgstr "طلب مساعدة"
+
+#: templates/panel/emergency/request_list.html:62
+msgid "No requests match this filter."
+msgstr ""
+
+#: templates/panel/emergency/service_form.html:4
+#: templates/panel/emergency/service_form.html:5
+#, fuzzy
+#| msgid "All services"
+msgid "Edit service"
+msgstr "كل الخدمات"
+
+#: templates/panel/emergency/service_form.html:4
+#: templates/panel/emergency/service_form.html:5
+#: templates/panel/emergency/service_list.html:10
+#, fuzzy
+#| msgid "All services"
+msgid "New service"
+msgstr "كل الخدمات"
+
+#: templates/panel/emergency/service_form.html:6
+msgid "Add a roadside service operators can fulfill."
+msgstr ""
+
+#: templates/panel/emergency/service_form.html:71
+#, fuzzy
+#| msgid "Emergency services"
+msgid "Create service"
+msgstr "خدمات الطوارئ"
+
+#: templates/panel/emergency/service_list.html:6
+msgid "Catalog of roadside help offerings."
+msgstr ""
+
+#: templates/panel/emergency/service_list.html:12
+#, fuzzy
+#| msgid "Request help"
+msgid "Request queue"
+msgstr "طلب مساعدة"
+
+#: templates/panel/emergency/service_list.html:21
+msgid "Name"
+msgstr ""
+
+#: templates/panel/emergency/service_list.html:22
+#: templates/panel/emergency/service_list.html:33
+msgid "Active"
+msgstr ""
+
+#: templates/panel/emergency/service_list.html:23
+#, fuzzy
+#| msgid "Request help"
+msgid "Requests"
+msgstr "طلب مساعدة"
+
+#: templates/panel/emergency/service_list.html:35
+msgid "Inactive"
+msgstr ""
+
+#: templates/panel/emergency/service_list.html:39
+msgid "Edit"
+msgstr ""
+
+#: templates/panel/emergency/service_list.html:46
+msgid "No services yet. Create the first one."
+msgstr ""
+
+#: templates/panel/overview.html:6
+#, fuzzy
+#| msgid "Only emergency operators can accept requests."
+msgid "Open emergency work at a glance."
+msgstr "فقط مشغّلو الطوارئ يمكنهم قبول الطلبات."
+
+#: templates/panel/overview.html:12
+msgid "Waiting"
+msgstr ""
+
+#: templates/panel/overview.html:20
+#, fuzzy
+#| msgid "%(counter)s unread buzz"
+#| msgid_plural "%(counter)s unread buzzes"
+msgid "With unread buzz"
+msgstr "%(counter)s تنبيه غير مقروء"
+
+#: templates/panel/overview.html:24
+#, fuzzy
+#| msgid "All services"
+msgid "Active services"
+msgstr "كل الخدمات"
+
+#: templates/panel/overview.html:30
+#, fuzzy
+#| msgid "New request"
+msgid "Recent requests"
+msgstr "طلب جديد"
+
+#: templates/panel/overview.html:32
+msgid "Full queue"
+msgstr ""
+
+#: templates/panel/overview.html:63
+#, fuzzy
+#| msgid "No emergency requests to show."
+msgid "No emergency requests yet."
+msgstr "لا توجد طلبات طوارئ للعرض."
+
+#: templates/pricing/detail.html:9 templates/pricing/list.html:24
+msgid "General reference"
+msgstr "مرجع عام"
+
+#: templates/pricing/detail.html:34
+#, python-format
+msgid "Source: %(source)s"
+msgstr "المصدر: %(source)s"
+
+#: templates/pricing/detail.html:35
+#, python-format
+msgid "Updated %(when)s"
+msgstr "حُدّث %(when)s"
+
+#: templates/pricing/list.html:4
+msgid "Pricing-MyAutoHub"
+msgstr "الأسعار-ماي أوتو هب"
+
+#: templates/pricing/list.html:8
+msgid "Pricing reference"
+msgstr "مرجع الأسعار"
+
+#: templates/pricing/list.html:9
+msgid ""
+"Ballpark figures for cars and common services-useful context, not a quote."
+msgstr "أرقام تقريبية للسيارات والخدمات الشائعة-سياق مفيد وليس عرض سعر."
+
+#: templates/pricing/list.html:28
+msgid "No pricing references published yet."
+msgstr "لم تُنشر مراجع أسعار بعد."
+
+#: templates/stories/detail.html:10
+#, python-format
+msgid "By %(name)s · "
+msgstr "بقلم %(name)s · "
+
+#: templates/stories/detail.html:22
+msgid "Back to stories"
+msgstr "العودة إلى القصص"
+
+#: templates/stories/list.html:4
+msgid "Stories-MyAutoHub"
+msgstr "القصص-ماي أوتو هب"
+
+#: templates/stories/list.html:9
+msgid "Human moments from the road and the MyAutoHub community."
+msgstr "لحظات إنسانية من الطريق ومجتمع ماي أوتو هب."
+
+#: templates/stories/list.html:27
+msgid "No stories published yet."
+msgstr "لم تُنشر قصص بعد."
+
+#: templates/youtube/detail.html:22
+msgid "Back to videos"
+msgstr "العودة إلى الفيديوهات"
+
+#: templates/youtube/list.html:4
+msgid "YouTube-MyAutoHub"
+msgstr "يوتيوب-ماي أوتو هب"
+
+#: templates/youtube/list.html:8
+msgid "YouTube contents"
+msgstr "محتويات يوتيوب"
+
+#: templates/youtube/list.html:9
+msgid "Guides, reviews, and hub stories-watch without leaving the app."
+msgstr "أدلة ومراجعات وقصص المركز-شاهد دون مغادرة التطبيق."
+
+#: templates/youtube/list.html:20
+msgid "Recently added"
+msgstr "أُضيف مؤخراً"
+
+#: templates/youtube/list.html:24
+msgid "No videos published yet."
+msgstr "لم تُنشر فيديوهات بعد."
+
+#~ msgid "Title"
+#~ msgstr "العنوان"
+
+#~ msgid "Cover photo"
+#~ msgstr "صورة الغلاف"
+
+#~ msgid "3-letter code such as USD, IRR, AED."
+#~ msgstr "رمز من 3 أحرف مثل USD أو IRR أو AED."
+
+#~ msgid "Start with a clear title and what buyers need to know."
+#~ msgstr "ابدأ بعنوان واضح وما يحتاج المشتري معرفته."

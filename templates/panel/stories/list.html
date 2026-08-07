@@ -1,0 +1,61 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Stories" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Stories" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Editorial stories on the hub." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:story_create' %}">{% trans "New story" %}</a>
+</div>
+
+<div class="panel filter-panel">
+  <form method="get" class="filter-bar">
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-ghost" type="submit">{% trans "Filter" %}</button>
+  </form>
+</div>
+
+<div class="panel">
+  {% if stories %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Slug" %}</th>
+            <th>{% trans "Author" %}</th>
+            <th>{% trans "Published" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for story in stories %}
+            <tr>
+              <td>{{ story.title_en|default:story.title_fa }}</td>
+              <td><code>{{ story.slug }}</code></td>
+              <td>{% if story.author %}{{ story.author.username }}{% else %}—{% endif %}</td>
+              <td>
+                {% if story.is_published %}
+                  <span class="badge badge-active">{% trans "Published" %}</span>
+                {% else %}
+                  <span class="badge badge-draft">{% trans "Draft" %}</span>
+                {% endif %}
+              </td>
+              <td><a class="link-action" href="{% url 'panel:story_edit' story.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No stories yet. Create the first one." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

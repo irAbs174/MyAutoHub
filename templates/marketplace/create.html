@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% if editing %}{% trans "Edit listing" %}{% else %}{% trans "Sell a car" %}{% endif %}-MyAutoHub{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="hero hero-wizard">
+  <h1>{% if editing %}{% trans "Edit listing" %}{% else %}{% trans "Sell your car" %}{% endif %}</h1>
+  <p>{% if editing %}{% trans "Update price, photos, or status." %}{% else %}{% trans "List your car so other hub users can buy it-add photos and a clear price." %}{% endif %}</p>
+</section>
+
+<div class="panel panel-wizard" data-listing-wizard{% if form.errors %} data-has-errors="1"{% endif %}>
+  <nav class="wizard-steps" aria-label="{% trans 'Listing steps' %}">
+    <ol class="wizard-steps__list">
+      <li class="wizard-steps__item is-active" data-step-indicator="1">
+        <span class="wizard-steps__num" aria-hidden="true">1</span>
+        <span class="wizard-steps__label">{% trans "Basics" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="2">
+        <span class="wizard-steps__num" aria-hidden="true">2</span>
+        <span class="wizard-steps__label">{% trans "Specs" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="3">
+        <span class="wizard-steps__num" aria-hidden="true">3</span>
+        <span class="wizard-steps__label">{% trans "Photos" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="4">
+        <span class="wizard-steps__num" aria-hidden="true">4</span>
+        <span class="wizard-steps__label">{% trans "Price" %}</span>
+      </li>
+    </ol>
+    <div class="wizard-progress" aria-hidden="true">
+      <span class="wizard-progress__bar" data-wizard-progress></span>
+    </div>
+  </nav>
+
+  <form method="post" class="form-grid wizard-form" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+
+    <div class="wizard-pane is-active" data-wizard-step="1" data-lang-pair-required="1">
+      <header class="wizard-pane__head">
+        <h2>{% trans "Describe the car" %}</h2>
+        <p>{% trans "Add a title and description in at least one language. Other languages are optional." %}</p>
+      </header>
+      <aside class="wizard-tip" role="note">
+        <strong>{% trans "Sell faster tip" %}</strong>
+        <p>{% trans "MyAutoHub is an international platform. Completing all language fields (فارسی, English, and العربية) helps more buyers find your car-so you can sell sooner and often at a better price." %}</p>
+      </aside>
+      <p class="form-error" data-lang-pair-error hidden>{% trans "Add a title and description in at least one language (فارسی, English, or العربية)." %}</p>
+      <div class="lang-tabs" data-lang-tabs>
+        <div class="lang-tabs__nav" role="tablist" aria-label="{% trans 'Languages' %}">
+          <button type="button" class="lang-tabs__btn is-active" role="tab" aria-selected="true" data-lang-tab="fa">فارسی</button>
+          <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="en">English</button>
+          <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="ar">العربية</button>
+        </div>
+        <div class="lang-tabs__panel is-active" data-lang-panel="fa" role="tabpanel">
+          <div class="form-row{% if form.title_fa.errors %} has-error{% endif %}">
+            <label for="{{ form.title_fa.id_for_label }}">{{ form.title_fa.label }}</label>
+            {{ form.title_fa }}
+            {% for error in form.title_fa.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="form-row{% if form.description_fa.errors %} has-error{% endif %}">
+            <label for="{{ form.description_fa.id_for_label }}">{{ form.description_fa.label }}</label>
+            {{ form.description_fa }}
+            {% for error in form.description_fa.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+        <div class="lang-tabs__panel" data-lang-panel="en" role="tabpanel" hidden>
+          <div class="form-row{% if form.title_en.errors %} has-error{% endif %}">
+            <label for="{{ form.title_en.id_for_label }}">{{ form.title_en.label }}</label>
+            {{ form.title_en }}
+            {% for error in form.title_en.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="form-row{% if form.description_en.errors %} has-error{% endif %}">
+            <label for="{{ form.description_en.id_for_label }}">{{ form.description_en.label }}</label>
+            {{ form.description_en }}
+            {% for error in form.description_en.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+        <div class="lang-tabs__panel" data-lang-panel="ar" role="tabpanel" hidden>
+          <div class="form-row{% if form.title_ar.errors %} has-error{% endif %}">
+            <label for="{{ form.title_ar.id_for_label }}">{{ form.title_ar.label }}</label>
+            {{ form.title_ar }}
+            {% for error in form.title_ar.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="form-row{% if form.description_ar.errors %} has-error{% endif %}">
+            <label for="{{ form.description_ar.id_for_label }}">{{ form.description_ar.label }}</label>
+            {{ form.description_ar }}
+            {% for error in form.description_ar.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-pane" data-wizard-step="2" hidden>
+      {{ brands_models|json_script:"brand-model-map" }}
+      <header class="wizard-pane__head">
+        <h2>{% trans "Specs & location" %}</h2>
+        <p>{% trans "Optional details that help buyers filter and decide." %}</p>
+      </header>
+      <div class="form-row-pair">
+        <div class="form-row{% if form.brand.errors %} has-error{% endif %}">
+          <label for="{{ form.brand.id_for_label }}">{{ form.brand.label }}</label>
+          {{ form.brand }}
+          {% if form.brand.help_text %}<p class="help">{{ form.brand.help_text }}</p>{% endif %}
+          {% for error in form.brand.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="form-row{% if form.car_model.errors %} has-error{% endif %}">
+          <label for="{{ form.car_model.id_for_label }}">{{ form.car_model.label }}</label>
+          {{ form.car_model }}
+          {% if form.car_model.help_text %}<p class="help">{{ form.car_model.help_text }}</p>{% endif %}
+          {% for error in form.car_model.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      </div>
+      <div class="form-row{% if form.trim.errors %} has-error{% endif %}">
+        <label for="{{ form.trim.id_for_label }}">{{ form.trim.label }}</label>
+        {{ form.trim }}
+        {% if form.trim.help_text %}<p class="help">{{ form.trim.help_text }}</p>{% endif %}
+        {% for error in form.trim.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+      <div class="form-row-pair">
+        <div class="form-row{% if form.year.errors %} has-error{% endif %}">
+          <label for="{{ form.year.id_for_label }}">{{ form.year.label }}</label>
+          {{ form.year }}
+          {% if form.year.help_text %}<p class="help">{{ form.year.help_text }}</p>{% endif %}
+          {% for error in form.year.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="form-row{% if form.mileage_km.errors %} has-error{% endif %}">
+          <label for="{{ form.mileage_km.id_for_label }}">{{ form.mileage_km.label }}</label>
+          {{ form.mileage_km }}
+          {% if form.mileage_km.help_text %}<p class="help">{{ form.mileage_km.help_text }}</p>{% endif %}
+          {% for error in form.mileage_km.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      </div>
+      <div class="form-row{% if form.city.errors %} has-error{% endif %}">
+        <label for="{{ form.city.id_for_label }}">{{ form.city.label }}</label>
+        {{ form.city }}
+        {% if form.city.help_text %}<p class="help">{{ form.city.help_text }}</p>{% endif %}
+        {% for error in form.city.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    </div>
+
+    <div class="wizard-pane" data-wizard-step="3" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% trans "Add photos" %}</h2>
+        <p>{% trans "Upload several clear shots-exterior, interior, and details. You can skip this for now." %}</p>
+      </header>
+      <div class="form-row form-row--photo{% if form.photos.errors %} has-error{% endif %}">
+        <label for="{{ form.photos.id_for_label }}">{{ form.photos.label }}</label>
+        <div class="wizard-photo" data-photo-preview data-multi-photos>
+          <div class="wizard-photo__frame" data-photo-frame>
+            <div class="wizard-photo__placeholder" data-photo-placeholder>
+              <span class="wizard-photo__icon" aria-hidden="true"></span>
+              <span>{% trans "Choose images" %}</span>
+            </div>
+          </div>
+          <div class="wizard-photo__strip" data-photo-strip hidden></div>
+          {{ form.photos }}
+        </div>
+        {% if form.photos.help_text %}<p class="help">{{ form.photos.help_text }}</p>{% endif %}
+        {% for error in form.photos.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+      {% if editing and listing.photos.all %}
+        <div class="form-row">
+          <p class="help" style="margin-bottom:0.5rem">{% trans "Existing photos-check to remove" %}</p>
+          <div class="wizard-photo__existing" data-existing-photos>
+            {% for photo in listing.photos.all %}
+              <label class="wizard-photo__existing-item">
+                <img src="{{ photo.image.url }}" alt="" loading="lazy">
+                <span class="wizard-photo__remove">
+                  <input type="checkbox" name="remove_photos" value="{{ photo.pk }}">
+                  {% trans "Remove" %}
+                </span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      {% elif editing and listing.cover_image %}
+        <p class="help">{% trans "Current cover photo is kept unless you add new photos." %}</p>
+        <div class="wizard-photo__existing">
+          <div class="wizard-photo__existing-item">
+            <img src="{{ listing.cover_image.url }}" alt="" loading="lazy">
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="wizard-pane" data-wizard-step="4" data-required-fields="price,currency" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% if editing %}{% trans "Price & status" %}{% else %}{% trans "Set your price" %}{% endif %}</h2>
+        <p>{% if editing %}{% trans "Adjust pricing or listing visibility." %}{% else %}{% trans "Almost done-set a price and publish." %}{% endif %}</p>
+      </header>
+      <div class="form-row-pair">
+        <div class="form-row{% if form.price.errors %} has-error{% endif %}">
+          <label for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
+          {{ form.price }}
+          {% if form.price.help_text %}<p class="help">{{ form.price.help_text }}</p>{% endif %}
+          {% for error in form.price.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="form-row{% if form.currency.errors %} has-error{% endif %}">
+          <label for="{{ form.currency.id_for_label }}">{{ form.currency.label }}</label>
+          {{ form.currency }}
+          {% if form.currency.help_text %}<p class="help">{{ form.currency.help_text }}</p>{% endif %}
+          {% for error in form.currency.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      </div>
+      {% if editing and form.status %}
+        <div class="form-row{% if form.status.errors %} has-error{% endif %}">
+          <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+          {{ form.status }}
+          {% if form.status.help_text %}<p class="help">{{ form.status.help_text }}</p>{% endif %}
+          {% for error in form.status.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="wizard-actions">
+      <button type="button" class="btn btn-ghost" data-wizard-prev hidden>{% trans "Back" %}</button>
+      <div class="wizard-actions__end">
+        {% if editing %}
+          <a class="btn btn-ghost" href="{% url 'marketplace:detail' listing.pk %}">{% trans "Cancel" %}</a>
+        {% else %}
+          <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Cancel" %}</a>
+        {% endif %}
+        <button type="button" class="btn" data-wizard-next>{% trans "Continue" %}</button>
+        <button class="btn" type="submit" data-wizard-submit hidden>
+          {% if editing %}{% trans "Save changes" %}{% else %}{% trans "Publish listing" %}{% endif %}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/listing-wizard.js' %}" defer></script>
+{% endblock %}

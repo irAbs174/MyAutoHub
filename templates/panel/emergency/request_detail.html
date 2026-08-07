@@ -1,0 +1,91 @@
+{% extends "panel/base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% blocktrans with id=emergency.id %}Request #{{ id }}{% endblocktrans %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% blocktrans with id=emergency.id %}Request #{{ id }}{% endblocktrans %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{{ emergency.service.name }}</p>{% endblock %}
+
+{% block content %}
+<div class="meta">
+  <span class="badge badge-{{ emergency.status }}">{{ emergency.get_status_display }}</span>
+  <span>{% blocktrans with when=emergency.created_at|naturaltime %}Opened {{ when }}{% endblocktrans %}</span>
+  <span>{% blocktrans with name=emergency.requester.username %}Requester: {{ name }}{% endblocktrans %}</span>
+  {% if emergency.unread_buzz_count %}
+    <span class="badge">{% blocktrans count counter=emergency.unread_buzz_count %}{{ counter }} unread buzz{% plural %}{{ counter }} unread buzzes{% endblocktrans %}</span>
+  {% endif %}
+</div>
+
+<div class="panel">
+  <h2>{% trans "Details" %}</h2>
+  <p>{{ emergency.description }}</p>
+  <p class="help">
+    {% trans "Location:" %}
+    {% if latlng.0 and latlng.1 %}{{ latlng.0 }}, {{ latlng.1 }}{% else %}{% trans "—" %}{% endif %}
+    {% if emergency.saved_location %} ({{ emergency.saved_location.label }}){% endif %}
+  </p>
+  <div class="actions">
+    <a class="btn btn-ghost" href="{% url 'panel:emergency_request_list' %}">{% trans "Back to queue" %}</a>
+    <a class="btn btn-ghost" href="{% url 'emergency:detail' emergency.pk %}">{% trans "Public detail" %}</a>
+  </div>
+</div>
+
+{% if verify_form.fields.to_status.choices %}
+<div class="panel">
+  <h2>{% trans "Update status" %}</h2>
+  <p class="help">{% trans "Uses the same operator rules as the public emergency flow." %}</p>
+  <form method="post" action="{% url 'panel:emergency_request_verify' emergency.pk %}" class="form-grid">
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="{{ verify_form.to_status.id_for_label }}">{% trans "New status" %}</label>
+      {{ verify_form.to_status }}
+    </div>
+    <div class="form-row">
+      <label for="{{ verify_form.note.id_for_label }}">{% trans "Note" %}</label>
+      {{ verify_form.note }}
+    </div>
+    <button class="btn" type="submit">{% trans "Apply" %}</button>
+  </form>
+</div>
+{% elif not is_operator %}
+<div class="panel">
+  <p class="help">{% trans "Status changes need the emergency_operators group (and staff for finish), or a superuser account." %}</p>
+</div>
+{% endif %}
+
+{% if emergency.review_comment %}
+<div class="panel">
+  <h2>{% trans "Public review" %}</h2>
+  <p>{{ emergency.review_comment }}</p>
+  {% if emergency.review_rating %}
+    <p class="help">{% blocktrans with rating=emergency.review_rating %}Rating: {{ rating }}/5{% endblocktrans %}</p>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="panel">
+  <h2>{% trans "Timeline" %}</h2>
+  <div class="stack">
+    {% for t in emergency.transitions.all %}
+      <div class="timeline-item">
+        <strong>{{ t.get_from_status_display }} → {{ t.get_to_status_display }}</strong>
+        <div class="help">{{ t.created_at|naturaltime }}{% if t.actor %} · {{ t.actor.username }}{% endif %}</div>
+        {% if t.note %}<p>{{ t.note }}</p>{% endif %}
+      </div>
+    {% empty %}
+      <p class="empty">{% trans "No transitions yet." %}</p>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="panel">
+  <h2>{% trans "Buzz history" %}</h2>
+  {% for b in emergency.buzzes.all %}
+    <div class="timeline-item">
+      {% blocktrans with name=b.from_user.username when=b.created_at|naturaltime %}Buzz from {{ name }} · {{ when }}{% endblocktrans %}
+      {% if not b.seen_by_operators %}<span class="badge">{% trans "Unread" %}</span>{% endif %}
+    </div>
+  {% empty %}
+    <p class="empty">{% trans "No buzzes yet." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

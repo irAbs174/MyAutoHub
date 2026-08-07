@@ -1,0 +1,30 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if editing %}{% trans "Edit model" %}{% else %}{% trans "New model" %}{% endif %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% if editing %}{% trans "Edit model" %}{% else %}{% trans "New model" %}{% endif %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% if editing %}{{ car_model }}{% else %}{% trans "Add a model under a brand." %}{% endif %}</p>{% endblock %}
+
+{% block content %}
+<div class="panel" style="max-width: 480px">
+  <form method="post" class="form-grid">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+    {% for field in form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    <div class="actions">
+      <button class="btn" type="submit">
+        {% if editing %}{% trans "Save changes" %}{% else %}{% trans "Create model" %}{% endif %}
+      </button>
+      <a class="btn btn-ghost" href="{% url 'panel:brand_list' %}">{% trans "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

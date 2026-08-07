@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+{% load static humanize i18n %}
+
+{% block title %}{% trans "MyAutoHub-Hub" %}{% endblock %}
+{% block og_title %}{% trans "MyAutoHub-Hub" %}{% endblock %}
+{% block twitter_title %}{% trans "MyAutoHub-Hub" %}{% endblock %}
+
+{% block content %}
+<section class="home-hero reveal">
+  <div class="home-hero-glow" aria-hidden="true"></div>
+  <div class="home-hero-inner">
+    <p class="home-hero-brand">
+      <span class="brand-logo-wrap">
+        <img
+          class="brand-logo brand-logo--light brand-logo--lg"
+          src="{% static 'img/logo.png' %}"
+          alt="MyAutoHub"
+          width="1046"
+          height="280"
+          decoding="async"
+        >
+        <img
+          class="brand-logo brand-logo--dark brand-logo--lg"
+          src="{% static 'img/logo-dark.png' %}"
+          alt=""
+          width="1046"
+          height="280"
+          decoding="async"
+          aria-hidden="true"
+        >
+      </span>
+    </p>
+    <h1>{% trans "Roadside help. Cars to buy and sell. One hub." %}</h1>
+    <p class="home-hero-lead">
+      {% trans "Pin your location for emergency aid, list your car, or browse what other drivers are selling." %}
+    </p>
+    <div class="actions">
+      {% if user.is_authenticated %}
+        <a class="btn" href="{% url 'emergency:submit' %}">{% trans "Request help" %}</a>
+        <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Buy or sell" %}</a>
+      {% else %}
+        <a class="btn" href="{% url 'emergency:list' %}">{% trans "Emergency services" %}</a>
+        <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Marketplace" %}</a>
+        <a class="btn btn-ghost" href="{% url 'accounts:register' %}">{% trans "Join" %}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="home-paths reveal" aria-label="{% trans 'Main paths' %}">
+  <a class="home-path home-path-emergency" href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'emergency:list' %}{% endif %}">
+    <span class="home-path-kicker">{% trans "Help" %}</span>
+    <strong>{% trans "Emergency" %}</strong>
+    <span>{% trans "Towing, jump start, lockout-pin yourself on the map." %}</span>
+  </a>
+  <a class="home-path home-path-market" href="{% url 'marketplace:list' %}">
+    <span class="home-path-kicker">{% trans "Trade" %}</span>
+    <strong>{% trans "Buy & sell" %}</strong>
+    <span>{% trans "Browse cars from other drivers, or list yours." %}</span>
+  </a>
+  <a class="home-path home-path-cars" href="{% url 'cars:list' %}">
+    <span class="home-path-kicker">{% trans "Catalog" %}</span>
+    <strong>{% trans "Cars" %}</strong>
+    <span>{% trans "Specs and models-then jump to live marketplace deals." %}</span>
+  </a>
+</section>
+
+{% if expert_cars %}
+<section class="home-expert reveal" aria-label="{% trans 'Expertise' %}">
+  <div class="home-expert-copy">
+    <p class="home-expert-kicker">{% trans "Expertise" %}</p>
+    <h2 class="home-expert-title">{% trans "Specs, data, and the models that matter" %}</h2>
+    <p class="home-expert-lead">
+      {% trans "Browse curated vehicle specs from the technical hub-horsepower, fuel, and trim at a glance." %}
+    </p>
+    <a class="btn" href="{% url 'cars:list' %}">{% trans "Open catalog" %}</a>
+  </div>
+  <div class="home-expert-slider" data-expert-slider>
+    <div class="home-expert-nav" role="group" aria-label="{% trans 'Slide controls' %}">
+      <button type="button" class="home-expert-btn" data-expert-prev aria-label="{% trans 'Previous' %}">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button type="button" class="home-expert-btn" data-expert-next aria-label="{% trans 'Next' %}">
+        <span aria-hidden="true">›</span>
+      </button>
+    </div>
+    <div class="home-expert-track" data-expert-track tabindex="0">
+      {% for car in expert_cars %}
+        <a class="home-expert-slide" href="{% url 'cars:detail' car.pk %}">
+          <img
+            src="{{ car.main_image.url }}"
+            alt="{{ car.model.brand.name }} {{ car.model.name }}"
+            loading="lazy"
+            width="640"
+            height="400"
+          >
+          <span class="home-expert-caption">
+            <strong>{{ car.model.brand.name }} {{ car.model.name }}</strong>
+            <em>{{ car.year }}{% if car.horsepower %} · {{ car.horsepower }} hp{% endif %}</em>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if emergency_services %}
+<section class="home-block reveal">
+  <div class="section-head">
+    <div>
+      <p class="sections-label">{% trans "Roadside" %}</p>
+      <h2 class="section-title">{% trans "Services on call" %}</h2>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="{% url 'emergency:list' %}">{% trans "All services" %}</a>
+  </div>
+  <div class="home-service-row">
+    {% for svc in emergency_services %}
+      <a class="home-service-chip" href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'accounts:login' %}?next={% url 'emergency:submit' %}{% endif %}">
+        {% if svc.cover_image %}
+          <img src="{{ svc.cover_image.url }}" alt="" width="36" height="36" loading="lazy">
+        {% endif %}
+        <span>{{ svc.name|cut:"[Demo] "|cut:"[Demo]" }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if latest_listings %}
+<section class="home-block">
+  <div class="section-head reveal">
+    <div>
+      <p class="sections-label">{% trans "Marketplace" %}</p>
+      <h2 class="section-title">{% trans "Cars for sale" %}</h2>
+    </div>
+    <div class="section-head-actions">
+      {% if user.is_authenticated %}
+        <a class="btn btn-sm" href="{% url 'marketplace:create' %}">{% trans "Sell my car" %}</a>
+      {% endif %}
+      <a class="btn btn-ghost btn-sm" href="{% url 'marketplace:list' %}">{% trans "View all" %}</a>
+    </div>
+  </div>
+  <div class="media-grid media-grid-4">
+    {% for item in latest_listings %}
+      <a class="media-card reveal" href="{% url 'marketplace:detail' item.pk %}">
+        <div class="media-thumb">
+          {% if item.main_image %}
+            <img src="{{ item.main_image.url }}" alt="{{ item.title }}" loading="lazy">
+          {% else %}
+            <div class="media-fallback">$</div>
+          {% endif %}
+          <span class="media-badge">{{ item.price|floatformat:0|intcomma }} {{ item.currency }}</span>
+        </div>
+        <div class="media-body">
+          <h3>{{ item.title }}</h3>
+          <p>{% if item.city %}{{ item.city }}{% if item.year %} · {% endif %}{% endif %}{% if item.year %}{{ item.year }}{% endif %} · {{ item.seller.username }}</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if latest_cars %}
+<section class="home-block">
+  <div class="section-head reveal">
+    <div>
+      <p class="sections-label">{% trans "Catalog" %}</p>
+      <h2 class="section-title">{% trans "Newest cars" %}</h2>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="{% url 'cars:list' %}">{% trans "View all" %}</a>
+  </div>
+  <div class="media-grid">
+    {% for car in latest_cars %}
+      <a class="media-card reveal" href="{% url 'cars:detail' car.pk %}">
+        <div class="media-thumb">
+          {% if car.main_image %}
+            <img src="{{ car.main_image.url }}" alt="{{ car.model }}" loading="lazy">
+          {% else %}
+            <div class="media-fallback">{{ car.model.brand.name|slice:":1" }}</div>
+          {% endif %}
+        </div>
+        <div class="media-body">
+          <h3>{{ car.model.brand.name }} {{ car.model.name }}</h3>
+          <p>{{ car.year }}{% if car.horsepower %} · {{ car.horsepower }} hp{% endif %}</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<div class="home-split">
+  {% if latest_videos %}
+  <section class="home-block home-split-col">
+    <div class="section-head reveal">
+      <div>
+        <p class="sections-label">{% trans "Watch" %}</p>
+        <h2 class="section-title">{% trans "YouTube" %}</h2>
+      </div>
+      <a class="btn btn-ghost btn-sm" href="{% url 'youtube:list' %}">{% trans "View all" %}</a>
+    </div>
+    <div class="media-grid media-grid-2">
+      {% for video in latest_videos|slice:":2" %}
+        <a class="media-card reveal" href="{% url 'youtube:detail' video.pk %}">
+          <div class="media-thumb media-thumb-video">
+            <img src="{{ video.thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
+            <span class="play-dot" aria-hidden="true"></span>
+          </div>
+          <div class="media-body">
+            <h3>{{ video.title|cut:"[Demo] "|cut:"[Demo]" }}</h3>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if latest_stories %}
+  <section class="home-block home-split-col">
+    <div class="section-head reveal">
+      <div>
+        <p class="sections-label">{% trans "Community" %}</p>
+        <h2 class="section-title">{% trans "Stories" %}</h2>
+      </div>
+      <a class="btn btn-ghost btn-sm" href="{% url 'stories:list' %}">{% trans "View all" %}</a>
+    </div>
+    <div class="home-story-list">
+      {% for story in latest_stories %}
+        <a class="home-story-row reveal" href="{% url 'stories:detail' story.slug %}">
+          {% if story.cover_image %}
+            <img src="{{ story.cover_image.url }}" alt="" loading="lazy">
+          {% endif %}
+          <span>
+            <strong>{{ story.title|cut:"[Demo] "|cut:"[Demo]" }}</strong>
+            <em>{% if story.excerpt %}{{ story.excerpt|truncatewords:12 }}{% else %}{{ story.body|truncatewords:12 }}{% endif %}</em>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+{% if price_teasers %}
+<section class="home-block">
+  <div class="section-head reveal">
+    <div>
+      <p class="sections-label">{% trans "Pricing" %}</p>
+      <h2 class="section-title">{% trans "Price references" %}</h2>
+    </div>
+    <a class="btn btn-ghost btn-sm" href="{% url 'pricing:list' %}">{% trans "View all" %}</a>
+  </div>
+  <div class="price-row">
+    {% for item in price_teasers %}
+      <a class="price-chip reveal" href="{% url 'pricing:detail' item.pk %}">
+        {% if item.main_image %}
+          <img src="{{ item.main_image.url }}" alt="" loading="lazy">
+        {% endif %}
+        <span>
+          <strong>{{ item.title|cut:"[Demo] "|cut:"[Demo]" }}</strong>
+          <em>{{ item.amount|floatformat:0|intcomma }} {{ item.currency }}</em>
+        </span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section class="home-block reveal">
+  <div class="home-footer-band">
+    <div>
+      <p class="home-hero-brand home-footer-brand">
+        <span class="brand-logo-wrap">
+          <img
+            class="brand-logo brand-logo--light brand-logo--md"
+            src="{% static 'img/logo.png' %}"
+            alt="MyAutoHub"
+            width="1046"
+            height="280"
+            decoding="async"
+          >
+          <img
+            class="brand-logo brand-logo--dark brand-logo--md"
+            src="{% static 'img/logo-dark.png' %}"
+            alt=""
+            width="1046"
+            height="280"
+            decoding="async"
+            aria-hidden="true"
+          >
+        </span>
+      </p>
+      <p>{% if user.is_authenticated %}{% trans "Manage listings, saved places, and roadside requests from your profile." %}{% else %}{% trans "Create an account to request help, save map pins, and sell your car." %}{% endif %}</p>
+    </div>
+    <div class="actions">
+      {% if user.is_authenticated %}
+        <a class="btn" href="{% url 'accounts:profile' %}">{% trans "Open profile" %}</a>
+        <a class="btn btn-ghost" href="{% url 'marketplace:mine' %}">{% trans "My listings" %}</a>
+      {% else %}
+        <a class="btn" href="{% url 'accounts:register' %}">{% trans "Create an account" %}</a>
+        <a class="btn btn-ghost" href="{% url 'accounts:login' %}">{% trans "Log in" %}</a>
+      {% endif %}
+    </div>
+  </div>
+  {% if social_links %}
+  <div class="social-row home-social">
+    {% for link in social_links %}
+      <a class="social-link" href="{{ link.url }}" target="_blank" rel="noopener noreferrer" data-network="{{ link.key }}">
+        <span class="social-icon" aria-hidden="true"></span>
+        {{ link.name }}
+      </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

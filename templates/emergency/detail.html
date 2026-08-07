@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% blocktrans with id=emergency.id %}Emergency #{{ id }}-MyAutoHub{% endblocktrans %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="hero" data-buzz-target>
+  <h1>{% blocktrans with id=emergency.id %}Request #{{ id }}{% endblocktrans %}</h1>
+  <p>{{ emergency.service.name }}-{{ emergency.get_status_display }}</p>
+</section>
+
+<div class="meta">
+  <span class="badge badge-{{ emergency.status }}">{{ emergency.get_status_display }}</span>
+  <span>{% blocktrans with when=emergency.created_at|naturaltime %}Opened {{ when }}{% endblocktrans %}</span>
+  <span>{% blocktrans with name=emergency.requester.username %}Requester: {{ name }}{% endblocktrans %}</span>
+  {% with buzz_n=emergency.get_unread_buzz_count %}
+  {% if buzz_n %}
+    <span class="badge">{% blocktrans count counter=buzz_n %}{{ counter }} unread buzz{% plural %}{{ counter }} unread buzzes{% endblocktrans %}</span>
+  {% endif %}
+  {% endwith %}
+</div>
+
+<div class="panel">
+  <h2>{% trans "Details" %}</h2>
+  <p>{{ emergency.description }}</p>
+  <p class="help">
+    {% trans "Location:" %}
+    {% if latlng.0 and latlng.1 %}{{ latlng.0 }}, {{ latlng.1 }}{% else %}{% trans "—" %}{% endif %}
+    {% if emergency.saved_location %} ({{ emergency.saved_location.label }}){% endif %}
+  </p>
+  <div class="actions">
+    {% if emergency.status == 'wait_for_accept' or emergency.status == 'processing_request' %}
+      {% if user == emergency.requester or is_operator %}
+        <form method="post" action="{% url 'emergency:buzz' emergency.pk %}" data-buzz-form>
+          {% csrf_token %}
+          <button class="btn" type="submit">{% trans "Buzz!" %}</button>
+        </form>
+        <form method="post" action="{% url 'emergency:cancel' emergency.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-danger" type="submit">{% trans "Cancel" %}</button>
+        </form>
+      {% endif %}
+    {% endif %}
+    <a class="btn btn-ghost" href="{% url 'emergency:list' %}">{% trans "Back to list" %}</a>
+  </div>
+</div>
+
+{% if verify_form.fields.to_status.choices %}
+<div class="panel">
+  <h2>{% trans "Update status" %}</h2>
+  <form method="post" action="{% url 'emergency:verify' emergency.pk %}" class="form-grid">
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="{{ verify_form.to_status.id_for_label }}">{% trans "New status" %}</label>
+      {{ verify_form.to_status }}
+    </div>
+    <div class="form-row">
+      <label for="{{ verify_form.note.id_for_label }}">{% trans "Note" %}</label>
+      {{ verify_form.note }}
+    </div>
+    <button class="btn" type="submit">{% trans "Apply" %}</button>
+  </form>
+</div>
+{% endif %}
+
+{% if emergency.status == 'finish_success' or emergency.status == 'finish_failed' %}
+  <div class="panel">
+    <h2>{% trans "Public review" %}</h2>
+    {% if emergency.review_comment %}
+      <p>{{ emergency.review_comment }}</p>
+      {% if emergency.review_rating %}<p class="help">{% blocktrans with rating=emergency.review_rating %}Rating: {{ rating }}/5{% endblocktrans %}</p>{% endif %}
+    {% elif user == emergency.requester %}
+      <form method="post" action="{% url 'emergency:review' emergency.pk %}" class="form-grid">
+        {% csrf_token %}
+        {% for field in review_form %}
+          <div class="form-row">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+          </div>
+        {% endfor %}
+        <button class="btn" type="submit">{% trans "Share experience" %}</button>
+      </form>
+    {% else %}
+      <p class="help">{% trans "No review yet." %}</p>
+    {% endif %}
+  </div>
+{% endif %}
+
+<div class="panel">
+  <h2>{% trans "Timeline" %}</h2>
+  <div class="stack">
+    {% for t in emergency.transitions.all %}
+      <div class="timeline-item">
+        <strong>{{ t.get_from_status_display }} → {{ t.get_to_status_display }}</strong>
+        <div class="help">{{ t.created_at|naturaltime }}{% if t.actor %} · {{ t.actor.username }}{% endif %}</div>
+        {% if t.note %}<p>{{ t.note }}</p>{% endif %}
+      </div>
+    {% empty %}
+      <p class="empty">{% trans "No transitions yet." %}</p>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="panel">
+  <h2>{% trans "Buzz history" %}</h2>
+  {% for b in emergency.buzzes.all %}
+    <div class="timeline-item">
+      {% blocktrans with name=b.from_user.username when=b.created_at|naturaltime %}Buzz from {{ name }} · {{ when }}{% endblocktrans %}
+      {% if not b.seen_by_operators %}<span class="badge">{% trans "Unread" %}</span>{% endif %}
+    </div>
+  {% empty %}
+    <p class="empty">{% trans "No buzzes yet. Use Buzz! when you need faster attention." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

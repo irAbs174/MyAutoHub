@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Join-MyAutoHub" %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{% trans "Join MyAutoHub" %}</h1>
+  <p>{% trans "Create an account to submit emergency requests and use the marketplace." %}</p>
+</section>
+<div class="panel" style="max-width: 480px">
+  <form method="post" class="form-grid">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<div class="help">{{ field.help_text|safe }}</div>{% endif %}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    <button class="btn" type="submit">{% trans "Create account" %}</button>
+  </form>
+</div>
+{% endblock %}

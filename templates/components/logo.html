@@ -1,0 +1,21 @@
+{% load static i18n %}
+<a class="brand" href="{% url 'core:home' %}" aria-label="MyAutoHub">
+  <span class="brand-logo-wrap">
+    <img
+      class="brand-logo brand-logo--light"
+      src="{% static 'img/logo.png' %}"
+      alt=""
+      width="1046"
+      height="280"
+      decoding="async"
+    >
+    <img
+      class="brand-logo brand-logo--dark"
+      src="{% static 'img/logo-dark.png' %}"
+      alt=""
+      width="1046"
+      height="280"
+      decoding="async"
+    >
+  </span>
+</a>

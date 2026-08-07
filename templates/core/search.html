@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% if q %}{% blocktrans %}Search: {{ q }}-MyAutoHub{% endblocktrans %}{% else %}{% trans "Search-MyAutoHub" %}{% endif %}{% endblock %}
+{% block meta_robots %}noindex, follow{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "Search" %}</h1>
+  {% if q %}
+    <p>{% blocktrans count counter=total %}{{ counter }} result for “{{ q }}”{% plural %}{{ counter }} results for “{{ q }}”{% endblocktrans %}</p>
+  {% else %}
+    <p>{% trans "Find cars, listings, stories, videos, prices, and roadside help." %}</p>
+  {% endif %}
+</section>
+
+<form class="search-page-form reveal" action="{% url 'core:search' %}" method="get" role="search">
+  <label class="sr-only" for="search-page-q">{% trans "Search" %}</label>
+  <input
+    id="search-page-q"
+    type="search"
+    name="q"
+    value="{{ q }}"
+    placeholder="{% trans 'Search the hub…' %}"
+    autocomplete="off"
+    autofocus
+  >
+  <button class="btn" type="submit">{% trans "Search" %}</button>
+</form>
+
+{% if q %}
+  {% if not total %}
+    <p class="empty reveal">{% trans "No matches. Try another word or browse the hub." %}</p>
+  {% endif %}
+
+  {% if cars %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "Cars" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'cars:list' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="media-grid">
+        {% for car in cars %}
+          <a class="media-card" href="{% url 'cars:detail' car.pk %}">
+            <div class="media-thumb">
+              {% if car.main_image %}
+                <img src="{{ car.main_image.url }}" alt="{{ car.model }}" loading="lazy">
+              {% else %}
+                <div class="media-fallback">{{ car.model.brand.name|slice:":1" }}</div>
+              {% endif %}
+            </div>
+            <div class="media-body">
+              <h3>{{ car.model.brand.name }} {{ car.model.name }}</h3>
+              <p>{{ car.year }}{% if car.trim %} · {{ car.trim }}{% endif %}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if listings %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "Marketplace" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'marketplace:list' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="media-grid media-grid-4">
+        {% for item in listings %}
+          <a class="media-card" href="{% url 'marketplace:detail' item.pk %}">
+            <div class="media-thumb">
+              {% if item.main_image %}
+                <img src="{{ item.main_image.url }}" alt="{{ item.title }}" loading="lazy">
+              {% else %}
+                <div class="media-fallback">$</div>
+              {% endif %}
+              <span class="media-badge">{{ item.price|floatformat:0|intcomma }} {{ item.currency }}</span>
+            </div>
+            <div class="media-body">
+              <h3>{{ item.title }}</h3>
+              <p>{% if item.city %}{{ item.city }}{% if item.year %} · {% endif %}{% endif %}{% if item.year %}{{ item.year }}{% endif %}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if stories %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "Stories" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'stories:list' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="media-grid media-grid-3">
+        {% for story in stories %}
+          <a class="media-card" href="{% url 'stories:detail' story.slug %}">
+            <div class="media-thumb">
+              {% if story.cover_image %}
+                <img src="{{ story.cover_image.url }}" alt="{{ story.title }}" loading="lazy">
+              {% else %}
+                <div class="media-fallback">S</div>
+              {% endif %}
+            </div>
+            <div class="media-body">
+              <h3>{{ story.title }}</h3>
+              <p>{% if story.excerpt %}{{ story.excerpt }}{% else %}{{ story.body|truncatewords:24 }}{% endif %}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if videos %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "YouTube" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'youtube:list' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="media-grid media-grid-4">
+        {% for video in videos %}
+          <a class="media-card" href="{% url 'youtube:detail' video.pk %}">
+            <div class="media-thumb">
+              <img src="{{ video.thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
+            </div>
+            <div class="media-body">
+              <h3>{{ video.title }}</h3>
+              <p>{{ video.description|truncatewords:18 }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if prices %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "Pricing" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'pricing:list' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="search-list">
+        {% for price in prices %}
+          <a class="search-list-item" href="{% url 'pricing:detail' price.pk %}">
+            <span class="search-list-title">{{ price.title }}</span>
+            <span class="search-list-meta">
+              {% if price.category %}{{ price.category }} · {% endif %}{{ price.amount|floatformat:0|intcomma }} {{ price.currency }}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if services %}
+    <section class="search-section reveal">
+      <div class="section-head">
+        <h2 class="section-title">{% trans "Emergency" %}</h2>
+        <a class="btn btn-ghost btn-sm" href="{% url 'emergency:list' %}">{% trans "Browse all" %}</a>
+      </div>
+      <div class="search-list">
+        {% for svc in services %}
+          <a class="search-list-item" href="{% if user.is_authenticated %}{% url 'emergency:submit' %}{% else %}{% url 'accounts:login' %}?next={% url 'emergency:submit' %}{% endif %}">
+            <span class="search-list-title">{{ svc.name }}</span>
+            <span class="search-list-meta">{% if svc.description %}{{ svc.description|truncatewords:18 }}{% else %}{% trans "Roadside help" %}{% endif %}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endif %}
+{% endblock %}

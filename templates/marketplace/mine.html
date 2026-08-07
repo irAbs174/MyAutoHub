@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "My listings-MyAutoHub" %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "My listings" %}</h1>
+  <p>{% trans "Cars you are selling-edit, mark sold, or read buyer messages." %}</p>
+</section>
+<div class="toolbar reveal">
+  <a class="btn" href="{% url 'marketplace:create' %}">{% trans "Sell another car" %}</a>
+  <a class="btn btn-ghost" href="{% url 'marketplace:list' %}">{% trans "Browse marketplace" %}</a>
+</div>
+
+<div class="media-grid media-grid-4">
+  {% for item in items %}
+    <a class="media-card reveal" href="{% url 'marketplace:detail' item.pk %}">
+      <div class="media-thumb">
+        {% if item.main_image %}
+          <img src="{{ item.main_image.url }}" alt="{{ item.title }}" loading="lazy">
+        {% else %}
+          <div class="media-fallback">$</div>
+        {% endif %}
+        <span class="media-badge">{{ item.price|floatformat:0|intcomma }} {{ item.currency }}</span>
+      </div>
+      <div class="media-body">
+        <h3>{{ item.title }}</h3>
+        <p>
+          {% if item.car_identity %}{{ item.car_identity }} · {% endif %}
+          <span class="badge badge-{{ item.status }}">{{ item.get_status_display }}</span>
+          {% if item.unread_count %}
+            · {% blocktrans count counter=item.unread_count %}{{ counter }} new message{% plural %}{{ counter }} new messages{% endblocktrans %}
+          {% elif item.inquiry_count %}
+            · {% blocktrans count counter=item.inquiry_count %}{{ counter }} message{% plural %}{{ counter }} messages{% endblocktrans %}
+          {% endif %}
+        </p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty">{% trans "You have not listed a car yet." %} <a href="{% url 'marketplace:create' %}">{% trans "Sell your first car" %}</a></p>
+  {% endfor %}
+</div>
+{% endblock %}

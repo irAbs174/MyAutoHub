@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ car.model }}-{% trans "Cars" %}{% endblock %}
+{% block og_title %}{{ car.model }}-{% trans "Cars" %}{% endblock %}
+{% block twitter_title %}{{ car.model }}-{% trans "Cars" %}{% endblock %}
+{% block meta_description %}{% if car.description %}{{ car.description|striptags|truncatechars:160 }}{% else %}{{ car.model }} {{ car.year }}-{% trans "Cars" %}{% endif %}{% endblock %}
+{% block og_description %}{% if car.description %}{{ car.description|striptags|truncatechars:160 }}{% else %}{{ car.model }} {{ car.year }}{% endif %}{% endblock %}
+{% block twitter_description %}{% if car.description %}{{ car.description|striptags|truncatechars:160 }}{% else %}{{ car.model }} {{ car.year }}{% endif %}{% endblock %}
+{% block og_image %}{% if car.main_image %}{{ seo_site_url }}{{ car.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block twitter_image %}{% if car.main_image %}{{ seo_site_url }}{{ car.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Car",
+  "name": "{{ car.model|escapejs }}",
+  "vehicleModelDate": "{{ car.year }}",
+  "brand": {"@type": "Brand", "name": "{{ car.model.brand.name|escapejs }}"},
+  "url": "{{ seo_canonical }}"{% if car.main_image %},
+  "image": "{{ seo_site_url }}{{ car.main_image.url }}"{% endif %}{% if car.description %},
+  "description": "{{ car.description|striptags|truncatechars:300|escapejs }}"{% endif %}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{{ car.model.brand.name }} {{ car.model.name }}</h1>
+  <p>{{ car.year }}{% if car.trim %} · {{ car.trim }}{% endif %}</p>
+</section>
+
+{% if car.main_image or car.photos.exists %}
+<div class="gallery reveal">
+  {% if car.main_image %}
+    <figure class="gallery-hero">
+      <img src="{{ car.main_image.url }}" alt="{{ car.model }}">
+    </figure>
+  {% endif %}
+  {% if car.photos.all %}
+    <div class="gallery-strip">
+      {% for photo in car.photos.all %}
+        <figure>
+          <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:car.model }}" loading="lazy">
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="panel reveal">
+  <div class="meta">
+    {% if car.horsepower %}<span>{{ car.horsepower }} hp</span>{% endif %}
+    {% if car.fuel_type %}<span>{{ car.fuel_type }}</span>{% endif %}
+  </div>
+  {% if car.description %}<p>{{ car.description }}</p>{% endif %}
+  <a class="btn btn-ghost" href="{% url 'cars:list' %}">{% trans "Back to catalog" %}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'fa' }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" style="color-scheme: dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{{ error_title }}-MyAutoHub</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("myautohub-theme");
+        var dark = true;
+        if (t === "light") dark = false;
+        else if (t === "dark") dark = true;
+        else if (t === "system")
+          dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        else {
+          localStorage.setItem("myautohub-theme", "dark");
+        }
+        document.documentElement.classList.toggle("dark", dark);
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+      } catch (e) {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="icon" href="{% static 'img/logo-mark.png' %}" type="image/png" sizes="any" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="{% static 'img/logo-mark-dark.png' %}" type="image/png" sizes="any" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="{% static 'img/logo-mark.png' %}">
+</head>
+<body>
+  <main class="page">
+    <section class="error-page">
+      <p class="hero-brand">
+        <span class="brand-logo-wrap">
+          <img
+            class="brand-logo brand-logo--light brand-logo--lg"
+            src="{% static 'img/logo.png' %}"
+            alt="MyAutoHub"
+            width="1046"
+            height="280"
+            decoding="async"
+          >
+          <img
+            class="brand-logo brand-logo--dark brand-logo--lg"
+            src="{% static 'img/logo-dark.png' %}"
+            alt=""
+            width="1046"
+            height="280"
+            decoding="async"
+            aria-hidden="true"
+          >
+        </span>
+      </p>
+      <p class="error-code">{{ error_code }}</p>
+      <h1>{{ error_title }}</h1>
+      <p>{{ error_message }}</p>
+      <a class="btn" href="{{ home_url|default:'/' }}">{% trans "Back to hub" %}</a>
+    </section>
+  </main>
+</body>
+</html>

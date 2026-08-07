@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{{ item.title }}-{% trans "Pricing" %}{% endblock %}
+{% block og_title %}{{ item.title }}-{% trans "Pricing" %}{% endblock %}
+{% block twitter_title %}{{ item.title }}-{% trans "Pricing" %}{% endblock %}
+{% block meta_description %}{% firstof item.notes item.title %} · {{ item.amount|floatformat:0 }} {{ item.currency }}{% endblock %}
+{% block og_description %}{% firstof item.notes item.title %} · {{ item.amount|floatformat:0 }} {{ item.currency }}{% endblock %}
+{% block twitter_description %}{% firstof item.notes item.title %} · {{ item.amount|floatformat:0 }} {{ item.currency }}{% endblock %}
+{% block og_image %}{% if item.main_image %}{{ seo_site_url }}{{ item.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block twitter_image %}{% if item.main_image %}{{ seo_site_url }}{{ item.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{{ item.title }}</h1>
+  <p>{% if item.category %}{{ item.category }}{% else %}{% trans "General reference" %}{% endif %}</p>
+</section>
+{% if item.main_image or item.photos.all %}
+<div class="gallery reveal">
+  {% if item.main_image %}
+    <figure class="gallery-hero">
+      <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+    </figure>
+  {% endif %}
+  {% if item.photos.all %}
+    <div class="gallery-strip">
+      {% for photo in item.photos.all %}
+        <figure>
+          <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:item.title }}" loading="lazy">
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+<div class="panel reveal">
+  <p style="font-size:1.4rem; color:var(--fg); font-weight:700">
+    {{ item.amount|floatformat:2|intcomma }} {{ item.currency }}
+  </p>
+  {% if item.notes %}<p>{{ item.notes }}</p>{% endif %}
+  {% if item.source %}<p class="help">{% blocktrans with source=item.source %}Source: {{ source }}{% endblocktrans %}</p>{% endif %}
+  <p class="help">{% blocktrans with when=item.updated_at|naturaltime %}Updated {{ when }}{% endblocktrans %}</p>
+  <a class="btn btn-ghost" href="{% url 'pricing:list' %}">{% trans "Back" %}</a>
+</div>
+{% endblock %}

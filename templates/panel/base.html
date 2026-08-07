@@ -1,0 +1,65 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" class="panel-root" style="color-scheme: light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% trans "Panel" %}-MyAutoHub{% endblock %}</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="icon" href="{% static 'img/logo-mark.png' %}" type="image/png" sizes="any" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="{% static 'img/logo-mark-dark.png' %}" type="image/png" sizes="any" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="{% static 'img/logo-mark.png' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="panel-body">
+  {% include "components/messages.html" %}
+  <div class="panel-shell">
+    <aside class="panel-side" aria-label="{% trans 'Panel navigation' %}">
+      <a class="panel-brand" href="{% url 'panel:overview' %}" aria-label="MyAutoHub">
+        <img
+          class="brand-logo brand-logo--panel"
+          src="{% static 'img/logo.png' %}"
+          alt=""
+          width="1046"
+          height="280"
+          decoding="async"
+        >
+      </a>
+      <p class="panel-brand-sub">{% trans "Staff panel" %}</p>
+      <nav class="panel-nav">
+        <a href="{% url 'panel:overview' %}" class="{% if panel_section == 'overview' %}is-active{% endif %}">{% trans "Overview" %}</a>
+        <a href="{% url 'panel:emergency_request_list' %}" class="{% if panel_section == 'emergency' %}is-active{% endif %}">{% trans "Emergency queue" %}</a>
+        <a href="{% url 'panel:emergency_service_list' %}" class="{% if panel_section == 'services' %}is-active{% endif %}">{% trans "Services" %}</a>
+        <a href="{% url 'panel:car_list' %}" class="{% if panel_section == 'cars' %}is-active{% endif %}">{% trans "Cars" %}</a>
+        <a href="{% url 'panel:youtube_list' %}" class="{% if panel_section == 'youtube' %}is-active{% endif %}">{% trans "YouTube" %}</a>
+        <a href="{% url 'panel:story_list' %}" class="{% if panel_section == 'stories' %}is-active{% endif %}">{% trans "Stories" %}</a>
+      </nav>
+      <div class="panel-side-foot">
+        <a class="link-action" href="{% url 'core:home' %}">{% trans "Back to hub" %}</a>
+        <form method="post" action="{% url 'accounts:logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-ghost btn-sm" type="submit">{% trans "Log out" %}</button>
+        </form>
+      </div>
+    </aside>
+    <div class="panel-main">
+      <header class="panel-top">
+        <div>
+          <h1 class="panel-title">{% block page_title %}{% trans "Panel" %}{% endblock %}</h1>
+          {% block page_lead %}<p class="panel-lead">{% trans "Light tools for day-to-day ops." %}</p>{% endblock %}
+        </div>
+        <div class="panel-top-meta">
+          <span class="help">{{ user.get_username }}</span>
+        </div>
+      </header>
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

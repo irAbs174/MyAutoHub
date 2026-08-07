@@ -1,0 +1,77 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if editing %}{% trans "Edit service" %}{% else %}{% trans "New service" %}{% endif %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% if editing %}{% trans "Edit service" %}{% else %}{% trans "New service" %}{% endif %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% if editing %}{{ service.name }}{% else %}{% trans "Add a roadside service operators can fulfill." %}{% endif %}</p>{% endblock %}
+
+{% block content %}
+<div class="panel" style="max-width: 640px">
+  <form method="post" class="form-grid" enctype="multipart/form-data" data-lang-tabs>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+
+    <div class="lang-tabs">
+      <div class="lang-tabs__nav" role="tablist" aria-label="{% trans 'Languages' %}">
+        <button type="button" class="lang-tabs__btn is-active" role="tab" aria-selected="true" data-lang-tab="fa">فارسی</button>
+        <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="en">English</button>
+        <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="ar">العربية</button>
+      </div>
+
+      <div class="lang-tabs__panel is-active" data-lang-panel="fa" role="tabpanel">
+        {% for field in form %}
+          {% if field.name == "name_fa" or field.name == "description_fa" or field.name == "coverage_notes_fa" %}
+            <div class="form-row{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="lang-tabs__panel" data-lang-panel="en" role="tabpanel" hidden>
+        {% for field in form %}
+          {% if field.name == "name_en" or field.name == "description_en" or field.name == "coverage_notes_en" %}
+            <div class="form-row{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="lang-tabs__panel" data-lang-panel="ar" role="tabpanel" hidden>
+        {% for field in form %}
+          {% if field.name == "name_ar" or field.name == "description_ar" or field.name == "coverage_notes_ar" %}
+            <div class="form-row{% if field.errors %} has-error{% endif %}">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="form-row{% if form.cover_image.errors %} has-error{% endif %}">
+      <label for="{{ form.cover_image.id_for_label }}">{{ form.cover_image.label }}</label>
+      {{ form.cover_image }}
+      {% for error in form.cover_image.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+    <div class="form-row{% if form.is_active.errors %} has-error{% endif %}">
+      <label for="{{ form.is_active.id_for_label }}">{{ form.is_active.label }}</label>
+      {{ form.is_active }}
+      {% for error in form.is_active.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">
+        {% if editing %}{% trans "Save changes" %}{% else %}{% trans "Create service" %}{% endif %}
+      </button>
+      <a class="btn btn-ghost" href="{% url 'panel:emergency_service_list' %}">{% trans "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

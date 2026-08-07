@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ video.title }}-{% trans "YouTube" %}{% endblock %}
+{% block og_title %}{{ video.title }}-{% trans "YouTube" %}{% endblock %}
+{% block twitter_title %}{{ video.title }}-{% trans "YouTube" %}{% endblock %}
+{% block meta_description %}{% firstof video.description video.title %}{% endblock %}
+{% block og_description %}{% firstof video.description video.title %}{% endblock %}
+{% block twitter_description %}{% firstof video.description video.title %}{% endblock %}
+{% block og_type %}video.other{% endblock %}
+{% block og_image %}{% if video.cover_image %}{{ seo_site_url }}{{ video.cover_image.url }}{% else %}https://i.ytimg.com/vi/{{ video.youtube_id }}/hqdefault.jpg{% endif %}{% endblock %}
+{% block twitter_image %}{% if video.cover_image %}{{ seo_site_url }}{{ video.cover_image.url }}{% else %}https://i.ytimg.com/vi/{{ video.youtube_id }}/hqdefault.jpg{% endif %}{% endblock %}
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "{{ video.title|escapejs }}",
+  "description": "{{ video.description|default:video.title|escapejs }}",
+  "thumbnailUrl": "{% if video.cover_image %}{{ seo_site_url }}{{ video.cover_image.url }}{% else %}https://i.ytimg.com/vi/{{ video.youtube_id }}/hqdefault.jpg{% endif %}",
+  "embedUrl": "{{ video.embed_url }}",
+  "url": "{{ seo_canonical }}"
+  {% if video.published_at %},"uploadDate": "{{ video.published_at|date:'c' }}"{% endif %}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{{ video.title }}</h1>
+  {% if video.description %}<p>{{ video.description }}</p>{% endif %}
+</section>
+<div class="panel">
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px">
+    <iframe
+      src="{{ video.embed_url }}"
+      title="{{ video.title }}"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <div class="actions" style="margin-top:1rem">
+    <a class="btn btn-ghost" href="{% url 'youtube:list' %}">{% trans "Back to videos" %}</a>
+  </div>
+</div>
+{% endblock %}

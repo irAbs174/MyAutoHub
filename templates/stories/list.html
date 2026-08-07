@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Stories-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Stories-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Stories-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Automotive stories and community writing from MyAutoHub." %}{% endblock %}
+{% block og_description %}{% trans "Automotive stories and community writing from MyAutoHub." %}{% endblock %}
+{% block twitter_description %}{% trans "Automotive stories and community writing from MyAutoHub." %}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "Stories" %}</h1>
+  <p>{% trans "Human moments from the road and the MyAutoHub community." %}</p>
+</section>
+<div class="media-grid media-grid-3">
+  {% for story in stories %}
+    <a class="media-card reveal" href="{% url 'stories:detail' story.slug %}">
+      <div class="media-thumb">
+        {% if story.cover_image %}
+          <img src="{{ story.cover_image.url }}" alt="{{ story.title }}" loading="lazy">
+        {% else %}
+          <div class="media-fallback">S</div>
+        {% endif %}
+      </div>
+      <div class="media-body">
+        <h3>{{ story.title }}</h3>
+        <p>{% if story.excerpt %}{{ story.excerpt }}{% else %}{{ story.body|truncatewords:24 }}{% endif %}</p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty">{% trans "No stories published yet." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

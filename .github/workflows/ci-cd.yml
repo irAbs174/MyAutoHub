@@ -1,0 +1,70 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    name: Django checks & tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Django system check
+        env:
+          DJANGO_ENV: local
+          DJANGO_SECRET_KEY: ci-only-not-for-production
+          DJANGO_DEBUG: "true"
+          DJANGO_ALLOWED_HOSTS: localhost,testserver
+          USE_SQLITE: "true"
+        run: python manage.py check
+
+      - name: Run tests
+        env:
+          DJANGO_ENV: local
+          DJANGO_SECRET_KEY: ci-only-not-for-production
+          DJANGO_DEBUG: "true"
+          DJANGO_ALLOWED_HOSTS: localhost,testserver
+          USE_SQLITE: "true"
+        run: python manage.py test --verbosity=1
+
+  deploy:
+    name: Deploy to production
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script_stop: true
+          command_timeout: 20m
+          script: |
+            set -euo pipefail
+            export APP_DIR=/var/www/myautohub/application
+            export DEPLOY_BRANCH=main
+            bash "${APP_DIR}/scripts/deploy.sh"

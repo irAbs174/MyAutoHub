@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Log in-MyAutoHub" %}{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>{% trans "Welcome back" %}</h1>
+  <p>{% trans "Log in to request emergency help, manage listings, and save locations." %}</p>
+</section>
+<div class="panel" style="max-width: 420px">
+  <form method="post" class="form-grid">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {% endif %}
+    <button class="btn" type="submit">{% trans "Log in" %}</button>
+  </form>
+  <p class="help" style="margin-top:1rem">
+    {% trans "No account yet?" %}
+    <a href="{% url 'accounts:register' %}">{% trans "Join MyAutoHub" %}</a>
+  </p>
+</div>
+{% endblock %}

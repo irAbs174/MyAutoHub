@@ -1,0 +1,65 @@
+{% extends "panel/base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Emergency queue" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Emergency queue" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "All requests-filter, open, update status." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:emergency_service_list' %}">{% trans "Manage services" %}</a>
+</div>
+
+<div class="panel filter-panel">
+  <form method="get" class="filter-bar">
+    {% for field in form %}
+      <div class="form-row">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+      </div>
+    {% endfor %}
+    <button class="btn btn-ghost" type="submit">{% trans "Filter" %}</button>
+  </form>
+</div>
+
+<div class="panel">
+  {% if requests %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "ID" %}</th>
+            <th>{% trans "Service" %}</th>
+            <th>{% trans "Requester" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "When" %}</th>
+            <th>{% trans "Buzz" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in requests %}
+            <tr>
+              <td>#{{ item.id }}</td>
+              <td>{{ item.service.name }}</td>
+              <td>{{ item.requester.username }}</td>
+              <td><span class="badge badge-{{ item.status }}">{{ item.get_status_display }}</span></td>
+              <td>{{ item.created_at|naturaltime }}</td>
+              <td>
+                {% if item.unread_buzz_count %}
+                  <span class="badge">{% blocktrans count counter=item.unread_buzz_count %}{{ counter }} new{% plural %}{{ counter }} new{% endblocktrans %}</span>
+                {% else %}
+                  {% trans "—" %}
+                {% endif %}
+              </td>
+              <td><a class="link-action" href="{% url 'panel:emergency_request_detail' item.pk %}">{% trans "Open" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No requests match this filter." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

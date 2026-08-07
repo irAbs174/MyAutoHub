@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{{ item.title }}-{% trans "Marketplace" %}{% endblock %}
+{% block og_title %}{{ item.title }}-{% trans "Marketplace" %}{% endblock %}
+{% block twitter_title %}{{ item.title }}-{% trans "Marketplace" %}{% endblock %}
+{% block meta_description %}{{ item.description|striptags|truncatechars:160 }}{% endblock %}
+{% block og_description %}{{ item.description|striptags|truncatechars:160 }}{% endblock %}
+{% block twitter_description %}{{ item.description|striptags|truncatechars:160 }}{% endblock %}
+{% block og_type %}product{% endblock %}
+{% block og_image %}{% if item.main_image %}{{ seo_site_url }}{{ item.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block twitter_image %}{% if item.main_image %}{{ seo_site_url }}{{ item.main_image.url }}{% else %}{{ seo_default_image }}{% endif %}{% endblock %}
+{% block meta_robots %}{% if item.is_available %}index, follow{% else %}noindex, follow{% endif %}{% endblock %}
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ item.title|escapejs }}",
+  "description": "{{ item.description|striptags|truncatechars:300|escapejs }}",
+  "url": "{{ seo_canonical }}",
+  {% if item.main_image %}"image": "{{ seo_site_url }}{{ item.main_image.url }}",{% endif %}
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ item.price }}",
+    "priceCurrency": "{% if item.currency == 'تومان' %}IRR{% else %}{{ item.currency }}{% endif %}",
+    "availability": "https://schema.org/{% if item.is_available %}InStock{% else %}SoldOut{% endif %}"
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{{ item.title }}</h1>
+  <p>{{ item.price|floatformat:0|intcomma }} {{ item.currency }} · {{ item.get_status_display }}</p>
+</section>
+{% if item.main_image or item.photos.all %}
+<div class="gallery reveal">
+  {% if item.main_image %}
+    <figure class="gallery-hero">
+      <img src="{{ item.main_image.url }}" alt="{{ item.title }}">
+    </figure>
+  {% endif %}
+  {% if item.photos.all %}
+    <div class="gallery-strip">
+      {% for photo in item.photos.all %}
+        <figure>
+          <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:item.title }}" loading="lazy">
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endif %}
+<div class="panel reveal">
+  <div class="meta">
+    <span>{% blocktrans with name=item.seller.username %}Seller: {{ name }}{% endblocktrans %}</span>
+    {% if item.car_identity %}<span>{{ item.car_identity }}</span>{% endif %}
+    {% if item.year %}<span>{% blocktrans with year=item.year %}Year: {{ year }}{% endblocktrans %}</span>{% endif %}
+    {% if item.mileage_km %}<span>{{ item.mileage_km|intcomma }} km</span>{% endif %}
+    {% if item.city %}<span>{{ item.city }}</span>{% endif %}
+    <span class="badge badge-{{ item.status }}">{{ item.get_status_display }}</span>
+  </div>
+  <p>{{ item.description }}</p>
+
+  {% if is_owner %}
+    <div class="toolbar" style="margin-top:1rem; flex-wrap:wrap; gap:0.5rem">
+      <a class="btn" href="{% url 'marketplace:edit' item.pk %}">{% trans "Edit listing" %}</a>
+      {% if item.status == "active" %}
+        <form method="post" action="{% url 'marketplace:mark_sold' item.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-ghost" type="submit">{% trans "Mark sold" %}</button>
+        </form>
+        <form method="post" action="{% url 'marketplace:withdraw' item.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-ghost" type="submit">{% trans "Withdraw" %}</button>
+        </form>
+      {% endif %}
+      <a class="btn btn-ghost" href="{% url 'marketplace:mine' %}">{% trans "My listings" %}</a>
+    </div>
+  {% endif %}
+
+  <a class="btn btn-ghost" href="{% url 'marketplace:list' %}" style="margin-top:0.75rem">{% trans "Back to marketplace" %}</a>
+</div>
+
+{% if is_owner %}
+  <div class="panel reveal">
+    <h2>{% trans "Buyer messages" %}</h2>
+    {% if inquiries %}
+      <ul class="stack-list">
+        {% for inq in inquiries %}
+          <li class="stack-item">
+            <div class="meta">
+              <strong>{{ inq.buyer.username }}</strong>
+              <span>{{ inq.created_at }}</span>
+              {% if inq.contact_phone %}<span>{{ inq.contact_phone }}</span>{% endif %}
+            </div>
+            <p>{{ inq.message }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty">{% trans "No buyer messages yet." %}</p>
+    {% endif %}
+  </div>
+{% elif item.status == "active" %}
+  <div class="panel reveal" style="max-width:560px">
+    <h2>{% trans "Interested in this car?" %}</h2>
+    <p class="help">{% trans "Send a message to the seller. They will see it on this listing." %}</p>
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'marketplace:inquire' item.pk %}" class="form-grid">
+        {% csrf_token %}
+        {% for field in inquiry_form %}
+          <div class="form-row">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+          </div>
+        {% endfor %}
+        <button class="btn" type="submit">{% trans "Message seller" %}</button>
+      </form>
+    {% else %}
+      <a class="btn" href="{% url 'accounts:login' %}?next={% url 'marketplace:detail' item.pk %}">{% trans "Log in to message seller" %}</a>
+      <a class="btn btn-ghost" href="{% url 'accounts:register' %}?next={% url 'marketplace:detail' item.pk %}">{% trans "Create account" %}</a>
+    {% endif %}
+  </div>
+{% else %}
+  <div class="panel reveal">
+    <p class="empty">{% trans "This listing is no longer available for purchase." %}</p>
+  </div>
+{% endif %}
+{% endblock %}

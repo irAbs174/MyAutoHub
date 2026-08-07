@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load humanize i18n %}
+
+{% block title %}{% trans "Marketplace-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Marketplace-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Marketplace-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Browse active car listings on MyAutoHub marketplace." %}{% endblock %}
+{% block og_description %}{% trans "Browse active car listings on MyAutoHub marketplace." %}{% endblock %}
+{% block twitter_description %}{% trans "Browse active car listings on MyAutoHub marketplace." %}{% endblock %}
+
+{% block content %}
+<section class="hero reveal">
+  <h1>{% trans "Buy & sell" %}</h1>
+  <p>{% trans "Buy cars from other drivers, or list your own for sale. Message sellers directly-no middleman." %}</p>
+</section>
+<div class="toolbar reveal" style="flex-wrap:wrap; gap:0.5rem">
+  {% if user.is_authenticated %}
+    <a class="btn" href="{% url 'marketplace:create' %}">{% trans "Sell my car" %}</a>
+    <a class="btn btn-ghost" href="{% url 'marketplace:mine' %}">{% trans "My listings" %}</a>
+  {% else %}
+    <a class="btn" href="{% url 'accounts:login' %}?next={% url 'marketplace:create' %}">{% trans "Log in to sell" %}</a>
+    <a class="btn btn-ghost" href="{% url 'accounts:register' %}?next={% url 'marketplace:list' %}">{% trans "Create account" %}</a>
+  {% endif %}
+</div>
+
+<p class="list-count reveal">{% blocktrans count counter=buy_count %}{{ counter }} car for sale{% plural %}{{ counter }} cars for sale{% endblocktrans %}</p>
+
+<div class="media-grid media-grid-4">
+  {% for item in items %}
+    <a class="media-card reveal" href="{% url 'marketplace:detail' item.pk %}">
+      <div class="media-thumb">
+        {% if item.main_image %}
+          <img src="{{ item.main_image.url }}" alt="{{ item.title }}" loading="lazy">
+        {% else %}
+          <div class="media-fallback">$</div>
+        {% endif %}
+        <span class="media-badge">{{ item.price|floatformat:0|intcomma }} {{ item.currency }}</span>
+      </div>
+      <div class="media-body">
+        <h3>{{ item.title }}</h3>
+        <p>
+          {% if item.car_identity %}{{ item.car_identity }}{% if item.city or item.year %} · {% endif %}{% endif %}{% if item.city %}{{ item.city }}{% if item.year %} · {% endif %}{% endif %}{% if item.year %}{{ item.year }}{% endif %}
+          · {% blocktrans with name=item.seller.username %}by {{ name }}{% endblocktrans %}
+          {% if user.is_authenticated and item.seller_id == user.id %}
+            · <strong>{% trans "Yours" %}</strong>
+          {% endif %}
+        </p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty">{% trans "No cars for sale yet. Be the first to list yours." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}
