@@ -41,7 +41,7 @@
             <tr>
               <td>{{ car.model }}</td>
               <td>{{ car.year }}</td>
-              <td>{{ car.trim|default:"—" }}</td>
+              <td>{% if car.trim %}{{ car.trim.name }}{% else %}—{% endif %}</td>
               <td>
                 {% if car.is_published %}
                   <span class="badge badge-active">{% trans "Published" %}</span>

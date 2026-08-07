@@ -2,13 +2,13 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
 from .forms import FUEL_ALIASES, SORT_ORDERING, CarCatalogFilterForm
-from .models import Brand, Car
+from .models import Brand, Car, Dealer, RepairShop
 
 
 def list_cars(request):
     cars = (
         Car.objects.filter(is_published=True)
-        .select_related("model__brand")
+        .select_related("model__brand", "trim")
         .prefetch_related("photos")
     )
 
@@ -41,7 +41,7 @@ def list_cars(request):
         if q:
             cars = cars.filter(
                 Q(model__name__icontains=q)
-                | Q(trim__icontains=q)
+                | Q(trim__name__icontains=q)
                 | Q(model__brand__name__icontains=q)
                 | Q(fuel_type__icontains=q)
             )
@@ -92,8 +92,39 @@ def list_cars(request):
 
 def detail(request, pk):
     car = get_object_or_404(
-        Car.objects.select_related("model__brand").prefetch_related("photos"),
+        Car.objects.select_related(
+            "model__brand",
+            "trim",
+            "technical_spec",
+            "dimensions",
+        ).prefetch_related(
+            "photos",
+            "features",
+            "maintenance_items",
+            "fluids",
+            "tires",
+            "batteries",
+            "service_schedule",
+            "parts",
+            "prices",
+            "model__obd_codes",
+        ),
         pk=pk,
         is_published=True,
     )
-    return render(request, "cars/detail.html", {"car": car})
+    brand = car.model.brand
+    dealers = Dealer.objects.filter(
+        is_published=True, brands=brand
+    ).distinct()
+    repair_shops = RepairShop.objects.filter(
+        is_published=True, brands=brand
+    ).distinct()
+    return render(
+        request,
+        "cars/detail.html",
+        {
+            "car": car,
+            "dealers": dealers,
+            "repair_shops": repair_shops,
+        },
+    )

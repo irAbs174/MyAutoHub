@@ -35,6 +35,8 @@
         <a href="{% url 'panel:emergency_request_list' %}" class="{% if panel_section == 'emergency' %}is-active{% endif %}">{% trans "Emergency queue" %}</a>
         <a href="{% url 'panel:emergency_service_list' %}" class="{% if panel_section == 'services' %}is-active{% endif %}">{% trans "Services" %}</a>
         <a href="{% url 'panel:car_list' %}" class="{% if panel_section == 'cars' %}is-active{% endif %}">{% trans "Cars" %}</a>
+        <a href="{% url 'panel:dealer_list' %}" class="{% if panel_section == 'dealers' %}is-active{% endif %}">{% trans "Dealers" %}</a>
+        <a href="{% url 'panel:repair_shop_list' %}" class="{% if panel_section == 'repair_shops' %}is-active{% endif %}">{% trans "Repair shops" %}</a>
         <a href="{% url 'panel:youtube_list' %}" class="{% if panel_section == 'youtube' %}is-active{% endif %}">{% trans "YouTube" %}</a>
         <a href="{% url 'panel:story_list' %}" class="{% if panel_section == 'stories' %}is-active{% endif %}">{% trans "Stories" %}</a>
       </nav>

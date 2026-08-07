@@ -19,7 +19,27 @@ from django.db import transaction
 from django.utils import timezone
 
 from apps.accounts.models import SavedLocation
-from apps.cars.models import Brand, Car, CarModel, CarPhoto
+from apps.cars.models import (
+    BatterySpec,
+    Brand,
+    Car,
+    CarModel,
+    CarPhoto,
+    CarPrice,
+    Dealer,
+    Dimensions,
+    Feature,
+    FluidSpec,
+    FluidType,
+    MaintenanceItem,
+    OBDCode,
+    Part,
+    RepairShop,
+    ServiceScheduleItem,
+    TechnicalSpec,
+    TireSpec,
+    Trim,
+)
 from apps.core.i18n_content import tri_fields
 from apps.emergency.models import EmergencyService, RequestStatus
 from apps.emergency.services import (
@@ -484,6 +504,7 @@ class Command(BaseCommand):
             (6, 95, 70),
         ]
         color_i = 0
+        first_rich = True
         for brand_name, meta in catalog.items():
             brand, _ = Brand.objects.get_or_create(
                 name=brand_name,
@@ -491,15 +512,30 @@ class Command(BaseCommand):
             )
             for model_name, cars in meta["models"].items():
                 car_model, _ = CarModel.objects.get_or_create(brand=brand, name=model_name)
+                OBDCode.objects.get_or_create(
+                    car_model=car_model,
+                    code="P0300",
+                    defaults={
+                        "title": "Random/Multiple Cylinder Misfire",
+                        "description": "Demo OBD code for catalog browsing.",
+                        "severity": "warning",
+                    },
+                )
                 for spec in cars:
+                    trim, _ = Trim.objects.get_or_create(
+                        car_model=car_model, name=spec["trim"]
+                    )
                     car, _ = Car.objects.get_or_create(
                         model=car_model,
                         year=spec["year"],
-                        trim=spec["trim"],
+                        trim=trim,
                         defaults={
                             "horsepower": spec["horsepower"],
                             "fuel_type": spec["fuel_type"],
-                            "description": f"{brand_name} {model_name} {spec['year']} {spec['trim']}",
+                            "description": (
+                                f"{brand_name} {model_name} {spec['year']} "
+                                f"{spec['trim']}"
+                            ),
                             "is_published": True,
                         },
                     )
@@ -526,6 +562,122 @@ class Command(BaseCommand):
                             )
                             photo = CarPhoto(car=car, caption=caption, sort_order=n)
                             photo.image.save(content.name, content, save=True)
+
+                    if first_rich:
+                        if not TechnicalSpec.objects.filter(car=car).exists():
+                            self._seed_car_details(car)
+                        first_rich = False
+
+            dealer, _ = Dealer.objects.get_or_create(
+                name=f"[Demo] {brand_name} Center",
+                defaults={
+                    "city": "Tehran",
+                    "address": "Demo dealer address",
+                    "phone": "+98-21-00000000",
+                    "is_published": True,
+                },
+            )
+            dealer.brands.add(brand)
+            shop, _ = RepairShop.objects.get_or_create(
+                name=f"[Demo] {brand_name} Service",
+                defaults={
+                    "city": "Tehran",
+                    "address": "Demo repair shop address",
+                    "phone": "+98-21-11111111",
+                    "is_published": True,
+                },
+            )
+            shop.brands.add(brand)
+
+    def _seed_car_details(self, car):
+        TechnicalSpec.objects.get_or_create(
+            car=car,
+            defaults={
+                "engine": "2.0L I4",
+                "displacement_cc": 2000,
+                "cylinders": 4,
+                "transmission": "CVT",
+                "drivetrain": "FWD",
+                "top_speed_kmh": 200,
+                "accel_0_100": Decimal("8.5"),
+                "economy_city": Decimal("7.5"),
+                "economy_highway": Decimal("5.8"),
+                "emission_standard": "Euro 6",
+            },
+        )
+        Dimensions.objects.get_or_create(
+            car=car,
+            defaults={
+                "length_mm": 4630,
+                "width_mm": 1780,
+                "height_mm": 1435,
+                "wheelbase_mm": 2700,
+                "curb_weight_kg": 1400,
+                "cargo_l": 470,
+                "seats": 5,
+                "ground_clearance_mm": 150,
+                "fuel_tank_l": Decimal("50.0"),
+            },
+        )
+        Feature.objects.get_or_create(
+            car=car, name="Adaptive cruise control", defaults={"category": "tech"}
+        )
+        Feature.objects.get_or_create(
+            car=car, name="Lane keep assist", defaults={"category": "safety"}
+        )
+        MaintenanceItem.objects.get_or_create(
+            car=car,
+            title="Oil change",
+            defaults={
+                "interval_km": 10000,
+                "interval_months": 12,
+                "description": "Synthetic oil and filter.",
+                "estimated_cost": Decimal("120.00"),
+            },
+        )
+        FluidSpec.objects.get_or_create(
+            car=car,
+            fluid_type=FluidType.ENGINE_OIL,
+            defaults={"specification": "0W-20", "capacity": "4.5 L"},
+        )
+        TireSpec.objects.get_or_create(
+            car=car,
+            size="215/55R17",
+            defaults={"position": "all", "pressure_psi": Decimal("35.0")},
+        )
+        BatterySpec.objects.get_or_create(
+            car=car,
+            defaults={
+                "group_size": "35",
+                "voltage": Decimal("12.0"),
+                "cca": 550,
+                "chemistry": "AGM",
+            },
+        )
+        ServiceScheduleItem.objects.get_or_create(
+            car=car,
+            mileage_km=20000,
+            defaults={
+                "months": 24,
+                "tasks": "Oil, filters, brake inspection",
+                "sort_order": 1,
+            },
+        )
+        Part.objects.get_or_create(
+            car=car,
+            name="Cabin air filter",
+            defaults={"oem_number": "OEM-DEMO-001", "category": "Filters"},
+        )
+        CarPrice.objects.get_or_create(
+            car=car,
+            label="MSRP (demo)",
+            defaults={
+                "amount": Decimal("25000.00"),
+                "currency": "USD",
+                "source": "Demo seed",
+                "recorded_at": date(2024, 1, 1),
+            },
+        )
 
     def _seed_youtube(self):
         # Public demo / commonly used IDs for embed smoke tests

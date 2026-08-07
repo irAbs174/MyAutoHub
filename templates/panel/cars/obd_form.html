@@ -1,0 +1,24 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if editing %}{% trans "Edit OBD code" %}{% else %}{% trans "New OBD code" %}{% endif %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% if editing %}{% trans "Edit OBD code" %}{% else %}{% trans "New OBD code" %}{% endif %}{% endblock %}
+
+{% block content %}
+<div class="panel" style="max-width: 560px">
+  <form method="post" class="form-grid">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    <div class="actions">
+      <button class="btn" type="submit">{% if editing %}{% trans "Save changes" %}{% else %}{% trans "Create" %}{% endif %}</button>
+      <a class="btn btn-ghost" href="{% url 'panel:obd_list' %}">{% trans "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

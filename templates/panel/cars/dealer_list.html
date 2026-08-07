@@ -1,0 +1,48 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Dealers" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Dealers" %}{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:dealer_create' %}">{% trans "New dealer" %}</a>
+</div>
+
+<form method="get" class="toolbar">
+  {{ form.q }}
+  {{ form.published }}
+  <button class="btn btn-ghost btn-sm" type="submit">{% trans "Filter" %}</button>
+</form>
+
+<div class="panel">
+  {% if dealers %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "City" %}</th>
+            <th>{% trans "Brands" %}</th>
+            <th>{% trans "Published" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dealer in dealers %}
+            <tr>
+              <td>{{ dealer.name }}</td>
+              <td>{{ dealer.city|default:"—" }}</td>
+              <td>{% for b in dealer.brands.all %}{{ b.name }}{% if not forloop.last %}, {% endif %}{% empty %}—{% endfor %}</td>
+              <td>{% if dealer.is_published %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}</td>
+              <td><a class="link-action" href="{% url 'panel:dealer_edit' dealer.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No dealers yet." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

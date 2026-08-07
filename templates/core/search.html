@@ -51,7 +51,7 @@
             </div>
             <div class="media-body">
               <h3>{{ car.model.brand.name }} {{ car.model.name }}</h3>
-              <p>{{ car.year }}{% if car.trim %} · {{ car.trim }}{% endif %}</p>
+              <p>{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}</p>
             </div>
           </a>
         {% endfor %}

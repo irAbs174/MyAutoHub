@@ -1,0 +1,49 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "OBD codes" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "OBD codes" %}{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:obd_create' %}">{% trans "New OBD code" %}</a>
+  <span class="spacer"></span>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:brand_list' %}">{% trans "Brands" %}</a>
+</div>
+
+<form method="get" class="toolbar">
+  {{ form.q }}
+  <button class="btn btn-ghost btn-sm" type="submit">{% trans "Search" %}</button>
+</form>
+
+<div class="panel">
+  {% if codes %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Code" %}</th>
+            <th>{% trans "Title" %}</th>
+            <th>{% trans "Model" %}</th>
+            <th>{% trans "Severity" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for code in codes %}
+            <tr>
+              <td>{{ code.code }}</td>
+              <td>{{ code.title }}</td>
+              <td>{{ code.car_model }}</td>
+              <td>{{ code.get_severity_display }}</td>
+              <td><a class="link-action" href="{% url 'panel:obd_edit' code.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No OBD codes yet." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

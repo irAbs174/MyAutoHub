@@ -1,7 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.cars.models import Brand, Car, CarModel
+from apps.cars.models import Brand, Car, CarModel, Trim
+
+
+def make_car(model, *, year, trim_name, **kwargs):
+    trim, _ = Trim.objects.get_or_create(car_model=model, name=trim_name)
+    return Car.objects.create(model=model, year=year, trim=trim, **kwargs)
 
 
 class CarCatalogFilterTests(TestCase):
@@ -15,34 +20,34 @@ class CarCatalogFilterTests(TestCase):
 
         cls.toyota = toyota
         cls.bmw = bmw
-        cls.camry = Car.objects.create(
-            model=camry,
+        cls.camry = make_car(
+            camry,
             year=2022,
-            trim="SE",
+            trim_name="SE",
             horsepower=169,
             fuel_type="gasoline",
             is_published=True,
         )
-        cls.corolla = Car.objects.create(
-            model=corolla,
+        cls.corolla = make_car(
+            corolla,
             year=2018,
-            trim="LE",
+            trim_name="LE",
             horsepower=139,
             fuel_type="gasoline",
             is_published=True,
         )
-        cls.x3 = Car.objects.create(
-            model=x3,
+        cls.x3 = make_car(
+            x3,
             year=2023,
-            trim="xDrive30i",
+            trim_name="xDrive30i",
             horsepower=248,
             fuel_type="hybrid",
             is_published=True,
         )
-        Car.objects.create(
-            model=camry,
+        make_car(
+            camry,
             year=2010,
-            trim="Hidden",
+            trim_name="Hidden",
             horsepower=100,
             fuel_type="gasoline",
             is_published=False,
@@ -88,3 +93,13 @@ class CarCatalogFilterTests(TestCase):
         self.assertEqual(res.status_code, 200)
         ids = {c.pk for c in res.context["cars"]}
         self.assertEqual(ids, {self.camry.pk})
+
+    def test_detail_shows_related_sections(self):
+        from apps.cars.models import Feature, TechnicalSpec
+
+        TechnicalSpec.objects.create(car=self.camry, engine="2.5L")
+        Feature.objects.create(car=self.camry, name="Sunroof", category="comfort")
+        res = self.client.get(reverse("cars:detail", args=[self.camry.pk]))
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "2.5L")
+        self.assertContains(res, "Sunroof")

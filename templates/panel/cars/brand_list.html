@@ -9,6 +9,8 @@
 <div class="toolbar">
   <a class="btn" href="{% url 'panel:brand_create' %}">{% trans "New brand" %}</a>
   <a class="btn btn-ghost btn-sm" href="{% url 'panel:car_model_create' %}">{% trans "New model" %}</a>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:trim_create' %}">{% trans "New trim" %}</a>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:obd_list' %}">{% trans "OBD codes" %}</a>
   <span class="spacer"></span>
   <a class="btn btn-ghost btn-sm" href="{% url 'panel:car_list' %}">{% trans "Back to cars" %}</a>
 </div>
@@ -30,7 +32,29 @@
             <tr>
               <td>{{ brand.name }}</td>
               <td>{{ brand.country|default:"—" }}</td>
-              <td>{{ brand.model_count }}</td>
+              <td>
+                {{ brand.model_count }}
+                {% if brand.models.all %}
+                  <ul style="margin: 0.35rem 0 0; padding-left: 1.1rem">
+                    {% for model in brand.models.all %}
+                      <li>
+                        <a class="link-action" href="{% url 'panel:car_model_edit' model.pk %}">{{ model.name }}</a>
+                        ·
+                        <a class="link-action" href="{% url 'panel:trim_create' %}?model={{ model.pk }}">{% trans "Add trim" %}</a>
+                        ·
+                        <a class="link-action" href="{% url 'panel:obd_list' %}?model={{ model.pk }}">{% trans "OBD" %}</a>
+                        {% if model.trims.all %}
+                          <span style="opacity: 0.75">
+                            ({% for trim in model.trims.all %}
+                              <a class="link-action" href="{% url 'panel:trim_edit' trim.pk %}">{{ trim.name }}</a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %})
+                          </span>
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </td>
               <td>
                 <a class="link-action" href="{% url 'panel:brand_edit' brand.pk %}">{% trans "Edit" %}</a>
                 ·

@@ -3,13 +3,68 @@ from django.contrib.auth.models import Group
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.cars.models import Brand, Car, CarModel
+from apps.cars.models import Brand, Car, CarModel, Trim
 from apps.core.i18n_content import tri_fields
 from apps.emergency.models import EmergencyRequest, EmergencyService, RequestStatus
 from apps.stories.models import Story
 from apps.youtube.models import YoutubeVideo
 
 User = get_user_model()
+
+
+def _empty_formset(prefix, extra=0):
+    return {
+        f"{prefix}-TOTAL_FORMS": str(extra),
+        f"{prefix}-INITIAL_FORMS": "0",
+        f"{prefix}-MIN_NUM_FORMS": "0",
+        f"{prefix}-MAX_NUM_FORMS": "1000",
+    }
+
+
+def _car_related_post_extras():
+    data = {}
+    for field in (
+        "engine",
+        "displacement_cc",
+        "cylinders",
+        "transmission",
+        "drivetrain",
+        "top_speed_kmh",
+        "accel_0_100",
+        "economy_city",
+        "economy_highway",
+        "emission_standard",
+        "notes",
+    ):
+        data[f"spec-{field}"] = ""
+    for field in (
+        "length_mm",
+        "width_mm",
+        "height_mm",
+        "wheelbase_mm",
+        "curb_weight_kg",
+        "cargo_l",
+        "seats",
+        "ground_clearance_mm",
+        "fuel_tank_l",
+    ):
+        data[f"dims-{field}"] = ""
+    data.update(_empty_formset("photos", extra=1))
+    data["photos-0-image"] = ""
+    data["photos-0-caption"] = ""
+    data["photos-0-sort_order"] = "0"
+    for prefix in (
+        "features",
+        "maintenance",
+        "fluids",
+        "tires",
+        "batteries",
+        "service",
+        "parts",
+        "prices",
+    ):
+        data.update(_empty_formset(prefix, extra=0))
+    return data
 
 
 class PanelAccessTests(TestCase):
@@ -165,51 +220,42 @@ class PanelContentTests(TestCase):
         self.client.login(username="editor", password="pass12345")
 
     def test_car_create_and_edit(self):
+        trim_se = Trim.objects.create(car_model=self.car_model, name="SE")
+        trim_xse = Trim.objects.create(car_model=self.car_model, name="XSE")
+        extras = _car_related_post_extras()
         response = self.client.post(
             reverse("panel:car_create"),
             {
                 "model": self.car_model.pk,
                 "year": 2024,
-                "trim": "SE",
+                "trim": trim_se.pk,
                 "horsepower": 169,
                 "fuel_type": "gasoline",
                 "description": "Compact sedan",
                 "is_published": True,
-                "photos-TOTAL_FORMS": "1",
-                "photos-INITIAL_FORMS": "0",
-                "photos-MIN_NUM_FORMS": "0",
-                "photos-MAX_NUM_FORMS": "1000",
-                "photos-0-image": "",
-                "photos-0-caption": "",
-                "photos-0-sort_order": "0",
+                **extras,
             },
         )
         self.assertEqual(response.status_code, 302)
         car = Car.objects.get(model=self.car_model, year=2024)
-        self.assertEqual(car.trim, "SE")
+        self.assertEqual(car.trim.name, "SE")
 
         response = self.client.post(
             reverse("panel:car_edit", args=[car.pk]),
             {
                 "model": self.car_model.pk,
                 "year": 2024,
-                "trim": "XSE",
+                "trim": trim_xse.pk,
                 "horsepower": 169,
                 "fuel_type": "gasoline",
                 "description": "Updated",
                 "is_published": True,
-                "photos-TOTAL_FORMS": "1",
-                "photos-INITIAL_FORMS": "0",
-                "photos-MIN_NUM_FORMS": "0",
-                "photos-MAX_NUM_FORMS": "1000",
-                "photos-0-image": "",
-                "photos-0-caption": "",
-                "photos-0-sort_order": "0",
+                **extras,
             },
         )
         self.assertEqual(response.status_code, 302)
         car.refresh_from_db()
-        self.assertEqual(car.trim, "XSE")
+        self.assertEqual(car.trim.name, "XSE")
         self.assertEqual(car.description, "Updated")
 
     def test_brand_and_model_create(self):

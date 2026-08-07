@@ -70,7 +70,7 @@
       <div class="media-body">
         <h3>{{ car.model.brand.name }} {{ car.model.name }}</h3>
         <p>
-          {{ car.year }}{% if car.horsepower %} · {{ car.horsepower }} hp{% endif %}{% if car.fuel_type %} · {{ car.fuel_type }}{% endif %}{% if car.trim %} · {{ car.trim }}{% endif %}
+          {{ car.year }}{% if car.horsepower %} · {{ car.horsepower }} hp{% endif %}{% if car.fuel_type %} · {{ car.fuel_type }}{% endif %}{% if car.trim %} · {{ car.trim.name }}{% endif %}
         </p>
       </div>
     </a>

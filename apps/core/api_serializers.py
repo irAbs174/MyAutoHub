@@ -1,6 +1,23 @@
 from rest_framework import serializers
 
-from apps.cars.models import Brand, Car
+from apps.cars.models import (
+    BatterySpec,
+    Brand,
+    Car,
+    CarPhoto,
+    CarPrice,
+    Dealer,
+    Dimensions,
+    Feature,
+    FluidSpec,
+    MaintenanceItem,
+    OBDCode,
+    Part,
+    RepairShop,
+    ServiceScheduleItem,
+    TechnicalSpec,
+    TireSpec,
+)
 from apps.core.i18n_content import localized
 from apps.emergency.models import EmergencyService
 from apps.marketplace.models import Listing
@@ -28,6 +45,8 @@ class PublicCarSerializer(serializers.ModelSerializer):
     brand = serializers.CharField(source="model.brand.name", read_only=True)
     brand_id = serializers.IntegerField(source="model.brand_id", read_only=True)
     model_name = serializers.CharField(source="model.name", read_only=True)
+    trim = serializers.SerializerMethodField()
+    trim_name = serializers.SerializerMethodField()
     cover_image = serializers.SerializerMethodField()
 
     class Meta:
@@ -39,16 +58,250 @@ class PublicCarSerializer(serializers.ModelSerializer):
             "model_name",
             "year",
             "trim",
+            "trim_name",
             "horsepower",
             "fuel_type",
             "description",
             "cover_image",
         )
 
+    def get_trim(self, obj):
+        return obj.trim.name if obj.trim_id else ""
+
+    def get_trim_name(self, obj):
+        return self.get_trim(obj)
+
     def get_cover_image(self, obj):
         request = self.context.get("request")
         image = obj.main_image
         return absolute_media_url(request, image)
+
+
+class TechnicalSpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TechnicalSpec
+        exclude = ("id", "car")
+
+
+class DimensionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dimensions
+        exclude = ("id", "car")
+
+
+class FeatureSerializer(serializers.ModelSerializer):
+    category_display = serializers.CharField(
+        source="get_category_display", read_only=True
+    )
+
+    class Meta:
+        model = Feature
+        fields = ("id", "category", "category_display", "name", "value")
+
+
+class MaintenanceItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MaintenanceItem
+        fields = (
+            "id",
+            "title",
+            "interval_km",
+            "interval_months",
+            "description",
+            "estimated_cost",
+        )
+
+
+class FluidSpecSerializer(serializers.ModelSerializer):
+    fluid_type_display = serializers.CharField(
+        source="get_fluid_type_display", read_only=True
+    )
+
+    class Meta:
+        model = FluidSpec
+        fields = (
+            "id",
+            "fluid_type",
+            "fluid_type_display",
+            "specification",
+            "capacity",
+            "notes",
+        )
+
+
+class TireSpecSerializer(serializers.ModelSerializer):
+    position_display = serializers.CharField(
+        source="get_position_display", read_only=True
+    )
+
+    class Meta:
+        model = TireSpec
+        fields = (
+            "id",
+            "position",
+            "position_display",
+            "size",
+            "pressure_psi",
+            "load_index",
+            "speed_rating",
+        )
+
+
+class BatterySpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BatterySpec
+        fields = ("id", "group_size", "voltage", "cca", "chemistry", "notes")
+
+
+class ServiceScheduleItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceScheduleItem
+        fields = ("id", "mileage_km", "months", "tasks", "sort_order")
+
+
+class OBDCodeSerializer(serializers.ModelSerializer):
+    severity_display = serializers.CharField(
+        source="get_severity_display", read_only=True
+    )
+
+    class Meta:
+        model = OBDCode
+        fields = (
+            "id",
+            "code",
+            "title",
+            "description",
+            "severity",
+            "severity_display",
+        )
+
+
+class PartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Part
+        fields = ("id", "name", "oem_number", "category", "notes")
+
+
+class CarPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarPrice
+        fields = (
+            "id",
+            "label",
+            "amount",
+            "currency",
+            "source",
+            "notes",
+            "recorded_at",
+        )
+
+
+class CarPhotoSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CarPhoto
+        fields = ("id", "image", "caption", "sort_order")
+
+    def get_image(self, obj):
+        return absolute_media_url(self.context.get("request"), obj.image)
+
+
+class DealerSerializer(serializers.ModelSerializer):
+    brand_ids = serializers.PrimaryKeyRelatedField(
+        source="brands", many=True, read_only=True
+    )
+    brand_names = serializers.SlugRelatedField(
+        source="brands", many=True, read_only=True, slug_field="name"
+    )
+
+    class Meta:
+        model = Dealer
+        fields = (
+            "id",
+            "name",
+            "city",
+            "address",
+            "phone",
+            "website",
+            "brand_ids",
+            "brand_names",
+            "is_published",
+        )
+
+
+class RepairShopSerializer(serializers.ModelSerializer):
+    brand_ids = serializers.PrimaryKeyRelatedField(
+        source="brands", many=True, read_only=True
+    )
+    brand_names = serializers.SlugRelatedField(
+        source="brands", many=True, read_only=True, slug_field="name"
+    )
+
+    class Meta:
+        model = RepairShop
+        fields = (
+            "id",
+            "name",
+            "city",
+            "address",
+            "phone",
+            "website",
+            "brand_ids",
+            "brand_names",
+            "is_published",
+        )
+
+
+class PublicCarDetailSerializer(PublicCarSerializer):
+    technical_spec = TechnicalSpecSerializer(read_only=True)
+    dimensions = DimensionsSerializer(read_only=True)
+    features = FeatureSerializer(many=True, read_only=True)
+    maintenance = MaintenanceItemSerializer(
+        source="maintenance_items", many=True, read_only=True
+    )
+    fluids = FluidSpecSerializer(many=True, read_only=True)
+    tires = TireSpecSerializer(many=True, read_only=True)
+    batteries = BatterySpecSerializer(many=True, read_only=True)
+    service_schedule = ServiceScheduleItemSerializer(many=True, read_only=True)
+    obd_codes = OBDCodeSerializer(
+        source="model.obd_codes", many=True, read_only=True
+    )
+    parts = PartSerializer(many=True, read_only=True)
+    prices = CarPriceSerializer(many=True, read_only=True)
+    images = CarPhotoSerializer(source="photos", many=True, read_only=True)
+    dealers = serializers.SerializerMethodField()
+    repair_shops = serializers.SerializerMethodField()
+
+    class Meta(PublicCarSerializer.Meta):
+        fields = PublicCarSerializer.Meta.fields + (
+            "technical_spec",
+            "dimensions",
+            "features",
+            "maintenance",
+            "fluids",
+            "tires",
+            "batteries",
+            "service_schedule",
+            "obd_codes",
+            "parts",
+            "prices",
+            "images",
+            "dealers",
+            "repair_shops",
+        )
+
+    def get_dealers(self, obj):
+        qs = Dealer.objects.filter(
+            is_published=True, brands=obj.model.brand
+        ).distinct()
+        return DealerSerializer(qs, many=True, context=self.context).data
+
+    def get_repair_shops(self, obj):
+        qs = RepairShop.objects.filter(
+            is_published=True, brands=obj.model.brand
+        ).distinct()
+        return RepairShopSerializer(qs, many=True, context=self.context).data
 
 
 class PublicYoutubeVideoSerializer(serializers.ModelSerializer):

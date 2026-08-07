@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 
-from apps.cars.models import Brand, Car, CarModel
+from apps.cars.models import Brand, Car, CarModel, Dealer, OBDCode, RepairShop, Trim
 from apps.emergency.forms import VerifyEmergencyTransitionForm
 from apps.emergency.models import EmergencyRequest, EmergencyService, RequestStatus
 from apps.emergency.services import (
@@ -20,12 +20,18 @@ from .forms import (
     BrandForm,
     CarForm,
     CarModelForm,
-    CarPhotoFormSet,
+    DealerForm,
     EmergencyServiceForm,
+    OBDCodeForm,
     PanelContentSearchForm,
     PanelEmergencySearchForm,
+    RepairShopForm,
     StoryForm,
+    TrimForm,
     YoutubeVideoForm,
+    build_car_related_forms,
+    car_related_forms_valid,
+    save_car_related,
 )
 
 
@@ -214,10 +220,23 @@ def emergency_service_edit(request, pk):
     )
 
 
+def _car_form_context(form, spec_form, dims_form, formsets, editing, car=None):
+    return {
+        "form": form,
+        "spec_form": spec_form,
+        "dims_form": dims_form,
+        "formsets": formsets,
+        "formset": formsets["photos"],
+        "editing": editing,
+        "car": car,
+        "panel_section": "cars",
+    }
+
+
 @staff_required
 def car_list(request):
     form = PanelContentSearchForm(request.GET or None)
-    qs = Car.objects.select_related("model__brand")
+    qs = Car.objects.select_related("model__brand", "trim")
     if form.is_valid():
         q = form.cleaned_data.get("q")
         published = form.cleaned_data.get("published")
@@ -225,7 +244,7 @@ def car_list(request):
             qs = qs.filter(
                 Q(model__name__icontains=q)
                 | Q(model__brand__name__icontains=q)
-                | Q(trim__icontains=q)
+                | Q(trim__name__icontains=q)
                 | Q(description__icontains=q)
             )
         qs = _apply_published_filter(qs, published)
@@ -244,61 +263,56 @@ def car_list(request):
 def car_create(request):
     if request.method == "POST":
         form = CarForm(request.POST, request.FILES)
-        if form.is_valid():
-            car = form.save(commit=False)
-            formset = CarPhotoFormSet(request.POST, request.FILES, instance=car)
-            if formset.is_valid():
-                car.save()
-                formset.save()
-                messages.success(request, _("Car created."))
-                return redirect("panel:car_list")
-        else:
-            formset = CarPhotoFormSet(request.POST, request.FILES)
+        spec_form, dims_form, formsets = build_car_related_forms(
+            request.POST, request.FILES
+        )
+        if form.is_valid() and car_related_forms_valid(spec_form, dims_form, formsets):
+            car = form.save()
+            save_car_related(car, spec_form, dims_form, formsets)
+            messages.success(request, _("Car created."))
+            return redirect("panel:car_list")
     else:
         form = CarForm()
-        formset = CarPhotoFormSet()
+        spec_form, dims_form, formsets = build_car_related_forms()
     return render(
         request,
         "panel/cars/form.html",
-        {
-            "form": form,
-            "formset": formset,
-            "editing": False,
-            "panel_section": "cars",
-        },
+        _car_form_context(form, spec_form, dims_form, formsets, editing=False),
     )
 
 
 @staff_required
 def car_edit(request, pk):
-    car = get_object_or_404(Car.objects.select_related("model__brand"), pk=pk)
+    car = get_object_or_404(
+        Car.objects.select_related("model__brand", "trim"), pk=pk
+    )
     if request.method == "POST":
         form = CarForm(request.POST, request.FILES, instance=car)
-        formset = CarPhotoFormSet(request.POST, request.FILES, instance=car)
-        if form.is_valid() and formset.is_valid():
+        spec_form, dims_form, formsets = build_car_related_forms(
+            request.POST, request.FILES, instance=car
+        )
+        if form.is_valid() and car_related_forms_valid(spec_form, dims_form, formsets):
             form.save()
-            formset.save()
+            save_car_related(car, spec_form, dims_form, formsets)
             messages.success(request, _("Car updated."))
             return redirect("panel:car_list")
     else:
         form = CarForm(instance=car)
-        formset = CarPhotoFormSet(instance=car)
+        spec_form, dims_form, formsets = build_car_related_forms(instance=car)
     return render(
         request,
         "panel/cars/form.html",
-        {
-            "form": form,
-            "formset": formset,
-            "editing": True,
-            "car": car,
-            "panel_section": "cars",
-        },
+        _car_form_context(
+            form, spec_form, dims_form, formsets, editing=True, car=car
+        ),
     )
 
 
 @staff_required
 def brand_list(request):
-    brands = Brand.objects.annotate(model_count=Count("models"))
+    brands = Brand.objects.annotate(model_count=Count("models")).prefetch_related(
+        "models__trims"
+    )
     return render(
         request,
         "panel/cars/brand_list.html",
@@ -397,6 +411,262 @@ def car_model_edit(request, pk):
             "editing": True,
             "car_model": car_model,
             "panel_section": "cars",
+        },
+    )
+
+
+@staff_required
+def trim_create(request):
+    initial = {}
+    model_id = request.GET.get("model")
+    if model_id:
+        initial["car_model"] = model_id
+    if request.method == "POST":
+        form = TrimForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Trim created."))
+            return redirect("panel:brand_list")
+    else:
+        form = TrimForm(initial=initial)
+    return render(
+        request,
+        "panel/cars/trim_form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "cars",
+        },
+    )
+
+
+@staff_required
+def trim_edit(request, pk):
+    trim = get_object_or_404(Trim.objects.select_related("car_model__brand"), pk=pk)
+    if request.method == "POST":
+        form = TrimForm(request.POST, instance=trim)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Trim updated."))
+            return redirect("panel:brand_list")
+    else:
+        form = TrimForm(instance=trim)
+    return render(
+        request,
+        "panel/cars/trim_form.html",
+        {
+            "form": form,
+            "editing": True,
+            "trim": trim,
+            "panel_section": "cars",
+        },
+    )
+
+
+@staff_required
+def obd_list(request):
+    form = PanelContentSearchForm(request.GET or None)
+    qs = OBDCode.objects.select_related("car_model__brand")
+    model_id = request.GET.get("model")
+    if model_id:
+        qs = qs.filter(car_model_id=model_id)
+    if form.is_valid():
+        q = form.cleaned_data.get("q")
+        if q:
+            qs = qs.filter(
+                Q(code__icontains=q)
+                | Q(title__icontains=q)
+                | Q(car_model__name__icontains=q)
+            )
+    return render(
+        request,
+        "panel/cars/obd_list.html",
+        {
+            "codes": qs,
+            "form": form,
+            "panel_section": "cars",
+        },
+    )
+
+
+@staff_required
+def obd_create(request):
+    initial = {}
+    model_id = request.GET.get("model")
+    if model_id:
+        initial["car_model"] = model_id
+    if request.method == "POST":
+        form = OBDCodeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("OBD code created."))
+            return redirect("panel:obd_list")
+    else:
+        form = OBDCodeForm(initial=initial)
+    return render(
+        request,
+        "panel/cars/obd_form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "cars",
+        },
+    )
+
+
+@staff_required
+def obd_edit(request, pk):
+    code = get_object_or_404(OBDCode.objects.select_related("car_model"), pk=pk)
+    if request.method == "POST":
+        form = OBDCodeForm(request.POST, instance=code)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("OBD code updated."))
+            return redirect("panel:obd_list")
+    else:
+        form = OBDCodeForm(instance=code)
+    return render(
+        request,
+        "panel/cars/obd_form.html",
+        {
+            "form": form,
+            "editing": True,
+            "code": code,
+            "panel_section": "cars",
+        },
+    )
+
+
+@staff_required
+def dealer_list(request):
+    form = PanelContentSearchForm(request.GET or None)
+    qs = Dealer.objects.prefetch_related("brands")
+    if form.is_valid():
+        q = form.cleaned_data.get("q")
+        published = form.cleaned_data.get("published")
+        if q:
+            qs = qs.filter(
+                Q(name__icontains=q) | Q(city__icontains=q) | Q(phone__icontains=q)
+            )
+        qs = _apply_published_filter(qs, published)
+    return render(
+        request,
+        "panel/cars/dealer_list.html",
+        {
+            "dealers": qs,
+            "form": form,
+            "panel_section": "dealers",
+        },
+    )
+
+
+@staff_required
+def dealer_create(request):
+    if request.method == "POST":
+        form = DealerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Dealer created."))
+            return redirect("panel:dealer_list")
+    else:
+        form = DealerForm()
+    return render(
+        request,
+        "panel/cars/dealer_form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "dealers",
+        },
+    )
+
+
+@staff_required
+def dealer_edit(request, pk):
+    dealer = get_object_or_404(Dealer, pk=pk)
+    if request.method == "POST":
+        form = DealerForm(request.POST, instance=dealer)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Dealer updated."))
+            return redirect("panel:dealer_list")
+    else:
+        form = DealerForm(instance=dealer)
+    return render(
+        request,
+        "panel/cars/dealer_form.html",
+        {
+            "form": form,
+            "editing": True,
+            "dealer": dealer,
+            "panel_section": "dealers",
+        },
+    )
+
+
+@staff_required
+def repair_shop_list(request):
+    form = PanelContentSearchForm(request.GET or None)
+    qs = RepairShop.objects.prefetch_related("brands")
+    if form.is_valid():
+        q = form.cleaned_data.get("q")
+        published = form.cleaned_data.get("published")
+        if q:
+            qs = qs.filter(
+                Q(name__icontains=q) | Q(city__icontains=q) | Q(phone__icontains=q)
+            )
+        qs = _apply_published_filter(qs, published)
+    return render(
+        request,
+        "panel/cars/repair_shop_list.html",
+        {
+            "shops": qs,
+            "form": form,
+            "panel_section": "repair_shops",
+        },
+    )
+
+
+@staff_required
+def repair_shop_create(request):
+    if request.method == "POST":
+        form = RepairShopForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Repair shop created."))
+            return redirect("panel:repair_shop_list")
+    else:
+        form = RepairShopForm()
+    return render(
+        request,
+        "panel/cars/repair_shop_form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "repair_shops",
+        },
+    )
+
+
+@staff_required
+def repair_shop_edit(request, pk):
+    shop = get_object_or_404(RepairShop, pk=pk)
+    if request.method == "POST":
+        form = RepairShopForm(request.POST, instance=shop)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Repair shop updated."))
+            return redirect("panel:repair_shop_list")
+    else:
+        form = RepairShopForm(instance=shop)
+    return render(
+        request,
+        "panel/cars/repair_shop_form.html",
+        {
+            "form": form,
+            "editing": True,
+            "shop": shop,
+            "panel_section": "repair_shops",
         },
     )
 

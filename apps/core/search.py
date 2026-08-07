@@ -35,11 +35,11 @@ def run_search(q, *, limit=SEARCH_LIMIT):
             .filter(
                 Q(model__name__icontains=q)
                 | Q(model__brand__name__icontains=q)
-                | Q(trim__icontains=q)
+                | Q(trim__name__icontains=q)
                 | Q(fuel_type__icontains=q)
                 | Q(description__icontains=q)
             )
-            .select_related("model__brand")
+            .select_related("model__brand", "trim")
             .prefetch_related("photos")[:limit]
         ),
         "listings": list(
@@ -130,7 +130,9 @@ def build_suggest_results(q, *, request=None, limit=SUGGEST_LIMIT):
                 "category": "car",
                 "category_label": _("Car"),
                 "title": f"{car.model.brand.name} {car.model.name}",
-                "subtitle": _join_meta(car.year, car.trim),
+                "subtitle": _join_meta(
+                    car.year, car.trim.name if car.trim_id else None
+                ),
                 "url": reverse("cars:detail", args=[car.pk]),
             }
         )

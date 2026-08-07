@@ -1,7 +1,12 @@
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
-from apps.cars.models import Brand, Car, CarModel
+from apps.cars.models import Brand, Car, CarModel, Dealer, RepairShop, Trim
+
+
+def _make_car(model, *, year, trim_name, **kwargs):
+    trim, _ = Trim.objects.get_or_create(car_model=model, name=trim_name)
+    return Car.objects.create(model=model, year=year, trim=trim, **kwargs)
 
 
 @override_settings(ALLOWED_HOSTS=["localhost", "testserver"])
@@ -32,10 +37,40 @@ class PublicApiTests(TestCase):
         self.assertIn("results", payload)
         self.assertIn("count", payload)
 
+    def test_car_detail_api(self):
+        brand = Brand.objects.create(name="Peugeot")
+        model = CarModel.objects.create(brand=brand, name="206")
+        car = _make_car(model, year=2018, trim_name="TU5", is_published=True)
+        Dealer.objects.create(name="Peugeot House", is_published=True).brands.add(brand)
+
+        response = self.client.get(f"/api/public/cars/{car.pk}/")
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["trim"], "TU5")
+        self.assertEqual(payload["trim_name"], "TU5")
+        self.assertIn("features", payload)
+        self.assertIn("obd_codes", payload)
+        self.assertEqual(payload["dealers"][0]["name"], "Peugeot House")
+
+    def test_dealers_and_repair_shops_api(self):
+        brand = Brand.objects.create(name="Kia")
+        dealer = Dealer.objects.create(name="Kia Dealer", is_published=True)
+        dealer.brands.add(brand)
+        shop = RepairShop.objects.create(name="Kia Shop", is_published=True)
+        shop.brands.add(brand)
+
+        dealers = self.client.get("/api/public/dealers/", {"brand": brand.pk})
+        self.assertEqual(dealers.status_code, 200)
+        self.assertEqual(dealers.json()["results"][0]["name"], "Kia Dealer")
+
+        shops = self.client.get("/api/public/repair-shops/", {"brand": "Kia"})
+        self.assertEqual(shops.status_code, 200)
+        self.assertEqual(shops.json()["results"][0]["name"], "Kia Shop")
+
     def test_search_suggest_finds_car(self):
         brand = Brand.objects.create(name="Peugeot")
         model = CarModel.objects.create(brand=brand, name="206")
-        Car.objects.create(model=model, year=2018, trim="TU5", is_published=True)
+        _make_car(model, year=2018, trim_name="TU5", is_published=True)
 
         response = self.client.get("/api/public/search/", {"q": "Peugeot"})
         self.assertEqual(response.status_code, 200)
@@ -59,7 +94,7 @@ class SearchViewTests(TestCase):
         self.client = Client(HTTP_HOST="localhost")
         brand = Brand.objects.create(name="Peugeot")
         model = CarModel.objects.create(brand=brand, name="206")
-        Car.objects.create(model=model, year=2018, trim="TU5", is_published=True)
+        _make_car(model, year=2018, trim_name="TU5", is_published=True)
 
     def test_search_page_loads(self):
         response = self.client.get(reverse("core:search"))

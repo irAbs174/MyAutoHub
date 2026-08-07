@@ -1,0 +1,48 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Repair shops" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Repair shops" %}{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:repair_shop_create' %}">{% trans "New repair shop" %}</a>
+</div>
+
+<form method="get" class="toolbar">
+  {{ form.q }}
+  {{ form.published }}
+  <button class="btn btn-ghost btn-sm" type="submit">{% trans "Filter" %}</button>
+</form>
+
+<div class="panel">
+  {% if shops %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "City" %}</th>
+            <th>{% trans "Brands" %}</th>
+            <th>{% trans "Published" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for shop in shops %}
+            <tr>
+              <td>{{ shop.name }}</td>
+              <td>{{ shop.city|default:"—" }}</td>
+              <td>{% for b in shop.brands.all %}{{ b.name }}{% if not forloop.last %}, {% endif %}{% empty %}—{% endfor %}</td>
+              <td>{% if shop.is_published %}{% trans "Yes" %}{% else %}{% trans "No" %}{% endif %}</td>
+              <td><a class="link-action" href="{% url 'panel:repair_shop_edit' shop.pk %}">{% trans "Edit" %}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No repair shops yet." %}</p>
+  {% endif %}
+</div>
+{% endblock %}

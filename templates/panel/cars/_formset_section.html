@@ -1,0 +1,20 @@
+{% load i18n %}
+<div class="section-head">
+  <h2>{{ title }}</h2>
+</div>
+{{ formset.management_form }}
+{% if formset.non_form_errors %}
+  {% for error in formset.non_form_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+{% endif %}
+{% for row in formset %}
+  <div class="form-row" style="border-top: 1px solid var(--border, #e5e5e5); padding-top: 0.75rem">
+    {% for field in row.visible_fields %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    {% for hidden in row.hidden_fields %}{{ hidden }}{% endfor %}
+  </div>
+{% endfor %}

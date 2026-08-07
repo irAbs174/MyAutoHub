@@ -6,13 +6,14 @@
 {% block page_lead %}<p class="panel-lead">{% if editing %}{{ car }}{% else %}{% trans "Add a car to the catalog." %}{% endif %}</p>{% endblock %}
 
 {% block content %}
-<div class="panel" style="max-width: 720px">
+<div class="panel" style="max-width: 880px">
   <form method="post" class="form-grid" enctype="multipart/form-data">
     {% csrf_token %}
     {% if form.non_field_errors %}
       {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
     {% endif %}
 
+    <div class="section-head"><h2>{% trans "Basics" %}</h2></div>
     {% for field in form %}
       <div class="form-row{% if field.errors %} has-error{% endif %}">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -21,25 +22,42 @@
       </div>
     {% endfor %}
 
-    <div class="section-head">
-      <h2>{% trans "Gallery photos" %}</h2>
-    </div>
-    {{ formset.management_form }}
-    {% if formset.non_form_errors %}
-      {% for error in formset.non_form_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-    {% endif %}
-    {% for photo_form in formset %}
-      <div class="form-row" style="border-top: 1px solid var(--border, #e5e5e5); padding-top: 0.75rem">
-        {% for field in photo_form.visible_fields %}
-          <div class="form-row{% if field.errors %} has-error{% endif %}">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
-          </div>
-        {% endfor %}
-        {% for hidden in photo_form.hidden_fields %}{{ hidden }}{% endfor %}
+    <div class="section-head"><h2>{% trans "Technical specs" %}</h2></div>
+    {% for field in spec_form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
       </div>
     {% endfor %}
+
+    <div class="section-head"><h2>{% trans "Dimensions" %}</h2></div>
+    {% for field in dims_form %}
+      <div class="form-row{% if field.errors %} has-error{% endif %}">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+
+    {% trans "Gallery photos" as title_photos %}
+    {% include "panel/cars/_formset_section.html" with title=title_photos formset=formsets.photos %}
+    {% trans "Features" as title_features %}
+    {% include "panel/cars/_formset_section.html" with title=title_features formset=formsets.features %}
+    {% trans "Maintenance" as title_maintenance %}
+    {% include "panel/cars/_formset_section.html" with title=title_maintenance formset=formsets.maintenance %}
+    {% trans "Fluids" as title_fluids %}
+    {% include "panel/cars/_formset_section.html" with title=title_fluids formset=formsets.fluids %}
+    {% trans "Tires" as title_tires %}
+    {% include "panel/cars/_formset_section.html" with title=title_tires formset=formsets.tires %}
+    {% trans "Batteries" as title_batteries %}
+    {% include "panel/cars/_formset_section.html" with title=title_batteries formset=formsets.batteries %}
+    {% trans "Service schedule" as title_service %}
+    {% include "panel/cars/_formset_section.html" with title=title_service formset=formsets.service %}
+    {% trans "Parts" as title_parts %}
+    {% include "panel/cars/_formset_section.html" with title=title_parts formset=formsets.parts %}
+    {% trans "Prices" as title_prices %}
+    {% include "panel/cars/_formset_section.html" with title=title_prices formset=formsets.prices %}
 
     <div class="actions">
       <button class="btn" type="submit">
