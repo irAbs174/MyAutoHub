@@ -1,32 +1,8 @@
-import json
-import time
-from pathlib import Path
-
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
 from .forms import FUEL_ALIASES, SORT_ORDERING, CarCatalogFilterForm
 from .models import Brand, Car
-
-# #region agent log
-_DEBUG_LOG = Path("/home/unique/Documents/projects/dev/MyAutoHub/.cursor/debug-f3274c.log")
-
-
-def _agent_log(hypothesis_id, location, message, data, run_id="pre-fix"):
-    payload = {
-        "sessionId": "f3274c",
-        "runId": run_id,
-        "hypothesisId": hypothesis_id,
-        "location": location,
-        "message": message,
-        "data": data,
-        "timestamp": int(time.time() * 1000),
-    }
-    with _DEBUG_LOG.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps(payload, ensure_ascii=False) + "\n")
-
-
-# #endregion
 
 
 def list_cars(request):
@@ -101,46 +77,6 @@ def list_cars(request):
         filters_active = True
 
     cars = cars.order_by(*SORT_ORDERING.get(sort_key, SORT_ORDERING["yearDesc"]))
-
-    # #region agent log
-    field_meta = []
-    for name in ("q", "brand", "model", "fuel", "year_min", "year_max", "sort"):
-        field = form[name]
-        html = str(field)
-        field_meta.append(
-            {
-                "name": name,
-                "widget": field.field.widget.__class__.__name__,
-                "has_class_attr": " class=" in html,
-                "tag_select": html.lstrip().startswith("<select"),
-                "tag_input": html.lstrip().startswith("<input"),
-                "html_snip": html[:180],
-            }
-        )
-    _agent_log(
-        "B",
-        "cars/views.py:list_cars",
-        "filter_widget_html",
-        {
-            "bound": form.is_bound,
-            "valid": form.is_bound and form.is_valid(),
-            "fields": field_meta,
-        },
-    )
-    _agent_log(
-        "A",
-        "cars/views.py:list_cars",
-        "filter_panel_classes",
-        {
-            "panel_classes": "panel filter-panel cars-filter-panel",
-            "uses_compact_overrides": True,
-            "standard_filter_panel_padding": "1.1rem 1.25rem",
-            "compact_padding": "0.65rem 0.85rem",
-            "compact_removes_shadow": True,
-            "compact_label_uppercase": True,
-        },
-    )
-    # #endregion
 
     return render(
         request,

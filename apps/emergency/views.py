@@ -83,42 +83,6 @@ def submit_request(request):
                 return redirect("emergency:detail", pk=emergency.pk)
     else:
         form = SubmitNewEmergencyRequestForm(user=request.user)
-    # #region agent log
-    try:
-        import json
-        import time
-        from pathlib import Path
-
-        qs = form.fields["saved_location"].queryset
-        choices = [(str(v), str(l)) for v, l in form.fields["saved_location"].choices]
-        Path("/home/unique/Documents/projects/dev/MyAutoHub/.cursor/debug-5a4dd4.log").open(
-            "a"
-        ).write(
-            json.dumps(
-                {
-                    "sessionId": "5a4dd4",
-                    "hypothesisId": "A",
-                    "location": "emergency/views.py:submit_request",
-                    "message": "submit form saved_location queryset",
-                    "data": {
-                        "method": request.method,
-                        "user_id": getattr(request.user, "id", None),
-                        "username": getattr(request.user, "username", None),
-                        "db_loc_count": request.user.saved_locations.count(),
-                        "queryset_count": qs.count(),
-                        "choice_count": len(choices),
-                        "choice_labels": [c[1] for c in choices[:10]],
-                        "form_errors": form.errors.as_json() if form.errors else None,
-                    },
-                    "timestamp": int(time.time() * 1000),
-                    "runId": "pre-fix",
-                }
-            )
-            + "\n"
-        )
-    except Exception:
-        pass
-    # #endregion
     return render(request, "emergency/submit.html", {"form": form})
 
 

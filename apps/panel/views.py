@@ -49,47 +49,6 @@ def _apply_published_filter(qs, published):
 
 @staff_required
 def overview(request):
-    # #region agent log
-    import json, time
-    from pathlib import Path
-    from django.utils.translation import get_language
-    _samples = [
-        "Panel",
-        "Overview",
-        "Waiting",
-        "Active services",
-        "Recent requests",
-        "With unread buzz",
-        "Create service",
-        "New car",
-        "Published cars",
-        "Light tools for day-to-day ops.",
-    ]
-    _resolved = {s: _(s) for s in _samples}
-    _payload = {
-        "sessionId": "93a040",
-        "runId": "pre-fix",
-        "hypothesisId": "A-E",
-        "location": "panel/views.py:overview",
-        "message": "panel overview translation snapshot",
-        "data": {
-            "request_LANGUAGE_CODE": getattr(request, "LANGUAGE_CODE", None),
-            "get_language": get_language(),
-            "html_lang_cookie": request.COOKIES.get("django_language"),
-            "resolved": _resolved,
-            "english_fallback": [s for s, t in _resolved.items() if t == s],
-            "wrong_or_fuzzy_style": {
-                s: t
-                for s, t in _resolved.items()
-                if t != s and s in ("Active services", "Recent requests", "With unread buzz", "Overview")
-            },
-        },
-        "timestamp": int(time.time() * 1000),
-    }
-    Path("/home/unique/Documents/projects/dev/MyAutoHub/.cursor/debug-93a040.log").open(
-        "a", encoding="utf-8"
-    ).write(json.dumps(_payload, ensure_ascii=False) + "\n")
-    # #endregion
     qs = EmergencyRequest.objects.all()
     waiting = qs.filter(status=RequestStatus.WAIT_FOR_ACCEPT).count()
     processing = qs.filter(status=RequestStatus.PROCESSING).count()
