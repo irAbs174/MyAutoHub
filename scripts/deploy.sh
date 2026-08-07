@@ -4,44 +4,54 @@
 #   APP_DIR          - live app path (default /var/www/myautohub/application)
 #   RELEASE_ARCHIVE  - path to myautohub-release.tar.gz
 #   DEPLOY_SHA       - optional commit sha for logging
+#   SKIP_EXTRACT     - set to 1 after re-exec so the new script body runs
 set -euo pipefail
 
 APP_DIR="${APP_DIR:-/var/www/myautohub/application}"
 RELEASE_ARCHIVE="${RELEASE_ARCHIVE:-/tmp/myautohub-release.tar.gz}"
 DEPLOY_SHA="${DEPLOY_SHA:-unknown}"
-
-if [[ ! -f "${RELEASE_ARCHIVE}" ]]; then
-  echo "ERROR: release archive not found: ${RELEASE_ARCHIVE}" >&2
-  exit 1
-fi
+SKIP_EXTRACT="${SKIP_EXTRACT:-0}"
 
 if [[ ! -f "${APP_DIR}/.env" ]]; then
   echo "ERROR: missing production .env at ${APP_DIR}/.env" >&2
   exit 1
 fi
 
-echo "==> Deploying ${DEPLOY_SHA} into ${APP_DIR}"
+if [[ "${SKIP_EXTRACT}" != "1" ]]; then
+  if [[ ! -f "${RELEASE_ARCHIVE}" ]]; then
+    echo "ERROR: release archive not found: ${RELEASE_ARCHIVE}" >&2
+    exit 1
+  fi
 
-# Keep runtime data outside the extract so tar does not wipe it
-TMP_ENV="$(mktemp)"
-cp "${APP_DIR}/.env" "${TMP_ENV}"
-mkdir -p "${APP_DIR}/uploads" "${APP_DIR}/media" "${APP_DIR}/staticfiles"
+  echo "==> Deploying ${DEPLOY_SHA} into ${APP_DIR}"
 
-# Extract over the live tree (does not remove untracked runtime dirs)
-tar -xzf "${RELEASE_ARCHIVE}" -C "${APP_DIR}"
+  # Keep runtime data outside the extract so tar does not wipe it
+  TMP_ENV="$(mktemp)"
+  cp "${APP_DIR}/.env" "${TMP_ENV}"
+  mkdir -p "${APP_DIR}/uploads" "${APP_DIR}/media" "${APP_DIR}/staticfiles"
 
-# Restore production env (never deploy .env from CI)
-cp "${TMP_ENV}" "${APP_DIR}/.env"
-rm -f "${TMP_ENV}"
+  # Extract over the live tree (does not remove untracked runtime dirs)
+  tar -xzf "${RELEASE_ARCHIVE}" -C "${APP_DIR}"
 
-chmod +x "${APP_DIR}/entrypoint.sh" "${APP_DIR}/scripts/deploy.sh"
+  # Restore production env (never deploy .env from CI)
+  cp "${TMP_ENV}" "${APP_DIR}/.env"
+  rm -f "${TMP_ENV}"
+
+  chmod +x "${APP_DIR}/entrypoint.sh" "${APP_DIR}/scripts/deploy.sh"
+
+  # Re-exec the freshly extracted script so postgres/seeder steps from this
+  # release actually run (CI invokes the previous on-disk deploy.sh).
+  echo "==> Re-executing updated deploy script"
+  export SKIP_EXTRACT=1
+  exec bash "${APP_DIR}/scripts/deploy.sh"
+fi
 
 cd "${APP_DIR}"
 
 # Production must use PostgreSQL (Compose `db` service), never SQLite.
 ensure_postgres_env() {
   local env_file="${APP_DIR}/.env"
-  local tmp key val
+  local tmp
   local postgres_db=myautohub postgres_user=myautohub postgres_password=myautohub
   local has_use_sqlite=0 has_django_env=0 has_database_url=0 has_postgres_host=0
 

@@ -102,4 +102,24 @@ jobs:
             export APP_DIR=/var/www/myautohub/application
             export RELEASE_ARCHIVE=/tmp/myautohub-release.tar.gz
             export DEPLOY_SHA=${{ github.sha }}
+
+            # Extract first so we always execute this release's deploy.sh
+            # (not the previous on-disk copy that CI would otherwise invoke).
+            if [[ ! -f "${APP_DIR}/.env" ]]; then
+              echo "ERROR: missing production .env at ${APP_DIR}/.env" >&2
+              exit 1
+            fi
+            if [[ ! -f "${RELEASE_ARCHIVE}" ]]; then
+              echo "ERROR: release archive not found: ${RELEASE_ARCHIVE}" >&2
+              exit 1
+            fi
+            TMP_ENV="$(mktemp)"
+            cp "${APP_DIR}/.env" "${TMP_ENV}"
+            mkdir -p "${APP_DIR}/uploads" "${APP_DIR}/media" "${APP_DIR}/staticfiles"
+            tar -xzf "${RELEASE_ARCHIVE}" -C "${APP_DIR}"
+            cp "${TMP_ENV}" "${APP_DIR}/.env"
+            rm -f "${TMP_ENV}"
+            chmod +x "${APP_DIR}/entrypoint.sh" "${APP_DIR}/scripts/deploy.sh"
+
+            export SKIP_EXTRACT=1
             bash "${APP_DIR}/scripts/deploy.sh"
