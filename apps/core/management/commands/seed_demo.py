@@ -10,7 +10,9 @@ from __future__ import annotations
 
 from datetime import date, timedelta
 from decimal import Decimal
+from pathlib import Path
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.core.files.base import ContentFile
@@ -55,6 +57,20 @@ from apps.youtube.models import YoutubeVideo
 User = get_user_model()
 
 DEMO_PASSWORD = "demo12345"
+
+# Real photos shipped under static/seed/cars/ (keyed by brand + model).
+SEED_CAR_IMAGES = {
+    ("BMW", "M4"): "bmw-m4.jpg",
+    ("Porsche", "911"): "porsche-911.jpg",
+    ("Hyundai", "N Vision 74"): "hyundai-n-vision-74.jpg",
+    ("Bugatti", "Chiron"): "bugatti-chiron.jpg",
+}
+SEED_CAR_IMAGE_FALLBACKS = (
+    "bmw-m4.jpg",
+    "porsche-911.jpg",
+    "hyundai-n-vision-74.jpg",
+    "bugatti-chiron.jpg",
+)
 
 
 class Command(BaseCommand):
@@ -131,6 +147,34 @@ class Command(BaseCommand):
         content = self._placeholder(slug, color, label)
         getattr(instance, field_name).save(content.name, content, save=True)
 
+    def _seed_car_image_path(self, filename: str) -> Path | None:
+        path = Path(settings.BASE_DIR) / "static" / "seed" / "cars" / filename
+        return path if path.is_file() else None
+
+    def _load_seed_image(self, filename: str, dest_name: str) -> ContentFile | None:
+        path = self._seed_car_image_path(filename)
+        if path is None:
+            return None
+        return ContentFile(path.read_bytes(), name=dest_name)
+
+    def _ensure_seed_image(
+        self,
+        instance,
+        field_name: str,
+        filename: str,
+        dest_name: str,
+        *,
+        replace: bool = False,
+    ) -> bool:
+        field = getattr(instance, field_name)
+        if field and not replace:
+            return False
+        content = self._load_seed_image(filename, dest_name)
+        if content is None:
+            return False
+        getattr(instance, field_name).save(dest_name, content, save=True)
+        return True
+
     def _flush_demo(self):
         usernames = [
             "admin",
@@ -147,7 +191,9 @@ class Command(BaseCommand):
         PriceReference.objects.filter(title_en__startswith="[Demo]").delete()
         YoutubeVideo.objects.filter(title__startswith="[Demo]").delete()
         Story.objects.filter(title_en__startswith="[Demo]").delete()
-        Brand.objects.filter(name__in=["Toyota", "BMW", "Iran Khodro", "Hyundai"]).delete()
+        Brand.objects.filter(
+            name__in=["Toyota", "BMW", "Iran Khodro", "Hyundai", "Porsche", "Bugatti"]
+        ).delete()
         EmergencyService.objects.filter(name_en__startswith="[Demo]").delete()
         self.stdout.write(self.style.WARNING(f"Flushed {count} demo user(s) and tagged demo rows."))
 
@@ -449,6 +495,70 @@ class Command(BaseCommand):
 
     def _seed_cars(self):
         catalog = {
+            "BMW": {
+                "country": "Germany",
+                "models": {
+                    "M4": [
+                        {
+                            "year": 2021,
+                            "trim": "Competition",
+                            "horsepower": 503,
+                            "fuel_type": "gasoline",
+                        },
+                    ],
+                    "320i": [
+                        {"year": 2021, "trim": "Sport", "horsepower": 184, "fuel_type": "gasoline"},
+                    ],
+                    "X3": [
+                        {"year": 2022, "trim": "xDrive30i", "horsepower": 248, "fuel_type": "gasoline"},
+                    ],
+                },
+            },
+            "Porsche": {
+                "country": "Germany",
+                "models": {
+                    "911": [
+                        {
+                            "year": 2023,
+                            "trim": "Carrera",
+                            "horsepower": 379,
+                            "fuel_type": "gasoline",
+                        },
+                    ],
+                },
+            },
+            "Hyundai": {
+                "country": "South Korea",
+                "models": {
+                    "N Vision 74": [
+                        {
+                            "year": 2024,
+                            "trim": "Concept",
+                            "horsepower": 670,
+                            "fuel_type": "hybrid",
+                        },
+                    ],
+                    "Tucson": [
+                        {"year": 2022, "trim": "Limited", "horsepower": 187, "fuel_type": "gasoline"},
+                    ],
+                    "Elantra": [
+                        {"year": 2020, "trim": "SEL", "horsepower": 147, "fuel_type": "gasoline"},
+                    ],
+                },
+            },
+            "Bugatti": {
+                "country": "France",
+                "models": {
+                    "Chiron": [
+                        {
+                            "year": 2022,
+                            "trim": "Sport",
+                            "horsepower": 1500,
+                            "fuel_type": "gasoline",
+                        },
+                    ],
+                },
+            },
             "Toyota": {
                 "country": "Japan",
                 "models": {
@@ -458,17 +568,6 @@ class Command(BaseCommand):
                     ],
                     "Camry": [
                         {"year": 2023, "trim": "XSE", "horsepower": 301, "fuel_type": "hybrid"},
-                    ],
-                },
-            },
-            "BMW": {
-                "country": "Germany",
-                "models": {
-                    "320i": [
-                        {"year": 2021, "trim": "Sport", "horsepower": 184, "fuel_type": "gasoline"},
-                    ],
-                    "X3": [
-                        {"year": 2022, "trim": "xDrive30i", "horsepower": 248, "fuel_type": "gasoline"},
                     ],
                 },
             },
@@ -483,17 +582,6 @@ class Command(BaseCommand):
                     ],
                 },
             },
-            "Hyundai": {
-                "country": "South Korea",
-                "models": {
-                    "Tucson": [
-                        {"year": 2022, "trim": "Limited", "horsepower": 187, "fuel_type": "gasoline"},
-                    ],
-                    "Elantra": [
-                        {"year": 2020, "trim": "SEL", "horsepower": 147, "fuel_type": "gasoline"},
-                    ],
-                },
-            },
         }
         car_colors = [
             (15, 118, 110),
@@ -504,6 +592,7 @@ class Command(BaseCommand):
             (6, 95, 70),
         ]
         color_i = 0
+        fallback_i = 0
         first_rich = True
         for brand_name, meta in catalog.items():
             brand, _ = Brand.objects.get_or_create(
@@ -544,17 +633,47 @@ class Command(BaseCommand):
                     color = car_colors[color_i % len(car_colors)]
                     color_i += 1
                     label = f"{brand_name} {model_name}"
-                    self._ensure_image(
+                    mapped = SEED_CAR_IMAGES.get((brand_name, model_name))
+                    if mapped:
+                        cover_file = mapped
+                    else:
+                        cover_file = SEED_CAR_IMAGE_FALLBACKS[
+                            fallback_i % len(SEED_CAR_IMAGE_FALLBACKS)
+                        ]
+                        fallback_i += 1
+
+                    attached = self._ensure_seed_image(
                         car,
                         "cover_image",
-                        f"car-{car.pk}-cover",
-                        color,
-                        label,
+                        cover_file,
+                        f"car-{car.pk}-cover.jpg",
+                        replace=True,
                     )
-                    if car.photos.count() < 3:
-                        for n, caption in enumerate(
-                            ("Front angle", "Interior", "Rear detail"), start=1
-                        ):
+                    if not attached and not car.cover_image:
+                        self._ensure_image(
+                            car,
+                            "cover_image",
+                            f"car-{car.pk}-cover",
+                            color,
+                            label,
+                        )
+
+                    car.photos.all().delete()
+                    gallery_files = [
+                        f
+                        for f in SEED_CAR_IMAGE_FALLBACKS
+                        if f != cover_file
+                    ] or list(SEED_CAR_IMAGE_FALLBACKS)
+                    for n, caption in enumerate(
+                        ("Front angle", "Studio detail", "Rear detail"),
+                        start=1,
+                    ):
+                        dest = f"car-{car.pk}-{n}.jpg"
+                        content = self._load_seed_image(
+                            gallery_files[(n - 1) % len(gallery_files)],
+                            dest,
+                        )
+                        if content is None:
                             shade = tuple(max(0, c - n * 12) for c in color)
                             content = self._placeholder(
                                 f"car-{car.pk}-{n}",
@@ -562,8 +681,10 @@ class Command(BaseCommand):
                                 f"{label} · {caption}",
                                 size=(900, 600),
                             )
-                            photo = CarPhoto(car=car, caption=caption, sort_order=n)
-                            photo.image.save(content.name, content, save=True)
+                        photo = CarPhoto(
+                            car=car, caption=caption, sort_order=n
+                        )
+                        photo.image.save(content.name, content, save=True)
 
                     if first_rich:
                         if not TechnicalSpec.objects.filter(car=car).exists():

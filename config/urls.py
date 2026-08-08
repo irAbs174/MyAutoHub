@@ -11,7 +11,7 @@ from apps.core.sitemaps import SITEMAPS
 from apps.core.views import robots_txt
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("unique/", admin.site.urls),
     path("panel/", include("apps.panel.urls")),
     path("i18n/setlang/", set_language, name="set_language"),
     path("api/emergency/", include("apps.emergency.api_urls")),
