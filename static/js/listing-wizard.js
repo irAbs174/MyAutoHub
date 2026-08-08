@@ -362,9 +362,11 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("[data-listing-wizard]").forEach((root) => {
-      initListingWizard(root);
-      initBrandModelSelect(root);
-    });
+    document
+      .querySelectorAll("[data-listing-wizard], [data-panel-wizard]")
+      .forEach((root) => {
+        initListingWizard(root);
+        initBrandModelSelect(root);
+      });
   });
 })();

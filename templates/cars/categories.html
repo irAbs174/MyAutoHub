@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Categories-MyAutoHub" %}{% endblock %}
+{% block og_title %}{% trans "Categories-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{% trans "Categories-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% trans "Browse car categories on MyAutoHub-SUV, hybrid, family, economy, and more." %}{% endblock %}
+{% block og_description %}{% trans "Browse car categories on MyAutoHub-SUV, hybrid, family, economy, and more." %}{% endblock %}
+{% block twitter_description %}{% trans "Browse car categories on MyAutoHub-SUV, hybrid, family, economy, and more." %}{% endblock %}
+
+{% block content %}
+{% trans "Catalog" as categories_kicker %}
+{% trans "Categories" as categories_title %}
+{% trans "Explore practical tags for the catalog-open a category for models and cars." as categories_lead %}
+{% url 'cars:list' as cars_url %}
+{% trans "Car catalog" as cars_cta %}
+{% include "components/page_intro.html" with kicker=categories_kicker title=categories_title lead=categories_lead cta2_url=cars_url cta2_label=cars_cta %}
+
+<p class="list-count reveal">
+  {% blocktrans count counter=category_count %}{{ counter }} category{% plural %}{{ counter }} categories{% endblocktrans %}
+</p>
+
+{% if categories %}
+  <section class="reveal">
+    <div class="brand-grid">
+      {% for category in categories %}
+        <a class="brand-card" href="{{ category.get_absolute_url }}">
+          <div class="brand-card-top">
+            <h3>{{ category }}</h3>
+          </div>
+          <p class="brand-card-stats">
+            {% blocktrans count counter=category.model_count %}{{ counter }} model{% plural %}{{ counter }} models{% endblocktrans %}
+            ·
+            {% blocktrans count counter=category.car_count %}{{ counter }} car{% plural %}{{ counter }} cars{% endblocktrans %}
+          </p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% else %}
+  <p class="empty">{% trans "No categories in the catalog yet." %}</p>
+{% endif %}
+{% endblock %}

@@ -105,7 +105,7 @@ function makeDotSpinner(extraClass) {
 }
 
 const MEDIA_LOADER_HOSTS =
-  ".media-thumb, .gallery-hero, .gallery-strip figure, .story-cover";
+  ".media-thumb, .gallery-hero, .gallery-strip figure, .story-cover, .car-gallery-hero, .car-gallery-thumb";
 
 function finishMediaLoader(host, img) {
   host.classList.remove("is-loading");

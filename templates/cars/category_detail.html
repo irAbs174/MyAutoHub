@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ category }}-{% trans "Categories-MyAutoHub" %}{% endblock %}
+{% block og_title %}{{ category }}-{% trans "Categories-MyAutoHub" %}{% endblock %}
+{% block twitter_title %}{{ category }}-{% trans "Categories-MyAutoHub" %}{% endblock %}
+{% block meta_description %}{% blocktrans with name=category %}Models and cars in {{ name }} on MyAutoHub.{% endblocktrans %}{% endblock %}
+
+{% block content %}
+{% url 'cars:categories' as categories_url %}
+{% trans "Categories" as categories_kicker %}
+{% include "components/page_intro.html" with kicker=categories_kicker title=category lead="" cta2_url=categories_url cta2_label=categories_kicker %}
+
+<div class="toolbar reveal" style="flex-wrap:wrap; gap:0.5rem">
+  <a class="btn" href="{% url 'cars:list' %}?category={{ category.pk }}">{% trans "View in catalog" %}</a>
+  <a class="btn btn-ghost" href="{% url 'cars:categories' %}">{% trans "All categories" %}</a>
+  <a class="btn btn-ghost" href="{% url 'cars:brands' %}">{% trans "Brands" %}</a>
+</div>
+
+<section class="home-block reveal">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Models" %}</h2>
+  </div>
+  {% if models %}
+    <ul class="brand-model-list">
+      {% for model in models %}
+        <li>
+          <span class="brand-model-name">{{ model.brand.name }} {{ model.name }}</span>
+          <span class="brand-model-meta">
+            {% blocktrans count counter=model.car_count %}{{ counter }} car{% plural %}{{ counter }} cars{% endblocktrans %}
+            {% if model.trims.all %}
+              ·
+              {% for trim in model.trims.all %}{{ trim.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            {% endif %}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="empty">{% trans "No models in this category yet." %}</p>
+  {% endif %}
+</section>
+
+{% if cars %}
+<section class="home-block reveal">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Cars" %}</h2>
+    <div class="section-head-actions">
+      <a class="btn btn-ghost btn-sm" href="{% url 'cars:list' %}?category={{ category.pk }}">{% trans "See all" %}</a>
+    </div>
+  </div>
+  <div class="media-grid">
+    {% for car in cars %}
+      <a class="media-card" href="{% url 'cars:detail' car.pk %}">
+        <div class="media-thumb">
+          {% if car.main_image %}
+            <img src="{{ car.main_image.url }}" alt="{{ car.model }}" loading="lazy">
+          {% else %}
+            <div class="media-fallback">{{ car.model.brand.name|slice:":1" }}</div>
+          {% endif %}
+        </div>
+        <div class="media-body">
+          <h3>{{ car.model.brand.name }} {{ car.model.name }}</h3>
+          <p>
+            {{ car.year }}{% if car.horsepower %} · {{ car.horsepower }} hp{% endif %}{% if car.trim %} · {{ car.trim.name }}{% endif %}
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

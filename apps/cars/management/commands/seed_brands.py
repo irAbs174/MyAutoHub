@@ -6,6 +6,7 @@ from apps.cars.catalog_seed import (
     IRANIAN_MANUFACTURERS,
     normalize_model_name,
 )
+from apps.cars.category_seed import ensure_categories
 from apps.cars.models import Brand, CarModel
 
 
@@ -24,6 +25,9 @@ class Command(BaseCommand):
 
     @transaction.atomic
     def handle(self, *args, **options):
+        cats = ensure_categories()
+        self.stdout.write(self.style.SUCCESS(f"Categories ready ({cats} created)."))
+
         if options["flush"]:
             deleted, _ = Brand.objects.filter(
                 manufacturer__in=IRANIAN_MANUFACTURERS

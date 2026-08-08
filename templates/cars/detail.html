@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{{ car.model }}-{% trans "Cars" %}{% endblock %}
 {% block og_title %}{{ car.model }}-{% trans "Cars" %}{% endblock %}
@@ -29,33 +29,76 @@
   <div class="page-intro-glow" aria-hidden="true"></div>
   <div class="page-intro-inner">
     <p class="sections-label">{% trans "Catalog" %}</p>
-    <h1>{{ car.model.brand.name }} {{ car.model.name }}</h1>
-    <p class="page-intro-lead">{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}</p>
+    <h1>{{ car.display_name }}</h1>
+    <p class="page-intro-lead">{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}{% if car.market_status %} · {{ car.get_market_status_display }}{% endif %}</p>
   </div>
 </section>
 
-<div class="detail-hero reveal">
-  {% if car.main_image %}
-    <img class="detail-hero-media" src="{{ car.main_image.url }}" alt="{{ car.model }}">
+<div
+  class="car-gallery reveal"
+  data-car-gallery
+  data-label-close="{% trans 'Close' %}"
+  data-label-prev="{% trans 'Previous' %}"
+  data-label-next="{% trans 'Next' %}"
+  data-label-zoom-in="{% trans 'Zoom in' %}"
+  data-label-zoom-out="{% trans 'Zoom out' %}"
+>
+  {% if gallery_images %}
+    {{ gallery_images|json_script:"car-gallery-data" }}
+    <button
+      type="button"
+      class="car-gallery-hero"
+      data-gallery-open
+      data-gallery-index="0"
+      aria-label="{% trans 'Open gallery' %}"
+    >
+      <img
+        class="car-gallery-hero-media"
+        src="{{ gallery_images.0.url }}"
+        alt="{{ gallery_images.0.caption|default:car.display_name }}"
+      >
+      <span class="car-gallery-hint">{% trans "Click to zoom" %}</span>
+    </button>
+    {% if gallery_preview|length > 1 or gallery_extra_count %}
+      <div class="car-gallery-strip" role="list">
+        {% for img in gallery_preview %}
+          <button
+            type="button"
+            class="car-gallery-thumb{% if forloop.first %} is-active{% endif %}"
+            data-gallery-open
+            data-gallery-index="{{ forloop.counter0 }}"
+            role="listitem"
+            aria-label="{% blocktrans with n=forloop.counter %}Open image {{ n }}{% endblocktrans %}"
+          >
+            <img src="{{ img.url }}" alt="{{ img.caption|default:car.display_name }}" loading="lazy">
+          </button>
+        {% endfor %}
+        {% if gallery_extra_count %}
+          <button
+            type="button"
+            class="car-gallery-more"
+            data-gallery-open
+            data-gallery-index="{{ gallery_preview_limit }}"
+            aria-label="{% trans 'See more images' %}"
+          >
+            <span class="car-gallery-more-label">{% trans "See more images" %}</span>
+            <span class="car-gallery-more-count">+{{ gallery_extra_count }}</span>
+          </button>
+        {% endif %}
+      </div>
+    {% endif %}
   {% endif %}
-  <div class="detail-hero-caption">
+  <div class="car-gallery-caption">
     <strong>{{ car.model.brand.name }} {{ car.model.name }}</strong>
     <em>{{ car.year }}{% if car.trim %} · {{ car.trim.name }}{% endif %}</em>
     <div class="chip-row">
       {% if car.horsepower %}<span class="chip chip-accent">{{ car.horsepower }} hp</span>{% endif %}
       {% if car.fuel_type %}<span class="chip">{{ car.fuel_type }}</span>{% endif %}
+      {% if car.body_style %}<span class="chip">{{ car.get_body_style_display }}</span>{% endif %}
       {% if car.trim %}<span class="chip">{{ car.trim.name }}</span>{% endif %}
+      {% for cat in car.categories.all %}<a class="chip" href="{{ cat.get_absolute_url }}">{{ cat }}</a>{% endfor %}
     </div>
   </div>
-  {% if car.photos.all %}
-    <div class="gallery-strip-compact">
-      {% for photo in car.photos.all %}
-        <figure>
-          <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:car.model }}" loading="lazy">
-        </figure>
-      {% endfor %}
-    </div>
-  {% endif %}
 </div>
 
 {% if car.description %}
@@ -64,21 +107,60 @@
 </section>
 {% endif %}
 
-<nav class="detail-toc reveal" aria-label="{% trans 'Sections' %}">
-  {% if car.technical_spec %}<a href="#specs">{% trans "Specs" %}</a>{% endif %}
-  {% if car.dimensions %}<a href="#dimensions">{% trans "Dimensions" %}</a>{% endif %}
-  {% if car.features.all %}<a href="#features">{% trans "Features" %}</a>{% endif %}
-  {% if car.maintenance_items.all %}<a href="#maintenance">{% trans "Maintenance" %}</a>{% endif %}
-  {% if car.fluids.all %}<a href="#fluids">{% trans "Fluids" %}</a>{% endif %}
-  {% if car.tires.all %}<a href="#tires">{% trans "Tires" %}</a>{% endif %}
-  {% if car.batteries.all %}<a href="#batteries">{% trans "Batteries" %}</a>{% endif %}
-  {% if car.service_schedule.all %}<a href="#service">{% trans "Service" %}</a>{% endif %}
-  {% if car.model.obd_codes.all %}<a href="#obd">{% trans "OBD" %}</a>{% endif %}
-  {% if car.parts.all %}<a href="#parts">{% trans "Parts" %}</a>{% endif %}
-  {% if car.prices.all %}<a href="#prices">{% trans "Prices" %}</a>{% endif %}
-  {% if dealers %}<a href="#dealers">{% trans "Dealers" %}</a>{% endif %}
-  {% if repair_shops %}<a href="#shops">{% trans "Shops" %}</a>{% endif %}
+<nav class="detail-toc reveal" data-detail-toc aria-label="{% trans 'Sections' %}">
+  <span class="detail-toc-label">{% trans "Jump to" %}</span>
+  <div class="detail-toc-items">
+    <a href="#identity">{% trans "Identity" %}</a>
+    {% if car.technical_spec %}<a href="#specs">{% trans "Specs" %}</a>{% endif %}
+    {% if car.dimensions %}<a href="#dimensions">{% trans "Dimensions" %}</a>{% endif %}
+    {% if car.suspension %}<a href="#suspension">{% trans "Suspension" %}</a>{% endif %}
+    {% if car.brakes %}<a href="#brakes">{% trans "Brakes" %}</a>{% endif %}
+    {% if car.wheels %}<a href="#wheels">{% trans "Wheels" %}</a>{% endif %}
+    {% if car.features.all %}<a href="#features">{% trans "Features" %}</a>{% endif %}
+    {% if car.cabin %}<a href="#cabin">{% trans "Cabin" %}</a>{% endif %}
+    {% if car.multimedia %}<a href="#multimedia">{% trans "Multimedia" %}</a>{% endif %}
+    {% if car.maintenance_items.all %}<a href="#maintenance">{% trans "Maintenance" %}</a>{% endif %}
+    {% if car.fluids.all %}<a href="#fluids">{% trans "Fluids" %}</a>{% endif %}
+    {% if car.tires.all %}<a href="#tires">{% trans "Tires" %}</a>{% endif %}
+    {% if car.batteries.all %}<a href="#batteries">{% trans "Batteries" %}</a>{% endif %}
+    {% if car.service_schedule.all %}<a href="#service">{% trans "Service" %}</a>{% endif %}
+    {% if car.model.obd_codes.all %}<a href="#obd">{% trans "OBD" %}</a>{% endif %}
+    {% if car.parts.all %}<a href="#parts">{% trans "Parts" %}</a>{% endif %}
+    {% if car.common_failures.all %}<a href="#failures">{% trans "Failures" %}</a>{% endif %}
+    {% if car.market_info %}<a href="#market">{% trans "Market" %}</a>{% endif %}
+    {% if car.prices.all %}<a href="#prices">{% trans "Prices" %}</a>{% endif %}
+    {% if dealers %}<a href="#dealers">{% trans "Dealers" %}</a>{% endif %}
+    {% if repair_shops %}<a href="#shops">{% trans "Shops" %}</a>{% endif %}
+  </div>
 </nav>
+
+<section class="detail-section reveal" id="identity">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Passport" %}</p>
+    <h2 class="section-title">{% trans "Vehicle identity" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.official_name %}<div class="spec-item"><dt>{% trans "Official name" %}</dt><dd>{{ car.official_name }}</dd></div>{% endif %}
+    {% if car.name_en %}<div class="spec-item"><dt>{% trans "English name" %}</dt><dd>{{ car.name_en }}</dd></div>{% endif %}
+    {% if car.name_fa %}<div class="spec-item"><dt>{% trans "Persian name" %}</dt><dd>{{ car.name_fa }}</dd></div>{% endif %}
+    {% if car.name_ar %}<div class="spec-item"><dt>{% trans "Arabic name" %}</dt><dd>{{ car.name_ar }}</dd></div>{% endif %}
+    {% if car.model_code %}<div class="spec-item"><dt>{% trans "Model code" %}</dt><dd>{{ car.model_code }}</dd></div>{% endif %}
+    {% if car.chassis_code %}<div class="spec-item"><dt>{% trans "Chassis code" %}</dt><dd>{{ car.chassis_code }}</dd></div>{% endif %}
+    {% if car.generation %}<div class="spec-item"><dt>{% trans "Generation" %}</dt><dd>{{ car.generation }}</dd></div>{% endif %}
+    {% if car.facelift %}<div class="spec-item"><dt>{% trans "Facelift" %}</dt><dd>{{ car.facelift }}</dd></div>{% endif %}
+    {% if car.manufacturer %}<div class="spec-item"><dt>{% trans "Manufacturer" %}</dt><dd>{{ car.manufacturer }}</dd></div>{% endif %}
+    {% if car.importer %}<div class="spec-item"><dt>{% trans "Importer" %}</dt><dd>{{ car.importer }}</dd></div>{% endif %}
+    {% if car.assembler %}<div class="spec-item"><dt>{% trans "Assembler" %}</dt><dd>{{ car.assembler }}</dd></div>{% endif %}
+    {% if car.country_of_origin %}<div class="spec-item"><dt>{% trans "Country of origin" %}</dt><dd>{{ car.country_of_origin }}</dd></div>{% endif %}
+    {% if car.country_of_assembly %}<div class="spec-item"><dt>{% trans "Assembly country" %}</dt><dd>{{ car.country_of_assembly }}</dd></div>{% endif %}
+    {% if car.introduced_year %}<div class="spec-item"><dt>{% trans "Introduced" %}</dt><dd>{{ car.introduced_year }}</dd></div>{% endif %}
+    {% if car.iran_entry_year %}<div class="spec-item"><dt>{% trans "Iran entry" %}</dt><dd>{{ car.iran_entry_year }}</dd></div>{% endif %}
+    {% if car.production_start_year %}<div class="spec-item"><dt>{% trans "Production start" %}</dt><dd>{{ car.production_start_year }}</dd></div>{% endif %}
+    {% if car.production_end_year %}<div class="spec-item"><dt>{% trans "Production end" %}</dt><dd>{{ car.production_end_year }}</dd></div>{% endif %}
+    {% if car.market_status %}<div class="spec-item"><dt>{% trans "Status" %}</dt><dd>{{ car.get_market_status_display }}</dd></div>{% endif %}
+    {% if car.doors %}<div class="spec-item"><dt>{% trans "Doors" %}</dt><dd>{{ car.doors }}</dd></div>{% endif %}
+  </dl>
+</section>
 
 {% if car.technical_spec %}
 <section class="detail-section reveal" id="specs">
@@ -88,15 +170,42 @@
   </div>
   <dl class="spec-grid">
     {% if car.technical_spec.engine %}<div class="spec-item"><dt>{% trans "Engine" %}</dt><dd>{{ car.technical_spec.engine }}</dd></div>{% endif %}
+    {% if car.technical_spec.engine_code %}<div class="spec-item"><dt>{% trans "Engine code" %}</dt><dd>{{ car.technical_spec.engine_code }}</dd></div>{% endif %}
+    {% if car.technical_spec.engine_type %}<div class="spec-item"><dt>{% trans "Engine type" %}</dt><dd>{{ car.technical_spec.engine_type }}</dd></div>{% endif %}
     {% if car.technical_spec.displacement_cc %}<div class="spec-item"><dt>{% trans "Displacement" %}</dt><dd>{{ car.technical_spec.displacement_cc }} cc</dd></div>{% endif %}
     {% if car.technical_spec.cylinders %}<div class="spec-item"><dt>{% trans "Cylinders" %}</dt><dd>{{ car.technical_spec.cylinders }}</dd></div>{% endif %}
+    {% if car.technical_spec.cylinder_arrangement %}<div class="spec-item"><dt>{% trans "Arrangement" %}</dt><dd>{{ car.technical_spec.cylinder_arrangement }}</dd></div>{% endif %}
+    {% if car.technical_spec.valves %}<div class="spec-item"><dt>{% trans "Valves" %}</dt><dd>{{ car.technical_spec.valves }}</dd></div>{% endif %}
+    {% if car.technical_spec.camshaft %}<div class="spec-item"><dt>{% trans "Camshaft" %}</dt><dd>{{ car.technical_spec.camshaft }}</dd></div>{% endif %}
+    {% if car.technical_spec.aspiration %}<div class="spec-item"><dt>{% trans "Aspiration" %}</dt><dd>{{ car.technical_spec.aspiration }}</dd></div>{% endif %}
+    {% if car.technical_spec.supercharged %}<div class="spec-item"><dt>{% trans "Supercharged" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.technical_spec.fuel_injection %}<div class="spec-item"><dt>{% trans "Fuel injection" %}</dt><dd>{{ car.technical_spec.fuel_injection }}</dd></div>{% endif %}
+    {% if car.technical_spec.fuel_type_detail %}<div class="spec-item"><dt>{% trans "Fuel type (detail)" %}</dt><dd>{{ car.technical_spec.fuel_type_detail }}</dd></div>{% endif %}
+    {% if car.technical_spec.power_hp %}<div class="spec-item"><dt>{% trans "Power" %}</dt><dd>{{ car.technical_spec.power_hp }} hp{% if car.technical_spec.power_rpm %} @ {{ car.technical_spec.power_rpm }} rpm{% endif %}</dd></div>{% endif %}
+    {% if car.technical_spec.torque_nm %}<div class="spec-item"><dt>{% trans "Torque" %}</dt><dd>{{ car.technical_spec.torque_nm }} Nm{% if car.technical_spec.torque_rpm %} @ {{ car.technical_spec.torque_rpm }} rpm{% endif %}</dd></div>{% endif %}
+    {% if car.technical_spec.compression_ratio %}<div class="spec-item"><dt>{% trans "Compression" %}</dt><dd>{{ car.technical_spec.compression_ratio }}</dd></div>{% endif %}
     {% if car.technical_spec.transmission %}<div class="spec-item"><dt>{% trans "Transmission" %}</dt><dd>{{ car.technical_spec.transmission }}</dd></div>{% endif %}
+    {% if car.technical_spec.gearbox_type %}<div class="spec-item"><dt>{% trans "Gearbox type" %}</dt><dd>{{ car.technical_spec.gearbox_type }}</dd></div>{% endif %}
+    {% if car.technical_spec.transmission_mode %}<div class="spec-item"><dt>{% trans "Transmission mode" %}</dt><dd>{{ car.technical_spec.transmission_mode }}</dd></div>{% endif %}
+    {% if car.technical_spec.gears %}<div class="spec-item"><dt>{% trans "Gears" %}</dt><dd>{{ car.technical_spec.gears }}</dd></div>{% endif %}
+    {% if car.technical_spec.reverse_gears %}<div class="spec-item"><dt>{% trans "Reverse gears" %}</dt><dd>{{ car.technical_spec.reverse_gears }}</dd></div>{% endif %}
+    {% if car.technical_spec.clutch_type %}<div class="spec-item"><dt>{% trans "Clutch type" %}</dt><dd>{{ car.technical_spec.clutch_type }}</dd></div>{% endif %}
     {% if car.technical_spec.drivetrain %}<div class="spec-item"><dt>{% trans "Drivetrain" %}</dt><dd>{{ car.technical_spec.drivetrain }}</dd></div>{% endif %}
+    {% if car.technical_spec.drive_modes %}<div class="spec-item"><dt>{% trans "Drive modes" %}</dt><dd>{{ car.technical_spec.drive_modes }}</dd></div>{% endif %}
+    {% if car.technical_spec.tiptronic %}<div class="spec-item"><dt>{% trans "Tiptronic" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.technical_spec.paddle_shifters %}<div class="spec-item"><dt>{% trans "Paddle shifters" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
     {% if car.technical_spec.top_speed_kmh %}<div class="spec-item"><dt>{% trans "Top speed" %}</dt><dd>{{ car.technical_spec.top_speed_kmh }} km/h</dd></div>{% endif %}
     {% if car.technical_spec.accel_0_100 %}<div class="spec-item"><dt>0–100</dt><dd>{{ car.technical_spec.accel_0_100 }} s</dd></div>{% endif %}
     {% if car.technical_spec.economy_city %}<div class="spec-item"><dt>{% trans "City" %}</dt><dd>{{ car.technical_spec.economy_city }}</dd></div>{% endif %}
     {% if car.technical_spec.economy_highway %}<div class="spec-item"><dt>{% trans "Highway" %}</dt><dd>{{ car.technical_spec.economy_highway }}</dd></div>{% endif %}
+    {% if car.technical_spec.economy_combined %}<div class="spec-item"><dt>{% trans "Combined" %}</dt><dd>{{ car.technical_spec.economy_combined }}</dd></div>{% endif %}
+    {% if car.technical_spec.range_km %}<div class="spec-item"><dt>{% trans "Range" %}</dt><dd>{{ car.technical_spec.range_km }} km</dd></div>{% endif %}
     {% if car.technical_spec.emission_standard %}<div class="spec-item"><dt>{% trans "Emissions" %}</dt><dd>{{ car.technical_spec.emission_standard }}</dd></div>{% endif %}
+    {% if car.technical_spec.co2_g_km %}<div class="spec-item"><dt>CO₂</dt><dd>{{ car.technical_spec.co2_g_km }} g/km</dd></div>{% endif %}
+    {% if car.technical_spec.towing_capacity_kg %}<div class="spec-item"><dt>{% trans "Towing" %}</dt><dd>{{ car.technical_spec.towing_capacity_kg }} kg</dd></div>{% endif %}
+    {% if car.technical_spec.engine_oil_capacity_l %}<div class="spec-item"><dt>{% trans "Engine oil" %}</dt><dd>{{ car.technical_spec.engine_oil_capacity_l }} L{% if car.technical_spec.engine_oil_type %} · {{ car.technical_spec.engine_oil_type }}{% endif %}</dd></div>{% endif %}
+    {% if car.technical_spec.coolant_capacity_l %}<div class="spec-item"><dt>{% trans "Coolant" %}</dt><dd>{{ car.technical_spec.coolant_capacity_l }} L</dd></div>{% endif %}
+    {% if car.technical_spec.cooling_system %}<div class="spec-item"><dt>{% trans "Cooling system" %}</dt><dd>{{ car.technical_spec.cooling_system }}</dd></div>{% endif %}
   </dl>
   {% if car.technical_spec.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.technical_spec.notes }}</p>{% endif %}
 </section>
@@ -113,12 +222,81 @@
     {% if car.dimensions.width_mm %}<div class="spec-item"><dt>{% trans "Width" %}</dt><dd>{{ car.dimensions.width_mm }} mm</dd></div>{% endif %}
     {% if car.dimensions.height_mm %}<div class="spec-item"><dt>{% trans "Height" %}</dt><dd>{{ car.dimensions.height_mm }} mm</dd></div>{% endif %}
     {% if car.dimensions.wheelbase_mm %}<div class="spec-item"><dt>{% trans "Wheelbase" %}</dt><dd>{{ car.dimensions.wheelbase_mm }} mm</dd></div>{% endif %}
-    {% if car.dimensions.curb_weight_kg %}<div class="spec-item"><dt>{% trans "Weight" %}</dt><dd>{{ car.dimensions.curb_weight_kg }} kg</dd></div>{% endif %}
+    {% if car.dimensions.track_front_mm %}<div class="spec-item"><dt>{% trans "Front track" %}</dt><dd>{{ car.dimensions.track_front_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.track_rear_mm %}<div class="spec-item"><dt>{% trans "Rear track" %}</dt><dd>{{ car.dimensions.track_rear_mm }} mm</dd></div>{% endif %}
+    {% if car.dimensions.turning_circle_m %}<div class="spec-item"><dt>{% trans "Turning circle" %}</dt><dd>{{ car.dimensions.turning_circle_m }} m</dd></div>{% endif %}
+    {% if car.dimensions.curb_weight_kg %}<div class="spec-item"><dt>{% trans "Curb weight" %}</dt><dd>{{ car.dimensions.curb_weight_kg }} kg</dd></div>{% endif %}
+    {% if car.dimensions.gross_weight_kg %}<div class="spec-item"><dt>{% trans "Gross weight" %}</dt><dd>{{ car.dimensions.gross_weight_kg }} kg</dd></div>{% endif %}
+    {% if car.dimensions.payload_kg %}<div class="spec-item"><dt>{% trans "Payload" %}</dt><dd>{{ car.dimensions.payload_kg }} kg</dd></div>{% endif %}
     {% if car.dimensions.cargo_l %}<div class="spec-item"><dt>{% trans "Cargo" %}</dt><dd>{{ car.dimensions.cargo_l }} L</dd></div>{% endif %}
+    {% if car.dimensions.cargo_seats_folded_l %}<div class="spec-item"><dt>{% trans "Cargo (seats folded)" %}</dt><dd>{{ car.dimensions.cargo_seats_folded_l }} L</dd></div>{% endif %}
+    {% if car.dimensions.cabin_volume_l %}<div class="spec-item"><dt>{% trans "Cabin volume" %}</dt><dd>{{ car.dimensions.cabin_volume_l }} L</dd></div>{% endif %}
     {% if car.dimensions.seats %}<div class="spec-item"><dt>{% trans "Seats" %}</dt><dd>{{ car.dimensions.seats }}</dd></div>{% endif %}
+    {% if car.dimensions.doors %}<div class="spec-item"><dt>{% trans "Doors" %}</dt><dd>{{ car.dimensions.doors }}</dd></div>{% endif %}
     {% if car.dimensions.ground_clearance_mm %}<div class="spec-item"><dt>{% trans "Clearance" %}</dt><dd>{{ car.dimensions.ground_clearance_mm }} mm</dd></div>{% endif %}
     {% if car.dimensions.fuel_tank_l %}<div class="spec-item"><dt>{% trans "Tank" %}</dt><dd>{{ car.dimensions.fuel_tank_l }} L</dd></div>{% endif %}
   </dl>
+</section>
+{% endif %}
+
+{% if car.suspension %}
+<section class="detail-section reveal" id="suspension">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Suspension & steering" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.suspension.front_type %}<div class="spec-item"><dt>{% trans "Front suspension" %}</dt><dd>{{ car.suspension.front_type }}</dd></div>{% endif %}
+    {% if car.suspension.front_shock %}<div class="spec-item"><dt>{% trans "Front shock" %}</dt><dd>{{ car.suspension.front_shock }}</dd></div>{% endif %}
+    {% if car.suspension.front_spring %}<div class="spec-item"><dt>{% trans "Front spring" %}</dt><dd>{{ car.suspension.front_spring }}</dd></div>{% endif %}
+    {% if car.suspension.rear_type %}<div class="spec-item"><dt>{% trans "Rear suspension" %}</dt><dd>{{ car.suspension.rear_type }}</dd></div>{% endif %}
+    {% if car.suspension.rear_shock %}<div class="spec-item"><dt>{% trans "Rear shock" %}</dt><dd>{{ car.suspension.rear_shock }}</dd></div>{% endif %}
+    {% if car.suspension.rear_spring %}<div class="spec-item"><dt>{% trans "Rear spring" %}</dt><dd>{{ car.suspension.rear_spring }}</dd></div>{% endif %}
+    {% if car.suspension.steering_system %}<div class="spec-item"><dt>{% trans "Steering" %}</dt><dd>{{ car.suspension.steering_system }}</dd></div>{% endif %}
+    {% if car.suspension.steering_type %}<div class="spec-item"><dt>{% trans "Steering type" %}</dt><dd>{{ car.suspension.steering_type }}</dd></div>{% endif %}
+    {% if car.suspension.steering_assist %}<div class="spec-item"><dt>{% trans "Steering assist" %}</dt><dd>{{ car.suspension.steering_assist }}</dd></div>{% endif %}
+    {% if car.suspension.turning_radius_m %}<div class="spec-item"><dt>{% trans "Turning radius" %}</dt><dd>{{ car.suspension.turning_radius_m }} m</dd></div>{% endif %}
+  </dl>
+  {% if car.suspension.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.suspension.notes }}</p>{% endif %}
+</section>
+{% endif %}
+
+{% if car.brakes %}
+<section class="detail-section reveal" id="brakes">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Brakes" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.brakes.front_brake %}<div class="spec-item"><dt>{% trans "Front" %}</dt><dd>{{ car.brakes.front_brake }}{% if car.brakes.front_type %} ({{ car.brakes.front_type }}){% endif %}</dd></div>{% endif %}
+    {% if car.brakes.rear_brake %}<div class="spec-item"><dt>{% trans "Rear" %}</dt><dd>{{ car.brakes.rear_brake }}{% if car.brakes.rear_type %} ({{ car.brakes.rear_type }}){% endif %}</dd></div>{% endif %}
+    {% if car.brakes.abs %}<div class="spec-item"><dt>ABS</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.ebd %}<div class="spec-item"><dt>EBD</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.ba %}<div class="spec-item"><dt>BA</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.esp %}<div class="spec-item"><dt>ESP</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.tcs %}<div class="spec-item"><dt>TCS</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.auto_hold %}<div class="spec-item"><dt>Auto Hold</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.electric_parking_brake %}<div class="spec-item"><dt>{% trans "EPB" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.aeb %}<div class="spec-item"><dt>AEB</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.brakes.assist_systems %}<div class="spec-item"><dt>{% trans "Assist systems" %}</dt><dd>{{ car.brakes.assist_systems }}</dd></div>{% endif %}
+  </dl>
+  {% if car.brakes.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.brakes.notes }}</p>{% endif %}
+</section>
+{% endif %}
+
+{% if car.wheels %}
+<section class="detail-section reveal" id="wheels">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Wheels & tires" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.wheels.rim_size %}<div class="spec-item"><dt>{% trans "Rim size" %}</dt><dd>{{ car.wheels.rim_size }}</dd></div>{% endif %}
+    {% if car.wheels.rim_material %}<div class="spec-item"><dt>{% trans "Rim material" %}</dt><dd>{{ car.wheels.rim_material }}</dd></div>{% endif %}
+    {% if car.wheels.front_tire_size %}<div class="spec-item"><dt>{% trans "Front tire" %}</dt><dd>{{ car.wheels.front_tire_size }}</dd></div>{% endif %}
+    {% if car.wheels.rear_tire_size %}<div class="spec-item"><dt>{% trans "Rear tire" %}</dt><dd>{{ car.wheels.rear_tire_size }}</dd></div>{% endif %}
+    {% if car.wheels.spare_tire %}<div class="spec-item"><dt>{% trans "Spare" %}</dt><dd>{% if car.wheels.spare_type %}{{ car.wheels.spare_type }}{% else %}{% trans "Yes" %}{% endif %}</dd></div>{% endif %}
+    {% if car.wheels.tpms %}<div class="spec-item"><dt>TPMS</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.wheels.standard_pressure %}<div class="spec-item"><dt>{% trans "Pressure" %}</dt><dd>{{ car.wheels.standard_pressure }}</dd></div>{% endif %}
+  </dl>
+  {% if car.wheels.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.wheels.notes }}</p>{% endif %}
 </section>
 {% endif %}
 
@@ -132,10 +310,69 @@
     {% for feature in car.features.all %}
       <li>
         <strong>{{ feature.name }}</strong>
-        <span class="meta-quiet">{{ feature.get_category_display }}{% if feature.value %} · {{ feature.value }}{% endif %}</span>
+        <span class="meta-quiet">
+          {{ feature.get_category_display }}
+          · {{ feature.get_availability_display }}
+          {% if feature.value %} · {{ feature.value }}{% endif %}
+        </span>
       </li>
     {% endfor %}
   </ul>
+</section>
+{% endif %}
+
+{% if car.cabin %}
+<section class="detail-section reveal" id="cabin">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Cabin" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.cabin.dashboard_material %}<div class="spec-item"><dt>{% trans "Dashboard" %}</dt><dd>{{ car.cabin.dashboard_material }}</dd></div>{% endif %}
+    {% if car.cabin.seat_material %}<div class="spec-item"><dt>{% trans "Seats" %}</dt><dd>{{ car.cabin.seat_material }}</dd></div>{% endif %}
+    {% if car.cabin.upholstery %}<div class="spec-item"><dt>{% trans "Upholstery" %}</dt><dd>{{ car.cabin.upholstery }}</dd></div>{% endif %}
+    {% if car.cabin.seat_count %}<div class="spec-item"><dt>{% trans "Seat count" %}</dt><dd>{{ car.cabin.seat_count }}</dd></div>{% endif %}
+    {% if car.cabin.driver_seat_adjust %}<div class="spec-item"><dt>{% trans "Driver seat adjustment" %}</dt><dd>{{ car.cabin.driver_seat_adjust }}</dd></div>{% endif %}
+    {% if car.cabin.passenger_seat_adjust %}<div class="spec-item"><dt>{% trans "Passenger seat adjustment" %}</dt><dd>{{ car.cabin.passenger_seat_adjust }}</dd></div>{% endif %}
+    {% if car.cabin.rear_seat_adjust %}<div class="spec-item"><dt>{% trans "Rear seat adjustment" %}</dt><dd>{{ car.cabin.rear_seat_adjust }}</dd></div>{% endif %}
+    {% if car.cabin.front_legroom_mm %}<div class="spec-item"><dt>{% trans "Front legroom" %}</dt><dd>{{ car.cabin.front_legroom_mm }} mm</dd></div>{% endif %}
+    {% if car.cabin.rear_legroom_mm %}<div class="spec-item"><dt>{% trans "Rear legroom" %}</dt><dd>{{ car.cabin.rear_legroom_mm }} mm</dd></div>{% endif %}
+    {% if car.cabin.headroom_mm %}<div class="spec-item"><dt>{% trans "Headroom" %}</dt><dd>{{ car.cabin.headroom_mm }} mm</dd></div>{% endif %}
+    {% if car.cabin.armrest %}<div class="spec-item"><dt>{% trans "Armrest" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.cabin.cupholders %}<div class="spec-item"><dt>{% trans "Cup holders" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.cabin.rear_ac_vents %}<div class="spec-item"><dt>{% trans "Rear AC vents" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.cabin.power_tailgate %}<div class="spec-item"><dt>{% trans "Power tailgate" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.cabin.rear_seats_fold %}<div class="spec-item"><dt>{% trans "Folding rear seats" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+  </dl>
+  {% if car.cabin.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.cabin.notes }}</p>{% endif %}
+</section>
+{% endif %}
+
+{% if car.multimedia %}
+<section class="detail-section reveal" id="multimedia">
+  <div class="section-head">
+    <h2 class="section-title">{% trans "Multimedia" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.multimedia.center_display %}<div class="spec-item"><dt>{% trans "Center display" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.display_size_inch %}<div class="spec-item"><dt>{% trans "Display" %}</dt><dd>{{ car.multimedia.display_size_inch }}"</dd></div>{% endif %}
+    {% if car.multimedia.audio_system %}<div class="spec-item"><dt>{% trans "Audio" %}</dt><dd>{{ car.multimedia.audio_system }}</dd></div>{% endif %}
+    {% if car.multimedia.speakers %}<div class="spec-item"><dt>{% trans "Speakers" %}</dt><dd>{{ car.multimedia.speakers }}</dd></div>{% endif %}
+    {% if car.multimedia.amplifier %}<div class="spec-item"><dt>{% trans "Amplifier" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.subwoofer %}<div class="spec-item"><dt>{% trans "Subwoofer" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.bluetooth %}<div class="spec-item"><dt>Bluetooth</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.usb %}<div class="spec-item"><dt>USB</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.aux %}<div class="spec-item"><dt>AUX</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.wifi %}<div class="spec-item"><dt>Wi‑Fi</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.apple_carplay %}<div class="spec-item"><dt>Apple CarPlay</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.android_auto %}<div class="spec-item"><dt>Android Auto</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.navigation %}<div class="spec-item"><dt>{% trans "Navigation" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.mirrorlink %}<div class="spec-item"><dt>MirrorLink</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.voice_control %}<div class="spec-item"><dt>{% trans "Voice control" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.phone_connectivity %}<div class="spec-item"><dt>{% trans "Phone connectivity" %}</dt><dd>{{ car.multimedia.phone_connectivity }}</dd></div>{% endif %}
+    {% if car.multimedia.digital_cluster %}<div class="spec-item"><dt>{% trans "Digital cluster" %}</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+    {% if car.multimedia.head_up_display %}<div class="spec-item"><dt>HUD</dt><dd>{% trans "Yes" %}</dd></div>{% endif %}
+  </dl>
+  {% if car.multimedia.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.multimedia.notes }}</p>{% endif %}
 </section>
 {% endif %}
 
@@ -170,7 +407,15 @@
     {% for fluid in car.fluids.all %}
       <li>
         <strong>{{ fluid.get_fluid_type_display }}</strong>
-        <span class="meta-quiet">{% if fluid.specification %}{{ fluid.specification }}{% endif %}{% if fluid.capacity %} · {{ fluid.capacity }}{% endif %}</span>
+        <span class="meta-quiet">
+          {% if fluid.specification %}{{ fluid.specification }}{% endif %}
+          {% if fluid.grade %}{% if fluid.specification %} · {% endif %}{{ fluid.grade }}{% endif %}
+          {% if fluid.capacity %} · {{ fluid.capacity }}{% endif %}
+          {% if fluid.interval_km %} · {{ fluid.interval_km }} km{% endif %}
+          {% if fluid.interval_months %} · {{ fluid.interval_months }} {% trans "months" %}{% endif %}
+          {% if fluid.estimated_cost %} · {{ fluid.estimated_cost }}{% endif %}
+        </span>
+        {% if fluid.notes %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ fluid.notes }}</span>{% endif %}
       </li>
     {% endfor %}
   </ul>
@@ -186,7 +431,7 @@
     {% for tire in car.tires.all %}
       <li>
         <strong>{{ tire.size }}</strong>
-        <span class="meta-quiet">{{ tire.get_position_display }}{% if tire.pressure_psi %} · {{ tire.pressure_psi }} psi{% endif %}</span>
+        <span class="meta-quiet">{{ tire.get_position_display }}{% if tire.pressure_psi %} · {{ tire.pressure_psi }} psi{% endif %}{% if tire.load_index %} · {{ tire.load_index }}{% endif %}{% if tire.speed_rating %} · {{ tire.speed_rating }}{% endif %}{% if tire.rim_size %} · {{ tire.rim_size }}{% endif %}{% if tire.rim_material %} · {{ tire.rim_material }}{% endif %}</span>
       </li>
     {% endfor %}
   </ul>
@@ -207,6 +452,7 @@
           {% if battery.cca %} · {{ battery.cca }} CCA{% endif %}
           {% if battery.chemistry %} · {{ battery.chemistry }}{% endif %}
         </span>
+        {% if battery.notes %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ battery.notes }}</span>{% endif %}
       </li>
     {% endfor %}
   </ul>
@@ -242,6 +488,7 @@
       <li>
         <strong>{{ code.code }}</strong>
         <span class="meta-quiet">{{ code.title }} · {{ code.get_severity_display }}</span>
+        {% if code.description %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ code.description }}</span>{% endif %}
       </li>
     {% endfor %}
   </ul>
@@ -257,10 +504,73 @@
     {% for part in car.parts.all %}
       <li>
         <strong>{{ part.name }}</strong>
-        <span class="meta-quiet">{% if part.oem_number %}{{ part.oem_number }}{% endif %}{% if part.category %} · {{ part.category }}{% endif %}</span>
+        <span class="meta-quiet">
+          {% if part.oem_number %}{{ part.oem_number }}{% endif %}
+          {% if part.category %}{% if part.oem_number %} · {% endif %}{{ part.category }}{% endif %}
+          {% if part.is_consumable %} · {% trans "Consumable" %}{% endif %}
+          {% if part.interval_km %} · {{ part.interval_km }} km{% endif %}
+          {% if part.interval_months %} · {{ part.interval_months }} {% trans "months" %}{% endif %}
+          {% if part.estimated_cost %} · {{ part.estimated_cost }}{% endif %}
+        </span>
+        {% if part.notes %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ part.notes }}</span>{% endif %}
       </li>
     {% endfor %}
   </ul>
+</section>
+{% endif %}
+
+{% if car.common_failures.all %}
+<section class="detail-section reveal" id="failures">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Reliability" %}</p>
+    <h2 class="section-title">{% trans "Common failures" %}</h2>
+  </div>
+  <ul class="data-list">
+    {% for failure in car.common_failures.all %}
+      <li>
+        <strong>{{ failure.title }}</strong>
+        <span class="meta-quiet">
+          {{ failure.get_area_display }}
+          · {{ failure.get_severity_display }}
+          · {{ failure.get_likelihood_display }}
+          {% if failure.repair_cost_min or failure.repair_cost_max %}
+            ·
+            {% if failure.repair_cost_min %}{{ failure.repair_cost_min }}{% endif %}
+            {% if failure.repair_cost_min and failure.repair_cost_max %}–{% endif %}
+            {% if failure.repair_cost_max %}{{ failure.repair_cost_max }}{% endif %}
+            {{ failure.currency }}
+          {% endif %}
+        </span>
+        {% if failure.symptoms %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ failure.symptoms }}</span>{% endif %}
+        {% if failure.notes %}<span style="flex-basis:100%;font-size:0.82rem;color:var(--muted)">{{ failure.notes }}</span>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if car.market_info %}
+<section class="detail-section reveal" id="market">
+  <div class="section-head">
+    <p class="sections-label">{% trans "Iran" %}</p>
+    <h2 class="section-title">{% trans "Market info" %}</h2>
+  </div>
+  <dl class="spec-grid">
+    {% if car.market_info.factory_price %}<div class="spec-item"><dt>{% trans "Factory price" %}</dt><dd>{{ car.market_info.factory_price }} {{ car.market_info.currency }}</dd></div>{% endif %}
+    {% if car.market_info.market_price_new %}<div class="spec-item"><dt>{% trans "Market (new)" %}</dt><dd>{{ car.market_info.market_price_new }} {{ car.market_info.currency }}</dd></div>{% endif %}
+    {% if car.market_info.market_price_used %}<div class="spec-item"><dt>{% trans "Market (used)" %}</dt><dd>{{ car.market_info.market_price_used }} {{ car.market_info.currency }}</dd></div>{% endif %}
+    {% if car.market_info.depreciation_pct %}<div class="spec-item"><dt>{% trans "Depreciation" %}</dt><dd>{{ car.market_info.depreciation_pct }}%</dd></div>{% endif %}
+    {% if car.market_info.liquidity_score %}<div class="spec-item"><dt>{% trans "Liquidity" %}</dt><dd>{{ car.market_info.liquidity_score }}/10</dd></div>{% endif %}
+    {% if car.market_info.demand_score %}<div class="spec-item"><dt>{% trans "Demand" %}</dt><dd>{{ car.market_info.demand_score }}/10</dd></div>{% endif %}
+    {% if car.market_info.popularity_score %}<div class="spec-item"><dt>{% trans "Popularity" %}</dt><dd>{{ car.market_info.popularity_score }}/10</dd></div>{% endif %}
+    {% if car.market_info.maintenance_cost_annual %}<div class="spec-item"><dt>{% trans "Maintenance / yr" %}</dt><dd>{{ car.market_info.maintenance_cost_annual }}</dd></div>{% endif %}
+    {% if car.market_info.insurance_cost_annual %}<div class="spec-item"><dt>{% trans "Insurance / yr" %}</dt><dd>{{ car.market_info.insurance_cost_annual }}</dd></div>{% endif %}
+    {% if car.market_info.service_cost_avg %}<div class="spec-item"><dt>{% trans "Avg service" %}</dt><dd>{{ car.market_info.service_cost_avg }}</dd></div>{% endif %}
+    {% if car.market_info.parts_price_index %}<div class="spec-item"><dt>{% trans "Parts price index" %}</dt><dd>{{ car.market_info.parts_price_index }}/10</dd></div>{% endif %}
+    {% if car.market_info.parts_availability %}<div class="spec-item"><dt>{% trans "Parts availability" %}</dt><dd>{{ car.market_info.parts_availability }}/10</dd></div>{% endif %}
+    {% if car.market_info.mechanic_availability %}<div class="spec-item"><dt>{% trans "Mechanic availability" %}</dt><dd>{{ car.market_info.mechanic_availability }}/10</dd></div>{% endif %}
+  </dl>
+  {% if car.market_info.notes %}<p class="meta-quiet" style="margin:0.65rem 0 0">{{ car.market_info.notes }}</p>{% endif %}
 </section>
 {% endif %}
 
@@ -273,7 +583,12 @@
     {% for price in car.prices.all %}
       <li>
         <strong>{{ price.label }}</strong>
-        <span class="meta-quiet">{{ price.amount }} {{ price.currency }}{% if price.recorded_at %} · {{ price.recorded_at }}{% endif %}</span>
+        <span class="meta-quiet">
+          {{ price.amount }} {{ price.currency }}
+          {% if price.year_for_price %} · {{ price.year_for_price }}{% endif %}
+          {% if price.mileage_km %} · {{ price.mileage_km }} km{% endif %}
+          {% if price.recorded_at %} · {{ price.recorded_at }}{% endif %}
+        </span>
       </li>
     {% endfor %}
   </ul>
@@ -320,4 +635,11 @@
 {% trans "Keep exploring" as band_title %}
 {% trans "Compare more models or browse cars for sale." as band_lead %}
 {% include "components/footer_band.html" with title=band_title lead=band_lead cta_url=cars_url cta_label=cars_cta cta2_url=market_url cta2_label=market_cta %}
+{% endblock %}
+
+{% block extra_js %}
+{% if gallery_images %}
+<script src="{% static 'js/car-gallery.js' %}"></script>
+{% endif %}
+<script src="{% static 'js/car-detail.js' %}"></script>
 {% endblock %}

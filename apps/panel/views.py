@@ -5,7 +5,16 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _lazy
 
-from apps.cars.models import Brand, Car, CarModel, Dealer, OBDCode, RepairShop, Trim
+from apps.cars.models import (
+    Brand,
+    Car,
+    CarModel,
+    Category,
+    Dealer,
+    OBDCode,
+    RepairShop,
+    Trim,
+)
 from apps.emergency.forms import VerifyEmergencyTransitionForm
 from apps.emergency.models import EmergencyRequest, EmergencyService, RequestStatus
 from apps.emergency.services import (
@@ -23,6 +32,7 @@ from .forms import (
     BrandForm,
     CarForm,
     CarModelForm,
+    CategoryForm,
     DealerForm,
     EmergencyServiceForm,
     ListingForm,
@@ -94,6 +104,12 @@ def _admin_modules():
                     "count": Brand.objects.count(),
                     "change_url": "panel:brand_list",
                     "add_url": "panel:brand_create",
+                },
+                {
+                    "label": _lazy("Categories"),
+                    "count": Category.objects.count(),
+                    "change_url": "panel:category_list",
+                    "add_url": "panel:category_create",
                 },
                 {
                     "label": _lazy("OBD codes"),
@@ -336,11 +352,12 @@ def emergency_service_edit(request, pk):
     )
 
 
-def _car_form_context(form, spec_form, dims_form, formsets, editing, car=None):
+def _car_form_context(form, related_forms, formsets, editing, car=None):
     return {
         "form": form,
-        "spec_form": spec_form,
-        "dims_form": dims_form,
+        "related_forms": related_forms,
+        "spec_form": related_forms.get("spec"),
+        "dims_form": related_forms.get("dims"),
         "formsets": formsets,
         "formset": formsets["photos"],
         "editing": editing,
@@ -361,7 +378,12 @@ def car_list(request):
                 Q(model__name__icontains=q)
                 | Q(model__brand__name__icontains=q)
                 | Q(trim__name__icontains=q)
-                | Q(description__icontains=q)
+                | Q(description_fa__icontains=q)
+                | Q(description_en__icontains=q)
+                | Q(description_ar__icontains=q)
+                | Q(name_fa__icontains=q)
+                | Q(name_en__icontains=q)
+                | Q(name_ar__icontains=q)
             )
         qs = _apply_published_filter(qs, published)
     return render(
@@ -379,21 +401,21 @@ def car_list(request):
 def car_create(request):
     if request.method == "POST":
         form = CarForm(request.POST, request.FILES)
-        spec_form, dims_form, formsets = build_car_related_forms(
+        related_forms, formsets = build_car_related_forms(
             request.POST, request.FILES
         )
-        if form.is_valid() and car_related_forms_valid(spec_form, dims_form, formsets):
+        if form.is_valid() and car_related_forms_valid(related_forms, formsets):
             car = form.save()
-            save_car_related(car, spec_form, dims_form, formsets)
+            save_car_related(car, related_forms, formsets)
             messages.success(request, _("Car created."))
             return redirect("panel:car_list")
     else:
         form = CarForm()
-        spec_form, dims_form, formsets = build_car_related_forms()
+        related_forms, formsets = build_car_related_forms()
     return render(
         request,
         "panel/cars/form.html",
-        _car_form_context(form, spec_form, dims_form, formsets, editing=False),
+        _car_form_context(form, related_forms, formsets, editing=False),
     )
 
 
@@ -404,22 +426,22 @@ def car_edit(request, pk):
     )
     if request.method == "POST":
         form = CarForm(request.POST, request.FILES, instance=car)
-        spec_form, dims_form, formsets = build_car_related_forms(
+        related_forms, formsets = build_car_related_forms(
             request.POST, request.FILES, instance=car
         )
-        if form.is_valid() and car_related_forms_valid(spec_form, dims_form, formsets):
+        if form.is_valid() and car_related_forms_valid(related_forms, formsets):
             form.save()
-            save_car_related(car, spec_form, dims_form, formsets)
+            save_car_related(car, related_forms, formsets)
             messages.success(request, _("Car updated."))
             return redirect("panel:car_list")
     else:
         form = CarForm(instance=car)
-        spec_form, dims_form, formsets = build_car_related_forms(instance=car)
+        related_forms, formsets = build_car_related_forms(instance=car)
     return render(
         request,
         "panel/cars/form.html",
         _car_form_context(
-            form, spec_form, dims_form, formsets, editing=True, car=car
+            form, related_forms, formsets, editing=True, car=car
         ),
     )
 
@@ -479,6 +501,66 @@ def brand_edit(request, pk):
             "editing": True,
             "brand": brand,
             "panel_section": "brands",
+        },
+    )
+
+
+@staff_required
+def category_list(request):
+    categories = Category.objects.annotate(
+        model_count=Count("car_models", distinct=True),
+        car_count=Count("cars", distinct=True),
+    )
+    return render(
+        request,
+        "panel/cars/category_list.html",
+        {
+            "categories": categories,
+            "panel_section": "categories",
+        },
+    )
+
+
+@staff_required
+def category_create(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Category created."))
+            return redirect("panel:category_list")
+    else:
+        form = CategoryForm()
+    return render(
+        request,
+        "panel/cars/category_form.html",
+        {
+            "form": form,
+            "editing": False,
+            "panel_section": "categories",
+        },
+    )
+
+
+@staff_required
+def category_edit(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    if request.method == "POST":
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Category updated."))
+            return redirect("panel:category_list")
+    else:
+        form = CategoryForm(instance=category)
+    return render(
+        request,
+        "panel/cars/category_form.html",
+        {
+            "form": form,
+            "editing": True,
+            "category": category,
+            "panel_section": "categories",
         },
     )
 

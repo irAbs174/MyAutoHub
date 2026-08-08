@@ -2,7 +2,7 @@ from django import forms
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
-from .models import Brand, CarModel, Trim
+from .models import Brand, CarModel, Category, Trim
 
 FUEL_CHOICES = [
     ("", _("All fuels")),
@@ -261,6 +261,12 @@ class CarCatalogFilterForm(forms.Form):
         required=False,
         empty_label=_("All brands"),
         label=_("Brand"),
+    )
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        required=False,
+        empty_label=_("All categories"),
+        label=_("Category"),
     )
     model = forms.ModelChoiceField(
         queryset=CarModel.objects.none(),

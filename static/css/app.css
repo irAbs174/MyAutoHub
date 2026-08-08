@@ -3328,6 +3328,11 @@ html[dir="rtl"] .home-expert-btn span {
   color: var(--fg);
 }
 
+a.chip {
+  text-decoration: none;
+  color: inherit;
+}
+
 .chip img {
   width: 1.35rem;
   height: 1.35rem;
@@ -4504,6 +4509,27 @@ a.panel-stat:hover {
   margin-inline-start: auto;
 }
 
+.wizard-steps__list--dense {
+  gap: 0.35rem 0.5rem;
+}
+
+.wizard-subhead {
+  margin: 1.25rem 0 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.formset-row {
+  border-top: 1px solid var(--border, #e5e5e5);
+  padding-top: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+html.panel-root .panel-wizard {
+  background: var(--surface, #fff);
+}
+
 @media (max-width: 560px) {
   .panel-wizard {
     padding: 1.1rem;
@@ -4706,37 +4732,229 @@ a.panel-stat:hover {
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--hub-panel, var(--bg-soft)) 88%, transparent);
+  scroll-margin-top: 6.5rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.detail-section.is-open {
+  border-color: color-mix(in oklab, var(--accent) 28%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 12%, transparent);
 }
 
 .detail-section .section-head {
-  margin-bottom: 0.65rem;
+  margin-bottom: 0;
   align-items: center;
+}
+
+.detail-section.is-open .section-head {
+  margin-bottom: 0.65rem;
 }
 
 .detail-section .section-title {
   font-size: 1.05rem;
 }
 
-.detail-toc {
+.detail-section-toggle {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+  font: inherit;
+}
+
+.detail-section-toggle .sections-label {
+  margin: 0;
+}
+
+.detail-section-toggle .section-title {
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.detail-section-chevron {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-inline-end: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  transition: transform 0.18s var(--ease-out);
+  margin-inline-start: auto;
+}
+
+.detail-section.is-open .detail-section-chevron {
+  transform: rotate(225deg);
+  margin-top: 0.25rem;
+}
+
+.detail-section-body[hidden] {
+  display: none;
+}
+
+.detail-toc {
+  position: sticky;
+  top: 4.35rem;
+  z-index: 25;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin: 0.85rem 0 0.35rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  box-shadow: var(--shadow);
+}
+
+.detail-toc-label {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.detail-toc-items {
+  display: flex;
+  flex: 1 1 12rem;
+  flex-wrap: wrap;
   gap: 0.35rem;
-  margin: 0.75rem 0 0.25rem;
+  min-width: 0;
 }
 
 .detail-toc a {
+  display: inline-flex;
+  align-items: center;
   font-size: 0.75rem;
-  padding: 0.25rem 0.55rem;
+  font-weight: 600;
+  padding: 0.28rem 0.62rem;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--muted);
   text-decoration: none;
   background: var(--bg-soft);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
 .detail-toc a:hover {
   color: var(--accent);
   border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+}
+
+.detail-toc a.is-active {
+  color: var(--fg);
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--border));
+  background: color-mix(in oklab, var(--accent) 14%, var(--bg-soft));
+}
+
+.catalog-card {
+  padding: 0;
+}
+
+.catalog-card-toggle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+  font: inherit;
+}
+
+.catalog-card-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--accent);
+}
+
+.catalog-card-hint-close {
+  display: none;
+}
+
+.catalog-card.is-open .catalog-card-hint-open {
+  display: none;
+}
+
+.catalog-card.is-open .catalog-card-hint-close {
+  display: inline;
+}
+
+.catalog-card-chevron {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-inline-end: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.18s var(--ease-out);
+}
+
+.catalog-card.is-open .catalog-card-chevron {
+  transform: rotate(225deg);
+}
+
+.catalog-card-panel {
+  padding: 0 0.85rem 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+.catalog-card-panel[hidden] {
+  display: none;
+}
+
+.catalog-card-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 0.7rem;
+}
+
+.catalog-card-specs > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 5.5rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg-soft) 80%, transparent);
+}
+
+.catalog-card-specs dt {
+  margin: 0;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.catalog-card-specs dd {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.catalog-card-link {
+  width: 100%;
+  justify-content: center;
 }
 
 .detail-hero {
@@ -4797,6 +5015,253 @@ a.panel-stat:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.car-gallery {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  margin-bottom: 0.85rem;
+}
+
+.car-gallery-hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: color-mix(in oklab, var(--accent) 8%, var(--bg-soft));
+  cursor: zoom-in;
+  color: inherit;
+}
+
+.car-gallery-hero-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  max-height: 380px;
+}
+
+.car-gallery-hint {
+  position: absolute;
+  inset-inline-end: 0.7rem;
+  bottom: 0.7rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  backdrop-filter: blur(8px);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.car-gallery-strip {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding: 0.6rem 0.7rem 0.15rem;
+  scrollbar-width: thin;
+}
+
+.car-gallery-thumb,
+.car-gallery-more {
+  position: relative;
+  flex: 0 0 auto;
+  width: 76px;
+  height: 56px;
+  margin: 0;
+  padding: 0;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--accent) 8%, var(--bg-soft));
+  cursor: pointer;
+  color: inherit;
+}
+
+.car-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.car-gallery-thumb.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.car-gallery-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  min-width: 92px;
+  width: auto;
+  padding: 0.35rem 0.55rem;
+  background: color-mix(in oklab, var(--accent) 12%, var(--bg-soft));
+}
+
+.car-gallery-more-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.car-gallery-more-count {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.car-gallery-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0.9rem 0.9rem;
+}
+
+.car-gallery-caption strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.car-gallery-caption em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+html.car-lightbox-open {
+  overflow: hidden;
+}
+
+.car-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+}
+
+.car-lightbox[hidden] {
+  display: none;
+}
+
+.car-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklab, #05070b 78%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.car-lightbox-frame {
+  position: relative;
+  z-index: 1;
+  width: min(96vw, 1100px);
+  height: min(88vh, 820px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.car-lightbox-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid color-mix(in oklab, var(--border) 55%, transparent);
+  background: color-mix(in oklab, var(--bg) 55%, #000);
+  touch-action: pan-y;
+  cursor: zoom-in;
+}
+
+.car-lightbox-stage.is-zoomed {
+  overflow: auto;
+  cursor: zoom-out;
+  touch-action: none;
+}
+
+.car-lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.car-lightbox-image.is-zoomed {
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  transform: scale(1.85);
+  transform-origin: center center;
+}
+
+.car-lightbox-close,
+.car-lightbox-nav {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  color: var(--fg);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.car-lightbox-close {
+  top: 0.35rem;
+  inset-inline-end: 0.35rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.car-lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.car-lightbox-prev {
+  inset-inline-start: 0.35rem;
+}
+
+.car-lightbox-next {
+  inset-inline-end: 0.35rem;
+}
+
+.car-lightbox-caption,
+.car-lightbox-counter {
+  margin: 0;
+  color: color-mix(in oklab, #fff 88%, transparent);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.car-lightbox-caption {
+  max-width: 42rem;
 }
 
 .place-card {
@@ -4966,7 +5431,8 @@ html.panel-root .panel-lang .lang-switcher summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .detail-hero-media {
+  .detail-hero-media,
+  .car-gallery-hero-media {
     max-height: 240px;
   }
 }

@@ -23,6 +23,20 @@ def _empty_formset(prefix, extra=0):
 
 def _car_related_post_extras():
     data = {}
+    # Empty related OneToOne forms (prefixes match RELATED_FORM_CLASSES)
+    for prefix in (
+        "spec",
+        "dims",
+        "suspension",
+        "brakes",
+        "wheels",
+        "cabin",
+        "multimedia",
+        "market",
+    ):
+        # Minimal empty POST: Django ModelForms accept missing optional fields
+        # as long as required fields aren't present (all optional here).
+        pass
     for field in (
         "engine",
         "displacement_cc",
@@ -35,8 +49,38 @@ def _car_related_post_extras():
         "economy_highway",
         "emission_standard",
         "notes",
+        "engine_code",
+        "engine_type",
+        "cylinder_arrangement",
+        "valves",
+        "camshaft",
+        "aspiration",
+        "fuel_injection",
+        "fuel_type_detail",
+        "power_hp",
+        "power_rpm",
+        "torque_nm",
+        "torque_rpm",
+        "compression_ratio",
+        "engine_oil_capacity_l",
+        "engine_oil_type",
+        "coolant_capacity_l",
+        "cooling_system",
+        "gearbox_type",
+        "gears",
+        "transmission_mode",
+        "clutch_type",
+        "reverse_gears",
+        "drive_modes",
+        "economy_combined",
+        "range_km",
+        "co2_g_km",
+        "towing_capacity_kg",
     ):
         data[f"spec-{field}"] = ""
+    data["spec-supercharged"] = ""
+    data["spec-tiptronic"] = ""
+    data["spec-paddle_shifters"] = ""
     for field in (
         "length_mm",
         "width_mm",
@@ -47,8 +91,106 @@ def _car_related_post_extras():
         "seats",
         "ground_clearance_mm",
         "fuel_tank_l",
+        "track_front_mm",
+        "track_rear_mm",
+        "turning_circle_m",
+        "cargo_seats_folded_l",
+        "cabin_volume_l",
+        "gross_weight_kg",
+        "payload_kg",
+        "doors",
     ):
         data[f"dims-{field}"] = ""
+    for prefix, fields in (
+        (
+            "suspension",
+            (
+                "front_type",
+                "front_shock",
+                "front_spring",
+                "rear_type",
+                "rear_shock",
+                "rear_spring",
+                "steering_system",
+                "steering_type",
+                "steering_assist",
+                "turning_radius_m",
+                "notes",
+            ),
+        ),
+        (
+            "brakes",
+            (
+                "front_brake",
+                "rear_brake",
+                "front_type",
+                "rear_type",
+                "assist_systems",
+                "notes",
+            ),
+        ),
+        (
+            "wheels",
+            (
+                "rim_size",
+                "rim_material",
+                "front_tire_size",
+                "rear_tire_size",
+                "spare_type",
+                "standard_pressure",
+                "notes",
+            ),
+        ),
+        (
+            "cabin",
+            (
+                "dashboard_material",
+                "seat_material",
+                "upholstery",
+                "seat_count",
+                "driver_seat_adjust",
+                "passenger_seat_adjust",
+                "rear_seat_adjust",
+                "front_legroom_mm",
+                "rear_legroom_mm",
+                "headroom_mm",
+                "notes",
+            ),
+        ),
+        (
+            "multimedia",
+            (
+                "display_size_inch",
+                "audio_system",
+                "speakers",
+                "phone_connectivity",
+                "notes",
+            ),
+        ),
+        (
+            "market",
+            (
+                "factory_price",
+                "market_price_new",
+                "market_price_used",
+                "depreciation_pct",
+                "liquidity_score",
+                "demand_score",
+                "popularity_score",
+                "maintenance_cost_annual",
+                "insurance_cost_annual",
+                "service_cost_avg",
+                "parts_price_index",
+                "parts_availability",
+                "mechanic_availability",
+                "notes",
+                "recorded_at",
+            ),
+        ),
+    ):
+        for field in fields:
+            data[f"{prefix}-{field}"] = ""
+    data["market-currency"] = "تومان"
     data.update(_empty_formset("photos", extra=1))
     data["photos-0-image"] = ""
     data["photos-0-caption"] = ""
@@ -61,9 +203,70 @@ def _car_related_post_extras():
         "batteries",
         "service",
         "parts",
+        "failures",
         "prices",
     ):
-        data.update(_empty_formset(prefix, extra=0))
+        data.update(_empty_formset(prefix, extra=1))
+    # Empty optional formset rows
+    data["features-0-category"] = "other"
+    data["features-0-key"] = ""
+    data["features-0-name"] = ""
+    data["features-0-value"] = ""
+    data["features-0-availability"] = "standard"
+    data["maintenance-0-title"] = ""
+    data["maintenance-0-interval_km"] = ""
+    data["maintenance-0-interval_months"] = ""
+    data["maintenance-0-description"] = ""
+    data["maintenance-0-estimated_cost"] = ""
+    data["fluids-0-fluid_type"] = "engine_oil"
+    data["fluids-0-specification"] = ""
+    data["fluids-0-grade"] = ""
+    data["fluids-0-capacity"] = ""
+    data["fluids-0-interval_km"] = ""
+    data["fluids-0-interval_months"] = ""
+    data["fluids-0-estimated_cost"] = ""
+    data["fluids-0-notes"] = ""
+    data["tires-0-position"] = "all"
+    data["tires-0-size"] = ""
+    data["tires-0-pressure_psi"] = ""
+    data["tires-0-load_index"] = ""
+    data["tires-0-speed_rating"] = ""
+    data["tires-0-rim_size"] = ""
+    data["tires-0-rim_material"] = ""
+    data["batteries-0-group_size"] = ""
+    data["batteries-0-voltage"] = ""
+    data["batteries-0-cca"] = ""
+    data["batteries-0-chemistry"] = ""
+    data["batteries-0-notes"] = ""
+    data["service-0-mileage_km"] = ""
+    data["service-0-months"] = ""
+    data["service-0-tasks"] = ""
+    data["service-0-sort_order"] = "0"
+    data["parts-0-name"] = ""
+    data["parts-0-oem_number"] = ""
+    data["parts-0-category"] = ""
+    data["parts-0-is_consumable"] = ""
+    data["parts-0-interval_km"] = ""
+    data["parts-0-interval_months"] = ""
+    data["parts-0-estimated_cost"] = ""
+    data["parts-0-notes"] = ""
+    data["failures-0-area"] = "other"
+    data["failures-0-title"] = ""
+    data["failures-0-severity"] = "medium"
+    data["failures-0-likelihood"] = "occasional"
+    data["failures-0-repair_cost_min"] = ""
+    data["failures-0-repair_cost_max"] = ""
+    data["failures-0-currency"] = "تومان"
+    data["failures-0-symptoms"] = ""
+    data["failures-0-notes"] = ""
+    data["prices-0-label"] = ""
+    data["prices-0-amount"] = ""
+    data["prices-0-currency"] = "تومان"
+    data["prices-0-source"] = ""
+    data["prices-0-year_for_price"] = ""
+    data["prices-0-mileage_km"] = ""
+    data["prices-0-notes"] = ""
+    data["prices-0-recorded_at"] = ""
     return data
 
 
@@ -240,7 +443,15 @@ class PanelContentTests(TestCase):
                 "trim": trim_se.pk,
                 "horsepower": 169,
                 "fuel_type": "gasoline",
-                "description": "Compact sedan",
+                "name_fa": "کورولا",
+                "name_en": "Corolla",
+                "name_ar": "كورولا",
+                "official_name_fa": "",
+                "official_name_en": "",
+                "official_name_ar": "",
+                "description_fa": "سدان جمع‌وجور",
+                "description_en": "Compact sedan",
+                "description_ar": "",
                 "is_published": True,
                 **extras,
             },
@@ -248,6 +459,8 @@ class PanelContentTests(TestCase):
         self.assertEqual(response.status_code, 302)
         car = Car.objects.get(model=self.car_model, year=2024)
         self.assertEqual(car.trim.name, "SE")
+        self.assertEqual(car.description_en, "Compact sedan")
+        self.assertEqual(car.name_fa, "کورولا")
 
         response = self.client.post(
             reverse("panel:car_edit", args=[car.pk]),
@@ -257,7 +470,15 @@ class PanelContentTests(TestCase):
                 "trim": trim_xse.pk,
                 "horsepower": 169,
                 "fuel_type": "gasoline",
-                "description": "Updated",
+                "name_fa": "کورولا",
+                "name_en": "Corolla",
+                "name_ar": "كورولا",
+                "official_name_fa": "",
+                "official_name_en": "",
+                "official_name_ar": "",
+                "description_fa": "سدان جمع‌وجور",
+                "description_en": "Updated",
+                "description_ar": "",
                 "is_published": True,
                 **extras,
             },
@@ -265,7 +486,7 @@ class PanelContentTests(TestCase):
         self.assertEqual(response.status_code, 302)
         car.refresh_from_db()
         self.assertEqual(car.trim.name, "XSE")
-        self.assertEqual(car.description, "Updated")
+        self.assertEqual(car.description_en, "Updated")
 
     def test_brand_and_model_create(self):
         response = self.client.post(

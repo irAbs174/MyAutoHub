@@ -2,29 +2,45 @@ from django.contrib import admin
 
 from .models import (
     BatterySpec,
+    BrakeSpec,
     Brand,
+    CabinSpec,
     Car,
     CarModel,
     CarPhoto,
     CarPrice,
+    Category,
+    CommonFailure,
     Dealer,
     Dimensions,
     Feature,
     FluidSpec,
     MaintenanceItem,
+    MarketInfo,
+    MultimediaSpec,
     OBDCode,
     Part,
     RepairShop,
     ServiceScheduleItem,
+    SuspensionSpec,
     TechnicalSpec,
     TireSpec,
     Trim,
+    WheelSpec,
 )
 
 
 class CarModelInline(admin.TabularInline):
     model = CarModel
     extra = 0
+    fields = (
+        "name",
+        "name_fa",
+        "name_en",
+        "generation",
+        "body_style",
+        "model_code",
+    )
 
 
 class TrimInline(admin.TabularInline):
@@ -77,6 +93,11 @@ class CarPriceInline(admin.TabularInline):
     extra = 0
 
 
+class CommonFailureInline(admin.TabularInline):
+    model = CommonFailure
+    extra = 0
+
+
 class TechnicalSpecInline(admin.StackedInline):
     model = TechnicalSpec
     extra = 0
@@ -89,9 +110,52 @@ class DimensionsInline(admin.StackedInline):
     max_num = 1
 
 
+class SuspensionSpecInline(admin.StackedInline):
+    model = SuspensionSpec
+    extra = 0
+    max_num = 1
+
+
+class BrakeSpecInline(admin.StackedInline):
+    model = BrakeSpec
+    extra = 0
+    max_num = 1
+
+
+class WheelSpecInline(admin.StackedInline):
+    model = WheelSpec
+    extra = 0
+    max_num = 1
+
+
+class CabinSpecInline(admin.StackedInline):
+    model = CabinSpec
+    extra = 0
+    max_num = 1
+
+
+class MultimediaSpecInline(admin.StackedInline):
+    model = MultimediaSpec
+    extra = 0
+    max_num = 1
+
+
+class MarketInfoInline(admin.StackedInline):
+    model = MarketInfo
+    extra = 0
+    max_num = 1
+
+
 class OBDCodeInline(admin.TabularInline):
     model = OBDCode
     extra = 0
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "name_fa", "name_en", "name_ar", "slug", "sort_order")
+    prepopulated_fields = {"slug": ("name",)}
+    search_fields = ("name", "name_fa", "name_en", "name_ar", "slug")
 
 
 @admin.register(Brand)
@@ -103,9 +167,17 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(CarModel)
 class CarModelAdmin(admin.ModelAdmin):
-    list_display = ("name", "brand")
-    list_filter = ("brand",)
-    search_fields = ("name", "brand__name")
+    list_display = ("name", "brand", "generation", "body_style", "model_code")
+    list_filter = ("brand", "body_style")
+    search_fields = (
+        "name",
+        "name_fa",
+        "name_en",
+        "name_ar",
+        "brand__name",
+        "model_code",
+    )
+    filter_horizontal = ("categories",)
     inlines = [TrimInline, OBDCodeInline]
 
 
@@ -122,13 +194,35 @@ class TrimAdmin(admin.ModelAdmin):
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ("model", "year", "trim", "horsepower", "is_published")
-    list_filter = ("is_published", "year", "model__brand")
-    search_fields = ("model__name", "model__brand__name", "trim__name")
+    list_display = (
+        "model",
+        "year",
+        "trim",
+        "market_status",
+        "horsepower",
+        "is_published",
+    )
+    list_filter = ("is_published", "year", "market_status", "body_style", "model__brand")
+    search_fields = (
+        "model__name",
+        "model__brand__name",
+        "trim__name",
+        "name_fa",
+        "name_en",
+        "name_ar",
+        "importer",
+    )
     autocomplete_fields = ("model", "trim")
+    filter_horizontal = ("categories",)
     inlines = [
         TechnicalSpecInline,
         DimensionsInline,
+        SuspensionSpecInline,
+        BrakeSpecInline,
+        WheelSpecInline,
+        CabinSpecInline,
+        MultimediaSpecInline,
+        MarketInfoInline,
         CarPhotoInline,
         FeatureInline,
         MaintenanceItemInline,
@@ -137,6 +231,7 @@ class CarAdmin(admin.ModelAdmin):
         BatterySpecInline,
         ServiceScheduleItemInline,
         PartInline,
+        CommonFailureInline,
         CarPriceInline,
     ]
 

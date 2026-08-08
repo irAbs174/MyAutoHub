@@ -12,7 +12,7 @@ from .forms import (
     country_filter_q,
     country_flag_for,
 )
-from .models import Brand, Car, CarModel, Dealer, RepairShop
+from .models import Brand, Car, CarModel, Category, Dealer, RepairShop
 
 
 def list_cars(request):
@@ -43,6 +43,7 @@ def list_cars(request):
         data = form.cleaned_data
         q = (data.get("q") or "").strip()
         brand = data.get("brand")
+        category = data.get("category")
         model = data.get("model")
         trim = data.get("trim")
         manufacturer = (data.get("manufacturer") or "").strip()
@@ -77,6 +78,10 @@ def list_cars(request):
 
         if brand:
             cars = cars.filter(model__brand=brand)
+            filters_active = True
+
+        if category:
+            cars = cars.filter(categories=category).distinct()
             filters_active = True
 
         if model and (not brand or model.brand_id == brand.id):
@@ -237,6 +242,76 @@ def brand_detail(request, pk):
     )
 
 
+def category_list(request):
+    categories = Category.objects.annotate(
+        model_count=Count("car_models", distinct=True),
+        car_count=Count(
+            "cars",
+            filter=Q(cars__is_published=True),
+            distinct=True,
+        ),
+    ).order_by("sort_order", "name")
+    category_list_items = list(categories)
+    return render(
+        request,
+        "cars/categories.html",
+        {
+            "categories": category_list_items,
+            "category_count": len(category_list_items),
+        },
+    )
+
+
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    models = (
+        CarModel.objects.filter(categories=category)
+        .select_related("brand")
+        .annotate(
+            car_count=Count("cars", filter=Q(cars__is_published=True), distinct=True)
+        )
+        .prefetch_related("trims")
+        .order_by("brand__name", "name")
+    )
+    cars = (
+        Car.objects.filter(is_published=True, categories=category)
+        .select_related("model__brand", "trim")
+        .prefetch_related("photos")
+        .order_by("-year", "model__brand__name", "model__name")[:24]
+    )
+    return render(
+        request,
+        "cars/category_detail.html",
+        {
+            "category": category,
+            "models": models,
+            "cars": cars,
+        },
+    )
+
+
+def _car_gallery_images(car):
+    """Cover first, then gallery photos (deduped by storage name)."""
+    items = []
+    seen = set()
+    if car.cover_image:
+        items.append({"url": car.cover_image.url, "caption": ""})
+        seen.add(car.cover_image.name)
+    for photo in car.photos.all():
+        name = getattr(photo.image, "name", "") or ""
+        if name and name in seen:
+            continue
+        if name:
+            seen.add(name)
+        items.append(
+            {
+                "url": photo.image.url,
+                "caption": photo.caption or "",
+            }
+        )
+    return items
+
+
 def detail(request, pk):
     car = get_object_or_404(
         Car.objects.select_related(
@@ -244,6 +319,12 @@ def detail(request, pk):
             "trim",
             "technical_spec",
             "dimensions",
+            "suspension",
+            "brakes",
+            "wheels",
+            "cabin",
+            "multimedia",
+            "market_info",
         ).prefetch_related(
             "photos",
             "features",
@@ -254,6 +335,8 @@ def detail(request, pk):
             "service_schedule",
             "parts",
             "prices",
+            "common_failures",
+            "categories",
             "model__obd_codes",
         ),
         pk=pk,
@@ -266,6 +349,8 @@ def detail(request, pk):
     repair_shops = RepairShop.objects.filter(
         is_published=True, brands=brand
     ).distinct()
+    gallery_images = _car_gallery_images(car)
+    gallery_preview_limit = 5
     return render(
         request,
         "cars/detail.html",
@@ -273,6 +358,12 @@ def detail(request, pk):
             "car": car,
             "dealers": dealers,
             "repair_shops": repair_shops,
+            "gallery_images": gallery_images,
+            "gallery_preview": gallery_images[:gallery_preview_limit],
+            "gallery_preview_limit": gallery_preview_limit,
+            "gallery_extra_count": max(
+                0, len(gallery_images) - gallery_preview_limit
+            ),
         },
     )
 

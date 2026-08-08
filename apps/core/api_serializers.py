@@ -2,21 +2,29 @@ from rest_framework import serializers
 
 from apps.cars.models import (
     BatterySpec,
+    BrakeSpec,
     Brand,
+    CabinSpec,
     Car,
     CarPhoto,
     CarPrice,
+    Category,
+    CommonFailure,
     Dealer,
     Dimensions,
     Feature,
     FluidSpec,
     MaintenanceItem,
+    MarketInfo,
+    MultimediaSpec,
     OBDCode,
     Part,
     RepairShop,
     ServiceScheduleItem,
+    SuspensionSpec,
     TechnicalSpec,
     TireSpec,
+    WheelSpec,
 )
 from apps.core.i18n_content import localized
 from apps.emergency.models import EmergencyService
@@ -38,7 +46,18 @@ def absolute_media_url(request, file_field):
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = ("id", "name", "country")
+        fields = ("id", "name", "country", "manufacturer")
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    name_localized = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Category
+        fields = ("id", "slug", "name", "name_fa", "name_en", "name_ar", "name_localized")
+
+    def get_name_localized(self, obj):
+        return localized(obj, "name") or obj.name
 
 
 class PublicCarSerializer(serializers.ModelSerializer):
@@ -48,6 +67,16 @@ class PublicCarSerializer(serializers.ModelSerializer):
     trim = serializers.SerializerMethodField()
     trim_name = serializers.SerializerMethodField()
     cover_image = serializers.SerializerMethodField()
+    categories = CategorySerializer(many=True, read_only=True)
+    market_status_display = serializers.CharField(
+        source="get_market_status_display", read_only=True
+    )
+    body_style_display = serializers.CharField(
+        source="get_body_style_display", read_only=True
+    )
+    description = serializers.SerializerMethodField()
+    official_name = serializers.SerializerMethodField()
+    display_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Car
@@ -62,7 +91,37 @@ class PublicCarSerializer(serializers.ModelSerializer):
             "horsepower",
             "fuel_type",
             "description",
+            "description_fa",
+            "description_en",
+            "description_ar",
             "cover_image",
+            "official_name",
+            "official_name_fa",
+            "official_name_en",
+            "official_name_ar",
+            "name_fa",
+            "name_en",
+            "name_ar",
+            "display_name",
+            "model_code",
+            "chassis_code",
+            "generation",
+            "facelift",
+            "body_style",
+            "body_style_display",
+            "manufacturer",
+            "importer",
+            "assembler",
+            "country_of_origin",
+            "country_of_assembly",
+            "introduced_year",
+            "iran_entry_year",
+            "production_start_year",
+            "production_end_year",
+            "market_status",
+            "market_status_display",
+            "doors",
+            "categories",
         )
 
     def get_trim(self, obj):
@@ -75,6 +134,15 @@ class PublicCarSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         image = obj.main_image
         return absolute_media_url(request, image)
+
+    def get_description(self, obj):
+        return localized(obj, "description")
+
+    def get_official_name(self, obj):
+        return localized(obj, "official_name")
+
+    def get_display_name(self, obj):
+        return obj.display_name
 
 
 class TechnicalSpecSerializer(serializers.ModelSerializer):
@@ -93,10 +161,22 @@ class FeatureSerializer(serializers.ModelSerializer):
     category_display = serializers.CharField(
         source="get_category_display", read_only=True
     )
+    availability_display = serializers.CharField(
+        source="get_availability_display", read_only=True
+    )
 
     class Meta:
         model = Feature
-        fields = ("id", "category", "category_display", "name", "value")
+        fields = (
+            "id",
+            "category",
+            "category_display",
+            "key",
+            "name",
+            "value",
+            "availability",
+            "availability_display",
+        )
 
 
 class MaintenanceItemSerializer(serializers.ModelSerializer):
@@ -124,7 +204,11 @@ class FluidSpecSerializer(serializers.ModelSerializer):
             "fluid_type",
             "fluid_type_display",
             "specification",
+            "grade",
             "capacity",
+            "interval_km",
+            "interval_months",
+            "estimated_cost",
             "notes",
         )
 
@@ -144,6 +228,8 @@ class TireSpecSerializer(serializers.ModelSerializer):
             "pressure_psi",
             "load_index",
             "speed_rating",
+            "rim_size",
+            "rim_material",
         )
 
 
@@ -179,7 +265,81 @@ class OBDCodeSerializer(serializers.ModelSerializer):
 class PartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Part
-        fields = ("id", "name", "oem_number", "category", "notes")
+        fields = (
+            "id",
+            "name",
+            "oem_number",
+            "category",
+            "is_consumable",
+            "interval_km",
+            "interval_months",
+            "estimated_cost",
+            "notes",
+        )
+
+
+class CommonFailureSerializer(serializers.ModelSerializer):
+    area_display = serializers.CharField(source="get_area_display", read_only=True)
+    severity_display = serializers.CharField(
+        source="get_severity_display", read_only=True
+    )
+    likelihood_display = serializers.CharField(
+        source="get_likelihood_display", read_only=True
+    )
+
+    class Meta:
+        model = CommonFailure
+        fields = (
+            "id",
+            "area",
+            "area_display",
+            "title",
+            "severity",
+            "severity_display",
+            "likelihood",
+            "likelihood_display",
+            "repair_cost_min",
+            "repair_cost_max",
+            "currency",
+            "symptoms",
+            "notes",
+        )
+
+
+class MarketInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MarketInfo
+        exclude = ("id", "car")
+
+
+class SuspensionSpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SuspensionSpec
+        exclude = ("id", "car")
+
+
+class BrakeSpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BrakeSpec
+        exclude = ("id", "car")
+
+
+class WheelSpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WheelSpec
+        exclude = ("id", "car")
+
+
+class CabinSpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CabinSpec
+        exclude = ("id", "car")
+
+
+class MultimediaSpecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MultimediaSpec
+        exclude = ("id", "car")
 
 
 class CarPriceSerializer(serializers.ModelSerializer):
@@ -193,6 +353,8 @@ class CarPriceSerializer(serializers.ModelSerializer):
             "source",
             "notes",
             "recorded_at",
+            "year_for_price",
+            "mileage_km",
         )
 
 
@@ -256,6 +418,12 @@ class RepairShopSerializer(serializers.ModelSerializer):
 class PublicCarDetailSerializer(PublicCarSerializer):
     technical_spec = TechnicalSpecSerializer(read_only=True)
     dimensions = DimensionsSerializer(read_only=True)
+    suspension = SuspensionSpecSerializer(read_only=True)
+    brakes = BrakeSpecSerializer(read_only=True)
+    wheels = WheelSpecSerializer(read_only=True)
+    cabin = CabinSpecSerializer(read_only=True)
+    multimedia = MultimediaSpecSerializer(read_only=True)
+    market_info = MarketInfoSerializer(read_only=True)
     features = FeatureSerializer(many=True, read_only=True)
     maintenance = MaintenanceItemSerializer(
         source="maintenance_items", many=True, read_only=True
@@ -268,6 +436,7 @@ class PublicCarDetailSerializer(PublicCarSerializer):
         source="model.obd_codes", many=True, read_only=True
     )
     parts = PartSerializer(many=True, read_only=True)
+    common_failures = CommonFailureSerializer(many=True, read_only=True)
     prices = CarPriceSerializer(many=True, read_only=True)
     images = CarPhotoSerializer(source="photos", many=True, read_only=True)
     dealers = serializers.SerializerMethodField()
@@ -277,6 +446,12 @@ class PublicCarDetailSerializer(PublicCarSerializer):
         fields = PublicCarSerializer.Meta.fields + (
             "technical_spec",
             "dimensions",
+            "suspension",
+            "brakes",
+            "wheels",
+            "cabin",
+            "multimedia",
+            "market_info",
             "features",
             "maintenance",
             "fluids",
@@ -285,6 +460,7 @@ class PublicCarDetailSerializer(PublicCarSerializer):
             "service_schedule",
             "obd_codes",
             "parts",
+            "common_failures",
             "prices",
             "images",
             "dealers",

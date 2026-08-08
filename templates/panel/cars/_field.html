@@ -1,0 +1,7 @@
+{% load i18n %}
+{# Expects: field #}
+<div class="form-row{% if field.errors %} has-error{% endif %}">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {{ field }}
+  {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+</div>

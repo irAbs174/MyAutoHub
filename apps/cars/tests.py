@@ -171,15 +171,100 @@ class CarCatalogFilterTests(TestCase):
         self.assertContains(res, "PublicBrand")
         self.assertContains(res, "🇮🇷")
 
-    def test_detail_shows_related_sections(self):
-        from apps.cars.models import Feature, TechnicalSpec
+    def test_categories_page(self):
+        from apps.cars.models import Category
 
-        TechnicalSpec.objects.create(car=self.camry, engine="2.5L")
-        Feature.objects.create(car=self.camry, name="Sunroof", category="comfort")
+        Category.objects.create(
+            slug="suv-test", name="SUV Test", name_en="SUV Test", sort_order=1
+        )
+        res = self.client.get(reverse("cars:categories"))
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "SUV Test")
+
+    def test_category_detail_and_catalog_filter(self):
+        from apps.cars.models import Category
+
+        category = Category.objects.create(
+            slug="family-test", name="Family Test", name_en="Family Test"
+        )
+        self.camry.categories.add(category)
+        self.camry.model.categories.add(category)
+
+        res = self.client.get(reverse("cars:category_detail", kwargs={"slug": category.slug}))
+        self.assertEqual(res.status_code, 200)
+        self.assertContains(res, "Family Test")
+        self.assertContains(res, self.camry.model.name)
+
+        res = self.client.get(reverse("cars:list"), {"category": category.pk})
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual({c.pk for c in res.context["cars"]}, {self.camry.pk})
+
+    def test_detail_shows_related_sections(self):
+        from apps.cars.models import (
+            Category,
+            CommonFailure,
+            Feature,
+            FeatureAvailability,
+            MarketInfo,
+            TechnicalSpec,
+        )
+
+        TechnicalSpec.objects.create(
+            car=self.camry, engine="2.5L", engine_code="A25A", torque_nm=224
+        )
+        Feature.objects.create(
+            car=self.camry,
+            name="Sunroof",
+            category="comfort",
+            key="sunroof",
+            availability=FeatureAvailability.STANDARD,
+        )
+        cat = Category.objects.create(slug="sedan-test", name="Sedan", name_fa="سدان")
+        self.camry.categories.add(cat)
+        self.camry.market_status = "assembled"
+        self.camry.importer = "Demo Importer"
+        self.camry.save(update_fields=["market_status", "importer"])
+        CommonFailure.objects.create(
+            car=self.camry,
+            area="engine",
+            title="Oil leak",
+            symptoms="Oil spots under car",
+        )
+        MarketInfo.objects.create(
+            car=self.camry, market_price_new=1000, liquidity_score=8
+        )
         res = self.client.get(reverse("cars:detail", args=[self.camry.pk]))
         self.assertEqual(res.status_code, 200)
         self.assertContains(res, "2.5L")
+        self.assertContains(res, "A25A")
         self.assertContains(res, "Sunroof")
+        self.assertContains(res, "Oil leak")
+        self.assertContains(res, "Demo Importer")
+        self.assertContains(res, "سدان")
+        self.assertIn("gallery_images", res.context)
+
+    def test_detail_gallery_see_more_when_many_photos(self):
+        from apps.cars.models import CarPhoto
+        from django.core.files.uploadedfile import SimpleUploadedFile
+
+        tiny = (
+            b"\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00"
+            b"\xff\xff\xff\x00\x00\x00\x21\xf9\x04\x01\x00\x00\x00\x00"
+            b"\x2c\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x44\x01\x00\x3b"
+        )
+        for i in range(6):
+            CarPhoto.objects.create(
+                car=self.camry,
+                image=SimpleUploadedFile(f"g{i}.gif", tiny, content_type="image/gif"),
+                sort_order=i,
+            )
+        res = self.client.get(reverse("cars:detail", args=[self.camry.pk]))
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(len(res.context["gallery_images"]), 6)
+        self.assertEqual(len(res.context["gallery_preview"]), 5)
+        self.assertEqual(res.context["gallery_extra_count"], 1)
+        self.assertContains(res, "car-gallery-more")
+        self.assertContains(res, "+1")
 
 
 class PlacesPublicTests(TestCase):

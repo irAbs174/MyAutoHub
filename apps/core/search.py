@@ -39,7 +39,12 @@ def run_search(q, *, limit=SEARCH_LIMIT):
                 | Q(model__brand__name__icontains=q)
                 | Q(trim__name__icontains=q)
                 | Q(fuel_type__icontains=q)
-                | Q(description__icontains=q)
+                | Q(description_fa__icontains=q)
+                | Q(description_en__icontains=q)
+                | Q(description_ar__icontains=q)
+                | Q(name_fa__icontains=q)
+                | Q(name_en__icontains=q)
+                | Q(name_ar__icontains=q)
             )
             .select_related("model__brand", "trim")
             .prefetch_related("photos")[:limit]

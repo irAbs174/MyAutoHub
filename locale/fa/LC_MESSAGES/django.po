@@ -149,31 +149,25 @@ msgstr ""
 
 msgid "Model"
 msgstr "مدل"
-
 msgid "All trims"
 msgstr "همه تریم‌ها"
 
 msgid "Trim"
-msgstr "تریم"
-
+msgstr "تیپ"
 msgid "All manufacturers"
 msgstr "همه سازندگان"
 
 msgid "Manufacturer"
-msgstr "سازنده"
-
+msgstr "شرکت سازنده"
 msgid "Fuel"
 msgstr ""
 
 msgid "Transmission"
 msgstr "گیربکس"
-
 msgid "Drivetrain"
-msgstr "محور محرک"
-
+msgstr "انتقال قدرت"
 msgid "Seats"
-msgstr "صندلی"
-
+msgstr "تعداد سرنشین"
 msgid "Year from"
 msgstr "سال"
 
@@ -438,19 +432,11 @@ msgstr "این مکان متعلق به شما نیست."
 msgid "Provide saved_location_id or latitude and longitude."
 msgstr "شناسه مکان ذخیره‌شده یا عرض و طول جغرافیایی را وارد کنید."
 
-#, python-format
-msgid "Cannot change status from %(from)s to %(to)s."
-msgstr "نمی‌توان وضعیت را از %(from)s به %(to)s تغییر داد."
-
 msgid "Only emergency operators can accept requests."
 msgstr "فقط اپراتورهای امداد می‌توانند درخواست‌ها را بپذیرند."
 
 msgid "Only emergency operator administrators can finish requests."
 msgstr "فقط مدیران اپراتور امداد می‌توانند درخواست‌ها را تمام کنند."
-
-#, python-format
-msgid "Unsupported target status: %(status)s"
-msgstr "وضعیت مقصد پشتیبانی نمی‌شود: %(status)s"
 
 msgid "Request submitted"
 msgstr "درخواست ثبت شد"
@@ -520,13 +506,10 @@ msgstr "قیمت"
 
 msgid "Currency"
 msgstr "واحد پول"
-
 msgid "Year"
 msgstr "سال"
-
 msgid "Mileage (km)"
-msgstr "کارکرد (کیلومتر)"
-
+msgstr "کیلومتر"
 msgid "City"
 msgstr "شهر"
 
@@ -618,13 +601,8 @@ msgstr "آگهی برداشته شد."
 msgid "You cannot inquire on your own listing."
 msgstr "نمی‌توانید روی آگهی خودتان پیام بگذارید."
 
-#, python-format
-msgid "Message sent to %(seller)s. They will see it on this listing."
-msgstr "پیام به %(seller)s ارسال شد. آن را در این آگهی می‌بینند."
-
 msgid "Published"
-msgstr "انتشار آگهی"
-
+msgstr "منتشر شده"
 msgid "Draft"
 msgstr ""
 
@@ -845,14 +823,6 @@ msgstr "کاتالوگ را برای مشخصات و مدل‌ها باز کنی
 msgid "Saved locations"
 msgstr "مکان‌های ذخیره‌شده"
 
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s place"
-msgid_plural "%(counter)s places"
-msgstr[0] "%(counter)s مکان"
-msgstr[1] "%(counter)s مکان"
-
 msgid "Default"
 msgstr "پیش‌فرض"
 
@@ -938,15 +908,28 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#| msgid "Back to list"
-msgid "Back to top"
-msgstr "بازگشت به بالا"
-
 msgid "Brands-MyAutoHub"
 msgstr "برندها-مای‌اتوهاب"
 
-#, python-format
-msgid "Models and cars for %(name)s on MyAutoHub."
+msgid "Categories-MyAutoHub"
+msgstr "دسته‌بندی‌ها-مای‌اتوهاب"
+
+msgid "Browse car categories on MyAutoHub-SUV, hybrid, family, economy, and more."
+msgstr "دسته‌بندی‌های خودرو را در مای‌اتوهاب مرور کنید-شاسی‌بلند، هیبرید، خانوادگی، اقتصادی و بیشتر."
+
+msgid "Explore practical tags for the catalog-open a category for models and cars."
+msgstr "برچسب‌های کاربردی کاتالوگ را ببینید-یک دسته را برای مدل‌ها و خودروها باز کنید."
+
+msgid "All categories"
+msgstr "همه دسته‌ها"
+
+msgid "No categories in the catalog yet."
+msgstr "هنوز دسته‌ای در کاتالوگ نیست."
+
+msgid "No models in this category yet."
+msgstr "هنوز مدلی در این دسته نیست."
+
+msgid "Models and cars in %(name)s on MyAutoHub."
 msgstr "مدل‌ها و خودروهای %(name)s در مای‌اتوهاب."
 
 msgid "View in catalog"
@@ -954,14 +937,6 @@ msgstr "مشاهده در کاتالوگ"
 
 msgid "Models"
 msgstr "مدل‌ها"
-
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s car"
-msgid_plural "%(counter)s cars"
-msgstr[0] "%(counter)s جدید"
-msgstr[1] "%(counter)s جدید"
 
 msgid "No models for this brand yet."
 msgstr "هنوز مدلی برای این برند نیست."
@@ -985,22 +960,6 @@ msgstr ""
 msgid "Car catalog"
 msgstr "کاتالوگ خودرو"
 
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s brand"
-msgid_plural "%(counter)s brands"
-msgstr[0] "%(counter)s برند"
-msgstr[1] "%(counter)s برند"
-
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s model"
-msgid_plural "%(counter)s models"
-msgstr[0] "%(counter)s مدل"
-msgstr[1] "%(counter)s مدل"
-
 msgid "No brands in the catalog yet."
 msgstr "هنوز برندی در کاتالوگ نیست."
 
@@ -1011,32 +970,24 @@ msgid "Specs"
 msgstr "مشخصات"
 
 msgid "Dimensions"
-msgstr ""
-
+msgstr "ابعاد"
 msgid "Features"
-msgstr ""
-
+msgstr "تجهیزات"
 msgid "Maintenance"
-msgstr ""
-
+msgstr "سرویس و نگهداری"
 msgid "Fluids"
-msgstr ""
-
+msgstr "مایعات"
 msgid "Tires"
-msgstr ""
-
+msgstr "لاستیک‌ها"
 msgid "Batteries"
-msgstr "بازگشت به داستان‌ها"
-
+msgstr "باتری‌ها"
 msgid "OBD"
 msgstr "OBD"
 
 msgid "Parts"
-msgstr ""
-
+msgstr "قطعات"
 msgid "Prices"
-msgstr "قیمت"
-
+msgstr "قیمت‌ها"
 msgid "Dealers"
 msgstr ""
 
@@ -1047,17 +998,14 @@ msgid "Technical"
 msgstr "فنی"
 
 msgid "Technical specs"
-msgstr ""
-
+msgstr "مشخصات فنی"
 msgid "Engine"
 msgstr "موتور"
-
 msgid "Displacement"
 msgstr "حجم موتور"
 
 msgid "Cylinders"
-msgstr "سیلندر"
-
+msgstr "تعداد سیلندر"
 msgid "Top speed"
 msgstr "حداکثر سرعت"
 
@@ -1107,8 +1055,7 @@ msgid "Battery"
 msgstr "باتری"
 
 msgid "Service schedule"
-msgstr "سرویس‌های آماده"
-
+msgstr "برنامه سرویس"
 msgid "OBD codes"
 msgstr "کدهای OBD"
 
@@ -1134,10 +1081,10 @@ msgid "Browse brands and models with the essentials-year, power, and trim."
 msgstr "برندها و مدل‌ها را با ضروریات مرور کنید-سال، قدرت و تریم."
 
 msgid ""
-"Filter by country, brand, model, trim, fuel, power, transmission, or seats. "
+"Filter by country, brand, category, model, trim, fuel, power, transmission, or seats. "
 "Open a car for full specs."
 msgstr ""
-"با کشور، برند، مدل، تریم، سوخت، قدرت، گیربکس یا صندلی فیلتر کنید. خودرو را "
+"با کشور، برند، دسته، مدل، تریم، سوخت، قدرت، گیربکس یا صندلی فیلتر کنید. خودرو را "
 "برای مشخصات کامل باز کنید."
 
 msgid "Filter by country"
@@ -1145,7 +1092,6 @@ msgstr "فیلتر بر اساس کشور"
 
 msgid "Horsepower"
 msgstr "اسب بخار"
-
 msgid "Filter"
 msgstr ""
 
@@ -1189,7 +1135,7 @@ msgid "Primary"
 msgstr "اصلی"
 
 msgid "Panel"
-msgstr ""
+msgstr "پنل"
 
 msgid "Log out"
 msgstr "خروج"
@@ -1287,10 +1233,43 @@ msgid "Slide controls"
 msgstr ""
 
 msgid "Previous"
-msgstr ""
+msgstr "قبلی"
 
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
+
+msgid "Close"
+msgstr "بستن"
+
+msgid "Zoom in"
+msgstr "بزرگ‌نمایی"
+
+msgid "Zoom out"
+msgstr "کوچک‌نمایی"
+
+msgid "Click to zoom"
+msgstr "برای بزرگ‌نمایی کلیک کنید"
+
+msgid "Open gallery"
+msgstr "باز کردن گالری"
+
+msgid "See more images"
+msgstr "تصاویر بیشتر"
+
+msgid "Open image %(n)s"
+msgstr "باز کردن تصویر %(n)s"
+
+msgid "Jump to"
+msgstr "برو به"
+
+msgid "Tap for details"
+msgstr "برای جزئیات بزنید"
+
+msgid "Tap to close"
+msgstr "برای بستن بزنید"
+
+msgid "Open catalog page"
+msgstr "صفحه کاتالوگ"
 
 msgid "Services on call"
 msgstr "سرویس‌های آماده"
@@ -1336,23 +1315,11 @@ msgstr "آگهی‌های من"
 msgid "Create an account"
 msgstr "ایجاد حساب"
 
-#, python-format
-msgid "Search: %(q)s-MyAutoHub"
-msgstr "جستجو: %(q)s-MyAutoHub"
-
 msgid "Search-MyAutoHub"
 msgstr "جستجو-MyAutoHub"
 
 msgid "Hub"
 msgstr "هاب"
-
-#, fuzzy, python-format
-#| msgid "%(counter)s car for sale"
-#| msgid_plural "%(counter)s cars for sale"
-msgid "%(counter)s result for “%(q)s”"
-msgid_plural "%(counter)s results for “%(q)s”"
-msgstr[0] "%(counter)s نتیجه برای «%(q)s»"
-msgstr[1] "%(counter)s نتیجه برای «%(q)s»"
 
 msgid ""
 "Find cars, listings, stories, videos, prices, places, and roadside help."
@@ -1364,30 +1331,8 @@ msgstr "موردی پیدا نشد. واژه دیگری امتحان کنید ی
 msgid "Browse all"
 msgstr "مشاهده همه"
 
-#, python-format
-msgid "Emergency #%(id)s-MyAutoHub"
-msgstr "اورژانسی #%(id)s-MyAutoHub"
-
 msgid "Help"
 msgstr "کمک"
-
-#, python-format
-msgid "Request #%(id)s"
-msgstr "درخواست #%(id)s"
-
-#, python-format
-msgid "Opened %(when)s"
-msgstr "باز شده %(when)s"
-
-#, python-format
-msgid "Requester: %(name)s"
-msgstr "درخواست‌کننده: %(name)s"
-
-#, python-format
-msgid "%(counter)s unread buzz"
-msgid_plural "%(counter)s unread buzzes"
-msgstr[0] "%(counter)s باز خوانده‌نشده"
-msgstr[1] "%(counter)s باز خوانده‌نشده"
 
 msgid "Details"
 msgstr "جزئیات"
@@ -1402,8 +1347,7 @@ msgid "Buzz!"
 msgstr "باز!"
 
 msgid "Cancel"
-msgstr "لغو"
-
+msgstr "انصراف"
 msgid "Back to list"
 msgstr "بازگشت به فهرست"
 
@@ -1419,10 +1363,6 @@ msgstr "یادداشت"
 msgid "Apply"
 msgstr "اعمال"
 
-#, python-format
-msgid "Rating: %(rating)s/5"
-msgstr "امتیاز: %(rating)s/۵"
-
 msgid "Share experience"
 msgstr "اشتراک تجربه"
 
@@ -1437,10 +1377,6 @@ msgstr "هنوز انتقالی نیست."
 
 msgid "Buzz history"
 msgstr "تاریخچه باز"
-
-#, python-format
-msgid "Buzz from %(name)s · %(when)s"
-msgstr "باز از %(name)s · %(when)s"
 
 msgid "Unread"
 msgstr "خوانده‌نشده"
@@ -1489,12 +1425,6 @@ msgstr "زمان"
 
 msgid "Buzz"
 msgstr "باز"
-
-#, python-format
-msgid "%(counter)s new"
-msgid_plural "%(counter)s new"
-msgstr[0] "%(counter)s جدید"
-msgstr[1] "%(counter)s جدید"
 
 msgid "Open"
 msgstr "باز کردن"
@@ -1631,17 +1561,8 @@ msgstr "ادامه"
 
 msgid "Save changes"
 msgstr "ذخیره تغییرات"
-
 msgid "Publish listing"
 msgstr "انتشار آگهی"
-
-#, python-format
-msgid "Seller: %(name)s"
-msgstr "فروشنده: %(name)s"
-
-#, python-format
-msgid "Year: %(year)s"
-msgstr "سال: %(year)s"
 
 msgid "Mark sold"
 msgstr "علامت فروخته‌شده"
@@ -1696,16 +1617,6 @@ msgstr ""
 msgid "Log in to sell"
 msgstr "برای فروش وارد شوید"
 
-#, python-format
-msgid "%(counter)s car for sale"
-msgid_plural "%(counter)s cars for sale"
-msgstr[0] "%(counter)s خودرو برای فروش"
-msgstr[1] "%(counter)s خودرو برای فروش"
-
-#, python-format
-msgid "by %(name)s"
-msgstr "توسط %(name)s"
-
 msgid "Yours"
 msgstr "مال شما"
 
@@ -1735,18 +1646,6 @@ msgstr "مشاهده بازار"
 msgid "Profile"
 msgstr "باز کردن پروفایل"
 
-#, python-format
-msgid "%(counter)s new message"
-msgid_plural "%(counter)s new messages"
-msgstr[0] "%(counter)s پیام جدید"
-msgstr[1] "%(counter)s پیام جدید"
-
-#, python-format
-msgid "%(counter)s message"
-msgid_plural "%(counter)s messages"
-msgstr[0] "%(counter)s پیام"
-msgstr[1] "%(counter)s پیام"
-
 msgid "You have not listed a car yet."
 msgstr "هنوز خودرویی آگهی نکرده‌اید."
 
@@ -1754,10 +1653,10 @@ msgid "Sell your first car"
 msgstr "اولین خودروی خود را بفروشید"
 
 msgid "Panel navigation"
-msgstr ""
+msgstr "ناوبری"
 
 msgid "Staff panel"
-msgstr ""
+msgstr "پنل کارمند"
 
 msgid "Overview"
 msgstr "نمای اپراتور"
@@ -1798,6 +1697,30 @@ msgstr ""
 msgid "Organize the car catalog taxonomy."
 msgstr ""
 
+msgid "Organize practical catalog tags."
+msgstr "برچسب‌های کاربردی کاتالوگ را مدیریت کنید."
+
+msgid "New category"
+msgstr "دسته جدید"
+
+msgid "Edit category"
+msgstr "ویرایش دسته"
+
+msgid "Add a practical tag to the catalog."
+msgstr "یک برچسب کاربردی به کاتالوگ اضافه کنید."
+
+msgid "Create category"
+msgstr "ایجاد دسته"
+
+msgid "Category created."
+msgstr "دسته ایجاد شد."
+
+msgid "Category updated."
+msgstr "دسته به‌روزرسانی شد."
+
+msgid "No categories yet. Create the first one."
+msgstr "هنوز دسته‌ای نیست. اولین را بسازید."
+
 msgid "New model"
 msgstr ""
 
@@ -1829,8 +1752,7 @@ msgid "Create dealer"
 msgstr "خدمات اورژانسی"
 
 msgid "Name"
-msgstr ""
-
+msgstr "نام"
 msgid "Yes"
 msgstr "بله"
 
@@ -1841,20 +1763,16 @@ msgid "No dealers yet."
 msgstr "هنوز پیام خریداری نیست."
 
 msgid "Edit car"
-msgstr "همه سرویس‌ها"
-
+msgstr "ویرایش خودرو"
 msgid "New car"
-msgstr "جدیدترین خودروها"
-
+msgstr "خودروی جدید"
 msgid "Add a car to the catalog."
 msgstr "هنوز خودرویی در کاتالوگ نیست."
 
 msgid "Gallery photos"
-msgstr "عکس کاور"
-
+msgstr "گالری تصاویر"
 msgid "Create car"
-msgstr "ایجاد حساب"
-
+msgstr "ایجاد خودرو"
 msgid "Catalog cars shown on the hub."
 msgstr ""
 
@@ -1884,10 +1802,8 @@ msgstr ""
 
 msgid "Title"
 msgstr "عنوان"
-
 msgid "Severity"
-msgstr ""
-
+msgstr "شدت"
 msgid "No OBD codes yet."
 msgstr "هنوز پیام خریداری نیست."
 
@@ -2067,10 +1983,8 @@ msgstr "قیمت‌های مرجع با عنوان و یادداشت فارسی 
 
 msgid "Category"
 msgstr "دسته"
-
 msgid "Amount"
 msgstr "مبلغ"
-
 msgid "No price references yet."
 msgstr "هنوز قیمت مرجعی نیست."
 
@@ -2177,14 +2091,6 @@ msgstr "هنوز تعمیرگاهی منتشر نشده است."
 msgid "General reference"
 msgstr "مرجع عمومی"
 
-#, python-format
-msgid "Source: %(source)s"
-msgstr "منبع: %(source)s"
-
-#, python-format
-msgid "Updated %(when)s"
-msgstr "به‌روز شده %(when)s"
-
 msgid "Pricing-MyAutoHub"
 msgstr "خدمات رایج-MyAutoHub"
 
@@ -2207,10 +2113,6 @@ msgstr ""
 
 msgid "No pricing references published yet."
 msgstr "هنوز مرجع قیمتی منتشر نشده."
-
-#, python-format
-msgid "By %(name)s · "
-msgstr "از %(name)s · "
 
 msgid "Back to stories"
 msgstr "بازگشت به داستان‌ها"
@@ -2248,27 +2150,599 @@ msgstr "تازه‌افزوده‌شده"
 msgid "No videos published yet."
 msgstr "هنوز ویدیویی منتشر نشده."
 
-#~ msgid ""
-#~ "Filter by country flag, brand, model, or year. Open a car for specs, then "
-#~ "jump to marketplace deals for that model."
-#~ msgstr ""
-#~ "با پرچم کشور، برند، مدل یا سال فیلتر کنید. خودرو را برای مشخصات باز کنید، "
-#~ "سپس به معاملات بازار همان مدل بروید."
+msgid "Fuel type"
+msgstr "نوع سوخت"
 
-#~ msgid "Saudi Arabia"
-#~ msgstr "عربستان سعودی"
+msgid "Official name"
+msgstr "نام رسمی"
 
-#~ msgid "Open emergency work at a glance."
-#~ msgstr "فقط اپراتورهای امداد می‌توانند درخواست‌ها را بپذیرند."
+msgid "Description"
+msgstr "توضیحات"
 
-#~ msgid "Label"
-#~ msgstr "برچسب"
+msgid "Model code"
+msgstr "کد مدل"
 
-#~ msgid "Coordinates"
-#~ msgstr "مختصات"
+msgid "Chassis code"
+msgstr "کد شاسی"
 
-#~ msgid "No saved locations yet."
-#~ msgstr "هنوز مکان ذخیره‌شده‌ای نیست."
+msgid "Generation"
+msgstr "نسل"
 
-#~ msgid "Open live map for roadside help"
-#~ msgstr "باز کردن نقشه زنده برای کمک کنار جاده"
+msgid "Facelift"
+msgstr "فیس‌لیفت"
+
+msgid "Body style"
+msgstr "نوع بدنه"
+
+msgid "Importer"
+msgstr "واردکننده"
+
+msgid "Assembler"
+msgstr "مونتاژکننده"
+
+msgid "Country of origin"
+msgstr "کشور سازنده"
+
+msgid "Assembly country"
+msgstr "کشور مونتاژ"
+
+msgid "Introduced year"
+msgstr "سال معرفی"
+
+msgid "Iran entry year"
+msgstr "سال ورود به ایران"
+
+msgid "Production start year"
+msgstr "سال شروع تولید"
+
+msgid "Production end year"
+msgstr "سال پایان تولید"
+
+msgid "Market status"
+msgstr "وضعیت بازار"
+
+msgid "Doors"
+msgstr "تعداد درها"
+
+msgid "Categories"
+msgstr "دسته‌بندی‌ها"
+
+msgid "Cover image"
+msgstr "تصویر کاور"
+
+msgid "Displacement (cc)"
+msgstr "حجم موتور (سی‌سی)"
+
+msgid "Top speed (km/h)"
+msgstr "حداکثر سرعت (کیلومتر بر ساعت)"
+
+msgid "Acceleration 0–100 (s)"
+msgstr "شتاب ۰ تا ۱۰۰ (ثانیه)"
+
+msgid "City consumption"
+msgstr "مصرف شهری"
+
+msgid "Highway consumption"
+msgstr "مصرف جاده‌ای"
+
+msgid "Emission standard"
+msgstr "استاندارد آلایندگی"
+
+msgid "Notes"
+msgstr "یادداشت"
+
+msgid "Engine code"
+msgstr "کد موتور"
+
+msgid "Engine type"
+msgstr "نوع موتور"
+
+msgid "Cylinder arrangement"
+msgstr "آرایش سیلندر"
+
+msgid "Valves"
+msgstr "تعداد سوپاپ"
+
+msgid "Camshaft"
+msgstr "میل‌سوپاپ"
+
+msgid "Aspiration"
+msgstr "تنفس / توربو"
+
+msgid "Supercharged"
+msgstr "سوپرشارژ"
+
+msgid "Fuel injection"
+msgstr "سیستم پاشش سوخت"
+
+msgid "Fuel type (detail)"
+msgstr "نوع سوخت (جزئیات)"
+
+msgid "Power (hp)"
+msgstr "قدرت (اسب بخار)"
+
+msgid "Power RPM"
+msgstr "دور موتور در حداکثر قدرت"
+
+msgid "Torque (Nm)"
+msgstr "گشتاور (نیوتن‌متر)"
+
+msgid "Torque RPM"
+msgstr "دور موتور در حداکثر گشتاور"
+
+msgid "Compression ratio"
+msgstr "نسبت تراکم"
+
+msgid "Engine oil capacity (L)"
+msgstr "حجم روغن موتور (لیتر)"
+
+msgid "Engine oil type"
+msgstr "نوع روغن موتور"
+
+msgid "Coolant capacity (L)"
+msgstr "حجم مایع خنک‌کننده (لیتر)"
+
+msgid "Cooling system"
+msgstr "سیستم خنک‌کاری"
+
+msgid "Gearbox type"
+msgstr "نوع گیربکس"
+
+msgid "Gears"
+msgstr "تعداد دنده"
+
+msgid "Transmission mode"
+msgstr "حالت گیربکس"
+
+msgid "Clutch type"
+msgstr "نوع کلاچ"
+
+msgid "Reverse gears"
+msgstr "تعداد دنده عقب"
+
+msgid "Drive modes"
+msgstr "حالت‌های رانندگی"
+
+msgid "Tiptronic"
+msgstr "تیپ‌ترونیک"
+
+msgid "Paddle shifters"
+msgstr "پدال شیفتر"
+
+msgid "Combined consumption"
+msgstr "مصرف ترکیبی"
+
+msgid "Range (km)"
+msgstr "برد تقریبی (کیلومتر)"
+
+msgid "CO₂ (g/km)"
+msgstr "میزان CO₂ (گرم بر کیلومتر)"
+
+msgid "Towing capacity (kg)"
+msgstr "ظرفیت یدک‌کشی (کیلوگرم)"
+
+msgid "Length (mm)"
+msgstr "طول (میلی‌متر)"
+
+msgid "Width (mm)"
+msgstr "عرض (میلی‌متر)"
+
+msgid "Height (mm)"
+msgstr "ارتفاع (میلی‌متر)"
+
+msgid "Wheelbase (mm)"
+msgstr "فاصله محوری (میلی‌متر)"
+
+msgid "Curb weight (kg)"
+msgstr "وزن خالص (کیلوگرم)"
+
+msgid "Cargo volume (L)"
+msgstr "حجم صندوق (لیتر)"
+
+msgid "Ground clearance (mm)"
+msgstr "فاصله از زمین (میلی‌متر)"
+
+msgid "Fuel tank (L)"
+msgstr "حجم باک (لیتر)"
+
+msgid "Front track (mm)"
+msgstr "عرض محور جلو (میلی‌متر)"
+
+msgid "Rear track (mm)"
+msgstr "عرض محور عقب (میلی‌متر)"
+
+msgid "Turning circle (m)"
+msgstr "قطر چرخش (متر)"
+
+msgid "Cargo seats folded (L)"
+msgstr "حجم صندوق با صندلی خوابیده (لیتر)"
+
+msgid "Cabin volume (L)"
+msgstr "حجم کابین (لیتر)"
+
+msgid "Gross weight (kg)"
+msgstr "وزن مجاز (کیلوگرم)"
+
+msgid "Payload (kg)"
+msgstr "ظرفیت حمل بار (کیلوگرم)"
+
+msgid "Front suspension"
+msgstr "تعلیق جلو"
+
+msgid "Front shock"
+msgstr "کمک‌فنر جلو"
+
+msgid "Front spring"
+msgstr "فنر جلو"
+
+msgid "Rear suspension"
+msgstr "تعلیق عقب"
+
+msgid "Rear shock"
+msgstr "کمک‌فنر عقب"
+
+msgid "Rear spring"
+msgstr "فنر عقب"
+
+msgid "Steering system"
+msgstr "سیستم فرمان"
+
+msgid "Steering type"
+msgstr "نوع فرمان"
+
+msgid "Steering assist"
+msgstr "کمک فرمان"
+
+msgid "Turning radius (m)"
+msgstr "شعاع گردش (متر)"
+
+msgid "Front brake"
+msgstr "ترمز جلو"
+
+msgid "Rear brake"
+msgstr "ترمز عقب"
+
+msgid "Front brake type"
+msgstr "نوع ترمز جلو"
+
+msgid "Rear brake type"
+msgstr "نوع ترمز عقب"
+
+msgid "ABS"
+msgstr "ABS"
+
+msgid "EBD"
+msgstr "EBD"
+
+msgid "Brake assist (BA)"
+msgstr "کمک ترمز (BA)"
+
+msgid "ESP"
+msgstr "ESP"
+
+msgid "TCS"
+msgstr "TCS"
+
+msgid "Auto Hold"
+msgstr "نگهدارنده خودکار"
+
+msgid "Electric parking brake"
+msgstr "ترمز پارک برقی"
+
+msgid "AEB"
+msgstr "ترمز اضطراری خودکار"
+
+msgid "Assist systems"
+msgstr "سیستم‌های کمکی"
+
+msgid "Rim size"
+msgstr "سایز رینگ"
+
+msgid "Rim material"
+msgstr "جنس رینگ"
+
+msgid "Front tire size"
+msgstr "سایز لاستیک جلو"
+
+msgid "Rear tire size"
+msgstr "سایز لاستیک عقب"
+
+msgid "Spare tire"
+msgstr "لاستیک زاپاس"
+
+msgid "Spare type"
+msgstr "نوع زاپاس"
+
+msgid "TPMS"
+msgstr "سیستم پایش فشار تایر"
+
+msgid "Standard pressure"
+msgstr "فشار استاندارد"
+
+msgid "Dashboard material"
+msgstr "جنس داشبورد"
+
+msgid "Seat material"
+msgstr "جنس صندلی"
+
+msgid "Upholstery"
+msgstr "روکش"
+
+msgid "Seat count"
+msgstr "تعداد صندلی"
+
+msgid "Driver seat adjustment"
+msgstr "تنظیمات صندلی راننده"
+
+msgid "Passenger seat adjustment"
+msgstr "تنظیمات صندلی سرنشین"
+
+msgid "Rear seat adjustment"
+msgstr "تنظیم صندلی عقب"
+
+msgid "Front legroom (mm)"
+msgstr "فضای پای جلو (میلی‌متر)"
+
+msgid "Rear legroom (mm)"
+msgstr "فضای پای عقب (میلی‌متر)"
+
+msgid "Headroom (mm)"
+msgstr "فضای سر (میلی‌متر)"
+
+msgid "Armrest"
+msgstr "تکیه‌گاه دست"
+
+msgid "Cup holders"
+msgstr "جا لیوانی"
+
+msgid "Rear AC vents"
+msgstr "دریچه تهویه عقب"
+
+msgid "Power tailgate"
+msgstr "صندوق عقب برقی"
+
+msgid "Folding rear seats"
+msgstr "قابلیت خواباندن صندلی عقب"
+
+msgid "Center display"
+msgstr "نمایشگر مرکزی"
+
+msgid "Display size (inch)"
+msgstr "اندازه نمایشگر (اینچ)"
+
+msgid "Audio system"
+msgstr "سیستم صوتی"
+
+msgid "Speakers"
+msgstr "تعداد بلندگو"
+
+msgid "Amplifier"
+msgstr "آمپلی‌فایر"
+
+msgid "Subwoofer"
+msgstr "ساب‌ووفر"
+
+msgid "Bluetooth"
+msgstr "بلوتوث"
+
+msgid "USB"
+msgstr "USB"
+
+msgid "AUX"
+msgstr "AUX"
+
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+msgid "Apple CarPlay"
+msgstr "Apple CarPlay"
+
+msgid "Android Auto"
+msgstr "Android Auto"
+
+msgid "Navigation"
+msgstr "مسیریابی"
+
+msgid "MirrorLink"
+msgstr "MirrorLink"
+
+msgid "Voice control"
+msgstr "فرمان صوتی"
+
+msgid "Phone connectivity"
+msgstr "اتصال تلفن همراه"
+
+msgid "Digital cluster"
+msgstr "صفحه کیلومتر دیجیتال"
+
+msgid "Head-up display"
+msgstr "نمایشگر سربالا"
+
+msgid "Factory price"
+msgstr "قیمت کارخانه"
+
+msgid "Market price (new)"
+msgstr "قیمت بازار (صفر)"
+
+msgid "Market price (used)"
+msgstr "قیمت بازار (کارکرده)"
+
+msgid "Depreciation (%)"
+msgstr "افت قیمت (%)"
+
+msgid "Liquidity score"
+msgstr "نقدشوندگی"
+
+msgid "Demand score"
+msgstr "میزان تقاضا"
+
+msgid "Popularity score"
+msgstr "محبوبیت"
+
+msgid "Annual maintenance cost"
+msgstr "هزینه نگهداری سالانه"
+
+msgid "Annual insurance cost"
+msgstr "هزینه بیمه سالانه"
+
+msgid "Average service cost"
+msgstr "میانگین هزینه سرویس"
+
+msgid "Parts price index"
+msgstr "شاخص قیمت قطعات"
+
+msgid "Parts availability"
+msgstr "فراوانی قطعات"
+
+msgid "Mechanic availability"
+msgstr "فراوانی تعمیرکار"
+
+msgid "Recorded at"
+msgstr "تاریخ ثبت"
+
+msgid "Image"
+msgstr "تصویر"
+
+msgid "Caption"
+msgstr "عنوان تصویر"
+
+msgid "Sort order"
+msgstr "ترتیب"
+
+msgid "Feature key"
+msgstr "کلید ویژگی"
+
+msgid "Feature name"
+msgstr "نام ویژگی"
+
+msgid "Value"
+msgstr "مقدار"
+
+msgid "Availability"
+msgstr "وضعیت موجودی"
+
+msgid "Interval (km)"
+msgstr "بازه (کیلومتر)"
+
+msgid "Interval (months)"
+msgstr "بازه (ماه)"
+
+msgid "Estimated cost"
+msgstr "هزینه تقریبی"
+
+msgid "Fluid type"
+msgstr "نوع مایع"
+
+msgid "Specification"
+msgstr "مشخصات"
+
+msgid "Grade"
+msgstr "گرید"
+
+msgid "Capacity"
+msgstr "حجم"
+
+msgid "Position"
+msgstr "موقعیت"
+
+msgid "Size"
+msgstr "سایز"
+
+msgid "Pressure (psi)"
+msgstr "فشار (psi)"
+
+msgid "Load index"
+msgstr "شاخص بار"
+
+msgid "Speed rating"
+msgstr "شاخص سرعت"
+
+msgid "Group size"
+msgstr "سایز گروه"
+
+msgid "Voltage"
+msgstr "ولتاژ"
+
+msgid "CCA"
+msgstr "CCA"
+
+msgid "Chemistry"
+msgstr "شیمی باتری"
+
+msgid "Months"
+msgstr "ماه"
+
+msgid "Tasks"
+msgstr "کارها"
+
+msgid "Part name"
+msgstr "نام قطعه"
+
+msgid "OEM number"
+msgstr "شماره OEM"
+
+msgid "Consumable"
+msgstr "مصرفی"
+
+msgid "Area"
+msgstr "ناحیه"
+
+msgid "Likelihood"
+msgstr "احتمال وقوع"
+
+msgid "Repair cost (min)"
+msgstr "حداقل هزینه تعمیر"
+
+msgid "Repair cost (max)"
+msgstr "حداکثر هزینه تعمیر"
+
+msgid "Symptoms"
+msgstr "علائم"
+
+msgid "Label"
+msgstr "برچسب"
+
+msgid "Source"
+msgstr "منبع"
+
+msgid "Year for price"
+msgstr "سال قیمت"
+
+msgid "Suspension"
+msgstr "تعلیق"
+
+msgid "Brakes"
+msgstr "ترمز"
+
+msgid "Wheels"
+msgstr "چرخ‌ها"
+
+msgid "Cabin"
+msgstr "کابین"
+
+msgid "Multimedia"
+msgstr "مالتی‌مدیا"
+
+msgid "Iran market"
+msgstr "بازار ایران"
+
+msgid "Common failures"
+msgstr "خرابی‌های رایج"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Translations"
+msgstr "ترجمه‌ها"
+
+msgid "Fill each language"
+msgstr "هر زبان را تکمیل کنید"
+
+msgid "Basics & identity"
+msgstr "اطلاعات پایه و شناسنامه"
+
+msgid "Add name, official name, and description in فارسی, English, and العربية. Switch tabs below to edit each language."
+msgstr "نام، نام رسمی و توضیحات را به فارسی، English و العربية وارد کنید. برای ویرایش هر زبان از تب‌های زیر استفاده کنید."
+
+msgid "Add name and description in فارسی, English, and العربية, then fill the specs."
+msgstr "نام و توضیحات را به فارسی، English و العربية وارد کنید، سپس مشخصات را تکمیل کنید."

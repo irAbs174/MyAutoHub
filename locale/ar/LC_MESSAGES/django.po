@@ -149,31 +149,25 @@ msgstr ""
 
 msgid "Model"
 msgstr "الطراز"
-
 msgid "All trims"
 msgstr "كل الفئات"
 
 msgid "Trim"
 msgstr "الفئة"
-
 msgid "All manufacturers"
 msgstr "كل الشركات المصنعة"
 
 msgid "Manufacturer"
 msgstr "الشركة المصنعة"
-
 msgid "Fuel"
 msgstr ""
 
 msgid "Transmission"
 msgstr "ناقل الحركة"
-
 msgid "Drivetrain"
 msgstr "نظام الدفع"
-
 msgid "Seats"
 msgstr "المقاعد"
-
 msgid "Year from"
 msgstr "السنة"
 
@@ -438,19 +432,11 @@ msgstr "هذا الموقع لا يخصك."
 msgid "Provide saved_location_id or latitude and longitude."
 msgstr "قدّم معرّف الموقع المحفوظ أو خط العرض وخط الطول."
 
-#, python-format
-msgid "Cannot change status from %(from)s to %(to)s."
-msgstr "لا يمكن تغيير الحالة من %(from)s إلى %(to)s."
-
 msgid "Only emergency operators can accept requests."
 msgstr "فقط مشغّلو الطوارئ يمكنهم قبول الطلبات."
 
 msgid "Only emergency operator administrators can finish requests."
 msgstr "فقط مسؤولو مشغّلي الطوارئ يمكنهم إنهاء الطلبات."
-
-#, python-format
-msgid "Unsupported target status: %(status)s"
-msgstr "حالة الوجهة غير مدعومة: %(status)s"
 
 msgid "Request submitted"
 msgstr "تم إرسال الطلب"
@@ -520,13 +506,10 @@ msgstr "السعر"
 
 msgid "Currency"
 msgstr "العملة"
-
 msgid "Year"
 msgstr "السنة"
-
 msgid "Mileage (km)"
-msgstr "المسافة المقطوعة (كم)"
-
+msgstr "المسافة (كم)"
 msgid "City"
 msgstr "المدينة"
 
@@ -618,13 +601,8 @@ msgstr "تم سحب الإعلان."
 msgid "You cannot inquire on your own listing."
 msgstr "لا يمكنك الاستفسار عن إعلانك الخاص."
 
-#, python-format
-msgid "Message sent to %(seller)s. They will see it on this listing."
-msgstr "أُرسلت الرسالة إلى %(seller)s. سيراها على هذا الإعلان."
-
 msgid "Published"
-msgstr "نشر الإعلان"
-
+msgstr "منشور"
 msgid "Draft"
 msgstr ""
 
@@ -842,18 +820,6 @@ msgstr "افتح الكتالوج للمواصفات والنماذج."
 msgid "Saved locations"
 msgstr "المواقع المحفوظة"
 
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s place"
-msgid_plural "%(counter)s places"
-msgstr[0] "%(counter)s مكان"
-msgstr[1] "%(counter)s مكان"
-msgstr[2] "%(counter)s مكانان"
-msgstr[3] "%(counter)s أماكن"
-msgstr[4] "%(counter)s مكاناً"
-msgstr[5] "%(counter)s مكان"
-
 msgid "Default"
 msgstr "افتراضي"
 
@@ -937,15 +903,28 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#| msgid "Back to list"
-msgid "Back to top"
-msgstr "العودة للأعلى"
-
 msgid "Brands-MyAutoHub"
 msgstr "العلامات-ماي أوتو هب"
 
-#, python-format
-msgid "Models and cars for %(name)s on MyAutoHub."
+msgid "Categories-MyAutoHub"
+msgstr "الفئات-ماي أوتو هب"
+
+msgid "Browse car categories on MyAutoHub-SUV, hybrid, family, economy, and more."
+msgstr "تصفح فئات السيارات في ماي أوتو هب-دفع رباعي وهجين وعائلي واقتصادي والمزيد."
+
+msgid "Explore practical tags for the catalog-open a category for models and cars."
+msgstr "استكشف الوسوم العملية للكتالوج-افتح فئة للنماذج والسيارات."
+
+msgid "All categories"
+msgstr "كل الفئات"
+
+msgid "No categories in the catalog yet."
+msgstr "لا توجد فئات في الكتالوج بعد."
+
+msgid "No models in this category yet."
+msgstr "لا توجد نماذج في هذه الفئة بعد."
+
+msgid "Models and cars in %(name)s on MyAutoHub."
 msgstr "نماذج وسيارات %(name)s في ماي أوتو هب."
 
 msgid "View in catalog"
@@ -953,18 +932,6 @@ msgstr "عرض في الكتالوج"
 
 msgid "Models"
 msgstr "النماذج"
-
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s car"
-msgid_plural "%(counter)s cars"
-msgstr[0] "%(counter)s جديد"
-msgstr[1] "%(counter)s جديد"
-msgstr[2] "%(counter)s جديد"
-msgstr[3] "%(counter)s جديدة"
-msgstr[4] "%(counter)s جديد"
-msgstr[5] "%(counter)s جديد"
 
 msgid "No models for this brand yet."
 msgstr "لا توجد نماذج لهذه العلامة بعد."
@@ -988,30 +955,6 @@ msgstr ""
 msgid "Car catalog"
 msgstr "كتالوج السيارات"
 
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s brand"
-msgid_plural "%(counter)s brands"
-msgstr[0] "%(counter)s علامة"
-msgstr[1] "%(counter)s علامات"
-msgstr[2] "%(counter)s علامتان"
-msgstr[3] "%(counter)s علامات"
-msgstr[4] "%(counter)s علامة"
-msgstr[5] "%(counter)s علامة"
-
-#, fuzzy, python-format
-#| msgid "%(counter)s new"
-#| msgid_plural "%(counter)s new"
-msgid "%(counter)s model"
-msgid_plural "%(counter)s models"
-msgstr[0] "%(counter)s نموذج"
-msgstr[1] "%(counter)s نماذج"
-msgstr[2] "%(counter)s نموذجان"
-msgstr[3] "%(counter)s نماذج"
-msgstr[4] "%(counter)s نموذجاً"
-msgstr[5] "%(counter)s نموذج"
-
 msgid "No brands in the catalog yet."
 msgstr "لا توجد علامات في الكتالوج بعد."
 
@@ -1022,32 +965,24 @@ msgid "Specs"
 msgstr "المواصفات"
 
 msgid "Dimensions"
-msgstr ""
-
+msgstr "الأبعاد"
 msgid "Features"
-msgstr ""
-
+msgstr "الميزات"
 msgid "Maintenance"
-msgstr ""
-
+msgstr "الصيانة"
 msgid "Fluids"
-msgstr ""
-
+msgstr "السوائل"
 msgid "Tires"
-msgstr ""
-
+msgstr "الإطارات"
 msgid "Batteries"
-msgstr "العودة إلى القصص"
-
+msgstr "البطاريات"
 msgid "OBD"
 msgstr "OBD"
 
 msgid "Parts"
-msgstr ""
-
+msgstr "القطع"
 msgid "Prices"
-msgstr "السعر"
-
+msgstr "الأسعار"
 msgid "Dealers"
 msgstr ""
 
@@ -1058,17 +993,14 @@ msgid "Technical"
 msgstr "تقني"
 
 msgid "Technical specs"
-msgstr ""
-
+msgstr "المواصفات الفنية"
 msgid "Engine"
 msgstr "المحرك"
-
 msgid "Displacement"
 msgstr "السعة"
 
 msgid "Cylinders"
 msgstr "الأسطوانات"
-
 msgid "Top speed"
 msgstr "السرعة القصوى"
 
@@ -1118,8 +1050,7 @@ msgid "Battery"
 msgstr "البطارية"
 
 msgid "Service schedule"
-msgstr "خدمات عند الطلب"
-
+msgstr "جدول الخدمة"
 msgid "OBD codes"
 msgstr "رموز OBD"
 
@@ -1145,18 +1076,17 @@ msgid "Browse brands and models with the essentials-year, power, and trim."
 msgstr "تصفح العلامات والنماذج مع الأساسيات-السنة والقوة والتجهيز."
 
 msgid ""
-"Filter by country, brand, model, trim, fuel, power, transmission, or seats. "
+"Filter by country, brand, category, model, trim, fuel, power, transmission, or seats. "
 "Open a car for full specs."
 msgstr ""
-"صفِّ حسب الدولة أو العلامة أو النموذج أو الفئة أو الوقود أو القوة أو ناقل "
+"صفِّ حسب الدولة أو العلامة أو الفئة أو النموذج أو التجهيز أو الوقود أو القوة أو ناقل "
 "الحركة أو المقاعد. افتح سيارة للمواصفات الكاملة."
 
 msgid "Filter by country"
 msgstr "التصفية حسب الدولة"
 
 msgid "Horsepower"
-msgstr "القوة الحصانية"
-
+msgstr "القدرة الحصانية"
 msgid "Filter"
 msgstr ""
 
@@ -1298,10 +1228,43 @@ msgid "Slide controls"
 msgstr ""
 
 msgid "Previous"
-msgstr ""
+msgstr "السابق"
 
 msgid "Next"
-msgstr ""
+msgstr "التالي"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Zoom in"
+msgstr "تكبير"
+
+msgid "Zoom out"
+msgstr "تصغير"
+
+msgid "Click to zoom"
+msgstr "انقر للتكبير"
+
+msgid "Open gallery"
+msgstr "فتح المعرض"
+
+msgid "See more images"
+msgstr "المزيد من الصور"
+
+msgid "Open image %(n)s"
+msgstr "فتح الصورة %(n)s"
+
+msgid "Jump to"
+msgstr "انتقل إلى"
+
+msgid "Tap for details"
+msgstr "انقر للتفاصيل"
+
+msgid "Tap to close"
+msgstr "انقر للإغلاق"
+
+msgid "Open catalog page"
+msgstr "فتح صفحة الكتالوج"
 
 msgid "Services on call"
 msgstr "خدمات عند الطلب"
@@ -1346,27 +1309,11 @@ msgstr "إعلاناتي"
 msgid "Create an account"
 msgstr "إنشاء حساب"
 
-#, python-format
-msgid "Search: %(q)s-MyAutoHub"
-msgstr "بحث: %(q)s-ماي أوتو هب"
-
 msgid "Search-MyAutoHub"
 msgstr "بحث-ماي أوتو هب"
 
 msgid "Hub"
 msgstr "المركز"
-
-#, fuzzy, python-format
-#| msgid "%(counter)s car for sale"
-#| msgid_plural "%(counter)s cars for sale"
-msgid "%(counter)s result for “%(q)s”"
-msgid_plural "%(counter)s results for “%(q)s”"
-msgstr[0] "%(counter)s نتيجة لـ «%(q)s»"
-msgstr[1] "%(counter)s نتيجة لـ «%(q)s»"
-msgstr[2] "%(counter)s نتيجتان لـ «%(q)s»"
-msgstr[3] "%(counter)s نتائج لـ «%(q)s»"
-msgstr[4] "%(counter)s نتيجة لـ «%(q)s»"
-msgstr[5] "%(counter)s نتيجة لـ «%(q)s»"
 
 msgid ""
 "Find cars, listings, stories, videos, prices, places, and roadside help."
@@ -1378,34 +1325,8 @@ msgstr "لا توجد نتائج. جرّب كلمة أخرى أو تصفّح ا�
 msgid "Browse all"
 msgstr "عرض الكل"
 
-#, python-format
-msgid "Emergency #%(id)s-MyAutoHub"
-msgstr "طوارئ #%(id)s-ماي أوتو هب"
-
 msgid "Help"
 msgstr "مساعدة"
-
-#, python-format
-msgid "Request #%(id)s"
-msgstr "طلب #%(id)s"
-
-#, python-format
-msgid "Opened %(when)s"
-msgstr "فُتح %(when)s"
-
-#, python-format
-msgid "Requester: %(name)s"
-msgstr "مقدّم الطلب: %(name)s"
-
-#, python-format
-msgid "%(counter)s unread buzz"
-msgid_plural "%(counter)s unread buzzes"
-msgstr[0] "%(counter)s تنبيه غير مقروء"
-msgstr[1] "%(counter)s تنبيه غير مقروء"
-msgstr[2] "%(counter)s تنبيهان غير مقروءين"
-msgstr[3] "%(counter)s تنبيهات غير مقروءة"
-msgstr[4] "%(counter)s تنبيهاً غير مقروء"
-msgstr[5] "%(counter)s تنبيه غير مقروء"
 
 msgid "Details"
 msgstr "التفاصيل"
@@ -1421,7 +1342,6 @@ msgstr "تنبيه!"
 
 msgid "Cancel"
 msgstr "إلغاء"
-
 msgid "Back to list"
 msgstr "العودة إلى القائمة"
 
@@ -1437,10 +1357,6 @@ msgstr "ملاحظة"
 msgid "Apply"
 msgstr "تطبيق"
 
-#, python-format
-msgid "Rating: %(rating)s/5"
-msgstr "التقييم: %(rating)s/5"
-
 msgid "Share experience"
 msgstr "مشاركة التجربة"
 
@@ -1455,10 +1371,6 @@ msgstr "لا توجد انتقالات بعد."
 
 msgid "Buzz history"
 msgstr "سجل التنبيهات"
-
-#, python-format
-msgid "Buzz from %(name)s · %(when)s"
-msgstr "تنبيه من %(name)s · %(when)s"
 
 msgid "Unread"
 msgstr "غير مقروء"
@@ -1506,16 +1418,6 @@ msgstr "الوقت"
 
 msgid "Buzz"
 msgstr "تنبيه"
-
-#, python-format
-msgid "%(counter)s new"
-msgid_plural "%(counter)s new"
-msgstr[0] "%(counter)s جديد"
-msgstr[1] "%(counter)s جديد"
-msgstr[2] "%(counter)s جديد"
-msgstr[3] "%(counter)s جديدة"
-msgstr[4] "%(counter)s جديد"
-msgstr[5] "%(counter)s جديد"
 
 msgid "Open"
 msgstr "فتح"
@@ -1646,17 +1548,8 @@ msgstr "متابعة"
 
 msgid "Save changes"
 msgstr "حفظ التغييرات"
-
 msgid "Publish listing"
 msgstr "نشر الإعلان"
-
-#, python-format
-msgid "Seller: %(name)s"
-msgstr "البائع: %(name)s"
-
-#, python-format
-msgid "Year: %(year)s"
-msgstr "السنة: %(year)s"
 
 msgid "Mark sold"
 msgstr "وسم كمباع"
@@ -1710,20 +1603,6 @@ msgstr ""
 msgid "Log in to sell"
 msgstr "سجّل الدخول للبيع"
 
-#, python-format
-msgid "%(counter)s car for sale"
-msgid_plural "%(counter)s cars for sale"
-msgstr[0] "%(counter)s سيارة للبيع"
-msgstr[1] "%(counter)s سيارة للبيع"
-msgstr[2] "%(counter)s سيارة للبيع"
-msgstr[3] "%(counter)s سيارة للبيع"
-msgstr[4] "%(counter)s سيارة للبيع"
-msgstr[5] "%(counter)s سيارة للبيع"
-
-#, python-format
-msgid "by %(name)s"
-msgstr "بواسطة %(name)s"
-
 msgid "Yours"
 msgstr "خاصتك"
 
@@ -1751,26 +1630,6 @@ msgstr "تصفّح السوق"
 
 msgid "Profile"
 msgstr "فتح الملف"
-
-#, python-format
-msgid "%(counter)s new message"
-msgid_plural "%(counter)s new messages"
-msgstr[0] "%(counter)s رسالة جديدة"
-msgstr[1] "%(counter)s رسالة جديدة"
-msgstr[2] "%(counter)s رسالة جديدة"
-msgstr[3] "%(counter)s رسالة جديدة"
-msgstr[4] "%(counter)s رسالة جديدة"
-msgstr[5] "%(counter)s رسالة جديدة"
-
-#, python-format
-msgid "%(counter)s message"
-msgid_plural "%(counter)s messages"
-msgstr[0] "%(counter)s رسالة"
-msgstr[1] "%(counter)s رسالة"
-msgstr[2] "%(counter)s رسالة"
-msgstr[3] "%(counter)s رسالة"
-msgstr[4] "%(counter)s رسالة"
-msgstr[5] "%(counter)s رسالة"
 
 msgid "You have not listed a car yet."
 msgstr "لم تدرج سيارة بعد."
@@ -1823,6 +1682,30 @@ msgstr ""
 msgid "Organize the car catalog taxonomy."
 msgstr ""
 
+msgid "Organize practical catalog tags."
+msgstr "نظّم وسوم الكتالوج العملية."
+
+msgid "New category"
+msgstr "فئة جديدة"
+
+msgid "Edit category"
+msgstr "تعديل الفئة"
+
+msgid "Add a practical tag to the catalog."
+msgstr "أضف وسمًا عمليًا إلى الكتالوج."
+
+msgid "Create category"
+msgstr "إنشاء فئة"
+
+msgid "Category created."
+msgstr "تم إنشاء الفئة."
+
+msgid "Category updated."
+msgstr "تم تحديث الفئة."
+
+msgid "No categories yet. Create the first one."
+msgstr "لا توجد فئات بعد. أنشئ الأولى."
+
 msgid "New model"
 msgstr ""
 
@@ -1854,8 +1737,7 @@ msgid "Create dealer"
 msgstr "خدمات الطوارئ"
 
 msgid "Name"
-msgstr ""
-
+msgstr "الاسم"
 msgid "Yes"
 msgstr "نعم"
 
@@ -1866,20 +1748,16 @@ msgid "No dealers yet."
 msgstr "لا توجد رسائل مشترين بعد."
 
 msgid "Edit car"
-msgstr "كل الخدمات"
-
+msgstr "تعديل السيارة"
 msgid "New car"
-msgstr "أحدث السيارات"
-
+msgstr "سيارة جديدة"
 msgid "Add a car to the catalog."
 msgstr "لا توجد سيارات في الكتالوج بعد."
 
 msgid "Gallery photos"
-msgstr "صورة الغلاف"
-
+msgstr "معرض الصور"
 msgid "Create car"
-msgstr "إنشاء حساب"
-
+msgstr "إنشاء سيارة"
 msgid "Catalog cars shown on the hub."
 msgstr ""
 
@@ -1909,10 +1787,8 @@ msgstr ""
 
 msgid "Title"
 msgstr "العنوان"
-
 msgid "Severity"
-msgstr ""
-
+msgstr "الشدة"
 msgid "No OBD codes yet."
 msgstr "لا توجد رسائل مشترين بعد."
 
@@ -2090,10 +1966,8 @@ msgstr "أسعار مرجعية بعناوين وملاحظات FA / EN / AR."
 
 msgid "Category"
 msgstr "الفئة"
-
 msgid "Amount"
 msgstr "المبلغ"
-
 msgid "No price references yet."
 msgstr "لا توجد أسعار مرجعية بعد."
 
@@ -2199,14 +2073,6 @@ msgstr "لا توجد ورش منشورة بعد."
 msgid "General reference"
 msgstr "مرجع عام"
 
-#, python-format
-msgid "Source: %(source)s"
-msgstr "المصدر: %(source)s"
-
-#, python-format
-msgid "Updated %(when)s"
-msgstr "حُدّث %(when)s"
-
 msgid "Pricing-MyAutoHub"
 msgstr "الأسعار-ماي أوتو هب"
 
@@ -2228,10 +2094,6 @@ msgstr ""
 
 msgid "No pricing references published yet."
 msgstr "لم تُنشر مراجع أسعار بعد."
-
-#, python-format
-msgid "By %(name)s · "
-msgstr "بقلم %(name)s · "
 
 msgid "Back to stories"
 msgstr "العودة إلى القصص"
@@ -2269,27 +2131,599 @@ msgstr "أُضيف مؤخراً"
 msgid "No videos published yet."
 msgstr "لم تُنشر فيديوهات بعد."
 
-#~ msgid ""
-#~ "Filter by country flag, brand, model, or year. Open a car for specs, then "
-#~ "jump to marketplace deals for that model."
-#~ msgstr ""
-#~ "صفِّ بعلم الدولة أو العلامة أو النموذج أو السنة. افتح سيارة للمواصفات، ثم "
-#~ "انتقل إلى عروض السوق لذلك النموذج."
+msgid "Fuel type"
+msgstr "نوع الوقود"
 
-#~ msgid "Saudi Arabia"
-#~ msgstr "السعودية"
+msgid "Official name"
+msgstr "الاسم الرسمي"
 
-#~ msgid "Open emergency work at a glance."
-#~ msgstr "فقط مشغّلو الطوارئ يمكنهم قبول الطلبات."
+msgid "Description"
+msgstr "الوصف"
 
-#~ msgid "Label"
-#~ msgstr "التسمية"
+msgid "Model code"
+msgstr "رمز الطراز"
 
-#~ msgid "Coordinates"
-#~ msgstr "الإحداثيات"
+msgid "Chassis code"
+msgstr "رمز الهيكل"
 
-#~ msgid "No saved locations yet."
-#~ msgstr "لا توجد مواقع محفوظة بعد."
+msgid "Generation"
+msgstr "الجيل"
 
-#~ msgid "Open live map for roadside help"
-#~ msgstr "افتح الخريطة المباشرة للمساعدة على الطريق"
+msgid "Facelift"
+msgstr "تحديث الواجهة"
+
+msgid "Body style"
+msgstr "شكل الهيكل"
+
+msgid "Importer"
+msgstr "المستورد"
+
+msgid "Assembler"
+msgstr "المُجمِّع"
+
+msgid "Country of origin"
+msgstr "بلد المنشأ"
+
+msgid "Assembly country"
+msgstr "بلد التجميع"
+
+msgid "Introduced year"
+msgstr "سنة الإطلاق"
+
+msgid "Iran entry year"
+msgstr "سنة الدخول إلى إيران"
+
+msgid "Production start year"
+msgstr "سنة بدء الإنتاج"
+
+msgid "Production end year"
+msgstr "سنة انتهاء الإنتاج"
+
+msgid "Market status"
+msgstr "حالة السوق"
+
+msgid "Doors"
+msgstr "عدد الأبواب"
+
+msgid "Categories"
+msgstr "التصنيفات"
+
+msgid "Cover image"
+msgstr "صورة الغلاف"
+
+msgid "Displacement (cc)"
+msgstr "السعة (سي سي)"
+
+msgid "Top speed (km/h)"
+msgstr "السرعة القصوى (كم/س)"
+
+msgid "Acceleration 0–100 (s)"
+msgstr "التسارع ٠–١٠٠ (ث)"
+
+msgid "City consumption"
+msgstr "استهلاك المدينة"
+
+msgid "Highway consumption"
+msgstr "استهلاك الطريق"
+
+msgid "Emission standard"
+msgstr "معيار الانبعاثات"
+
+msgid "Notes"
+msgstr "ملاحظات"
+
+msgid "Engine code"
+msgstr "رمز المحرك"
+
+msgid "Engine type"
+msgstr "نوع المحرك"
+
+msgid "Cylinder arrangement"
+msgstr "ترتيب الأسطوانات"
+
+msgid "Valves"
+msgstr "الصمامات"
+
+msgid "Camshaft"
+msgstr "عمود الكامات"
+
+msgid "Aspiration"
+msgstr "السحب / التيربو"
+
+msgid "Supercharged"
+msgstr "شحن فائق"
+
+msgid "Fuel injection"
+msgstr "حقن الوقود"
+
+msgid "Fuel type (detail)"
+msgstr "نوع الوقود (تفصيل)"
+
+msgid "Power (hp)"
+msgstr "القدرة (حصان)"
+
+msgid "Power RPM"
+msgstr "دورة أقصى قدرة"
+
+msgid "Torque (Nm)"
+msgstr "عزم الدوران (نيوتن متر)"
+
+msgid "Torque RPM"
+msgstr "دورة أقصى عزم"
+
+msgid "Compression ratio"
+msgstr "نسبة الضغط"
+
+msgid "Engine oil capacity (L)"
+msgstr "سعة زيت المحرك (ل)"
+
+msgid "Engine oil type"
+msgstr "نوع زيت المحرك"
+
+msgid "Coolant capacity (L)"
+msgstr "سعة سائل التبريد (ل)"
+
+msgid "Cooling system"
+msgstr "نظام التبريد"
+
+msgid "Gearbox type"
+msgstr "نوع علبة التروس"
+
+msgid "Gears"
+msgstr "عدد السرعات"
+
+msgid "Transmission mode"
+msgstr "وضع ناقل الحركة"
+
+msgid "Clutch type"
+msgstr "نوع القابض"
+
+msgid "Reverse gears"
+msgstr "تروس الرجوع"
+
+msgid "Drive modes"
+msgstr "أوضاع القيادة"
+
+msgid "Tiptronic"
+msgstr "تيبترونيك"
+
+msgid "Paddle shifters"
+msgstr "مبدلات خلف المقود"
+
+msgid "Combined consumption"
+msgstr "الاستهلاك المختلط"
+
+msgid "Range (km)"
+msgstr "المدى (كم)"
+
+msgid "CO₂ (g/km)"
+msgstr "CO₂ (غ/كم)"
+
+msgid "Towing capacity (kg)"
+msgstr "قدرة السحب (كغ)"
+
+msgid "Length (mm)"
+msgstr "الطول (مم)"
+
+msgid "Width (mm)"
+msgstr "العرض (مم)"
+
+msgid "Height (mm)"
+msgstr "الارتفاع (مم)"
+
+msgid "Wheelbase (mm)"
+msgstr "قاعدة العجلات (مم)"
+
+msgid "Curb weight (kg)"
+msgstr "الوزن الصافي (كغ)"
+
+msgid "Cargo volume (L)"
+msgstr "حجم الصندوق (ل)"
+
+msgid "Ground clearance (mm)"
+msgstr "الخلوص الأرضي (مم)"
+
+msgid "Fuel tank (L)"
+msgstr "خزان الوقود (ل)"
+
+msgid "Front track (mm)"
+msgstr "عرض المحور الأمامي (مم)"
+
+msgid "Rear track (mm)"
+msgstr "عرض المحور الخلفي (مم)"
+
+msgid "Turning circle (m)"
+msgstr "قطر الدوران (م)"
+
+msgid "Cargo seats folded (L)"
+msgstr "حجم الصندوق بمقاعد مطوية (ل)"
+
+msgid "Cabin volume (L)"
+msgstr "حجم المقصورة (ل)"
+
+msgid "Gross weight (kg)"
+msgstr "الوزن الإجمالي (كغ)"
+
+msgid "Payload (kg)"
+msgstr "الحمولة (كغ)"
+
+msgid "Front suspension"
+msgstr "تعليق أمامي"
+
+msgid "Front shock"
+msgstr "ممتص صدمات أمامي"
+
+msgid "Front spring"
+msgstr "نابض أمامي"
+
+msgid "Rear suspension"
+msgstr "تعليق خلفي"
+
+msgid "Rear shock"
+msgstr "ممتص صدمات خلفي"
+
+msgid "Rear spring"
+msgstr "نابض خلفي"
+
+msgid "Steering system"
+msgstr "نظام التوجيه"
+
+msgid "Steering type"
+msgstr "نوع التوجيه"
+
+msgid "Steering assist"
+msgstr "مساعدة التوجيه"
+
+msgid "Turning radius (m)"
+msgstr "نصف قطر الدوران (م)"
+
+msgid "Front brake"
+msgstr "فرامل أمامية"
+
+msgid "Rear brake"
+msgstr "فرامل خلفية"
+
+msgid "Front brake type"
+msgstr "نوع الفرامل الأمامية"
+
+msgid "Rear brake type"
+msgstr "نوع الفرامل الخلفية"
+
+msgid "ABS"
+msgstr "ABS"
+
+msgid "EBD"
+msgstr "EBD"
+
+msgid "Brake assist (BA)"
+msgstr "مساعدة الفرامل (BA)"
+
+msgid "ESP"
+msgstr "ESP"
+
+msgid "TCS"
+msgstr "TCS"
+
+msgid "Auto Hold"
+msgstr "التثبيت التلقائي"
+
+msgid "Electric parking brake"
+msgstr "فرامل انتظار كهربائية"
+
+msgid "AEB"
+msgstr "فرامل طوارئ تلقائية"
+
+msgid "Assist systems"
+msgstr "أنظمة مساعدة"
+
+msgid "Rim size"
+msgstr "مقاس الجنط"
+
+msgid "Rim material"
+msgstr "مادة الجنط"
+
+msgid "Front tire size"
+msgstr "مقاس الإطار الأمامي"
+
+msgid "Rear tire size"
+msgstr "مقاس الإطار الخلفي"
+
+msgid "Spare tire"
+msgstr "إطار احتياطي"
+
+msgid "Spare type"
+msgstr "نوع الاحتياطي"
+
+msgid "TPMS"
+msgstr "مراقبة ضغط الإطارات"
+
+msgid "Standard pressure"
+msgstr "الضغط القياسي"
+
+msgid "Dashboard material"
+msgstr "مادة لوحة القيادة"
+
+msgid "Seat material"
+msgstr "مادة المقاعد"
+
+msgid "Upholstery"
+msgstr "الكسوة"
+
+msgid "Seat count"
+msgstr "عدد المقاعد"
+
+msgid "Driver seat adjustment"
+msgstr "ضبط مقعد السائق"
+
+msgid "Passenger seat adjustment"
+msgstr "ضبط مقعد الراكب"
+
+msgid "Rear seat adjustment"
+msgstr "ضبط المقعد الخلفي"
+
+msgid "Front legroom (mm)"
+msgstr "مساحة الأرجل الأمامية (مم)"
+
+msgid "Rear legroom (mm)"
+msgstr "مساحة الأرجل الخلفية (مم)"
+
+msgid "Headroom (mm)"
+msgstr "ارتفاع الرأس (مم)"
+
+msgid "Armrest"
+msgstr "مسند الذراع"
+
+msgid "Cup holders"
+msgstr "حاملات الأكواب"
+
+msgid "Rear AC vents"
+msgstr "فتحات تكييف خلفية"
+
+msgid "Power tailgate"
+msgstr "باب خلفي كهربائي"
+
+msgid "Folding rear seats"
+msgstr "مقاعد خلفية قابلة للطي"
+
+msgid "Center display"
+msgstr "شاشة مركزية"
+
+msgid "Display size (inch)"
+msgstr "حجم الشاشة (بوصة)"
+
+msgid "Audio system"
+msgstr "نظام الصوت"
+
+msgid "Speakers"
+msgstr "مكبرات الصوت"
+
+msgid "Amplifier"
+msgstr "مضخم"
+
+msgid "Subwoofer"
+msgstr "صبووفر"
+
+msgid "Bluetooth"
+msgstr "بلوتوث"
+
+msgid "USB"
+msgstr "USB"
+
+msgid "AUX"
+msgstr "AUX"
+
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+msgid "Apple CarPlay"
+msgstr "Apple CarPlay"
+
+msgid "Android Auto"
+msgstr "Android Auto"
+
+msgid "Navigation"
+msgstr "ملاحة"
+
+msgid "MirrorLink"
+msgstr "MirrorLink"
+
+msgid "Voice control"
+msgstr "تحكم صوتي"
+
+msgid "Phone connectivity"
+msgstr "اتصال الهاتف"
+
+msgid "Digital cluster"
+msgstr "عدادات رقمية"
+
+msgid "Head-up display"
+msgstr "عرض رأسي"
+
+msgid "Factory price"
+msgstr "سعر المصنع"
+
+msgid "Market price (new)"
+msgstr "سعر السوق (جديد)"
+
+msgid "Market price (used)"
+msgstr "سعر السوق (مستعمل)"
+
+msgid "Depreciation (%)"
+msgstr "انخفاض القيمة (%)"
+
+msgid "Liquidity score"
+msgstr "سيولة البيع"
+
+msgid "Demand score"
+msgstr "الطلب"
+
+msgid "Popularity score"
+msgstr "الشعبية"
+
+msgid "Annual maintenance cost"
+msgstr "تكلفة الصيانة السنوية"
+
+msgid "Annual insurance cost"
+msgstr "تكلفة التأمين السنوية"
+
+msgid "Average service cost"
+msgstr "متوسط تكلفة الخدمة"
+
+msgid "Parts price index"
+msgstr "مؤشر أسعار القطع"
+
+msgid "Parts availability"
+msgstr "توفر القطع"
+
+msgid "Mechanic availability"
+msgstr "توفر الفنيين"
+
+msgid "Recorded at"
+msgstr "تاريخ التسجيل"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Caption"
+msgstr "تعليق"
+
+msgid "Sort order"
+msgstr "الترتيب"
+
+msgid "Feature key"
+msgstr "مفتاح الميزة"
+
+msgid "Feature name"
+msgstr "اسم الميزة"
+
+msgid "Value"
+msgstr "القيمة"
+
+msgid "Availability"
+msgstr "التوفر"
+
+msgid "Interval (km)"
+msgstr "الفترة (كم)"
+
+msgid "Interval (months)"
+msgstr "الفترة (أشهر)"
+
+msgid "Estimated cost"
+msgstr "التكلفة التقريبية"
+
+msgid "Fluid type"
+msgstr "نوع السائل"
+
+msgid "Specification"
+msgstr "المواصفة"
+
+msgid "Grade"
+msgstr "الدرجة"
+
+msgid "Capacity"
+msgstr "السعة"
+
+msgid "Position"
+msgstr "الموضع"
+
+msgid "Size"
+msgstr "المقاس"
+
+msgid "Pressure (psi)"
+msgstr "الضغط (psi)"
+
+msgid "Load index"
+msgstr "مؤشر الحمولة"
+
+msgid "Speed rating"
+msgstr "تصنيف السرعة"
+
+msgid "Group size"
+msgstr "حجم المجموعة"
+
+msgid "Voltage"
+msgstr "الجهد"
+
+msgid "CCA"
+msgstr "CCA"
+
+msgid "Chemistry"
+msgstr "كيمياء البطارية"
+
+msgid "Months"
+msgstr "أشهر"
+
+msgid "Tasks"
+msgstr "المهام"
+
+msgid "Part name"
+msgstr "اسم القطعة"
+
+msgid "OEM number"
+msgstr "رقم OEM"
+
+msgid "Consumable"
+msgstr "مستهلك"
+
+msgid "Area"
+msgstr "المنطقة"
+
+msgid "Likelihood"
+msgstr "الاحتمال"
+
+msgid "Repair cost (min)"
+msgstr "تكلفة الإصلاح (حد أدنى)"
+
+msgid "Repair cost (max)"
+msgstr "تكلفة الإصلاح (حد أعلى)"
+
+msgid "Symptoms"
+msgstr "الأعراض"
+
+msgid "Label"
+msgstr "التسمية"
+
+msgid "Source"
+msgstr "المصدر"
+
+msgid "Year for price"
+msgstr "سنة السعر"
+
+msgid "Suspension"
+msgstr "التعليق"
+
+msgid "Brakes"
+msgstr "الفرامل"
+
+msgid "Wheels"
+msgstr "العجلات"
+
+msgid "Cabin"
+msgstr "المقصورة"
+
+msgid "Multimedia"
+msgstr "الوسائط المتعددة"
+
+msgid "Iran market"
+msgstr "سوق إيران"
+
+msgid "Common failures"
+msgstr "الأعطال الشائعة"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Translations"
+msgstr "الترجمات"
+
+msgid "Fill each language"
+msgstr "أكمل كل لغة"
+
+msgid "Basics & identity"
+msgstr "الأساسيات والهوية"
+
+msgid "Add name, official name, and description in فارسی, English, and العربية. Switch tabs below to edit each language."
+msgstr "أضف الاسم والاسم الرسمي والوصف بالفارسية والإنجليزية والعربية. بدّل بين التبويبات أدناه لتعديل كل لغة."
+
+msgid "Add name and description in فارسی, English, and العربية, then fill the specs."
+msgstr "أضف الاسم والوصف بالفارسية والإنجليزية والعربية، ثم أكمل المواصفات."

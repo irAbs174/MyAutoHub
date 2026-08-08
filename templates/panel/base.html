@@ -40,6 +40,7 @@
         <p class="panel-nav-group">{% trans "Catalog" %}</p>
         <a href="{% url 'panel:car_list' %}" class="{% if panel_section == 'cars' %}is-active{% endif %}">{% trans "Cars" %}</a>
         <a href="{% url 'panel:brand_list' %}" class="{% if panel_section == 'brands' %}is-active{% endif %}">{% trans "Brands" %}</a>
+        <a href="{% url 'panel:category_list' %}" class="{% if panel_section == 'categories' %}is-active{% endif %}">{% trans "Categories" %}</a>
         <a href="{% url 'panel:obd_list' %}" class="{% if panel_section == 'obd' %}is-active{% endif %}">{% trans "OBD codes" %}</a>
 
         <p class="panel-nav-group">{% trans "Places" %}</p>

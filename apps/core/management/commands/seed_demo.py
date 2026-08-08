@@ -532,9 +532,11 @@ class Command(BaseCommand):
                         defaults={
                             "horsepower": spec["horsepower"],
                             "fuel_type": spec["fuel_type"],
-                            "description": (
-                                f"{brand_name} {model_name} {spec['year']} "
-                                f"{spec['trim']}"
+                            **tri_fields(
+                                description=(
+                                    f"{brand_name} {model_name} {spec['year']} "
+                                    f"{spec['trim']}"
+                                )
                             ),
                             "is_published": True,
                         },

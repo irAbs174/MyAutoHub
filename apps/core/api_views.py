@@ -111,6 +111,13 @@ class PublicCarsAPIView(ListAPIView):
             else:
                 qs = qs.filter(model__brand__name__iexact=brand)
 
+        category = self.request.query_params.get("category")
+        if category:
+            if category.isdigit():
+                qs = qs.filter(categories__id=int(category)).distinct()
+            else:
+                qs = qs.filter(categories__slug__iexact=category).distinct()
+
         search = self.request.query_params.get("search")
         if search:
             qs = qs.filter(

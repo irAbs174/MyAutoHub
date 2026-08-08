@@ -1,70 +1,239 @@
 {% extends "panel/base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% if editing %}{% trans "Edit car" %}{% else %}{% trans "New car" %}{% endif %}-{% trans "Panel" %}{% endblock %}
 {% block page_title %}{% if editing %}{% trans "Edit car" %}{% else %}{% trans "New car" %}{% endif %}{% endblock %}
-{% block page_lead %}<p class="panel-lead">{% if editing %}{{ car }}{% else %}{% trans "Add a car to the catalog." %}{% endif %}</p>{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% if editing %}{{ car }}{% else %}{% trans "Follow the steps to add a catalog car." %}{% endif %}</p>{% endblock %}
 
 {% block content %}
-<div class="panel" style="max-width: 880px">
-  <form method="post" class="form-grid" enctype="multipart/form-data">
+<div
+  class="panel panel-wizard"
+  style="max-width: 880px"
+  data-panel-wizard
+  {% if form.errors or related_forms.spec.errors or related_forms.dims.errors or related_forms.suspension.errors or related_forms.brakes.errors or related_forms.wheels.errors or related_forms.cabin.errors or related_forms.multimedia.errors or related_forms.market.errors or formsets.photos.errors or formsets.features.errors or formsets.maintenance.errors or formsets.fluids.errors or formsets.tires.errors or formsets.batteries.errors or formsets.service.errors or formsets.parts.errors or formsets.failures.errors or formsets.prices.errors %}data-has-errors="1"{% endif %}
+>
+  <nav class="wizard-steps" aria-label="{% trans 'Car form steps' %}">
+    <ol class="wizard-steps__list wizard-steps__list--dense">
+      <li class="wizard-steps__item is-active" data-step-indicator="1">
+        <span class="wizard-steps__num" aria-hidden="true">1</span>
+        <span class="wizard-steps__label">{% trans "Translations" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="2">
+        <span class="wizard-steps__num" aria-hidden="true">2</span>
+        <span class="wizard-steps__label">{% trans "Basics" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="3">
+        <span class="wizard-steps__num" aria-hidden="true">3</span>
+        <span class="wizard-steps__label">{% trans "Specs" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="4">
+        <span class="wizard-steps__num" aria-hidden="true">4</span>
+        <span class="wizard-steps__label">{% trans "Chassis" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="5">
+        <span class="wizard-steps__num" aria-hidden="true">5</span>
+        <span class="wizard-steps__label">{% trans "Service" %}</span>
+      </li>
+      <li class="wizard-steps__item" data-step-indicator="6">
+        <span class="wizard-steps__num" aria-hidden="true">6</span>
+        <span class="wizard-steps__label">{% trans "Market" %}</span>
+      </li>
+    </ol>
+    <div class="wizard-progress" aria-hidden="true">
+      <span class="wizard-progress__bar" data-wizard-progress></span>
+    </div>
+  </nav>
+
+  <form method="post" class="form-grid wizard-form" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {% if form.non_field_errors %}
       {% for error in form.non_field_errors %}<div class="form-error">{{ error }}</div>{% endfor %}
     {% endif %}
 
-    <div class="section-head"><h2>{% trans "Basics" %}</h2></div>
-    {% for field in form %}
-      <div class="form-row{% if field.errors %} has-error{% endif %}">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {# —— 1. Translations —— #}
+    <div class="wizard-pane is-active" data-wizard-step="1">
+      <header class="wizard-pane__head">
+        <h2>{% trans "Translations" %}</h2>
+        <p>{% trans "Add name, official name, and description in فارسی, English, and العربية." %}</p>
+      </header>
+      <aside class="wizard-tip" role="note">
+        <strong>{% trans "Fill each language" %}</strong>
+        <p>{% trans "Completing all three languages helps users find this car in the hub." %}</p>
+      </aside>
+      <div class="lang-tabs" data-lang-tabs>
+        <div class="lang-tabs__nav" role="tablist" aria-label="{% trans 'Languages' %}">
+          <button type="button" class="lang-tabs__btn is-active" role="tab" aria-selected="true" data-lang-tab="fa">فارسی</button>
+          <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="en">English</button>
+          <button type="button" class="lang-tabs__btn" role="tab" aria-selected="false" data-lang-tab="ar">العربية</button>
+        </div>
+        <div class="lang-tabs__panel is-active" data-lang-panel="fa" role="tabpanel">
+          {% include "panel/cars/_field.html" with field=form.name_fa %}
+          {% include "panel/cars/_field.html" with field=form.official_name_fa %}
+          {% include "panel/cars/_field.html" with field=form.description_fa %}
+        </div>
+        <div class="lang-tabs__panel" data-lang-panel="en" role="tabpanel" hidden>
+          {% include "panel/cars/_field.html" with field=form.name_en %}
+          {% include "panel/cars/_field.html" with field=form.official_name_en %}
+          {% include "panel/cars/_field.html" with field=form.description_en %}
+        </div>
+        <div class="lang-tabs__panel" data-lang-panel="ar" role="tabpanel" hidden>
+          {% include "panel/cars/_field.html" with field=form.name_ar %}
+          {% include "panel/cars/_field.html" with field=form.official_name_ar %}
+          {% include "panel/cars/_field.html" with field=form.description_ar %}
+        </div>
       </div>
-    {% endfor %}
+    </div>
 
-    <div class="section-head"><h2>{% trans "Technical specs" %}</h2></div>
-    {% for field in spec_form %}
-      <div class="form-row{% if field.errors %} has-error{% endif %}">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+    {# —— 2. Basics —— #}
+    <div class="wizard-pane" data-wizard-step="2" data-required-fields="model,year" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% trans "Basics & identity" %}</h2>
+        <p>{% trans "Model, year, trim, and Iran market passport fields." %}</p>
+      </header>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.model %}
+        {% include "panel/cars/_field.html" with field=form.year %}
       </div>
-    {% endfor %}
-
-    <div class="section-head"><h2>{% trans "Dimensions" %}</h2></div>
-    {% for field in dims_form %}
-      <div class="form-row{% if field.errors %} has-error{% endif %}">
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
-        {% for error in field.errors %}<div class="form-error">{{ error }}</div>{% endfor %}
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.trim %}
+        {% include "panel/cars/_field.html" with field=form.horsepower %}
       </div>
-    {% endfor %}
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.fuel_type %}
+        {% include "panel/cars/_field.html" with field=form.body_style %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.model_code %}
+        {% include "panel/cars/_field.html" with field=form.chassis_code %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.generation %}
+        {% include "panel/cars/_field.html" with field=form.facelift %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.manufacturer %}
+        {% include "panel/cars/_field.html" with field=form.importer %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.assembler %}
+        {% include "panel/cars/_field.html" with field=form.doors %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.country_of_origin %}
+        {% include "panel/cars/_field.html" with field=form.country_of_assembly %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.introduced_year %}
+        {% include "panel/cars/_field.html" with field=form.iran_entry_year %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.production_start_year %}
+        {% include "panel/cars/_field.html" with field=form.production_end_year %}
+      </div>
+      <div class="form-row-pair">
+        {% include "panel/cars/_field.html" with field=form.market_status %}
+        {% include "panel/cars/_field.html" with field=form.is_published %}
+      </div>
+      {% include "panel/cars/_field.html" with field=form.categories %}
+      {% include "panel/cars/_field.html" with field=form.cover_image %}
+    </div>
 
-    {% trans "Gallery photos" as title_photos %}
-    {% include "panel/cars/_formset_section.html" with title=title_photos formset=formsets.photos %}
-    {% trans "Features" as title_features %}
-    {% include "panel/cars/_formset_section.html" with title=title_features formset=formsets.features %}
-    {% trans "Maintenance" as title_maintenance %}
-    {% include "panel/cars/_formset_section.html" with title=title_maintenance formset=formsets.maintenance %}
-    {% trans "Fluids" as title_fluids %}
-    {% include "panel/cars/_formset_section.html" with title=title_fluids formset=formsets.fluids %}
-    {% trans "Tires" as title_tires %}
-    {% include "panel/cars/_formset_section.html" with title=title_tires formset=formsets.tires %}
-    {% trans "Batteries" as title_batteries %}
-    {% include "panel/cars/_formset_section.html" with title=title_batteries formset=formsets.batteries %}
-    {% trans "Service schedule" as title_service %}
-    {% include "panel/cars/_formset_section.html" with title=title_service formset=formsets.service %}
-    {% trans "Parts" as title_parts %}
-    {% include "panel/cars/_formset_section.html" with title=title_parts formset=formsets.parts %}
-    {% trans "Prices" as title_prices %}
-    {% include "panel/cars/_formset_section.html" with title=title_prices formset=formsets.prices %}
+    {# —— 3. Specs —— #}
+    <div class="wizard-pane" data-wizard-step="3" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% trans "Technical specs" %}</h2>
+        <p>{% trans "Engine, gearbox, performance, and body dimensions." %}</p>
+      </header>
+      {% for field in related_forms.spec %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+      <h3 class="wizard-subhead">{% trans "Dimensions" %}</h3>
+      {% for field in related_forms.dims %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+    </div>
 
-    <div class="actions">
-      <button class="btn" type="submit">
-        {% if editing %}{% trans "Save changes" %}{% else %}{% trans "Create car" %}{% endif %}
-      </button>
-      <a class="btn btn-ghost" href="{% url 'panel:car_list' %}">{% trans "Cancel" %}</a>
+    {# —— 4. Chassis & cabin —— #}
+    <div class="wizard-pane" data-wizard-step="4" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% trans "Chassis & cabin" %}</h2>
+        <p>{% trans "Suspension, brakes, wheels, cabin, and multimedia." %}</p>
+      </header>
+      <h3 class="wizard-subhead">{% trans "Suspension" %}</h3>
+      {% for field in related_forms.suspension %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+      <h3 class="wizard-subhead">{% trans "Brakes" %}</h3>
+      {% for field in related_forms.brakes %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+      <h3 class="wizard-subhead">{% trans "Wheels" %}</h3>
+      {% for field in related_forms.wheels %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+      <h3 class="wizard-subhead">{% trans "Cabin" %}</h3>
+      {% for field in related_forms.cabin %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+      <h3 class="wizard-subhead">{% trans "Multimedia" %}</h3>
+      {% for field in related_forms.multimedia %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+    </div>
+
+    {# —— 5. Service —— #}
+    <div class="wizard-pane" data-wizard-step="5" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% trans "Photos & service" %}</h2>
+        <p>{% trans "Gallery, features, fluids, tires, batteries, schedule, and parts." %}</p>
+      </header>
+      {% trans "Gallery photos" as title_photos %}
+      {% include "panel/cars/_formset_section.html" with title=title_photos formset=formsets.photos quiet=1 %}
+      {% trans "Features" as title_features %}
+      {% include "panel/cars/_formset_section.html" with title=title_features formset=formsets.features quiet=1 %}
+      {% trans "Maintenance" as title_maintenance %}
+      {% include "panel/cars/_formset_section.html" with title=title_maintenance formset=formsets.maintenance quiet=1 %}
+      {% trans "Fluids" as title_fluids %}
+      {% include "panel/cars/_formset_section.html" with title=title_fluids formset=formsets.fluids quiet=1 %}
+      {% trans "Tires" as title_tires %}
+      {% include "panel/cars/_formset_section.html" with title=title_tires formset=formsets.tires quiet=1 %}
+      {% trans "Batteries" as title_batteries %}
+      {% include "panel/cars/_formset_section.html" with title=title_batteries formset=formsets.batteries quiet=1 %}
+      {% trans "Service schedule" as title_service %}
+      {% include "panel/cars/_formset_section.html" with title=title_service formset=formsets.service quiet=1 %}
+      {% trans "Parts" as title_parts %}
+      {% include "panel/cars/_formset_section.html" with title=title_parts formset=formsets.parts quiet=1 %}
+    </div>
+
+    {# —— 6. Market —— #}
+    <div class="wizard-pane" data-wizard-step="6" hidden>
+      <header class="wizard-pane__head">
+        <h2>{% trans "Iran market" %}</h2>
+        <p>{% trans "Prices, demand scores, and common failures." %}</p>
+      </header>
+      {% for field in related_forms.market %}
+        {% include "panel/cars/_field.html" with field=field %}
+      {% endfor %}
+      {% trans "Common failures" as title_failures %}
+      {% include "panel/cars/_formset_section.html" with title=title_failures formset=formsets.failures quiet=1 %}
+      {% trans "Prices" as title_prices %}
+      {% include "panel/cars/_formset_section.html" with title=title_prices formset=formsets.prices quiet=1 %}
+    </div>
+
+    <div class="wizard-actions">
+      <button type="button" class="btn btn-ghost" data-wizard-prev hidden>{% trans "Back" %}</button>
+      <div class="wizard-actions__end">
+        <a class="btn btn-ghost" href="{% url 'panel:car_list' %}">{% trans "Cancel" %}</a>
+        <button type="button" class="btn" data-wizard-next>{% trans "Continue" %}</button>
+        <button class="btn" type="submit" data-wizard-submit hidden>
+          {% if editing %}{% trans "Save changes" %}{% else %}{% trans "Create car" %}{% endif %}
+        </button>
+      </div>
     </div>
   </form>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/listing-wizard.js' %}" defer></script>
 {% endblock %}

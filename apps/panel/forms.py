@@ -4,23 +4,53 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.cars.models import (
     BatterySpec,
+    BrakeSpec,
     Brand,
+    CabinSpec,
     Car,
     CarModel,
     CarPhoto,
     CarPrice,
+    Category,
+    CommonFailure,
     Dealer,
     Dimensions,
     Feature,
     FluidSpec,
     MaintenanceItem,
+    MarketInfo,
+    MultimediaSpec,
     OBDCode,
     Part,
     RepairShop,
     ServiceScheduleItem,
+    SuspensionSpec,
     TechnicalSpec,
     TireSpec,
     Trim,
+    WheelSpec,
+)
+from apps.panel.car_field_labels import (
+    BATTERY_LABELS,
+    BRAKE_LABELS,
+    CABIN_LABELS,
+    CAR_LABELS,
+    DIMENSIONS_LABELS,
+    FAILURE_LABELS,
+    FEATURE_LABELS,
+    FLUID_LABELS,
+    MAINTENANCE_LABELS,
+    MARKET_LABELS,
+    MULTIMEDIA_LABELS,
+    PART_LABELS,
+    PHOTO_LABELS,
+    PRICE_LABELS,
+    SERVICE_LABELS,
+    SUSPENSION_LABELS,
+    TECHNICAL_SPEC_LABELS,
+    TIRE_LABELS,
+    WHEEL_LABELS,
+    apply_field_labels,
 )
 from apps.emergency.models import EmergencyService, RequestStatus
 from apps.marketplace.models import Listing, ListingStatus
@@ -109,13 +139,38 @@ class BrandForm(forms.ModelForm):
 class CarModelForm(forms.ModelForm):
     class Meta:
         model = CarModel
-        fields = ("brand", "name")
+        fields = (
+            "brand",
+            "name",
+            "name_fa",
+            "name_en",
+            "name_ar",
+            "official_name",
+            "model_code",
+            "chassis_code",
+            "generation",
+            "body_style",
+            "introduced_year",
+            "iran_entry_year",
+            "production_start_year",
+            "production_end_year",
+            "categories",
+        )
+        widgets = {
+            "categories": forms.CheckboxSelectMultiple,
+        }
 
 
 class TrimForm(forms.ModelForm):
     class Meta:
         model = Trim
         fields = ("car_model", "name")
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ("slug", "name", "name_fa", "name_en", "name_ar", "sort_order")
 
 
 class OBDCodeForm(forms.ModelForm):
@@ -172,16 +227,45 @@ class CarForm(forms.ModelForm):
             "trim",
             "horsepower",
             "fuel_type",
-            "description",
+            "name_fa",
+            "name_en",
+            "name_ar",
+            "official_name_fa",
+            "official_name_en",
+            "official_name_ar",
+            "description_fa",
+            "description_en",
+            "description_ar",
+            "model_code",
+            "chassis_code",
+            "generation",
+            "facelift",
+            "body_style",
+            "manufacturer",
+            "importer",
+            "assembler",
+            "country_of_origin",
+            "country_of_assembly",
+            "introduced_year",
+            "iran_entry_year",
+            "production_start_year",
+            "production_end_year",
+            "market_status",
+            "doors",
+            "categories",
             "cover_image",
             "is_published",
         )
         widgets = {
-            "description": forms.Textarea(attrs={"rows": 4}),
+            "description_fa": forms.Textarea(attrs={"rows": 4}),
+            "description_en": forms.Textarea(attrs={"rows": 4}),
+            "description_ar": forms.Textarea(attrs={"rows": 4}),
+            "categories": forms.CheckboxSelectMultiple,
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        apply_field_labels(self, CAR_LABELS)
         self.fields["trim"].queryset = Trim.objects.select_related(
             "car_model__brand"
         ).order_by("car_model__brand__name", "car_model__name", "name")
@@ -213,17 +297,273 @@ class TechnicalSpecForm(forms.ModelForm):
             "notes": forms.Textarea(attrs={"rows": 2}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, TECHNICAL_SPEC_LABELS)
+
 
 class DimensionsForm(forms.ModelForm):
     class Meta:
         model = Dimensions
         exclude = ("car",)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, DIMENSIONS_LABELS)
+
+
+class SuspensionSpecForm(forms.ModelForm):
+    class Meta:
+        model = SuspensionSpec
+        exclude = ("car",)
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, SUSPENSION_LABELS)
+
+
+class BrakeSpecForm(forms.ModelForm):
+    class Meta:
+        model = BrakeSpec
+        exclude = ("car",)
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, BRAKE_LABELS)
+
+
+class WheelSpecForm(forms.ModelForm):
+    class Meta:
+        model = WheelSpec
+        exclude = ("car",)
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, WHEEL_LABELS)
+
+
+class CabinSpecForm(forms.ModelForm):
+    class Meta:
+        model = CabinSpec
+        exclude = ("car",)
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, CABIN_LABELS)
+
+
+class MultimediaSpecForm(forms.ModelForm):
+    class Meta:
+        model = MultimediaSpec
+        exclude = ("car",)
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, MULTIMEDIA_LABELS)
+
+
+class MarketInfoForm(forms.ModelForm):
+    class Meta:
+        model = MarketInfo
+        exclude = ("car",)
+        widgets = {
+            "notes": forms.Textarea(attrs={"rows": 2}),
+            "recorded_at": forms.DateInput(attrs={"type": "date"}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, MARKET_LABELS)
+        # Entire OneToOne block is optional on the car form.
+        for field in self.fields.values():
+            field.required = False
+
+
+class CarPhotoForm(forms.ModelForm):
+    class Meta:
+        model = CarPhoto
+        fields = ("image", "caption", "sort_order")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, PHOTO_LABELS)
+
+
+class FeatureForm(forms.ModelForm):
+    class Meta:
+        model = Feature
+        fields = ("category", "key", "name", "value", "availability")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, FEATURE_LABELS)
+
+
+class MaintenanceItemForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceItem
+        fields = (
+            "title",
+            "interval_km",
+            "interval_months",
+            "description",
+            "estimated_cost",
+        )
+        widgets = {"description": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, MAINTENANCE_LABELS)
+
+
+class FluidSpecForm(forms.ModelForm):
+    class Meta:
+        model = FluidSpec
+        fields = (
+            "fluid_type",
+            "specification",
+            "grade",
+            "capacity",
+            "interval_km",
+            "interval_months",
+            "estimated_cost",
+            "notes",
+        )
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, FLUID_LABELS)
+
+
+class TireSpecForm(forms.ModelForm):
+    class Meta:
+        model = TireSpec
+        fields = (
+            "position",
+            "size",
+            "pressure_psi",
+            "load_index",
+            "speed_rating",
+            "rim_size",
+            "rim_material",
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, TIRE_LABELS)
+
+
+class BatterySpecForm(forms.ModelForm):
+    class Meta:
+        model = BatterySpec
+        fields = ("group_size", "voltage", "cca", "chemistry", "notes")
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, BATTERY_LABELS)
+
+
+class ServiceScheduleItemForm(forms.ModelForm):
+    class Meta:
+        model = ServiceScheduleItem
+        fields = ("mileage_km", "months", "tasks", "sort_order")
+        widgets = {"tasks": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, SERVICE_LABELS)
+
+
+class PartForm(forms.ModelForm):
+    class Meta:
+        model = Part
+        fields = (
+            "name",
+            "oem_number",
+            "category",
+            "is_consumable",
+            "interval_km",
+            "interval_months",
+            "estimated_cost",
+            "notes",
+        )
+        widgets = {"notes": forms.Textarea(attrs={"rows": 2})}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, PART_LABELS)
+
+
+class CommonFailureForm(forms.ModelForm):
+    class Meta:
+        model = CommonFailure
+        fields = (
+            "area",
+            "title",
+            "severity",
+            "likelihood",
+            "repair_cost_min",
+            "repair_cost_max",
+            "currency",
+            "symptoms",
+            "notes",
+        )
+        widgets = {
+            "symptoms": forms.Textarea(attrs={"rows": 2}),
+            "notes": forms.Textarea(attrs={"rows": 2}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, FAILURE_LABELS)
+
+
+class CarPriceForm(forms.ModelForm):
+    class Meta:
+        model = CarPrice
+        fields = (
+            "label",
+            "amount",
+            "currency",
+            "source",
+            "year_for_price",
+            "mileage_km",
+            "notes",
+            "recorded_at",
+        )
+        widgets = {
+            "notes": forms.Textarea(attrs={"rows": 2}),
+            "recorded_at": forms.DateInput(attrs={"type": "date"}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        apply_field_labels(self, PRICE_LABELS)
+
+
+RELATED_FORM_CLASSES = {
+    "spec": (TechnicalSpecForm, TechnicalSpec, "technical_spec"),
+    "dims": (DimensionsForm, Dimensions, "dimensions"),
+    "suspension": (SuspensionSpecForm, SuspensionSpec, "suspension"),
+    "brakes": (BrakeSpecForm, BrakeSpec, "brakes"),
+    "wheels": (WheelSpecForm, WheelSpec, "wheels"),
+    "cabin": (CabinSpecForm, CabinSpec, "cabin"),
+    "multimedia": (MultimediaSpecForm, MultimediaSpec, "multimedia"),
+    "market": (MarketInfoForm, MarketInfo, "market_info"),
+}
+
 
 CarPhotoFormSet = inlineformset_factory(
     Car,
     CarPhoto,
-    fields=("image", "caption", "sort_order"),
+    form=CarPhotoForm,
     extra=1,
     can_delete=True,
 )
@@ -231,80 +571,73 @@ CarPhotoFormSet = inlineformset_factory(
 FeatureFormSet = inlineformset_factory(
     Car,
     Feature,
-    fields=("category", "name", "value"),
-    extra=0,
+    form=FeatureForm,
+    extra=1,
     can_delete=True,
 )
 
 MaintenanceItemFormSet = inlineformset_factory(
     Car,
     MaintenanceItem,
-    fields=(
-        "title",
-        "interval_km",
-        "interval_months",
-        "description",
-        "estimated_cost",
-    ),
-    extra=0,
+    form=MaintenanceItemForm,
+    extra=1,
     can_delete=True,
-    widgets={"description": forms.Textarea(attrs={"rows": 2})},
 )
 
 FluidSpecFormSet = inlineformset_factory(
     Car,
     FluidSpec,
-    fields=("fluid_type", "specification", "capacity", "notes"),
-    extra=0,
+    form=FluidSpecForm,
+    extra=1,
     can_delete=True,
-    widgets={"notes": forms.Textarea(attrs={"rows": 2})},
 )
 
 TireSpecFormSet = inlineformset_factory(
     Car,
     TireSpec,
-    fields=("position", "size", "pressure_psi", "load_index", "speed_rating"),
-    extra=0,
+    form=TireSpecForm,
+    extra=1,
     can_delete=True,
 )
 
 BatterySpecFormSet = inlineformset_factory(
     Car,
     BatterySpec,
-    fields=("group_size", "voltage", "cca", "chemistry", "notes"),
-    extra=0,
+    form=BatterySpecForm,
+    extra=1,
     can_delete=True,
-    widgets={"notes": forms.Textarea(attrs={"rows": 2})},
 )
 
 ServiceScheduleFormSet = inlineformset_factory(
     Car,
     ServiceScheduleItem,
-    fields=("mileage_km", "months", "tasks", "sort_order"),
-    extra=0,
+    form=ServiceScheduleItemForm,
+    extra=1,
     can_delete=True,
-    widgets={"tasks": forms.Textarea(attrs={"rows": 2})},
 )
 
 PartFormSet = inlineformset_factory(
     Car,
     Part,
-    fields=("name", "oem_number", "category", "notes"),
-    extra=0,
+    form=PartForm,
+    extra=1,
     can_delete=True,
-    widgets={"notes": forms.Textarea(attrs={"rows": 2})},
+)
+
+CommonFailureFormSet = inlineformset_factory(
+    Car,
+    CommonFailure,
+    form=CommonFailureForm,
+    extra=1,
+    can_delete=True,
 )
 
 CarPriceFormSet = inlineformset_factory(
     Car,
     CarPrice,
-    fields=("label", "amount", "currency", "source", "notes", "recorded_at"),
-    extra=0,
+    form=CarPriceForm,
+    extra=1,
     can_delete=True,
-    widgets={
-        "notes": forms.Textarea(attrs={"rows": 2}),
-        "recorded_at": forms.DateInput(attrs={"type": "date"}),
-    },
 )
 
 
@@ -317,6 +650,7 @@ FORMSET_FACTORIES = {
     "batteries": BatterySpecFormSet,
     "service": ServiceScheduleFormSet,
     "parts": PartFormSet,
+    "failures": CommonFailureFormSet,
     "prices": CarPriceFormSet,
 }
 
@@ -324,61 +658,57 @@ FORMSET_FACTORIES = {
 def _form_has_values(form):
     if not form.is_valid():
         return False
+    blank = form._meta.model()
     for name, value in form.cleaned_data.items():
-        if name == "car":
+        if name in ("car", "id"):
             continue
-        if value not in (None, "", []):
+        if value in (None, ""):
+            continue
+        default = getattr(blank, name, None)
+        if value != default:
             return True
     return False
 
 
 def build_car_related_forms(data=None, files=None, instance=None):
-    """Return (spec_form, dims_form, formsets_dict) for a Car create/edit view."""
+    """Return (related_forms_dict, formsets_dict) for a Car create/edit view."""
     car = instance if instance is not None else Car()
-    spec_instance = None
-    dims_instance = None
-    if instance is not None and instance.pk:
-        spec_instance = TechnicalSpec.objects.filter(car=instance).first()
-        dims_instance = Dimensions.objects.filter(car=instance).first()
+    related = {}
+    for prefix, (form_cls, model_cls, _rel) in RELATED_FORM_CLASSES.items():
+        obj = None
+        if instance is not None and instance.pk:
+            obj = model_cls.objects.filter(car=instance).first()
+        if data is not None:
+            related[prefix] = form_cls(data, instance=obj, prefix=prefix)
+        else:
+            related[prefix] = form_cls(instance=obj, prefix=prefix)
 
     if data is not None:
-        spec_form = TechnicalSpecForm(data, instance=spec_instance, prefix="spec")
-        dims_form = DimensionsForm(data, instance=dims_instance, prefix="dims")
         formsets = {
             key: factory(data, files, instance=car, prefix=key)
             for key, factory in FORMSET_FACTORIES.items()
         }
     else:
-        spec_form = TechnicalSpecForm(instance=spec_instance, prefix="spec")
-        dims_form = DimensionsForm(instance=dims_instance, prefix="dims")
         formsets = {
             key: factory(instance=car, prefix=key)
             for key, factory in FORMSET_FACTORIES.items()
         }
-    return spec_form, dims_form, formsets
+    return related, formsets
 
 
-def car_related_forms_valid(spec_form, dims_form, formsets):
-    ok = spec_form.is_valid() and dims_form.is_valid()
+def car_related_forms_valid(related_forms, formsets):
+    ok = all(f.is_valid() for f in related_forms.values())
     for fs in formsets.values():
         ok = fs.is_valid() and ok
     return ok
 
 
-def save_car_related(car, spec_form, dims_form, formsets):
-    if _form_has_values(spec_form) or (
-        spec_form.instance and spec_form.instance.pk
-    ):
-        spec = spec_form.save(commit=False)
-        spec.car = car
-        spec.save()
-
-    if _form_has_values(dims_form) or (
-        dims_form.instance and dims_form.instance.pk
-    ):
-        dims = dims_form.save(commit=False)
-        dims.car = car
-        dims.save()
+def save_car_related(car, related_forms, formsets):
+    for form in related_forms.values():
+        if _form_has_values(form) or (form.instance and form.instance.pk):
+            obj = form.save(commit=False)
+            obj.car = car
+            obj.save()
 
     for fs in formsets.values():
         fs.instance = car

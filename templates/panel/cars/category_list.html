@@ -1,0 +1,52 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Categories" %}-{% trans "Panel" %}{% endblock %}
+{% block page_title %}{% trans "Categories" %}{% endblock %}
+{% block page_lead %}<p class="panel-lead">{% trans "Organize practical catalog tags." %}</p>{% endblock %}
+
+{% block content %}
+<div class="toolbar">
+  <a class="btn" href="{% url 'panel:category_create' %}">{% trans "New category" %}</a>
+  <span class="spacer"></span>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:brand_list' %}">{% trans "Brands & models" %}</a>
+  <a class="btn btn-ghost btn-sm" href="{% url 'panel:car_list' %}">{% trans "Back to cars" %}</a>
+</div>
+
+<div class="panel">
+  {% if categories %}
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Slug" %}</th>
+            <th>{% trans "Sort" %}</th>
+            <th>{% trans "Models" %}</th>
+            <th>{% trans "Cars" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category in categories %}
+            <tr>
+              <td>{{ category }}</td>
+              <td><code>{{ category.slug }}</code></td>
+              <td>{{ category.sort_order }}</td>
+              <td>{{ category.model_count }}</td>
+              <td>{{ category.car_count }}</td>
+              <td>
+                <a class="link-action" href="{% url 'panel:category_edit' category.pk %}">{% trans "Edit" %}</a>
+                ·
+                <a class="link-action" href="{{ category.get_absolute_url }}" target="_blank" rel="noopener">{% trans "View" %}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="empty">{% trans "No categories yet. Create the first one." %}</p>
+  {% endif %}
+</div>
+{% endblock %}
