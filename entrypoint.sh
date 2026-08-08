@@ -33,6 +33,17 @@ PY
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
+# Idempotent catalog seed (brands + models). Skip with RUN_SEEDERS=false.
+case "${RUN_SEEDERS:-true}" in
+  1|true|yes|TRUE|YES)
+    echo "Seeding brand/model catalog..."
+    python manage.py seed_brands
+    ;;
+  *)
+    echo "Skipping seeders (RUN_SEEDERS=${RUN_SEEDERS})"
+    ;;
+esac
+
 if [ "${DJANGO_ENV}" = "production" ]; then
   exec gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3
 else
